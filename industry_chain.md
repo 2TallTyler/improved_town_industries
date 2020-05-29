@@ -8,6 +8,20 @@
 * Industries need workers (passengers)
 * Locate processing industries near towns
 
+## Cargos
+
+* Passengers (workers/commuters)
+* Goods
+* Oil
+* Grain
+* Milk
+* Alcohol
+* Food
+* Coal
+* Iron
+* Steel
+* Wood
+
 ## Oil Chain
 
 ### Oil Wells
@@ -112,5 +126,4 @@ Other Sprites:
 * Printing Plant
 * Gold Mine
 * Copper Ore Mine
-* Water Supply
 * Water Tower
