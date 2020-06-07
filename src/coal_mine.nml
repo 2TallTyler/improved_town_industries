@@ -1,0 +1,141 @@
+// Begin Coal Mine
+
+spritelayout sprlay_coal_mine_1_a { // Hoist animation 1
+	ground		{sprite:2022;}
+	building	{sprite:2013; xoffset:7;}
+}
+spritelayout sprlay_coal_mine_1_b { // Hoist animation 2
+	ground		{sprite:2022;}
+	building	{sprite:2014; xoffset:7;}
+}
+spritelayout sprlay_coal_mine_1_c { // Hoist animation 3
+	ground		{sprite:2022;}
+	building	{sprite:2015; xoffset:7;}
+}
+
+spritelayout sprlay_coal_mine_2 { // Long building
+	ground		{sprite:2022;}
+	building	{sprite:2018;}
+}
+
+spritelayout sprlay_coal_mine_3 { // Elevated building
+	ground		{sprite:2022;}
+	building	{sprite:2021;}
+}
+
+spritelayout sprlay_coal_mine_4 { // Single tile coal pile
+	ground		{sprite:2022;}
+	building	{sprite:2025;}
+}
+
+spritelayout sprlay_coal_mine_5_N { // Coal pile N
+	ground		{sprite:2022;}
+	building	{sprite:2023;}
+}
+
+spritelayout sprlay_coal_mine_5_W { // Coal pile W
+	ground		{sprite:2022;}
+	building	{sprite:2024;}
+}
+
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_coal_mine_5, relative_pos) {
+	relative_coord(0, 0): sprlay_coal_mine_5_N;
+	relative_coord(1, 0): sprlay_coal_mine_5_W;
+}
+
+item (FEAT_OBJECTS, object_item_coal_mine_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_COAL_MINE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+		
+	}
+	graphics {
+		default:				sprlay_coal_mine_1_a;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_coal_mine_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_COAL_MINE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+		
+	}
+	graphics {
+		default:				sprlay_coal_mine_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_coal_mine_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_COAL_MINE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+		
+	}
+	graphics {
+		default:				sprlay_coal_mine_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_coal_mine_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_COAL_MINE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+		
+	}
+	graphics {
+		default:				sprlay_coal_mine_4;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_coal_mine_5) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_COAL_MINE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[2,1];
+		introduction_date:		1700;
+		num_views:				1;
+		
+	}
+	graphics {
+		default:				switch_object_graphics_coal_mine_5;
+	}
+}
+
+// End Coal Mine

@@ -1,0 +1,20 @@
+##grflangid 0x01
+
+STR_GRF_NAME						:{TITLE} {VERSION}
+STR_GRF_DESC						:{ORANGE}It's cool yo.{}{}{ORANGE}Visit website for instructions.{}{}{BLACK}Coded by 2TallTyler.
+STR_WEBSITE							:https://github.com/2TallTyler/historical-industries/blob/master/README.md
+
+STR_ERROR_GAME_VERSION					:Historical Industries requires OpenTTD version 1.10.0, JGR version 0.34, or better
+
+STR_NAME_OBJECT_MENU					:Industry Tiles
+
+STR_NAME_STEEL_MILL						:Steel Mill
+STR_NAME_IRON_MINE						:Iron Mine
+STR_NAME_SAWMILL						:Sawmill
+STR_NAME_OIL_REFINERY					:Oil Refinery
+STR_NAME_FARM							:Farm
+STR_NAME_POWER_PLANT					:Power Plant
+STR_NAME_FACTORY						:Factory
+STR_NAME_COAL_MINE						:Coal Mine
+STR_NAME_OIL_WELLS						:Oil Wells
+STR_NAME_PAPER_MILL						:Paper Mill

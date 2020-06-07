@@ -1,0 +1,179 @@
+// Begin Oil Refinery
+
+spritelayout sprlay_oil_refinery_1 { // Office
+	ground		{sprite:1420;}
+	building	{sprite:2095; yoffset:2; xoffset:2;}
+}
+spritelayout sprlay_oil_refinery_2 { // Large tank
+	ground		{sprite:1420;}
+	building	{sprite:2080; yoffset:1; xoffset:1;}
+}
+spritelayout sprlay_oil_refinery_3 { // Tall tank
+	ground		{sprite:1420;}
+	building	{sprite:2083; yoffset:4; xoffset:4;}
+}
+spritelayout sprlay_oil_refinery_4 { // Burner tower
+	ground		{sprite:1420;}
+	building	{sprite:2086; yoffset:5; xoffset:5;}
+}
+spritelayout sprlay_oil_refinery_5 { // Pipe frame 1
+	ground		{sprite:1420;}
+	building	{sprite:2089;}
+}
+spritelayout sprlay_oil_refinery_6 { // Pipe frame 2
+	ground		{sprite:1420;}
+	building	{sprite:2092;}
+}
+spritelayout sprlay_oil_refinery_7 { // Pipe frame 3
+	ground		{sprite:1420;}
+	building	{sprite:2091;}
+}
+spritelayout sprlay_oil_refinery_8 { // Bare ground
+	ground		{sprite:1420;}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_4;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_5) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_5;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_6) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_6;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_7) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_7;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_8) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_8;
+	}
+}
+
+// End Oil Refinery

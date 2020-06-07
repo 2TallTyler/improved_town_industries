@@ -1,0 +1,43 @@
+// Begin Factory
+
+spritelayout sprlay_factory_1_N {
+	ground		{sprite:2146;}
+	building	{sprite:2150;}
+}
+spritelayout sprlay_factory_1_E {
+	ground		{sprite:2147;}
+	building	{sprite:2151;}
+}
+spritelayout sprlay_factory_1_W {
+	ground		{sprite:2148;}
+	building	{sprite:2152;}
+}
+spritelayout sprlay_factory_1_S {
+	ground		{sprite:2149;}
+}
+
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_factory_1, relative_pos) {
+	relative_coord(0, 0): sprlay_factory_1_N;
+	relative_coord(0, 1): sprlay_factory_1_E;
+	relative_coord(1, 0): sprlay_factory_1_W;
+    relative_coord(1, 1): sprlay_factory_1_S;
+}
+
+item (FEAT_OBJECTS, object_item_factory_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FACTORY);
+		climates_available:		ALL_CLIMATES;
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[2,2];
+		introduction_date:		1840;
+		num_views:				1;
+	}
+	graphics {
+		default:				switch_object_graphics_factory_1;
+	}
+}
+
+// End Factory

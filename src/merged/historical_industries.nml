@@ -1,0 +1,1210 @@
+// Begin Header
+
+grf {
+	grfid: "TT\04\01";
+	name: string(STR_GRF_NAME);
+	desc: string(STR_GRF_DESC);
+	version: 0;
+	min_compatible_version: 0;
+	url: string(STR_WEBSITE);
+/*
+param 0 {
+  extra_bank {
+   name: string(STR_PARAM_NAME_EXTRA_BANK);
+   desc: string(STR_PARAM_DESC_EXTRA_BANK);
+   type: bool;
+   def_value: 0;
+   }}
+   
+param 1 {
+  extra_hotel {
+   name: string(STR_PARAM_NAME_EXTRA_HOTEL);
+   desc: string(STR_PARAM_DESC_EXTRA_HOTEL);
+   def_value: 0;
+   type: bool;
+   }}
+
+param 2 {
+  extra_tropic {
+   name: string(STR_PARAM_NAME_EXTRA_TROPIC);
+   desc: string(STR_PARAM_DESC_EXTRA_TROPIC);
+   def_value: 0;
+   type: bool;
+   }} 
+
+param 3 {
+  improved_mail {
+   name: string(STR_PARAM_NAME_IMPROVED_MAIL);
+   desc: string(STR_PARAM_DESC_IMPROVED_MAIL);
+   def_value: 1;
+   type: bool;
+   }}   
+*/
+}
+
+
+if (version_openttd(1,10,0,28004) > openttd_version) {
+	error(FATAL, string(STR_ERROR_GAME_VERSION));
+}
+
+// End Header
+
+// Begin Farm
+
+spritelayout sprlay_farm_1_N { // Farmhouse N
+	ground		{sprite:2106;}
+	building	{sprite:2108;}
+}
+
+spritelayout sprlay_farm_1_W { // Farmhouse W
+	ground		{sprite:2107;}
+	building	{sprite:2109;}
+}
+
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_farm_1, relative_pos) {
+	relative_coord(0, 0): sprlay_farm_1_N;
+	relative_coord(0, 1): sprlay_farm_1_W;
+}
+
+spritelayout sprlay_farm_2 { // Hay shed
+	ground		{sprite:2110;}
+	building	{sprite:2111;}
+}
+
+spritelayout sprlay_farm_3 { // Barn
+	ground		{sprite:2112;}
+	building	{sprite:2113;}
+}
+
+spritelayout sprlay_farm_4 { // Silos
+	ground		{sprite:2116;}
+	building	{sprite:2115;}
+}
+
+spritelayout sprlay_farm_5 { // Farmyard
+	ground		{sprite:2116;}
+	building	{sprite:2117;}
+}
+
+spritelayout sprlay_farm_6 { // Empty tile
+	ground		{sprite:2116;}
+}
+
+item (FEAT_OBJECTS, object_item_farm_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,2];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				switch_object_graphics_farm_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_farm_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_farm_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_farm_4;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_5) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_farm_5;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_6) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_farm_6;
+	}
+}
+
+// End Farm
+// Begin Coal Mine
+
+spritelayout sprlay_coal_mine_1_a { // Hoist animation 1
+	ground		{sprite:2022;}
+	building	{sprite:2013; xoffset:7;}
+}
+spritelayout sprlay_coal_mine_1_b { // Hoist animation 2
+	ground		{sprite:2022;}
+	building	{sprite:2014; xoffset:7;}
+}
+spritelayout sprlay_coal_mine_1_c { // Hoist animation 3
+	ground		{sprite:2022;}
+	building	{sprite:2015; xoffset:7;}
+}
+
+spritelayout sprlay_coal_mine_2 { // Long building
+	ground		{sprite:2022;}
+	building	{sprite:2018;}
+}
+
+spritelayout sprlay_coal_mine_3 { // Elevated building
+	ground		{sprite:2022;}
+	building	{sprite:2021;}
+}
+
+spritelayout sprlay_coal_mine_4 { // Single tile coal pile
+	ground		{sprite:2022;}
+	building	{sprite:2025;}
+}
+
+spritelayout sprlay_coal_mine_5_N { // Coal pile N
+	ground		{sprite:2022;}
+	building	{sprite:2023;}
+}
+
+spritelayout sprlay_coal_mine_5_W { // Coal pile W
+	ground		{sprite:2022;}
+	building	{sprite:2024;}
+}
+
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_coal_mine_5, relative_pos) {
+	relative_coord(0, 0): sprlay_coal_mine_5_N;
+	relative_coord(1, 0): sprlay_coal_mine_5_W;
+}
+
+item (FEAT_OBJECTS, object_item_coal_mine_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_COAL_MINE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+		
+	}
+	graphics {
+		default:				sprlay_coal_mine_1_a;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_coal_mine_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_COAL_MINE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+		
+	}
+	graphics {
+		default:				sprlay_coal_mine_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_coal_mine_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_COAL_MINE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+		
+	}
+	graphics {
+		default:				sprlay_coal_mine_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_coal_mine_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_COAL_MINE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+		
+	}
+	graphics {
+		default:				sprlay_coal_mine_4;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_coal_mine_5) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_COAL_MINE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[2,1];
+		introduction_date:		1700;
+		num_views:				1;
+		
+	}
+	graphics {
+		default:				switch_object_graphics_coal_mine_5;
+	}
+}
+
+// End Coal Mine
+// Begin Power Plant
+
+spritelayout sprlay_power_plant_1 { // Powerhouse
+	ground		{sprite:1420;}
+	building	{sprite:2050;}
+}
+
+spritelayout sprlay_power_plant_2 { // Power terminals
+	ground		{sprite:1420;}
+	building	{sprite:2053;}
+}
+
+spritelayout sprlay_power_plant_3 { // Transformers
+	ground		{sprite:1420;}
+	building	{sprite:2054; yoffset:2;}
+}
+
+spritelayout sprlay_power_plant_4 { // Cooling tower
+	ground		{sprite:3981;}
+	building	{sprite:2047;}
+}
+
+item (FEAT_OBJECTS, object_item_power_plant_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_POWER_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_power_plant_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_power_plant_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_POWER_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_power_plant_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_power_plant_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_POWER_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_power_plant_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_power_plant_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_POWER_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_power_plant_4;
+	}
+}
+
+// End Power Plant
+// Begin Iron Mine
+
+spritelayout sprlay_iron_mine_00 {ground{sprite:2325;}}
+spritelayout sprlay_iron_mine_01 {ground{sprite:2326;}}
+spritelayout sprlay_iron_mine_02 {ground{sprite:2327;}}
+spritelayout sprlay_iron_mine_03 {ground{sprite:2328;}}
+
+spritelayout sprlay_iron_mine_10 {ground{sprite:2329;}}
+spritelayout sprlay_iron_mine_11 {ground{sprite:2330;}}
+spritelayout sprlay_iron_mine_12 {ground{sprite:2331;}}
+spritelayout sprlay_iron_mine_13 {ground{sprite:2332;}}
+
+spritelayout sprlay_iron_mine_20 {ground{sprite:2333;}}
+spritelayout sprlay_iron_mine_21 {ground{sprite:2334;}}
+spritelayout sprlay_iron_mine_22 {ground{sprite:2335;}}
+spritelayout sprlay_iron_mine_23 {ground{sprite:2336;}}
+
+spritelayout sprlay_iron_mine_30 {ground{sprite:2337;}}
+spritelayout sprlay_iron_mine_31 {ground{sprite:2338;}}
+spritelayout sprlay_iron_mine_32 {ground{sprite:2339;}}
+spritelayout sprlay_iron_mine_33 {ground{sprite:2340;}}
+
+
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_iron_mine, relative_pos) {
+	relative_coord(0,0): sprlay_iron_mine_00;
+	relative_coord(0,1): sprlay_iron_mine_01;
+	relative_coord(0,2): sprlay_iron_mine_02;
+	relative_coord(0,3): sprlay_iron_mine_03;
+	
+	relative_coord(1,0): sprlay_iron_mine_10;
+	relative_coord(1,1): sprlay_iron_mine_11;
+	relative_coord(1,2): sprlay_iron_mine_12;
+	relative_coord(1,3): sprlay_iron_mine_13;
+	
+	relative_coord(2,0): sprlay_iron_mine_20;
+	relative_coord(2,1): sprlay_iron_mine_21;
+	relative_coord(2,2): sprlay_iron_mine_22;
+	relative_coord(2,3): sprlay_iron_mine_23;
+	
+	relative_coord(3,0): sprlay_iron_mine_30;
+	relative_coord(3,1): sprlay_iron_mine_31;
+	relative_coord(3,2): sprlay_iron_mine_32;
+	relative_coord(3,3): sprlay_iron_mine_33;
+}
+
+item (FEAT_OBJECTS, object_item_iron_mine) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_IRON_MINE);
+		climates_available:		ALL_CLIMATES;
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[4,4];
+		introduction_date:		1856;
+		num_views:				1;
+	}
+	graphics {
+		default:				switch_object_graphics_iron_mine;
+	}
+}
+
+// End Iron Mine
+// Begin Steel Mill
+
+spritelayout sprlay_steel_mill_1_N {
+	ground		{sprite:2118;}
+	building	{sprite:2119;}
+}
+spritelayout sprlay_steel_mill_1_E {
+	ground		{sprite:2120;}
+	building	{sprite:2121;}
+}
+spritelayout sprlay_steel_mill_1_W {
+	ground		{sprite:2122;}
+	building	{sprite:2123;}
+}
+spritelayout sprlay_steel_mill_1_S {
+	ground		{sprite:2124;}
+}
+
+spritelayout sprlay_steel_mill_2_N {
+	ground		{sprite:2125;}
+	building	{sprite:2126;}
+}
+spritelayout sprlay_steel_mill_2_W {
+	ground		{sprite:2127;}
+	building	{sprite:2128;}
+}
+
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_steel_mill_1, relative_pos) {
+	relative_coord(0, 0): sprlay_steel_mill_1_N;
+	relative_coord(0, 1): sprlay_steel_mill_1_E;
+	relative_coord(1, 0): sprlay_steel_mill_1_W;
+    relative_coord(1, 1): sprlay_steel_mill_1_S;
+}
+
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_steel_mill_2, relative_pos) {
+	relative_coord(0, 0): sprlay_steel_mill_2_N;
+	relative_coord(1, 0): sprlay_steel_mill_2_W;
+}
+
+item (FEAT_OBJECTS, object_item_steel_mill_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_STEEL_MILL);
+		climates_available:		ALL_CLIMATES;
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[2,2];
+		introduction_date:		1856;
+		num_views:				1;
+	}
+	graphics {
+		default:				switch_object_graphics_steel_mill_1;
+		purchase:				sprlay_steel_mill_1_N;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_steel_mill_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_STEEL_MILL);
+		climates_available:		ALL_CLIMATES;
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[2,1];
+		introduction_date:		1856;
+		num_views:				1;
+	}
+	graphics {
+		default:				switch_object_graphics_steel_mill_2;
+		purchase:				sprlay_steel_mill_2_N;
+	}
+}
+
+// End Steel Mill
+// Begin Factory
+
+spritelayout sprlay_factory_1_N {
+	ground		{sprite:2146;}
+	building	{sprite:2150;}
+}
+spritelayout sprlay_factory_1_E {
+	ground		{sprite:2147;}
+	building	{sprite:2151;}
+}
+spritelayout sprlay_factory_1_W {
+	ground		{sprite:2148;}
+	building	{sprite:2152;}
+}
+spritelayout sprlay_factory_1_S {
+	ground		{sprite:2149;}
+}
+
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_factory_1, relative_pos) {
+	relative_coord(0, 0): sprlay_factory_1_N;
+	relative_coord(0, 1): sprlay_factory_1_E;
+	relative_coord(1, 0): sprlay_factory_1_W;
+    relative_coord(1, 1): sprlay_factory_1_S;
+}
+
+item (FEAT_OBJECTS, object_item_factory_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FACTORY);
+		climates_available:		ALL_CLIMATES;
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[2,2];
+		introduction_date:		1840;
+		num_views:				1;
+	}
+	graphics {
+		default:				switch_object_graphics_factory_1;
+	}
+}
+
+// End Factory
+// Begin Sawmill
+
+spritelayout sprlay_sawmill_1 {
+	ground		{sprite:2022;}
+	building	{sprite:2070;}
+}
+
+spritelayout sprlay_sawmill_2 {
+	ground		{sprite:2022;}
+	building	{sprite:2071;}
+}
+
+spritelayout sprlay_sawmill_3 {
+	ground		{sprite:2022;}
+	building	{sprite:2063;}
+}
+
+spritelayout sprlay_sawmill_4 {
+	ground		{sprite:2022;}
+	building	{sprite:2069;}
+}
+
+spritelayout sprlay_sawmill_5 {
+	ground		{sprite:2022;}
+	building	{sprite:2066;}
+}
+
+spritelayout sprlay_sawmill_6 {
+	ground		{sprite:2022;}
+}
+
+/* tilelayout industry_layout_sawmill_1 {
+	0,0:	ind_tile_sawmill_5;
+	0,1:	ind_tile_sawmill_4;
+	0,2:	ind_tile_sawmill_4;
+	
+	1,0:	ind_tile_sawmill_2;
+	1,0:	ind_tile_sawmill_3;
+	1,0:	ind_tile_sawmill_5;
+
+	2,0:	ind_tile_sawmill_2;
+	2,1:	ind_tile_sawmill_2;
+	2,2:	ind_tile_sawmill_6;
+
+	3,0:	ind_tile_sawmill_2;
+	3,1:	ind_tile_sawmill_2;
+	3,1:	ind_tile_sawmill_1;
+*/
+
+item (FEAT_OBJECTS, object_item_sawmill_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_SAWMILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_sawmill_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_SAWMILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_sawmill_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_SAWMILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_sawmill_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_SAWMILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_4;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_sawmill_5) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_SAWMILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_5;
+	}
+}
+item (FEAT_OBJECTS, object_item_sawmill_6) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_SAWMILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE,OBJ_FLAG_ALLOW_BRIDGE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_6;
+	}
+}
+
+// End Sawmill
+// Begin Paper Mill
+
+spritelayout sprlay_paper_mill_1 { // Log yard empty
+	ground		{sprite:2022;}
+	building	{sprite:2212;}
+}
+
+spritelayout sprlay_paper_mill_2 { // Log yard full
+	ground		{sprite:2022;}
+	building	{sprite:2213;}
+}
+
+spritelayout sprlay_paper_mill_3 { // Tall building closed
+	ground		{sprite:2022;}
+	building	{sprite:2205; xoffset:-3; yoffset:-5;}
+}
+
+spritelayout sprlay_paper_mill_4 { // Tall building open
+	ground		{sprite:2022;}
+	building	{sprite:2206; xoffset:-3; yoffset:-5;}
+}
+
+spritelayout sprlay_paper_mill_5 { // Smokestack building empty yard
+	ground		{sprite:2022;}
+	building	{sprite:2208;}
+}
+
+spritelayout sprlay_paper_mill_6 { // Smokestack building paper yard
+	ground		{sprite:2022;}
+	building	{sprite:2209;}
+}
+
+spritelayout sprlay_paper_mill_7 { // Canopy
+	ground		{sprite:2022;}
+	building	{sprite:2214; xoffset:-3; yoffset:-3;}
+}
+
+spritelayout sprlay_paper_mill_8 { // Mill building
+	ground		{sprite:2022;}
+	building	{sprite:2202;}
+}
+
+spritelayout sprlay_paper_mill_9_N {
+	ground		{sprite:3981;}
+	building	{sprite:2169; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_CC_GREY;}
+}
+spritelayout sprlay_paper_mill_9_E {
+	ground		{sprite:3981;}
+	building	{sprite:2170; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_CC_GREY;}
+}
+spritelayout sprlay_paper_mill_9_W {
+	ground		{sprite:3981;}
+	building	{sprite:2171; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_CC_GREY;}
+}
+spritelayout sprlay_paper_mill_9_S {
+	ground		{sprite:3981;}
+	building	{sprite:2172; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_CC_GREY;}
+}
+
+
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_paper_mill_9, relative_pos) {
+	relative_coord(0, 0): sprlay_paper_mill_9_N;
+	relative_coord(0, 1): sprlay_paper_mill_9_E;
+	relative_coord(1, 0): sprlay_paper_mill_9_W;
+    relative_coord(1, 1): sprlay_paper_mill_9_S;
+}
+
+item (FEAT_OBJECTS, object_item_paper_mill_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_PAPER_MILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1845;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_paper_mill_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_paper_mill_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_PAPER_MILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1845;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_paper_mill_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_paper_mill_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_PAPER_MILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1845;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_paper_mill_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_paper_mill_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_PAPER_MILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1845;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_paper_mill_4;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_paper_mill_5) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_PAPER_MILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1845;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_paper_mill_5;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_paper_mill_6) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_PAPER_MILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1845;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_paper_mill_6;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_paper_mill_7) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_PAPER_MILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1845;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_paper_mill_7;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_paper_mill_8) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_PAPER_MILL);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1845;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_paper_mill_8;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_paper_mill_9) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_PAPER_MILL);
+		climates_available:		ALL_CLIMATES;
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[2,2];
+		introduction_date:		1845;
+		num_views:				1;
+	}
+	graphics {
+		default:				switch_object_graphics_paper_mill_9;
+	}
+}
+
+// End Paper Mill
+// Begin Oil Wells
+
+spritelayout sprlay_oil_wells_1_a { // Powerhouse
+	ground		{sprite:2173;}
+	building	{sprite:2174;}
+}
+
+item (FEAT_OBJECTS, object_item_oil_wells_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_WELLS);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_wells_1_a;
+	}
+}
+
+// End Oil Wells
+// Begin Oil Refinery
+
+spritelayout sprlay_oil_refinery_1 { // Office
+	ground		{sprite:1420;}
+	building	{sprite:2095; yoffset:2; xoffset:2;}
+}
+spritelayout sprlay_oil_refinery_2 { // Large tank
+	ground		{sprite:1420;}
+	building	{sprite:2080; yoffset:1; xoffset:1;}
+}
+spritelayout sprlay_oil_refinery_3 { // Tall tank
+	ground		{sprite:1420;}
+	building	{sprite:2083; yoffset:4; xoffset:4;}
+}
+spritelayout sprlay_oil_refinery_4 { // Burner tower
+	ground		{sprite:1420;}
+	building	{sprite:2086; yoffset:5; xoffset:5;}
+}
+spritelayout sprlay_oil_refinery_5 { // Pipe frame 1
+	ground		{sprite:1420;}
+	building	{sprite:2089;}
+}
+spritelayout sprlay_oil_refinery_6 { // Pipe frame 2
+	ground		{sprite:1420;}
+	building	{sprite:2092;}
+}
+spritelayout sprlay_oil_refinery_7 { // Pipe frame 3
+	ground		{sprite:1420;}
+	building	{sprite:2091;}
+}
+spritelayout sprlay_oil_refinery_8 { // Bare ground
+	ground		{sprite:1420;}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_4;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_5) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_5;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_6) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_6;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_7) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_7;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_8) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_8;
+	}
+}
+
+// End Oil Refinery

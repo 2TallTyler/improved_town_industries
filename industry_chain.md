@@ -13,6 +13,7 @@
 * Passengers (workers/commuters)
 * Goods
 * Oil
+* Chemicals
 * Grain
 * Milk
 * Alcohol
@@ -38,7 +39,7 @@
 * Location:			Nearby Town
 * Commuters: 		Passengers
 * Receive: 			Oil
-* Produce: 			?
+* Produce: 			Goods, Chemicals
 * Location: 		Nearby Town
 
 ## Food Chain
@@ -93,7 +94,7 @@
 ### Paper Mill
 * Location:			Nearby Town
 * Commuters: 		Passengers
-* Receive: 			Wood
+* Receive: 			Wood, Chemicals, Recyclables
 * Produce: 			Goods
 
 ### Lumber Mill

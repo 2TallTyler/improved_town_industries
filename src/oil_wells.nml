@@ -1,0 +1,26 @@
+// Begin Oil Wells
+
+spritelayout sprlay_oil_wells_1_a { // Powerhouse
+	ground		{sprite:2173;}
+	building	{sprite:2174;}
+}
+
+item (FEAT_OBJECTS, object_item_oil_wells_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_WELLS);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_wells_1_a;
+	}
+}
+
+// End Oil Wells

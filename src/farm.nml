@@ -1,0 +1,150 @@
+// Begin Farm
+
+spritelayout sprlay_farm_1_N { // Farmhouse N
+	ground		{sprite:2106;}
+	building	{sprite:2108;}
+}
+
+spritelayout sprlay_farm_1_W { // Farmhouse W
+	ground		{sprite:2107;}
+	building	{sprite:2109;}
+}
+
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_farm_1, relative_pos) {
+	relative_coord(0, 0): sprlay_farm_1_N;
+	relative_coord(0, 1): sprlay_farm_1_W;
+}
+
+spritelayout sprlay_farm_2 { // Hay shed
+	ground		{sprite:2110;}
+	building	{sprite:2111;}
+}
+
+spritelayout sprlay_farm_3 { // Barn
+	ground		{sprite:2112;}
+	building	{sprite:2113;}
+}
+
+spritelayout sprlay_farm_4 { // Silos
+	ground		{sprite:2116;}
+	building	{sprite:2115;}
+}
+
+spritelayout sprlay_farm_5 { // Farmyard
+	ground		{sprite:2116;}
+	building	{sprite:2117;}
+}
+
+spritelayout sprlay_farm_6 { // Empty tile
+	ground		{sprite:2116;}
+}
+
+item (FEAT_OBJECTS, object_item_farm_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,2];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				switch_object_graphics_farm_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_farm_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_farm_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_farm_4;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_5) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_farm_5;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_6) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FARM);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_farm_6;
+	}
+}
+
+// End Farm

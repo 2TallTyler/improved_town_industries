@@ -1,0 +1,95 @@
+// Begin Power Plant
+
+spritelayout sprlay_power_plant_1 { // Powerhouse
+	ground		{sprite:1420;}
+	building	{sprite:2050;}
+}
+
+spritelayout sprlay_power_plant_2 { // Power terminals
+	ground		{sprite:1420;}
+	building	{sprite:2053;}
+}
+
+spritelayout sprlay_power_plant_3 { // Transformers
+	ground		{sprite:1420;}
+	building	{sprite:2054; yoffset:2;}
+}
+
+spritelayout sprlay_power_plant_4 { // Cooling tower
+	ground		{sprite:3981;}
+	building	{sprite:2047;}
+}
+
+item (FEAT_OBJECTS, object_item_power_plant_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_POWER_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_power_plant_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_power_plant_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_POWER_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_power_plant_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_power_plant_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_POWER_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_power_plant_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_power_plant_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_POWER_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_power_plant_4;
+	}
+}
+
+// End Power Plant
