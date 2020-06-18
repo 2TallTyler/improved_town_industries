@@ -47,4 +47,9 @@ if (version_openttd(1,10,0,28004) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
+cargotable {
+	PASS, MAIL, GOOD, WOOD, STEL
+}
+
+
 // End Header

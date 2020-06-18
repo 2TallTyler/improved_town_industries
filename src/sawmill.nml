@@ -29,14 +29,69 @@ spritelayout sprlay_sawmill_6 {
 	ground		{sprite:2022;}
 }
 
-/* tilelayout industry_layout_sawmill_1 {
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_1) {
+	property {
+		substitute:				11;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_1;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_2) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_2;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_3) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_3;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_4) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_4;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_5) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_5;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_6) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_6;
+	}
+}
+
+tilelayout industry_layout_sawmill_1 {
 	0,0:	ind_tile_sawmill_5;
 	0,1:	ind_tile_sawmill_4;
 	0,2:	ind_tile_sawmill_4;
 	
 	1,0:	ind_tile_sawmill_2;
-	1,0:	ind_tile_sawmill_3;
-	1,0:	ind_tile_sawmill_5;
+	1,1:	ind_tile_sawmill_3;
+	1,2:	ind_tile_sawmill_5;
 
 	2,0:	ind_tile_sawmill_2;
 	2,1:	ind_tile_sawmill_2;
@@ -44,8 +99,23 @@ spritelayout sprlay_sawmill_6 {
 
 	3,0:	ind_tile_sawmill_2;
 	3,1:	ind_tile_sawmill_2;
-	3,1:	ind_tile_sawmill_1;
-*/
+	3,2:	ind_tile_sawmill_1;
+}
+
+item (FEAT_INDUSTRIES, industry_sawmill) {
+	property {
+		substitute:				INDUSTRYTYPE_FOREST;
+		override:				INDUSTRYTYPE_FOREST;
+		life_type:				IND_LIFE_TYPE_ORGANIC;
+		cargo_types:			[produce_cargo("WOOD",15),];
+		name:					string(STR_NAME_SAWMILL);
+		prob_map_gen:			5;
+		prob_in_game:			3;
+		fund_cost_multiplier:	100;
+		map_colour:				143;
+		layouts:				[industry_layout_sawmill_1,];
+	}
+}
 
 item (FEAT_OBJECTS, object_item_sawmill_1) {
 	property {

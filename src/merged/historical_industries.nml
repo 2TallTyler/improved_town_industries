@@ -47,6 +47,11 @@ if (version_openttd(1,10,0,28004) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
+cargotable {
+	PASS, MAIL, GOOD, WOOD, STEL
+}
+
+
 // End Header
 
 // Begin Farm
@@ -89,6 +94,21 @@ spritelayout sprlay_farm_5 { // Farmyard
 spritelayout sprlay_farm_6 { // Empty tile
 	ground		{sprite:2116;}
 }
+
+/* Autoslope Fields */
+
+spritelayout sprlay_farm_field_1 {
+ 	ground {
+ 		// normal ground sprite - always draw
+ 		sprite: 4126 + LOAD_TEMP(0);
+ 	}
+ }
+
+switch (FEAT_OBJECTS, SELF, switch_farm_field_1_autoslope, [
+ 	STORE_TEMP(slope_to_sprite_offset(tile_slope), 0),
+	]) {
+		sprlay_farm_field_1;
+ }
 
 item (FEAT_OBJECTS, object_item_farm_1) {
 	property {
@@ -195,6 +215,25 @@ item (FEAT_OBJECTS, object_item_farm_6) {
 	}
 	graphics {
 		default:				sprlay_farm_6;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_farm_field_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FIELD_1);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE, OBJ_FLAG_NO_FOUNDATIONS);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				switch_farm_field_1_autoslope;
+		purchase:				sprlay_farm_field_1;
 	}
 }
 
@@ -577,19 +616,143 @@ item (FEAT_OBJECTS, object_item_steel_mill_2) {
 // Begin Factory
 
 spritelayout sprlay_factory_1_N {
-	ground		{sprite:2146;}
-	building	{sprite:2150;}
+	ground		{sprite:2146;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+	building	{sprite:2150;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_factory_1_E {
-	ground		{sprite:2147;}
-	building	{sprite:2151;}
+	ground		{sprite:2147;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+	building	{sprite:2151;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_factory_1_W {
-	ground		{sprite:2148;}
-	building	{sprite:2152;}
+	ground		{sprite:2148;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+	building	{sprite:2152;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_factory_1_S {
-	ground		{sprite:2149;}
+	ground		{sprite:2149;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_factory_1_N) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_factory_1_N;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_factory_1_E) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_factory_1_E;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_factory_1_W) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_factory_1_W;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_factory_1_S) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_factory_1_S;
+	}
+}
+
+tilelayout industry_layout_factory_1x2 {
+	0,0:	ind_tile_factory_1_N;
+	0,1:	ind_tile_factory_1_E;
+	1,0:	ind_tile_factory_1_W;
+	1,1:	ind_tile_factory_1_S;
+	
+	0,2:	ind_tile_factory_1_N;
+	0,3:	ind_tile_factory_1_E;
+	1,2:	ind_tile_factory_1_W;
+	1,3:	ind_tile_factory_1_S;
+}
+
+tilelayout industry_layout_factory_2x1 {
+	0,0:	ind_tile_factory_1_N;
+	0,1:	ind_tile_factory_1_E;
+	1,0:	ind_tile_factory_1_W;
+	1,1:	ind_tile_factory_1_S;
+	
+	2,0:	ind_tile_factory_1_N;
+	2,1:	ind_tile_factory_1_E;
+	3,0:	ind_tile_factory_1_W;
+	3,1:	ind_tile_factory_1_S;
+}
+
+tilelayout industry_layout_factory_2x2 {
+	0,0:	ind_tile_factory_1_N;
+	0,1:	ind_tile_factory_1_E;
+	1,0:	ind_tile_factory_1_W;
+	1,1:	ind_tile_factory_1_S;
+	
+	0,2:	ind_tile_factory_1_N;
+	0,3:	ind_tile_factory_1_E;
+	1,2:	ind_tile_factory_1_W;
+	1,3:	ind_tile_factory_1_S;
+	
+	2,0:	ind_tile_factory_1_N;
+	2,1:	ind_tile_factory_1_E;
+	3,0:	ind_tile_factory_1_W;
+	3,1:	ind_tile_factory_1_S;
+	
+	2,2:	ind_tile_factory_1_N;
+	2,3:	ind_tile_factory_1_E;
+	3,2:	ind_tile_factory_1_W;
+	3,3:	ind_tile_factory_1_S;
+}
+
+// Location Check: Must be near a town with population >= 500
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_3, population >= 300) {1:return CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);}
+switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+64) {1: switch_factory_location_check_3; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Is the industry within 8 tiles of the outer radius of a town's largst zone?
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_location_check_2;}
+
+
+item (FEAT_INDUSTRIES, industry_factory) {
+	property {
+		substitute:				INDUSTRYTYPE_TEMPERATE_FACTORY;
+		override:				INDUSTRYTYPE_TEMPERATE_FACTORY;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		cargo_types:			[
+								accept_cargo("STEL", produce_cargo("GOOD",1)),
+								accept_cargo("PASS", produce_cargo("PASS",1))
+		];
+		name:					string(STR_NAME_FACTORY);
+		prob_map_gen:			5;
+		prob_in_game:			2;
+		fund_cost_multiplier:	100;
+		layouts:				[industry_layout_factory_2x2, industry_layout_factory_1x2, industry_layout_factory_2x1];
+	}
+	graphics {
+		location_check:			switch_factory_location_check_1;
+		colour:					COLOUR_GREY;
+	}
 }
 
 switch (FEAT_OBJECTS, SELF, switch_object_graphics_factory_1, relative_pos) {
@@ -648,14 +811,69 @@ spritelayout sprlay_sawmill_6 {
 	ground		{sprite:2022;}
 }
 
-/* tilelayout industry_layout_sawmill_1 {
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_1) {
+	property {
+		substitute:				11;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_1;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_2) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_2;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_3) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_3;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_4) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_4;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_5) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_5;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_6) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_sawmill_6;
+	}
+}
+
+tilelayout industry_layout_sawmill_1 {
 	0,0:	ind_tile_sawmill_5;
 	0,1:	ind_tile_sawmill_4;
 	0,2:	ind_tile_sawmill_4;
 	
 	1,0:	ind_tile_sawmill_2;
-	1,0:	ind_tile_sawmill_3;
-	1,0:	ind_tile_sawmill_5;
+	1,1:	ind_tile_sawmill_3;
+	1,2:	ind_tile_sawmill_5;
 
 	2,0:	ind_tile_sawmill_2;
 	2,1:	ind_tile_sawmill_2;
@@ -663,8 +881,23 @@ spritelayout sprlay_sawmill_6 {
 
 	3,0:	ind_tile_sawmill_2;
 	3,1:	ind_tile_sawmill_2;
-	3,1:	ind_tile_sawmill_1;
-*/
+	3,2:	ind_tile_sawmill_1;
+}
+
+item (FEAT_INDUSTRIES, industry_sawmill) {
+	property {
+		substitute:				INDUSTRYTYPE_FOREST;
+		override:				INDUSTRYTYPE_FOREST;
+		life_type:				IND_LIFE_TYPE_ORGANIC;
+		cargo_types:			[produce_cargo("WOOD",15),];
+		name:					string(STR_NAME_SAWMILL);
+		prob_map_gen:			5;
+		prob_in_game:			3;
+		fund_cost_multiplier:	100;
+		map_colour:				143;
+		layouts:				[industry_layout_sawmill_1,];
+	}
+}
 
 item (FEAT_OBJECTS, object_item_sawmill_1) {
 	property {
