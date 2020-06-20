@@ -15,8 +15,6 @@
 * Oil
 * Chemicals
 * Grain
-* Milk
-* Alcohol
 * Food
 * Coal
 * Iron
@@ -27,6 +25,7 @@
 
 ### Oil Wells
 * Availability:		1900
+* Location:			Country
 * Produce: 			Oil
 * Receive: 			None
 
@@ -46,28 +45,21 @@
 
 ### Farm 
 * Availability:		Always
+* Location:			Country
 * Receive (boost):	Chemicals
 * Produce: 			Food
-
-### Brewery
-* Sprite: 			Food Processing Plant
-* Availability:		Always		
-* Location:			Nearby Town
-* Commuters:		Passengers
-* Receive: 			Food
-* Produce: 			Alcohol
 
 ## Steel Chain
 
 ### Coal Mine
 * Availability:		Always
 * Commuters: 		Passengers
-* Location:			Nearby Town
+* Location:			Country
 * Produce: 			Coal
 
 ### Iron Mine
 * Availability		1856-
-* Location:			Nearby Town
+* Location:			Country
 * Commuters: 		Passengers
 * Produce: 			Iron
 
@@ -81,13 +73,13 @@
 ## Factory
 * Location:			Nearby Town
 * Commuters:		Passengers
-* Receive:			Steel, Wood, Recyclables?
+* Receive:			Steel, Wood
 * Produce:			Goods
 
 ## Power Plant
 * Location:			Nearby Town
 * Commuters: 		Passengers
-* Receive: 			Coal
+* Receive: 			Coal, Oil
 
 ## Wood Chain
 
@@ -101,7 +93,19 @@
 * Receive: 			Wood, Chemicals, Recyclables?
 * Produce: 			Goods
 
+## Recyclables Chain
 
+Produced by houses
+
+Accepted by power plant (waste to energy)
+
+Recycle Center
+* Receive:			Recyclables
+* Produce:			
+	* Scrap to Steel Mill (metals)
+	* Fertilizer to farms (organic waste)
+	* Waste paper to paper mill (paper products)
+	* Plastic to factories (plastic waste)
 
 
 
