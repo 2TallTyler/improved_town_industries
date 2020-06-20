@@ -26,16 +26,16 @@
 ## Oil Chain
 
 ### Oil Wells
-* Availability:		
+* Availability:		1900
 * Produce: 			Oil
 * Receive: 			None
 
 ### Oil Rig
-* Availability		
-* Produce: 			Oil
+* Availability:		use default		
+* Produce: 			use default
 
 ### Oil Refinery
-* Availability:		
+* Availability:		1900
 * Location:			Nearby Town
 * Commuters: 		Passengers
 * Receive: 			Oil
@@ -46,23 +46,16 @@
 
 ### Farm 
 * Availability:		Always
-* Produce: 			Grain, Milk
+* Receive (boost):	Chemicals
+* Produce: 			Food
 
 ### Brewery
-* Sprite: Food Processing Plant
-* Availability		
+* Sprite: 			Food Processing Plant
+* Availability:		Always		
 * Location:			Nearby Town
 * Commuters:		Passengers
-* Receive: 			Grain
+* Receive: 			Food
 * Produce: 			Alcohol
-
-### Dairy
-* Sprite: 			Water Source and kitbash offices
-* Availability		
-* Location:			Nearby Town
-* Commuters:		Passengers
-* Receive: 			Milk
-* Produce:			Food
 
 ## Steel Chain
 
@@ -73,51 +66,41 @@
 * Produce: 			Coal
 
 ### Iron Mine
-* Availability		(no steel until 1856. where to deliver before then?)
+* Availability		1856-
 * Location:			Nearby Town
 * Commuters: 		Passengers
-* Produce: Iron
+* Produce: 			Iron
 
 ### Steel Mill
-* Availability:		>1856
+* Availability:		1856-
 * Location:			Nearby Town
 * Commuters: 		Passengers
 * Receive: 			Iron, Coal
 * Produce: 			Steel 
 
+## Factory
+* Location:			Nearby Town
+* Commuters:		Passengers
+* Receive:			Steel, Wood, Recyclables?
+* Produce:			Goods
+
+## Power Plant
+* Location:			Nearby Town
+* Commuters: 		Passengers
+* Receive: 			Coal
+
 ## Wood Chain
 
-### Forest
+### Forestry
 * Availability:		Always
 * Produce: 			Wood
 
 ### Paper Mill
 * Location:			Nearby Town
 * Commuters: 		Passengers
-* Receive: 			Wood, Chemicals, Recyclables
+* Receive: 			Wood, Chemicals, Recyclables?
 * Produce: 			Goods
 
-### Lumber Mill
-* Location:			Nearby Town
-* Commuters:	Passengers
-* Receive:			Wood
-* Produce:			Goods
-
-
-## Factory (furniture? mill?)
-* Location:			Nearby Town
-
-## Metalworks
-* Location:			Nearby Town
-* Commuters:		Passengers
-* Receive:			Steel
-* Produce:			Goods
-
-
-## Power Plant
-* Location:			Nearby Town
-* Commuters: 		Passengers
-* Receive: 			Coal
 
 
 

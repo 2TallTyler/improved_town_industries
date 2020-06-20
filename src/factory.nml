@@ -33,7 +33,7 @@ spritelayout sprlay_factory_1_S {
 item (FEAT_INDUSTRYTILES, ind_tile_factory_1_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8]];
+		accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8]];
 	}
 	graphics {
 		default:				sprlay_factory_1_N;
@@ -42,7 +42,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_factory_1_N) {
 item (FEAT_INDUSTRYTILES, ind_tile_factory_1_E) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8]];
+		accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8]];
 	}
 	graphics {
 		default:				sprlay_factory_1_E;
@@ -51,7 +51,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_factory_1_E) {
 item (FEAT_INDUSTRYTILES, ind_tile_factory_1_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8]];
+		accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8]];
 	}
 	graphics {
 		default:				sprlay_factory_1_W;
@@ -60,7 +60,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_factory_1_W) {
 item (FEAT_INDUSTRYTILES, ind_tile_factory_1_S) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8]];
+		accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8]];
 	}
 	graphics {
 		default:				sprlay_factory_1_S;
@@ -113,10 +113,10 @@ tilelayout industry_layout_factory_2x2 {
 	3,3:	ind_tile_factory_1_S;
 }
 
-// Location Check: Must be near a town with population >= 500
-switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_3, population >= 300) {1:return CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);}
-switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+64) {1: switch_factory_location_check_3; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Is the industry within 8 tiles of the outer radius of a town's largst zone?
-switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_location_check_2;}
+// Location Check: Must be within 8 tiles of a town boundary (town zones, not town sign) with population >= 300
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_3, population >= 300) {1:return CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Check if town has population >= 300
+switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+64) {1: switch_factory_location_check_3; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Add 8 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_location_check_2;} // Add up the town zone radii and store it in temporary register 0
 
 
 item (FEAT_INDUSTRIES, industry_factory) {
@@ -126,6 +126,7 @@ item (FEAT_INDUSTRIES, industry_factory) {
 		life_type:				IND_LIFE_TYPE_PROCESSING;
 		cargo_types:			[
 								accept_cargo("STEL", produce_cargo("GOOD",1)),
+								accept_cargo("WOOD", produce_cargo("GOOD",1)),
 								accept_cargo("PASS", produce_cargo("PASS",1))
 		];
 		name:					string(STR_NAME_FACTORY);

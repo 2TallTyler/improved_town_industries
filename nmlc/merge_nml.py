@@ -12,6 +12,10 @@ header = codecs.open("src/header.nml",'r','utf8')
 sections.append(header.read())
 header.close()
 
+cargos = codecs.open("src/cargos.nml",'r','utf8')
+sections.append(cargos.read())
+cargos.close()
+
 farm = codecs.open("src/farm.nml",'r','utf8')
 sections.append(farm.read())
 farm.close()
@@ -43,6 +47,10 @@ sawmill.close()
 paper_mill = codecs.open("src/paper_mill.nml",'r','utf8')
 sections.append(paper_mill.read())
 paper_mill.close()
+
+food_factory = codecs.open("src/food_factory.nml",'r','utf8')
+sections.append(food_factory.read())
+food_factory.close()
 
 oil_wells = codecs.open("src/oil_wells.nml",'r','utf8')
 sections.append(oil_wells.read())

@@ -1,0 +1,319 @@
+// Begin Food Factory
+
+spritelayout sprlay_food_factory_1 { // Main building
+	ground		{sprite:1420;}
+	building	{sprite:2190;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_food_factory_2 { // Loading dock
+	ground		{sprite:2022;}
+	building	{sprite:2193;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_food_factory_3 { // Large silo
+	ground		{sprite:1420;}
+	building	{sprite:2196;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_food_factory_4 { // grass and fence
+	ground		{sprite:2022;}
+	building	{sprite:2199;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_food_factory_5 { // Pumps with boxes
+	ground		{sprite:1420;}
+	building	{sprite:2349;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_food_factory_6 { // Pumps with reflector
+	ground		{sprite:1420;}
+	building	{sprite:2352;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+spritelayout sprlay_food_factory_7 { // Twin silos
+	ground		{sprite:1420;}
+	building	{sprite:2115;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+spritelayout sprlay_food_factory_8 { // Office
+	ground		{sprite:1420;}
+	building	{sprite:2095; yoffset:2; xoffset:2;}
+}
+	
+spritelayout sprlay_food_factory_9 { // Empty paved tilelayout
+	ground		{sprite:1420;}	
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_food_factory_1) {
+	property {
+		substitute:				11;
+		accepted_cargos:		[[PASS, 8],[GRAI, 8]];
+	}
+	graphics {
+		default:				sprlay_food_factory_1;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_factory_2) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8],[GRAI, 8]];
+	}
+	graphics {
+		default:				sprlay_food_factory_2;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_factory_3) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8],[GRAI, 8]];
+	}
+	graphics {
+		default:				sprlay_food_factory_3;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_factory_4) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8],[GRAI, 8]];
+	}
+	graphics {
+		default:				sprlay_food_factory_4;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_factory_5) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8],[GRAI, 8]];
+	}
+	graphics {
+		default:				sprlay_food_factory_5;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_factory_6) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8],[GRAI, 8]];
+	}
+	graphics {
+		default:				sprlay_food_factory_6;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_factory_7) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8],[GRAI, 8]];
+	}
+	graphics {
+		default:				sprlay_food_factory_7;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_factory_8) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8],[GRAI, 8]];
+	}
+	graphics {
+		default:				sprlay_food_factory_8;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_factory_9) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[PASS, 8],[GRAI, 8]];
+	}
+	graphics {
+		default:				sprlay_food_factory_9;
+	}
+}
+
+tilelayout industry_layout_food_factory_1 {
+	0,0:	ind_tile_food_factory_7;
+	0,1:	ind_tile_food_factory_7;
+	0,2:	ind_tile_food_factory_2;
+	
+	1,0:	ind_tile_food_factory_1;
+	1,1:	ind_tile_food_factory_1;
+	1,2:	ind_tile_food_factory_2;
+
+	2,0:	ind_tile_food_factory_1;
+	2,1:	ind_tile_food_factory_1;
+	2,2:	ind_tile_food_factory_9;
+
+	3,0:	ind_tile_food_factory_5;
+	3,1:	ind_tile_food_factory_6;
+	3,2:	ind_tile_food_factory_8;
+}
+
+// Location Check: Must be within 8 tiles of a town boundary (town zones, not town sign) with population >= 300
+switch (FEAT_INDUSTRIES, PARENT, switch_food_factory_location_check_3, population >= 300) {1:return CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Check if town has population >= 300
+switch (FEAT_INDUSTRIES, SELF, switch_food_factory_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+64) {1: switch_food_factory_location_check_3; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Add 8 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_food_factory_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_food_factory_location_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+
+item (FEAT_INDUSTRIES, industry_food_factory) {
+	property {
+		substitute:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
+		override:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		cargo_types:			[
+			accept_cargo("GRAI", produce_cargo("FOOD",1)),
+			accept_cargo("PASS", produce_cargo("PASS",1)),
+		];
+		name:					string(STR_NAME_FOOD_FACTORY);
+		prob_map_gen:			5;
+		prob_in_game:			3;
+		fund_cost_multiplier:	100;
+		layouts:				[industry_layout_food_factory_1,];
+	}
+	graphics {
+		location_check:			switch_food_factory_location_check_1;
+		colour:					COLOUR_WHITE;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_food_factory_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FOOD_FACTORY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_food_factory_1;
+		colour:					COLOUR_WHITE;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_food_factory_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FOOD_FACTORY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_food_factory_2;
+		colour:					COLOUR_WHITE;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_food_factory_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FOOD_FACTORY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_food_factory_3;
+		colour:					COLOUR_WHITE;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_food_factory_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FOOD_FACTORY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_food_factory_4;
+		colour:					COLOUR_WHITE;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_food_factory_5) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FOOD_FACTORY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_food_factory_5;
+		colour:					COLOUR_WHITE;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_food_factory_6) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FOOD_FACTORY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_food_factory_6;
+		colour:					COLOUR_WHITE;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_food_factory_7) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_FOOD_FACTORY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_food_factory_7;
+		colour:					COLOUR_WHITE;
+	}
+}
+
+// End Food Factory

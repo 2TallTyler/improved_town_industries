@@ -20,5 +20,6 @@ STR_NAME_FACTORY						:Factory
 STR_NAME_COAL_MINE						:Coal Mine
 STR_NAME_OIL_WELLS						:Oil Wells
 STR_NAME_PAPER_MILL						:Paper Mill
+STR_NAME_FOOD_FACTORY					:Food Factory
 
 STR_NAME_FIELD_1						:Field
