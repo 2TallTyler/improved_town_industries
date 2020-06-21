@@ -40,9 +40,9 @@ factory = codecs.open("src/factory.nml",'r','utf8')
 sections.append(factory.read())
 factory.close()
 
-sawmill = codecs.open("src/sawmill.nml",'r','utf8')
-sections.append(sawmill.read())
-sawmill.close()
+logging_camp = codecs.open("src/logging_camp.nml",'r','utf8')
+sections.append(logging_camp.read())
+logging_camp.close()
 
 paper_mill = codecs.open("src/paper_mill.nml",'r','utf8')
 sections.append(paper_mill.read())

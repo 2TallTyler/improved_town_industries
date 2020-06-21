@@ -71,6 +71,7 @@
 * Produce: 			Steel 
 
 ## Factory
+* Availability:		1800+
 * Location:			Nearby Town
 * Commuters:		Passengers
 * Receive:			Steel, Wood

@@ -1,127 +1,127 @@
 // Begin Sawmill
 
-spritelayout sprlay_sawmill_1 {
+spritelayout sprlay_logging_camp_1 {
 	ground		{sprite:2022;}
 	building	{sprite:2070;}
 }
 
-spritelayout sprlay_sawmill_2 {
+spritelayout sprlay_logging_camp_2 {
 	ground		{sprite:2022;}
 	building	{sprite:2071;}
 }
 
-spritelayout sprlay_sawmill_3 {
+spritelayout sprlay_logging_camp_3 {
 	ground		{sprite:2022;}
 	building	{sprite:2063;}
 }
 
-spritelayout sprlay_sawmill_4 {
+spritelayout sprlay_logging_camp_4 {
 	ground		{sprite:2022;}
 	building	{sprite:2069;}
 }
 
-spritelayout sprlay_sawmill_5 {
+spritelayout sprlay_logging_camp_5 {
 	ground		{sprite:2022;}
 	building	{sprite:2066;}
 }
 
-spritelayout sprlay_sawmill_6 {
+spritelayout sprlay_logging_camp_6 {
 	ground		{sprite:2022;}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_sawmill_1) {
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_1) {
 	property {
 		substitute:				11;
 		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
-		default:				sprlay_sawmill_1;
+		default:				sprlay_logging_camp_1;
 	}
 }
-item (FEAT_INDUSTRYTILES, ind_tile_sawmill_2) {
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_2) {
 	property {
 		substitute:				02;
 		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
-		default:				sprlay_sawmill_2;
+		default:				sprlay_logging_camp_2;
 	}
 }
-item (FEAT_INDUSTRYTILES, ind_tile_sawmill_3) {
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_3) {
 	property {
 		substitute:				02;
 		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
-		default:				sprlay_sawmill_3;
+		default:				sprlay_logging_camp_3;
 	}
 }
-item (FEAT_INDUSTRYTILES, ind_tile_sawmill_4) {
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_4) {
 	property {
 		substitute:				02;
 		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
-		default:				sprlay_sawmill_4;
+		default:				sprlay_logging_camp_4;
 	}
 }
-item (FEAT_INDUSTRYTILES, ind_tile_sawmill_5) {
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_5) {
 	property {
 		substitute:				02;
 		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
-		default:				sprlay_sawmill_5;
+		default:				sprlay_logging_camp_5;
 	}
 }
-item (FEAT_INDUSTRYTILES, ind_tile_sawmill_6) {
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_6) {
 	property {
 		substitute:				02;
 		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
-		default:				sprlay_sawmill_6;
+		default:				sprlay_logging_camp_6;
 	}
 }
 
-tilelayout industry_layout_sawmill_1 {
-	0,0:	ind_tile_sawmill_5;
-	0,1:	ind_tile_sawmill_4;
-	0,2:	ind_tile_sawmill_4;
+tilelayout industry_layout_logging_camp_1 {
+	0,0:	ind_tile_logging_camp_5;
+	0,1:	ind_tile_logging_camp_4;
+	0,2:	ind_tile_logging_camp_4;
 	
-	1,0:	ind_tile_sawmill_2;
-	1,1:	ind_tile_sawmill_3;
-	1,2:	ind_tile_sawmill_5;
+	1,0:	ind_tile_logging_camp_2;
+	1,1:	ind_tile_logging_camp_3;
+	1,2:	ind_tile_logging_camp_5;
 
-	2,0:	ind_tile_sawmill_2;
-	2,1:	ind_tile_sawmill_2;
-	2,2:	ind_tile_sawmill_6;
+	2,0:	ind_tile_logging_camp_2;
+	2,1:	ind_tile_logging_camp_2;
+	2,2:	ind_tile_logging_camp_6;
 
-	3,0:	ind_tile_sawmill_2;
-	3,1:	ind_tile_sawmill_2;
-	3,2:	ind_tile_sawmill_1;
+	3,0:	ind_tile_logging_camp_2;
+	3,1:	ind_tile_logging_camp_2;
+	3,2:	ind_tile_logging_camp_1;
 }
 
-item (FEAT_INDUSTRIES, industry_sawmill) {
+item (FEAT_INDUSTRIES, industry_logging_camp) {
 	property {
 		substitute:				INDUSTRYTYPE_FOREST;
 		override:				INDUSTRYTYPE_FOREST;
 		life_type:				IND_LIFE_TYPE_ORGANIC;
 		cargo_types:			[produce_cargo("WOOD",15),];
-		name:					string(STR_NAME_SAWMILL);
+		name:					string(STR_NAME_LOGGING_CAMP);
 		prob_map_gen:			5;
 		prob_in_game:			3;
 		fund_cost_multiplier:	100;
 		map_colour:				143;
-		layouts:				[industry_layout_sawmill_1,];
+		layouts:				[industry_layout_logging_camp_1,];
 	}
 }
 
-item (FEAT_OBJECTS, object_item_sawmill_1) {
+item (FEAT_OBJECTS, object_item_logging_camp_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_SAWMILL);
+		name:					string(STR_NAME_LOGGING_CAMP);
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -131,15 +131,15 @@ item (FEAT_OBJECTS, object_item_sawmill_1) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_sawmill_1;
+		default:				sprlay_logging_camp_1;
 	}
 }
 
-item (FEAT_OBJECTS, object_item_sawmill_2) {
+item (FEAT_OBJECTS, object_item_logging_camp_2) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_SAWMILL);
+		name:					string(STR_NAME_LOGGING_CAMP);
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -149,15 +149,15 @@ item (FEAT_OBJECTS, object_item_sawmill_2) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_sawmill_2;
+		default:				sprlay_logging_camp_2;
 	}
 }
 
-item (FEAT_OBJECTS, object_item_sawmill_3) {
+item (FEAT_OBJECTS, object_item_logging_camp_3) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_SAWMILL);
+		name:					string(STR_NAME_LOGGING_CAMP);
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -167,15 +167,15 @@ item (FEAT_OBJECTS, object_item_sawmill_3) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_sawmill_3;
+		default:				sprlay_logging_camp_3;
 	}
 }
 
-item (FEAT_OBJECTS, object_item_sawmill_4) {
+item (FEAT_OBJECTS, object_item_logging_camp_4) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_SAWMILL);
+		name:					string(STR_NAME_LOGGING_CAMP);
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -185,15 +185,15 @@ item (FEAT_OBJECTS, object_item_sawmill_4) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_sawmill_4;
+		default:				sprlay_logging_camp_4;
 	}
 }
 
-item (FEAT_OBJECTS, object_item_sawmill_5) {
+item (FEAT_OBJECTS, object_item_logging_camp_5) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_SAWMILL);
+		name:					string(STR_NAME_LOGGING_CAMP);
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -203,14 +203,14 @@ item (FEAT_OBJECTS, object_item_sawmill_5) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_sawmill_5;
+		default:				sprlay_logging_camp_5;
 	}
 }
-item (FEAT_OBJECTS, object_item_sawmill_6) {
+item (FEAT_OBJECTS, object_item_logging_camp_6) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_SAWMILL);
+		name:					string(STR_NAME_LOGGING_CAMP);
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE,OBJ_FLAG_ALLOW_BRIDGE);
 		build_cost_multiplier:	0;
@@ -220,7 +220,7 @@ item (FEAT_OBJECTS, object_item_sawmill_6) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_sawmill_6;
+		default:				sprlay_logging_camp_6;
 	}
 }
 

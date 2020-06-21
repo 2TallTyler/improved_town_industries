@@ -7,13 +7,20 @@ STR_WEBSITE							:https://github.com/2TallTyler/historical-industries/blob/mast
 STR_ERROR_GAME_VERSION					:Historical Industries requires OpenTTD version 1.10.0, JGR version 0.34, or better
 
 STR_CB_RESULT_NOT_NEAR_TOWN_POP_300		:Industry must be near a town with a population of at least 300.
+STR_CB_RESULT_NOT_NEAR_TOWN_POP_400		:Industry must be near a town with a population of at least 400.
+STR_CB_RESULT_NOT_NEAR_TOWN_POP_500		:Industry must be near a town with a population of at least 500.
+
+STR_CB_RESULT_NOT_AVAILABLE_1800		:Not available until 1800.
 STR_CB_RESULT_NOT_AVAILABLE_1856		:Not available until 1856.
+STR_NULL								: 
+
+STR_FUND_AVAILABLE_1800					:{BLACK}Introduced: {YELLOW}1800
 
 STR_NAME_OBJECT_MENU					:Industry Tiles
 
 STR_NAME_STEEL_MILL						:Steel Mill
 STR_NAME_IRON_MINE						:Iron Mine
-STR_NAME_SAWMILL						:Sawmill
+STR_NAME_LOGGING_CAMP					:Logging Camp
 STR_NAME_OIL_REFINERY					:Oil Refinery
 STR_NAME_FARM							:Farm
 STR_NAME_POWER_PLANT					:Power Plant
