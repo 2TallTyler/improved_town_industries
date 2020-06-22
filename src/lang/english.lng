@@ -10,11 +10,14 @@ STR_CB_RESULT_NOT_NEAR_TOWN_POP_300		:Industry must be near a town with a popula
 STR_CB_RESULT_NOT_NEAR_TOWN_POP_400		:Industry must be near a town with a population of at least 400.
 STR_CB_RESULT_NOT_NEAR_TOWN_POP_500		:Industry must be near a town with a population of at least 500.
 
-STR_CB_RESULT_NOT_AVAILABLE_1800		:Not available until 1800.
-STR_CB_RESULT_NOT_AVAILABLE_1856		:Not available until 1856.
-STR_NULL								: 
+STR_CB_RESULT_TOO_CLOSE_TOWN			:Too close to a town.
+STR_CB_RESULT_TOO_CLOSE_LOGGING_CAMP	:Too close to another Logging Camp.
+STR_CB_RESULT_TOO_CLOSE_IRON_MINE		:Too close to another Iron Mine.
+
+STR_CB_RESULT_NEEDS_TREES				:Logging camp must be surrounded by trees.
 
 STR_FUND_AVAILABLE_1800					:{BLACK}Introduced: {YELLOW}1800
+STR_FUND_AVAILABLE_1856					:{BLACK}Introduced: {YELLOW}1856
 
 STR_NAME_OBJECT_MENU					:Industry Tiles
 

@@ -47,4 +47,6 @@ if (version_openttd(1,10,0,28004) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
+disable_item(FEAT_INDUSTRIES, 0, 36);
+
 // End Header

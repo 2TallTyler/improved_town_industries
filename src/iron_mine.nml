@@ -20,22 +20,79 @@ spritelayout sprlay_iron_mine_31 {ground{sprite:2338;}}
 spritelayout sprlay_iron_mine_32 {ground{sprite:2339;}}
 spritelayout sprlay_iron_mine_33 {ground{sprite:2340;}}
 
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_00) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_00;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_01) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_01;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_02) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_02;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_03) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_03;}}
 
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_10) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_10;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_11) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_11;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_12) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_12;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_13) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_13;}}
 
-// Location Check: Must be within 8 tiles of a town boundary (town zones, not town sign) with population >= 300
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_20) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_20;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_21) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_21;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_22) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_22;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_23) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_23;}}
 
-switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_3, population >= 300) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Check if town has population >= 300
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+64) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Add 8 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_30) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_30;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_31) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_31;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_32) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_32;}}
+item (FEAT_INDUSTRYTILES, ind_tile_iron_mine_33) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_iron_mine_33;}}
+
+tilelayout industry_layout_iron_mine {
+	0,0:	ind_tile_iron_mine_00;	0,1:	ind_tile_iron_mine_01;	0,2:	ind_tile_iron_mine_02;	0,3:	ind_tile_iron_mine_03;
+	1,0:	ind_tile_iron_mine_10;	1,1:	ind_tile_iron_mine_11;	1,2:	ind_tile_iron_mine_12;	1,3:	ind_tile_iron_mine_13;
+	2,0:	ind_tile_iron_mine_20;	2,1:	ind_tile_iron_mine_21;	2,2:	ind_tile_iron_mine_22;	2,3:	ind_tile_iron_mine_23;
+	3,0:	ind_tile_iron_mine_30;	3,1:	ind_tile_iron_mine_31;	3,2:	ind_tile_iron_mine_32;	3,3:	ind_tile_iron_mine_33;
+}
+
+// Iron Mine Industry
+
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_2, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_TOO_CLOSE_TOWN);} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_2;} // Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_0, industry_distance(industry_iron_mine, -1)) {0..50: return string(STR_CB_RESULT_TOO_CLOSE_IRON_MINE); switch_iron_mine_location_check_1;} // Iron mines can't build within 75 tiles (Manhattan distance) of another iron mine.
 
-/*
 item (FEAT_INDUSTRIES, industry_iron_mine) {
 	property {
 		substitute:				INDUSTRYTYPE_IRON_ORE_MINE;
 		override:				INDUSTRYTYPE_IRON_ORE_MINE;
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
 		cargo_types:			[
-								produce_cargo("IORE",1),
+								produce_cargo("IORE",15),
+								accept_cargo("PASS", produce_cargo("PASS",1))
 		];
 		name:					string(STR_NAME_IRON_MINE);
 		prob_map_gen:			5;
@@ -44,11 +101,14 @@ item (FEAT_INDUSTRIES, industry_iron_mine) {
 		layouts:				[industry_layout_iron_mine,];
 	}
 	graphics {
-		//location_check:			switch_iron_mine_location_check_0;
+		location_check:			switch_iron_mine_location_check_0;
 		construction_probability:	(current_year >= 1856) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
 	}
 }
-*/
+
+// Iron Mine Objects
+
 switch (FEAT_OBJECTS, SELF, switch_object_graphics_iron_mine, relative_pos) {
 	relative_coord(0,0): sprlay_iron_mine_00;
 	relative_coord(0,1): sprlay_iron_mine_01;

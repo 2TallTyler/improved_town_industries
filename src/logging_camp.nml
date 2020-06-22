@@ -32,7 +32,6 @@ spritelayout sprlay_logging_camp_6 {
 item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_1) {
 	property {
 		substitute:				11;
-		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_logging_camp_1;
@@ -41,7 +40,6 @@ item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_1) {
 item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_2) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_logging_camp_2;
@@ -50,7 +48,6 @@ item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_2) {
 item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_3) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_logging_camp_3;
@@ -59,7 +56,6 @@ item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_3) {
 item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_4) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_logging_camp_4;
@@ -68,7 +64,6 @@ item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_4) {
 item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_5) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_logging_camp_5;
@@ -77,7 +72,6 @@ item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_5) {
 item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_6) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_logging_camp_6;
@@ -85,22 +79,19 @@ item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_6) {
 }
 
 tilelayout industry_layout_logging_camp_1 {
-	0,0:	ind_tile_logging_camp_5;
-	0,1:	ind_tile_logging_camp_4;
-	0,2:	ind_tile_logging_camp_4;
-	
-	1,0:	ind_tile_logging_camp_2;
-	1,1:	ind_tile_logging_camp_3;
-	1,2:	ind_tile_logging_camp_5;
-
-	2,0:	ind_tile_logging_camp_2;
-	2,1:	ind_tile_logging_camp_2;
-	2,2:	ind_tile_logging_camp_6;
-
-	3,0:	ind_tile_logging_camp_2;
-	3,1:	ind_tile_logging_camp_2;
-	3,2:	ind_tile_logging_camp_1;
+	0,0:	ind_tile_logging_camp_5;	0,1:	ind_tile_logging_camp_6;	0,2:	ind_tile_logging_camp_4;
+	1,0:	ind_tile_logging_camp_3;	1,1:	ind_tile_logging_camp_1;	1,2:	ind_tile_logging_camp_2;
 }
+
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_4b, nearby_tile_class(0,3) == TILE_CLASS_TREES || nearby_tile_class(1,3) == TILE_CLASS_TREES || nearby_tile_class(2,2) == TILE_CLASS_TREES) {1: CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_NEEDS_TREES);}
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_4a, nearby_tile_class(2,0) == TILE_CLASS_TREES || nearby_tile_class(2,1) == TILE_CLASS_TREES || nearby_tile_class(2,2) == TILE_CLASS_TREES) {1: switch_logging_camp_location_check_4b; return string(STR_CB_RESULT_NEEDS_TREES);}
+
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_3, extra_callback_info2 == IND_CREATION_GENERATION) {1: CB_RESULT_LOCATION_ALLOW; switch_logging_camp_location_check_4a;} // Ignore tree requirement when generating map, since industries are generated before trees.
+
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_2, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_logging_camp_location_check_3; return string(STR_CB_RESULT_TOO_CLOSE_TOWN);} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_logging_camp_location_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_0, industry_distance(industry_logging_camp, -1)) {0..50: return string(STR_CB_RESULT_TOO_CLOSE_LOGGING_CAMP); switch_logging_camp_location_check_1;} // Logging camps can't build within 75 tiles (Manhattan distance) of another logging camp.
 
 item (FEAT_INDUSTRIES, industry_logging_camp) {
 	property {
@@ -110,10 +101,13 @@ item (FEAT_INDUSTRIES, industry_logging_camp) {
 		cargo_types:			[produce_cargo("WOOD",15),];
 		name:					string(STR_NAME_LOGGING_CAMP);
 		prob_map_gen:			5;
-		prob_in_game:			3;
-		fund_cost_multiplier:	100;
+		prob_in_game:			50;
+		fund_cost_multiplier:	20;
 		map_colour:				143;
 		layouts:				[industry_layout_logging_camp_1,];
+	}
+	graphics {
+		location_check:			switch_logging_camp_location_check_0;
 	}
 }
 
