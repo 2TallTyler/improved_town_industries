@@ -99,6 +99,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine) {
 		prob_in_game:			2;
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_iron_mine,];
+		conflicting_ind_types:	[industry_steel_mill];
 	}
 	graphics {
 		location_check:			switch_iron_mine_location_check_0;

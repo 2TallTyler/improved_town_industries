@@ -1,7 +1,7 @@
 // Begin Cargos
 
 cargotable {
-	FOOD, PASS, MAIL, GOOD, WOOD, STEL, GRAI, IORE
+	FOOD, PASS, MAIL, GOOD, WOOD, STEL, GRAI, IORE, COAL
 }
 
 item (FEAT_CARGOS, cargo_food, 0x0B) {

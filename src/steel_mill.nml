@@ -25,6 +25,84 @@ spritelayout sprlay_steel_mill_2_W {
 	building	{sprite:2128;}
 }
 
+item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_N) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[IORE, 8],[COAL, 8]];}
+	graphics {default:			sprlay_steel_mill_1_N;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_E) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[IORE, 8],[COAL, 8]];}
+	graphics {default:			sprlay_steel_mill_1_E;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_W) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[IORE, 8],[COAL, 8]];}
+	graphics {default:			sprlay_steel_mill_1_W;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_S) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[IORE, 8],[COAL, 8]];}
+	graphics {default:			sprlay_steel_mill_1_S;}
+}
+
+
+item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_N) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[IORE, 8],[COAL, 8]];}
+	graphics {default:			sprlay_steel_mill_2_N;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_W) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[IORE, 8],[COAL, 8]];}
+	graphics {default:			sprlay_steel_mill_2_W;}
+}
+
+tilelayout industry_layout_steel_mill_1 {
+0,0: ind_tile_steel_mill_2_N;	0,1: ind_tile_steel_mill_2_N;	0,2: ind_tile_steel_mill_2_N;	0,3: ind_tile_steel_mill_2_N;	
+1,0: ind_tile_steel_mill_2_W;	1,1: ind_tile_steel_mill_2_W;	1,2: ind_tile_steel_mill_2_W;	1,3: ind_tile_steel_mill_2_W;
+	
+2,0: ind_tile_steel_mill_2_N;	2,1: ind_tile_steel_mill_2_N;	2,2: ind_tile_steel_mill_1_N;	2,3: ind_tile_steel_mill_1_E;
+3,0: ind_tile_steel_mill_2_W;	3,1: ind_tile_steel_mill_2_W;	3,2: ind_tile_steel_mill_1_W;	3,3: ind_tile_steel_mill_1_S;
+
+4,0: ind_tile_steel_mill_1_N;	4,1: ind_tile_steel_mill_1_E;	4,2: ind_tile_steel_mill_1_N;	4,3: ind_tile_steel_mill_1_E;
+5,0: ind_tile_steel_mill_1_W;	5,1: ind_tile_steel_mill_1_S;	5,2: ind_tile_steel_mill_1_W;	5,3: ind_tile_steel_mill_1_S;
+
+}
+
+switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_location_check_3, population >= 500) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_500);} // Check if town has population >= 500
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+64) {1: switch_steel_mill_location_check_3; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Add 8 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_steel_mill_location_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+item (FEAT_INDUSTRIES, industry_steel_mill) {
+	property {
+		substitute:				INDUSTRYTYPE_STEEL_MILL;
+		override:				INDUSTRYTYPE_STEEL_MILL;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		cargo_types:			[
+								accept_cargo("IORE", produce_cargo("STEL",1)),
+								accept_cargo("COAL", produce_cargo("STEL",1)),
+								accept_cargo("PASS", produce_cargo("PASS",1))
+		];
+		name:					string(STR_NAME_STEEL_MILL);
+		prob_map_gen:			1;
+		prob_in_game:			1;
+		fund_cost_multiplier:	100;
+		layouts:				[industry_layout_steel_mill_1,];
+	}
+	graphics {
+		location_check:			switch_steel_mill_location_check_1;
+		construction_probability:	(current_year >= 1856) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
+	}
+}
+
 switch (FEAT_OBJECTS, SELF, switch_object_graphics_steel_mill_1, relative_pos) {
 	relative_coord(0, 0): sprlay_steel_mill_1_N;
 	relative_coord(0, 1): sprlay_steel_mill_1_E;
