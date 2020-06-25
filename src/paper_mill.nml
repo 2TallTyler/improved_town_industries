@@ -42,21 +42,124 @@ spritelayout sprlay_paper_mill_8 { // Mill building
 
 spritelayout sprlay_paper_mill_9_N {
 	ground		{sprite:3981;}
-	building	{sprite:2169; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_CC_GREY;}
+	building	{sprite:2169; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_paper_mill_9_E {
 	ground		{sprite:3981;}
-	building	{sprite:2170; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_CC_GREY;}
+	building	{sprite:2170; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_paper_mill_9_W {
 	ground		{sprite:3981;}
-	building	{sprite:2171; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_CC_GREY;}
+	building	{sprite:2171; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_paper_mill_9_S {
 	ground		{sprite:3981;}
-	building	{sprite:2172; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_CC_GREY;}
+	building	{sprite:2172; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT;}
 }
 
+spritelayout sprlay_paper_mill_chem_1 { // Tall tank
+	ground		{sprite:1420;}
+	building	{sprite:2083; yoffset:4; xoffset:4; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT;}
+}
+spritelayout sprlay_paper_mill_chem_2 { // Pipe frame 1
+	ground		{sprite:1420;}
+	building	{sprite:2089; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT;}
+}
+spritelayout sprlay_paper_mill_chem_3 { // Pipe frame 2
+	ground		{sprite:1420;}
+	building	{sprite:2092; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT;}
+}
+spritelayout sprlay_paper_mill_logs_1 {
+	ground		{sprite:2022;}
+	building	{sprite:2071;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_N) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+	graphics {default:			sprlay_paper_mill_9_N;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_E) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+	graphics {default:			sprlay_paper_mill_9_E;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_W) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+	graphics {default:			sprlay_paper_mill_9_W;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_S) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+	graphics {default:			sprlay_paper_mill_9_S;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_1) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+	graphics {default:			sprlay_paper_mill_chem_1;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_2) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+	graphics {default:			sprlay_paper_mill_chem_2;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_3) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+	graphics {default:			sprlay_paper_mill_chem_3;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_logs_1) {
+	property {
+		substitute:				02;
+		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+	graphics {default:			sprlay_paper_mill_logs_1;}
+}
+
+tilelayout industry_layout_paper_mill_1 {
+0,0:	ind_tile_paper_mill_9_N;	0,1:	ind_tile_paper_mill_9_E;	0,2:	ind_tile_paper_mill_chem_2;	0,3:	ind_tile_paper_mill_chem_1;
+1,0:	ind_tile_paper_mill_9_W;	1,1:	ind_tile_paper_mill_9_S;	1,2:	ind_tile_paper_mill_9_N;	1,3:	ind_tile_paper_mill_9_E;
+2,0:	ind_tile_paper_mill_chem_1;	2,1:	ind_tile_paper_mill_chem_3;	2,2:	ind_tile_paper_mill_9_W;	2,3:	ind_tile_paper_mill_9_S;
+3,0:	ind_tile_paper_mill_9_N;	3,1:	ind_tile_paper_mill_9_E;	3,2:	ind_tile_paper_mill_logs_1;	3,3:	ind_tile_paper_mill_logs_1;
+4,0:	ind_tile_paper_mill_9_W;	4,1:	ind_tile_paper_mill_9_S;	4,2:	ind_tile_paper_mill_logs_1;	4,3:	ind_tile_paper_mill_logs_1;
+}
+
+switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_location_check_3, is_city == 1 || population >= 1000) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Paper mills only build in cities or towns with >= 1000 population
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_paper_mill_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 12 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_paper_mill_location_check_2;} // Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_paper_mill_location_check_1;} // No restrictions on funded industries
+
+item (FEAT_INDUSTRIES, industry_paper_mill) {
+	property {
+		substitute:				INDUSTRYTYPE_PAPER_MILL;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		cargo_types:			[
+								accept_cargo("WOOD", produce_cargo("GOOD",1)),
+								accept_cargo("RFPR", produce_cargo("GOOD",1)),
+								accept_cargo("PASS", produce_cargo("PASS",1))
+		];
+		name:					string(STR_NAME_PAPER_MILL);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
+		prob_map_gen:			1;
+		prob_in_game:			1;
+		fund_cost_multiplier:	100;
+		map_colour:				184;
+		layouts:				[industry_layout_paper_mill_1,];
+	}
+	graphics {
+		location_check:			switch_paper_mill_location_check_0;
+		construction_probability:	(current_year >= 1885) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1885);
+		colour:					COLOUR_DARK_GREEN;
+	}
+}
 
 switch (FEAT_OBJECTS, SELF, switch_object_graphics_paper_mill_9, relative_pos) {
 	relative_coord(0, 0): sprlay_paper_mill_9_N;

@@ -76,9 +76,10 @@ tilelayout industry_layout_steel_mill_1 {
 
 }
 
-switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_location_check_3, population >= 500) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_500);} // Check if town has population >= 500
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+64) {1: switch_steel_mill_location_check_3; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Add 8 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_location_check_3, is_city == 1 || population >= 1000) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Steel mills only build in cities or towns with >= 1000 population
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_steel_mill_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 8 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_steel_mill_location_check_2;} // Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_steel_mill_location_check_1;} // No restrictions on funded industries
 
 item (FEAT_INDUSTRIES, industry_steel_mill) {
 	property {
@@ -91,13 +92,15 @@ item (FEAT_INDUSTRIES, industry_steel_mill) {
 								accept_cargo("PASS", produce_cargo("PASS",1))
 		];
 		name:					string(STR_NAME_STEEL_MILL);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_STEEL_MILL));
 		prob_map_gen:			1;
 		prob_in_game:			1;
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_steel_mill_1,];
+		map_colour:				10;
 	}
 	graphics {
-		location_check:			switch_steel_mill_location_check_1;
+		location_check:			switch_steel_mill_location_check_0;
 		construction_probability:	(current_year >= 1856) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
 	}

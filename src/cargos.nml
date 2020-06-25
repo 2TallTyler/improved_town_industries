@@ -1,7 +1,7 @@
 // Begin Cargos
 
 cargotable {
-	FOOD, PASS, MAIL, GOOD, WOOD, STEL, GRAI, IORE, COAL
+	FOOD, PASS, MAIL, GOOD, WOOD, STEL, GRAI, IORE, COAL, RFPR
 }
 
 item (FEAT_CARGOS, cargo_food, 0x0B) {
@@ -24,6 +24,30 @@ item (FEAT_CARGOS, cargo_food, 0x0B) {
 		station_list_colour:		162;
 		cargo_payment_list_colour:	162;
 		price_factor:				158;
+		capacity_multiplier:		1;		
+	}
+}
+
+item (FEAT_CARGOS, cargo_chemicals, 23) {
+	property {
+		number:						23;
+		sprite:						4314;
+		type_name:					string(STR_CARGO_NAME_CHEMICALS);
+		unit_name:					string(STR_CARGO_NAME_CHEMICALS);
+		type_abbreviation:			string(STR_CARGO_ABBREV_CHEMICALS);
+		weight:						1.2;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_LIQUID, CC_POWDERIZED);
+		cargo_label:				"RFPR";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		1.0;
+		units_of_cargo:				TTD_STR_LITERS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_CHEMICALS);
+		penalty_lowerbound:			12;
+		single_penalty_length:		255;
+		station_list_colour:		177;
+		cargo_payment_list_colour:	177;
+		price_factor:				117;
 		capacity_multiplier:		1;		
 	}
 }

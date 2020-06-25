@@ -1,25 +1,20 @@
 ##grflangid 0x01
 
 STR_GRF_NAME						:{TITLE} {VERSION}
-STR_GRF_DESC						:{ORANGE}It's cool yo.{}{}{ORANGE}Visit website for instructions.{}{}{BLACK}Coded by 2TallTyler.
+STR_GRF_DESC						:{ORANGE}Not for public consumption yet. {BLACK}But it's going to be cool. I promise.{}{}{BLACK}Coded by 2TallTyler.
 STR_WEBSITE							:https://github.com/2TallTyler/historical-industries/blob/master/README.md
 
 STR_ERROR_GAME_VERSION					:Historical Industries requires OpenTTD version 1.10.0, JGR version 0.34, or better
 
-STR_CB_RESULT_NOT_NEAR_TOWN_POP_300		:Industry must be near a town with a population of at least 300.
-STR_CB_RESULT_NOT_NEAR_TOWN_POP_400		:Industry must be near a town with a population of at least 400.
-STR_CB_RESULT_NOT_NEAR_TOWN_POP_500		:Industry must be near a town with a population of at least 500.
-
-STR_CB_RESULT_TOO_CLOSE_TOWN			:Too close to a town.
-STR_CB_RESULT_TOO_CLOSE_LOGGING_CAMP	:Too close to another Logging Camp.
-STR_CB_RESULT_TOO_CLOSE_IRON_MINE		:Too close to another Iron Mine.
-
-STR_CB_RESULT_NEEDS_TREES				:Logging camp must be surrounded by trees.
-
 STR_FUND_AVAILABLE_1800					:{BLACK}Introduced: {YELLOW}1800
 STR_FUND_AVAILABLE_1856					:{BLACK}Introduced: {YELLOW}1856
+STR_FUND_AVAILABLE_1885					:{BLACK}Introduced: {YELLOW}1885
+STR_FUND_AVAILABLE_1900					:{BLACK}Introduced: {YELLOW}1900
 
 STR_NAME_OBJECT_MENU					:Industry Tiles
+
+STR_TOWN								:{STRING}
+STR_STATION								:{STRING} {STRING}
 
 STR_NAME_STEEL_MILL						:Steel Mill
 STR_NAME_IRON_MINE						:Iron Mine
@@ -34,3 +29,8 @@ STR_NAME_PAPER_MILL						:Paper Mill
 STR_NAME_FOOD_FACTORY					:Food Factory
 
 STR_NAME_FIELD_1						:Field
+
+
+STR_CARGO_NAME_CHEMICALS				:Chemicals
+STR_CARGO_ABBREV_CHEMICALS				:{TINYFONT}CH
+STR_CARGO_QUANTITY_CHEMICALS			:{VOLUME} of chemicals

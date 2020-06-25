@@ -81,22 +81,24 @@ tilelayout industry_layout_iron_mine {
 
 // Iron Mine Industry
 
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_2, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_TOO_CLOSE_TOWN);} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_2;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_0, industry_distance(industry_iron_mine, -1)) {0..50: return string(STR_CB_RESULT_TOO_CLOSE_IRON_MINE); switch_iron_mine_location_check_1;} // Iron mines can't build within 75 tiles (Manhattan distance) of another iron mine.
+switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; return CB_RESULT_LOCATION_ALLOW;} // Iron mines don't build in cities
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_steel_mill_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_1, industry_distance(industry_iron_mine, -1)) {0..50: return CB_RESULT_LOCATION_DISALLOW; switch_iron_mine_location_check_2;} // Iron mines can't build within 75 tiles (Manhattan distance) of another iron mine.
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_location_check_1;} // No restrictions on funded industries
 
 item (FEAT_INDUSTRIES, industry_iron_mine) {
 	property {
 		substitute:				INDUSTRYTYPE_IRON_ORE_MINE;
-		override:				INDUSTRYTYPE_IRON_ORE_MINE;
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
 		cargo_types:			[
 								produce_cargo("IORE",15),
 								accept_cargo("PASS", produce_cargo("PASS",1))
 		];
 		name:					string(STR_NAME_IRON_MINE);
-		prob_map_gen:			5;
-		prob_in_game:			2;
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));
+		prob_map_gen:			10;
+		prob_in_game:			10;
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_iron_mine,];
 		conflicting_ind_types:	[industry_steel_mill];

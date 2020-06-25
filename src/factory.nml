@@ -110,16 +110,16 @@ tilelayout industry_layout_factory_2x2 {
 	3,3:	ind_tile_factory_1_S;
 }
 
-// Location Check: Must be within 8 tiles of a town boundary (town zones, not town sign) with population >= 300
+// Location Check: Must be within 8 tiles of a town boundary (town zones, not town sign) with population >= 500, or a city with any population
 
-switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_3, population >= 300) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Check if town has population >= 300
-switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+64) {1: switch_factory_location_check_3; return string(STR_CB_RESULT_NOT_NEAR_TOWN_POP_300);} // Add 8 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_3, is_city == 1 || population >= 500) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Factories only build in cities or towns with >= 500 population
+switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_factory_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 8 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_location_check_2;} // Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_factory_location_check_1;} // No restrictions on funded industries
 
 item (FEAT_INDUSTRIES, industry_factory) {
 	property {
 		substitute:				INDUSTRYTYPE_TEMPERATE_FACTORY;
-		override:				INDUSTRYTYPE_TEMPERATE_FACTORY;
 		life_type:				IND_LIFE_TYPE_PROCESSING;
 		cargo_types:			[
 								accept_cargo("STEL", produce_cargo("GOOD",1)),
@@ -127,14 +127,15 @@ item (FEAT_INDUSTRIES, industry_factory) {
 								accept_cargo("PASS", produce_cargo("PASS",1))
 		];
 		name:					string(STR_NAME_FACTORY);
-		prob_map_gen:			5;
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
+		prob_map_gen:			3;
 		prob_in_game:			2;
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_factory_2x2, industry_layout_factory_1x2, industry_layout_factory_2x1];
 		conflicting_ind_types:	[industry_steel_mill];
 	}
 	graphics {
-		location_check:			switch_factory_location_check_1;
+		location_check:			switch_factory_location_check_0;
 		colour:					COLOUR_PALE_GREEN;
 		construction_probability:	(current_year >= 1800) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
@@ -157,7 +158,7 @@ item (FEAT_OBJECTS, object_item_factory_1) {
 		build_cost_multiplier:	0;
 		remove_cost_multiplier:	0;
 		size:					[2,2];
-		introduction_date:		1840;
+		introduction_date:		1800;
 		num_views:				1;
 	}
 	graphics {
