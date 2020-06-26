@@ -100,8 +100,8 @@ item (FEAT_INDUSTRIES, industry_logging_camp) {
 		cargo_types:			[produce_cargo("WOOD",15),];
 		name:					string(STR_NAME_LOGGING_CAMP);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_LOGGING_CAMP));
-		prob_map_gen:			10;
-		prob_in_game:			10;
+		prob_map_gen:			15;
+		prob_in_game:			15;
 		fund_cost_multiplier:	20;
 		layouts:				[industry_layout_logging_camp_1,];
 	}

@@ -113,7 +113,7 @@ tilelayout industry_layout_factory_2x2 {
 // Location Check: Must be within 8 tiles of a town boundary (town zones, not town sign) with population >= 500, or a city with any population
 
 switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_3, is_city == 1 || population >= 500) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Factories only build in cities or towns with >= 500 population
-switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_factory_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 8 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_factory_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_location_check_2;} // Add up the town zone radii and store it in temporary register 0
 switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_factory_location_check_1;} // No restrictions on funded industries
 
@@ -124,12 +124,12 @@ item (FEAT_INDUSTRIES, industry_factory) {
 		cargo_types:			[
 								accept_cargo("STEL", produce_cargo("GOOD",1)),
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
-								accept_cargo("PASS", produce_cargo("PASS",1))
+								produce_cargo("PASS",10),
 		];
 		name:					string(STR_NAME_FACTORY);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
 		prob_map_gen:			3;
-		prob_in_game:			2;
+		prob_in_game:			3;
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_factory_2x2, industry_layout_factory_1x2, industry_layout_factory_2x1];
 		conflicting_ind_types:	[industry_steel_mill];

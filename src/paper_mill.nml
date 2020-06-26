@@ -132,7 +132,7 @@ tilelayout industry_layout_paper_mill_1 {
 }
 
 switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_location_check_3, is_city == 1 || population >= 1000) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Paper mills only build in cities or towns with >= 1000 population
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_paper_mill_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 12 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_paper_mill_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_paper_mill_location_check_2;} // Add up the town zone radii and store it in temporary register 0
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_paper_mill_location_check_1;} // No restrictions on funded industries
 
@@ -143,7 +143,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill) {
 		cargo_types:			[
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
 								accept_cargo("RFPR", produce_cargo("GOOD",1)),
-								accept_cargo("PASS", produce_cargo("PASS",1))
+								produce_cargo("PASS",10),
 		];
 		name:					string(STR_NAME_PAPER_MILL);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));

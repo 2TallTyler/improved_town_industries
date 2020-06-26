@@ -93,12 +93,12 @@ item (FEAT_INDUSTRIES, industry_iron_mine) {
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
 		cargo_types:			[
 								produce_cargo("IORE",15),
-								accept_cargo("PASS", produce_cargo("PASS",1))
+								produce_cargo("PASS",15),
 		];
 		name:					string(STR_NAME_IRON_MINE);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));
-		prob_map_gen:			10;
-		prob_in_game:			10;
+		prob_map_gen:			15;
+		prob_in_game:			15;
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_iron_mine,];
 		conflicting_ind_types:	[industry_steel_mill];

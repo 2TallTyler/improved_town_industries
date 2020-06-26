@@ -2,34 +2,176 @@
 
 spritelayout sprlay_oil_refinery_1 { // Office
 	ground		{sprite:1420;}
-	building	{sprite:2095; yoffset:2; xoffset:2;}
+	building	{sprite:2095; yoffset:2; xoffset:2;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_oil_refinery_2 { // Large tank
 	ground		{sprite:1420;}
-	building	{sprite:2080; yoffset:1; xoffset:1;}
+	building	{sprite:2080; yoffset:1; xoffset:1;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_oil_refinery_3 { // Tall tank
 	ground		{sprite:1420;}
-	building	{sprite:2083; yoffset:4; xoffset:4;}
+	building	{sprite:2083; yoffset:4; xoffset:4;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_oil_refinery_4 { // Burner tower
 	ground		{sprite:1420;}
-	building	{sprite:2086; yoffset:5; xoffset:5;}
+	building	{sprite:2086; yoffset:5; xoffset:5;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
-spritelayout sprlay_oil_refinery_5 { // Pipe frame 1
+spritelayout sprlay_oil_refinery_5 { // Pipe frame red
 	ground		{sprite:1420;}
-	building	{sprite:2089;}
+	building	{sprite:2089;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_oil_refinery_6 { // Pipe frame 2
 	ground		{sprite:1420;}
-	building	{sprite:2092;}
+	building	{sprite:2092;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_oil_refinery_7 { // Pipe frame 3
 	ground		{sprite:1420;}
-	building	{sprite:2091;}
+	building	{sprite:2091;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
 spritelayout sprlay_oil_refinery_8 { // Bare ground
 	ground		{sprite:1420;}
+}
+spritelayout sprlay_oil_refinery_9 { // Food silo
+	ground		{sprite:1420;}
+	building	{sprite:2196;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_oil_refinery_10 { // Pumps with boxes
+	ground		{sprite:1420;}
+	building	{sprite:2349;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_oil_refinery_11 { // Pumps with reflector
+	ground		{sprite:1420;}
+	building	{sprite:2352;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_1) { // Office
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_1;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_2) { // Large tank
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_2;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_3) { // Tall tank
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_3;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_4) { // Burner tower
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_4;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_5) { // Pipe frame red
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_5;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_6) { // Pipe frame 2
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_6;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_7) { // Pipe frame 3
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_7;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_8) { // Bare ground
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_8;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_9) { // Food silo
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_9;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_10) { // Pumps with boxes
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_10;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_11) { // Pump with reflector
+	property {
+		substitute:				02;
+		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+	graphics {default:			sprlay_oil_refinery_11;}
+}
+
+tilelayout industry_layout_oil_refinery_1 {
+0,0:	ind_tile_oil_refinery_2;	0,1:	ind_tile_oil_refinery_10;	0,2: 	ind_tile_oil_refinery_5;	0,3:	ind_tile_oil_refinery_6;	0,4:	ind_tile_oil_refinery_7;
+1,0:	ind_tile_oil_refinery_2;	1,1:	ind_tile_oil_refinery_1;	1,2:	ind_tile_oil_refinery_5;	1,3:	ind_tile_oil_refinery_6;	1,4:	ind_tile_oil_refinery_7;
+
+3,0:	ind_tile_oil_refinery_3;	3,1:	ind_tile_oil_refinery_6;	3,2:	ind_tile_oil_refinery_4;	3,3:	ind_tile_oil_refinery_11;	3,4:	ind_tile_oil_refinery_10;
+4,0:	ind_tile_oil_refinery_3;	4,1:	ind_tile_oil_refinery_5;	4,2:	ind_tile_oil_refinery_7;	4,3:	ind_tile_oil_refinery_11;	4,4:	ind_tile_oil_refinery_10;
+
+6,0:	ind_tile_oil_refinery_2;	6,1:	ind_tile_oil_refinery_2;	6,2:	ind_tile_oil_refinery_2;	6,3:	ind_tile_oil_refinery_2;	6,4:	ind_tile_oil_refinery_1;
+7,0:	ind_tile_oil_refinery_2;	7,1:	ind_tile_oil_refinery_2;	7,2:	ind_tile_oil_refinery_2;	7,3:	ind_tile_oil_refinery_2;	7,4:	ind_tile_oil_refinery_2;
+}
+
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_location_check_3, is_city == 1 || population >= 1000) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Steel mills only build in cities or towns with >= 1000 population
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_oil_refinery_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_refinery_location_check_2;} // Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_oil_refinery_location_check_1;} // No restrictions on funded industries
+
+item (FEAT_INDUSTRIES, industry_oil_refinery) {
+	property {
+		substitute:				INDUSTRYTYPE_OIL_REFINERY;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		cargo_types:			[
+								accept_cargo("OIL_", produce_cargo("RFPR",0.75), produce_cargo("GOOD",0.25)),
+								accept_cargo("PASS"),
+								produce_cargo("PASS",10),
+		];
+		name:					string(STR_NAME_OIL_REFINERY);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
+		prob_map_gen:			1;
+		prob_in_game:			1;
+		fund_cost_multiplier:	100;
+		layouts:				[industry_layout_oil_refinery_1,];
+		map_colour:				10;
+	}
+	graphics {
+		location_check:			switch_oil_refinery_location_check_0;
+		construction_probability:	(current_year >= 1900) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1900);
+		colour:					COLOUR_YELLOW;
+	}
 }
 
 item (FEAT_OBJECTS, object_item_oil_refinery_1) {
@@ -47,6 +189,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_1) {
 	}
 	graphics {
 		default:				sprlay_oil_refinery_1;
+		colour:			COLOUR_YELLOW;
 	}
 }
 
@@ -65,6 +208,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_2) {
 	}
 	graphics {
 		default:				sprlay_oil_refinery_2;
+		colour:			COLOUR_YELLOW;
 	}
 }
 
@@ -83,6 +227,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_3) {
 	}
 	graphics {
 		default:				sprlay_oil_refinery_3;
+		colour:			COLOUR_YELLOW;
 	}
 }
 
@@ -101,6 +246,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_4) {
 	}
 	graphics {
 		default:				sprlay_oil_refinery_4;
+		colour:			COLOUR_YELLOW;
 	}
 }
 
@@ -119,6 +265,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_5) {
 	}
 	graphics {
 		default:				sprlay_oil_refinery_5;
+		colour:			COLOUR_YELLOW;
 	}
 }
 
@@ -137,6 +284,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_6) {
 	}
 	graphics {
 		default:				sprlay_oil_refinery_6;
+		colour:			COLOUR_YELLOW;
 	}
 }
 
@@ -155,6 +303,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_7) {
 	}
 	graphics {
 		default:				sprlay_oil_refinery_7;
+		colour:			COLOUR_YELLOW;
 	}
 }
 
@@ -173,6 +322,64 @@ item (FEAT_OBJECTS, object_item_oil_refinery_8) {
 	}
 	graphics {
 		default:				sprlay_oil_refinery_8;
+		colour:			COLOUR_YELLOW;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_9) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_9;
+		colour:			COLOUR_YELLOW;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_10) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_10;
+		colour:			COLOUR_YELLOW;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_oil_refinery_11) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_OIL_REFINERY);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_oil_refinery_11;
+		colour:			COLOUR_YELLOW;
 	}
 }
 
