@@ -19,6 +19,7 @@ STR_STATION								:{STRING} {STRING}
 STR_NAME_STEEL_MILL						:Steel Mill
 STR_NAME_IRON_MINE						:Iron Mine
 STR_NAME_LOGGING_CAMP					:Logging Camp
+STR_EXTRA_TEXT_LOGGING_CAMP				:Transport wood to begin clearing trees and increase production
 STR_NAME_OIL_REFINERY					:Oil Refinery
 STR_NAME_FARM							:Farm
 STR_NAME_POWER_PLANT					:Power Plant

@@ -169,6 +169,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill) {
 		cargo_types:			[
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
 								accept_cargo("RFPR", produce_cargo("GOOD",1)),
+								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
 		name:					string(STR_NAME_PAPER_MILL);

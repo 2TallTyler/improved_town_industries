@@ -111,8 +111,8 @@ tilelayout industry_layout_factory_2x2 {
 }
 
 switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_adder_total_1, [ // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-STORE_TEMP(LOAD_TEMP(1)*300 + LOAD_TEMP(2)*300 + LOAD_TEMP(3)*300 + LOAD_TEMP(4)*300, 0),
-population >= LOAD_TEMP(0)+300,])
+STORE_TEMP(LOAD_TEMP(1)*200 + LOAD_TEMP(2)*300 + LOAD_TEMP(3)*300 + LOAD_TEMP(4)*300, 0),
+population >= LOAD_TEMP(0)+200,])
 
 {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
@@ -146,6 +146,7 @@ item (FEAT_INDUSTRIES, industry_factory) {
 		cargo_types:			[
 								accept_cargo("STEL", produce_cargo("GOOD",1)),
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
+								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
 		name:					string(STR_NAME_FACTORY);

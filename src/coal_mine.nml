@@ -38,6 +38,83 @@ spritelayout sprlay_coal_mine_5_W { // Coal pile W
 	building	{sprite:2024;}
 }
 
+switch (FEAT_INDUSTRYTILES, PARENT, switch_coal_mine_animation_2, this_month_transported("COAL") > 0) {1: return CB_RESULT_START_ANIMATION; return CB_RESULT_STOP_ANIMATION;}
+
+switch (FEAT_INDUSTRYTILES, SELF, switch_coal_mine_animation_1, animation_frame) {
+	0:	sprlay_coal_mine_1_a;
+	1:	sprlay_coal_mine_1_b;
+	2:	sprlay_coal_mine_1_c;
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_1) {
+property {
+	substitute:				02; 
+	accepted_cargos: 		[[PASS, 8]];
+	animation_info:			[ANIMATION_LOOPING, 3];
+	animation_speed:		2;
+	animation_triggers:		bitmask(ANIM_TRIGGER_INDTILE_DISTRIBUTES_CARGO, ANIM_TRIGGER_INDTILE_INDUSTRY_LOOP);
+}
+graphics {
+	default:				switch_coal_mine_animation_1;
+	anim_control:		switch_coal_mine_animation_2;
+}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_2) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_2;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_3) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_3;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_4) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_4;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_N) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_5_N;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_W) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_5_W;}}
+
+tilelayout industry_layout_coal_mine {
+	0,0:	ind_tile_coal_mine_1;	0,1:	ind_tile_coal_mine_2;	0,2:	ind_tile_coal_mine_5_N;
+	1,0:	ind_tile_coal_mine_4;	1,1:	ind_tile_coal_mine_3;	1,2:	ind_tile_coal_mine_5_W;
+}
+
+// Coal Mine Industry
+
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
+switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_5;} // Iron mines don't build in cities
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_coal_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Iron mines can't build within 50 tiles (Manhattan distance) of a town.
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_location_check_1;} // No restrictions on funded industries
+
+item (FEAT_INDUSTRIES, industry_coal_mine) {
+	property {
+		substitute:				INDUSTRYTYPE_COAL_MINE;
+		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
+		cargo_types:			[
+								produce_cargo("COAL",15),
+								accept_cargo("PASS"),
+								produce_cargo("PASS",15),
+		];
+		name:					string(STR_NAME_COAL_MINE);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_COAL_MINE));
+		prob_map_gen:			15;
+		prob_in_game:			15;
+		fund_cost_multiplier:	100;
+		layouts:				[industry_layout_coal_mine,];
+	}
+	graphics {
+		location_check:			switch_coal_mine_location_check_0;
+	}
+}
+
+
 switch (FEAT_OBJECTS, SELF, switch_object_graphics_coal_mine_5, relative_pos) {
 	relative_coord(0, 0): sprlay_coal_mine_5_N;
 	relative_coord(1, 0): sprlay_coal_mine_5_W;

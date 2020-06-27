@@ -331,6 +331,83 @@ spritelayout sprlay_coal_mine_5_W { // Coal pile W
 	building	{sprite:2024;}
 }
 
+switch (FEAT_INDUSTRYTILES, PARENT, switch_coal_mine_animation_2, this_month_transported("COAL") > 0) {1: return CB_RESULT_START_ANIMATION; return CB_RESULT_STOP_ANIMATION;}
+
+switch (FEAT_INDUSTRYTILES, SELF, switch_coal_mine_animation_1, animation_frame) {
+	0:	sprlay_coal_mine_1_a;
+	1:	sprlay_coal_mine_1_b;
+	2:	sprlay_coal_mine_1_c;
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_1) {
+property {
+	substitute:				02; 
+	accepted_cargos: 		[[PASS, 8]];
+	animation_info:			[ANIMATION_LOOPING, 3];
+	animation_speed:		2;
+	animation_triggers:		bitmask(ANIM_TRIGGER_INDTILE_DISTRIBUTES_CARGO, ANIM_TRIGGER_INDTILE_INDUSTRY_LOOP);
+}
+graphics {
+	default:				switch_coal_mine_animation_1;
+	anim_control:		switch_coal_mine_animation_2;
+}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_2) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_2;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_3) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_3;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_4) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_4;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_N) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_5_N;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_W) {
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_5_W;}}
+
+tilelayout industry_layout_coal_mine {
+	0,0:	ind_tile_coal_mine_1;	0,1:	ind_tile_coal_mine_2;	0,2:	ind_tile_coal_mine_5_N;
+	1,0:	ind_tile_coal_mine_4;	1,1:	ind_tile_coal_mine_3;	1,2:	ind_tile_coal_mine_5_W;
+}
+
+// Coal Mine Industry
+
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
+switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_5;} // Iron mines don't build in cities
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_coal_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Iron mines can't build within 50 tiles (Manhattan distance) of a town.
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_location_check_1;} // No restrictions on funded industries
+
+item (FEAT_INDUSTRIES, industry_coal_mine) {
+	property {
+		substitute:				INDUSTRYTYPE_COAL_MINE;
+		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
+		cargo_types:			[
+								produce_cargo("COAL",15),
+								accept_cargo("PASS"),
+								produce_cargo("PASS",15),
+		];
+		name:					string(STR_NAME_COAL_MINE);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_COAL_MINE));
+		prob_map_gen:			15;
+		prob_in_game:			15;
+		fund_cost_multiplier:	100;
+		layouts:				[industry_layout_coal_mine,];
+	}
+	graphics {
+		location_check:			switch_coal_mine_location_check_0;
+	}
+}
+
+
 switch (FEAT_OBJECTS, SELF, switch_object_graphics_coal_mine_5, relative_pos) {
 	relative_coord(0, 0): sprlay_coal_mine_5_N;
 	relative_coord(1, 0): sprlay_coal_mine_5_W;
@@ -614,7 +691,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_5, industry_dista
 switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_iron_mine_location_check_5;} // Iron mines don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_iron_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_1, industry_distance(industry_iron_mine, -1)) {0..50: return CB_RESULT_LOCATION_DISALLOW; switch_iron_mine_location_check_2;} // Iron mines can't build within 75 tiles (Manhattan distance) of another iron mine.
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_iron_mine_location_check_2;} // Iron mines can't build within 50 tiles (Manhattan distance) of a town.
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_location_check_1;} // No restrictions on funded industries
 
 item (FEAT_INDUSTRIES, industry_iron_mine) {
@@ -623,6 +700,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine) {
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
 		cargo_types:			[
 								produce_cargo("IORE",15),
+								accept_cargo("PASS"),
 								produce_cargo("PASS",15),
 		];
 		name:					string(STR_NAME_IRON_MINE);
@@ -799,6 +877,7 @@ item (FEAT_INDUSTRIES, industry_steel_mill) {
 		cargo_types:			[
 								accept_cargo("IORE", produce_cargo("STEL",1)),
 								accept_cargo("COAL", produce_cargo("STEL",1)),
+								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
 		name:					string(STR_NAME_STEEL_MILL);
@@ -978,8 +1057,8 @@ tilelayout industry_layout_factory_2x2 {
 }
 
 switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_adder_total_1, [ // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-STORE_TEMP(LOAD_TEMP(1)*300 + LOAD_TEMP(2)*300 + LOAD_TEMP(3)*300 + LOAD_TEMP(4)*300, 0),
-population >= LOAD_TEMP(0)+300,])
+STORE_TEMP(LOAD_TEMP(1)*200 + LOAD_TEMP(2)*300 + LOAD_TEMP(3)*300 + LOAD_TEMP(4)*300, 0),
+population >= LOAD_TEMP(0)+200,])
 
 {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
@@ -1013,6 +1092,7 @@ item (FEAT_INDUSTRIES, industry_factory) {
 		cargo_types:			[
 								accept_cargo("STEL", produce_cargo("GOOD",1)),
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
+								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
 		name:					string(STR_NAME_FACTORY);
@@ -1141,6 +1221,7 @@ tilelayout industry_layout_logging_camp_1 {
 	1,0:	ind_tile_logging_camp_3;	1,1:	ind_tile_logging_camp_1;	1,2:	ind_tile_logging_camp_2;
 }
 
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, last_month_transported("WOOD") > 0) {1: return 1; return 0;}
 
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_7, nearby_tile_class(2,0) == TILE_CLASS_TREES || nearby_tile_class(2,1) == TILE_CLASS_TREES || nearby_tile_class(2,2) == TILE_CLASS_TREES && nearby_tile_class(0,3) == TILE_CLASS_TREES || nearby_tile_class(1,3) == TILE_CLASS_TREES) {1: CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Check for trees near camp. Not every tile must have a tree - just one on each side southeast and southwest of the industry.
 
@@ -1150,23 +1231,26 @@ switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_5, industry_di
 switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_logging_camp_location_check_5;} // Logging camps don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_logging_camp_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_logging_camp_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_1, industry_distance(industry_logging_camp, -1)) {0..50: return CB_RESULT_LOCATION_DISALLOW; switch_logging_camp_location_check_2;} // Logging camps can't build within 75 tiles (Manhattan distance) of another logging camp.
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_1, town_manhattan_dist(1,1)) {0..50: return CB_RESULT_LOCATION_DISALLOW; switch_logging_camp_location_check_2;} // Logging camps can't build within 50 tiles of a town.
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_location_check_1;} // No restrictions on funded industries
 
 item (FEAT_INDUSTRIES, industry_logging_camp) {
 	property {
-		substitute:				INDUSTRYTYPE_SAWMILL;
-		life_type:				IND_LIFE_TYPE_ORGANIC;
-		cargo_types:			[produce_cargo("WOOD",15),];
+		substitute:				INDUSTRYTYPE_LUMBER_MILL;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		cargo_types:			[produce_cargo("WOOD",2),];
+		spec_flags:				bitmask(IND_FLAG_CUT_TREES);
 		name:					string(STR_NAME_LOGGING_CAMP);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_LOGGING_CAMP));
 		prob_map_gen:			15;
 		prob_in_game:			15;
-		fund_cost_multiplier:	20;
+		fund_cost_multiplier:	40;
 		layouts:				[industry_layout_logging_camp_1,];
 	}
 	graphics {
 		location_check:			switch_logging_camp_location_check_0;
+		control_special:		switch_logging_camp_production_check_1;
+		extra_text_industry:	string(STR_EXTRA_TEXT_LOGGING_CAMP);	
 	}
 }
 
@@ -1449,6 +1533,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill) {
 		cargo_types:			[
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
 								accept_cargo("RFPR", produce_cargo("GOOD",1)),
+								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
 		name:					string(STR_NAME_PAPER_MILL);
