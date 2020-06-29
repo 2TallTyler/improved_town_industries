@@ -380,10 +380,10 @@ tilelayout industry_layout_coal_mine {
 // Coal Mine Industry
 
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
-switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_5;} // Iron mines don't build in cities
+switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_5;} // Coal mines don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_coal_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Iron mines can't build within 50 tiles (Manhattan distance) of a town.
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Coal mines can't build within 50 tiles (Manhattan distance) of a town.
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_location_check_1;} // No restrictions on funded industries
 
 item (FEAT_INDUSTRIES, industry_coal_mine) {
@@ -1723,9 +1723,151 @@ item (FEAT_OBJECTS, object_item_paper_mill_9) {
 // End Paper Mill
 // Begin Oil Wells
 
-spritelayout sprlay_oil_wells_1_a { // Powerhouse
+spritelayout sprlay_oil_wells_1_a { 
 	ground		{sprite:2173;}
 	building	{sprite:2174;}
+}
+spritelayout sprlay_oil_wells_1_b { 
+	ground		{sprite:2173;}
+	building	{sprite:2175;}
+}
+spritelayout sprlay_oil_wells_1_c { 
+	ground		{sprite:2173;}
+	building	{sprite:2176;}
+}
+spritelayout sprlay_oil_wells_1_d { 
+	ground		{sprite:2173;}
+	building	{sprite:2177;}
+}
+spritelayout sprlay_oil_wells_1_e { 
+	ground		{sprite:2173;}
+	building	{sprite:2178;}
+}
+spritelayout sprlay_oil_wells_1_f { 
+	ground		{sprite:2173;}
+	building	{sprite:2179;}
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, oil_wells_tile_animation, animation_frame) {
+	1:	sprlay_oil_wells_1_a;
+	2:	sprlay_oil_wells_1_b;
+	3:	sprlay_oil_wells_1_c;
+	4:	sprlay_oil_wells_1_d;
+	5:	sprlay_oil_wells_1_e;
+	6:	sprlay_oil_wells_1_f;
+	7:	sprlay_oil_wells_1_e;
+	8:	sprlay_oil_wells_1_d;
+	9:	sprlay_oil_wells_1_c;
+	10:	sprlay_oil_wells_1_b;
+	11:	sprlay_oil_wells_1_a;
+	12:	sprlay_oil_wells_1_b;
+	13:	sprlay_oil_wells_1_c;
+	14:	sprlay_oil_wells_1_d;
+	15:	sprlay_oil_wells_1_e;
+	16:	sprlay_oil_wells_1_f;
+	17:	sprlay_oil_wells_1_e;
+	18:	sprlay_oil_wells_1_d;
+	19:	sprlay_oil_wells_1_c;
+	20:	sprlay_oil_wells_1_b;
+	sprlay_oil_wells_1_a;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, oil_wells_tile_1_stop_anim, animation_frame) {
+	1: return 11; // jump to the 'stop animation cycle' when triggered and currently animated
+	2: return 12;
+	3: return 13;
+	4: return 14;
+	5: return 15;
+	6: return 16;
+	7: return 17;
+	8: return 18;
+	9: return 19;
+	10: return 20;
+	return CB_RESULT_DO_NOTHING;
+}
+switch (FEAT_INDUSTRYTILES, SELF, oil_wells_tile_1_start_anim, animation_frame) {
+	11: return 1;
+	12: return 2;
+	13: return 3;
+	14: return 4;
+	15: return 5;
+	16: return 6;
+	17: return 7;
+	18: return 8;
+	19: return 9;
+	20: return 10;
+	return CB_RESULT_START_ANIMATION;
+}
+
+random_switch (FEAT_INDUSTRYTILES, SELF, oil_wells_tile_1_random_anim_trigger_switch, bitmask(TRIGGER_INDUSTRYTILE_TILELOOP)) {
+	1: return oil_wells_tile_1_stop_anim;
+	1: return oil_wells_tile_1_start_anim;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, oil_wells_tile_1_next_frame_switch, animation_frame) {
+	10: return 1;
+	11: return CB_RESULT_STOP_ANIMATION; // Don't actually stop animation, just keep looping the same frame over and over. // CB_RESULT_STOP_ANIMATION
+	20: return 11;
+	return CB_RESULT_NEXT_FRAME;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, oil_wells_tile_1_graphics_switch, construction_state) {
+	1: sprlay_oil_wells_1_a;
+	2: sprlay_oil_wells_1_a;
+	oil_wells_tile_animation;
+}
+item (FEAT_INDUSTRYTILES, ind_tile_oil_wells) {
+property {
+	substitute:				02; 
+	animation_info:			[ANIMATION_LOOPING, 20];
+	animation_speed:		3;
+	animation_triggers:		bitmask(ANIM_TRIGGER_INDTILE_TILE_LOOP);
+	special_flags:			bitmask(INDTILE_FLAG_RANDOM_ANIMATION);
+}
+graphics {
+	anim_control: oil_wells_tile_1_random_anim_trigger_switch;
+	anim_next_frame: oil_wells_tile_1_next_frame_switch;
+	random_trigger: oil_wells_tile_1_random_anim_trigger_switch;
+		oil_wells_tile_1_graphics_switch;
+}}
+
+tilelayout industry_layout_oil_wells_1 {
+	0,0:	ind_tile_oil_wells;		0,2:	ind_tile_oil_wells;		0,4:	ind_tile_oil_wells;
+	2,0:	ind_tile_oil_wells;		2,2:	ind_tile_oil_wells;		2,4:	ind_tile_oil_wells;
+}
+
+tilelayout industry_layout_oil_wells_2 {
+	0,0:	ind_tile_oil_wells;		0,2:	ind_tile_oil_wells;	
+	2,0:	ind_tile_oil_wells;		2,2:	ind_tile_oil_wells;
+	4,0:	ind_tile_oil_wells;		4,2:	ind_tile_oil_wells;
+}
+
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_5;} // Iron mines don't build in cities
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_oil_wells_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_wells_location_check_3;} // Add up the town zone radii and store it in temporary register 0
+// switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_2;} // Oil wells can't build within 50 tiles (Manhattan distance) of a town.
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_location_check_2;} // No restrictions on funded industries
+
+item (FEAT_INDUSTRIES, industry_oil_wells) {
+	property {
+		substitute:				INDUSTRYTYPE_OIL_WELLS;
+		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
+		cargo_types:			[
+								produce_cargo("OIL_",12),
+		];
+		name:					string(STR_NAME_OIL_WELLS);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_WELLS));
+		prob_map_gen:			15;
+		prob_in_game:			15;
+		fund_cost_multiplier:	100;
+		layouts:				[industry_layout_oil_wells_1, industry_layout_oil_wells_2,];
+	}
+	graphics {
+		location_check:			switch_oil_wells_location_check_0;
+		construction_probability:	(current_year >= 1900) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1900);
+	}
 }
 
 item (FEAT_OBJECTS, object_item_oil_wells_1) {
