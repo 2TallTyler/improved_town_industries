@@ -114,14 +114,14 @@ spritelayout sprlay_farm_1_N { // Farmhouse N
 	building	{sprite:2108;}
 }
 
-spritelayout sprlay_farm_1_W { // Farmhouse W
+spritelayout sprlay_farm_1_E { // Farmhouse W
 	ground		{sprite:2107;}
 	building	{sprite:2109;}
 }
 
 switch (FEAT_OBJECTS, SELF, switch_object_graphics_farm_1, relative_pos) {
 	relative_coord(0, 0): sprlay_farm_1_N;
-	relative_coord(0, 1): sprlay_farm_1_W;
+	relative_coord(0, 1): sprlay_farm_1_E;
 }
 
 spritelayout sprlay_farm_2 { // Hay shed
@@ -162,6 +162,103 @@ switch (FEAT_OBJECTS, SELF, switch_farm_field_1_autoslope, [
 	]) {
 		sprlay_farm_field_1;
  }
+
+item (FEAT_INDUSTRYTILES, ind_tile_farm_1_N) { // House north
+property {substitute:	02;}
+graphics {default:		sprlay_farm_1_N;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_farm_1_E) { // House east
+property {substitute:	02;}
+graphics {default:		sprlay_farm_1_E;}}
+ 
+item (FEAT_INDUSTRYTILES, ind_tile_farm_2) { // Hay shed
+property {substitute:	02;}
+graphics {default:		sprlay_farm_2;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_farm_3) { // Barn
+property {substitute:	02;}
+graphics {default:		sprlay_farm_3;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_farm_4) { // Silos
+property {substitute:	02;}
+graphics {default:		sprlay_farm_4;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_farm_5) { // Farmyard
+property {substitute:	02;}
+graphics {default:		sprlay_farm_5;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_farm_6) { // empty tile
+property {substitute:	02;}
+graphics {default:		sprlay_farm_6;}}
+
+tilelayout industry_layout_farm_1 {
+	0,0:	ind_tile_farm_4;	0,1:	ind_tile_farm_3;	0,2:	ind_tile_farm_2;
+	1,0:	ind_tile_farm_1_N;	1,1:	ind_tile_farm_1_E;	1,2:	ind_tile_farm_6;
+}
+tilelayout industry_layout_farm_2 {
+	0,0:	ind_tile_farm_5;	0,1:	ind_tile_farm_4;	0,2:	ind_tile_farm_2;
+	1,0:	ind_tile_farm_3;	1,1:	ind_tile_farm_1_N;	1,2:	ind_tile_farm_1_E;
+}
+tilelayout industry_layout_farm_3 {
+	0,0:	ind_tile_farm_5;	0,1:	ind_tile_farm_1_N;	0,2:	ind_tile_farm_1_E;
+	1,0:	ind_tile_farm_5;	1,1:	ind_tile_farm_3;	1,2:	ind_tile_farm_4;
+}
+tilelayout industry_layout_farm_4 {
+	0,0:	ind_tile_farm_1_N;	0,1:	ind_tile_farm_1_E;	0,2:	ind_tile_farm_2;
+	1,0:	ind_tile_farm_3;	1,1:	ind_tile_farm_6;	1,2:	ind_tile_farm_5;
+}
+tilelayout industry_layout_farm_5 {
+	0,0:	ind_tile_farm_1_N;	0,1:	ind_tile_farm_1_E;	0,2:	ind_tile_farm_4;
+	1,0:	ind_tile_farm_3;	1,1:	ind_tile_farm_6;	1,2:	ind_tile_farm_2;
+}
+tilelayout industry_layout_farm_6 {
+	0,0:	ind_tile_farm_1_N;	0,1:	ind_tile_farm_1_E;	0,2:	ind_tile_farm_5;
+	1,0:	ind_tile_farm_2;	1,1:	ind_tile_farm_6;	1,2:	ind_tile_farm_5;
+}
+tilelayout industry_layout_farm_7 {
+	0,0:	ind_tile_farm_3;	0,1:	ind_tile_farm_6;	0,2:	ind_tile_farm_5;
+	1,0:	ind_tile_farm_1_N;	1,1:	ind_tile_farm_1_E;	1,2:	ind_tile_farm_2;
+}
+
+
+
+switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_5, industry_distance(industry_farm,-1) >= 40 && industry_distance(industry_steel_mill,-1) >= 30 && industry_distance(industry_oil_refinery,-1) >= 30 && industry_distance(industry_paper_mill,-1) >= 30 && industry_distance(industry_factory,-1) >= 30 && industry_distance(industry_iron_mine,-1) >= 30 && industry_distance(industry_coal_mine,-1) >= 30 && industry_distance(industry_oil_wells,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
+switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_farm_location_check_5;} // don't build in cities
+switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_farm_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_farm_location_check_3;} // Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_1, nearby_tile_height(0,0) > 2) {1: return CB_RESULT_LOCATION_DISALLOW; switch_farm_location_check_2;} // Farms must be built at tile height 2 or below.
+switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_farm_location_check_1;} // No restrictions on funded industries
+
+item (FEAT_INDUSTRIES, industry_farm) {
+	property {
+		substitute:				INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
+		life_type:				IND_LIFE_TYPE_ORGANIC;
+		spec_flags:				bitmask(IND_FLAG_PLANT_FIELDS_WHEN_BUILT, IND_FLAG_PLANT_FIELDS_PERIODICALLY);
+		cargo_types:			[
+								produce_cargo("FOOD",10),
+		];
+		name:					string(STR_NAME_FARM);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
+		prob_map_gen:			30;
+		prob_in_game:			20;
+		fund_cost_multiplier:	100;
+		layouts:				[
+			industry_layout_farm_1,
+			industry_layout_farm_2,
+			industry_layout_farm_3,
+			industry_layout_farm_4,
+			industry_layout_farm_5,
+			industry_layout_farm_6,
+			industry_layout_farm_7,
+		];
+	}
+	graphics {
+		location_check:			switch_farm_location_check_0;
+	}
+} 
+ 
+ 
+ 
 
 item (FEAT_OBJECTS, object_item_farm_1) {
 	property {
@@ -379,11 +476,11 @@ tilelayout industry_layout_coal_mine {
 
 // Coal Mine Industry
 
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
 switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_5;} // Coal mines don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_coal_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Coal mines can't build within 50 tiles (Manhattan distance) of a town.
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, nearby_tile_height(0,0) < 4) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Coal mines must be built at tile height 2 or above.
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_location_check_1;} // No restrictions on funded industries
 
 item (FEAT_INDUSTRIES, industry_coal_mine) {
@@ -687,12 +784,12 @@ tilelayout industry_layout_iron_mine {
 
 // Iron Mine Industry
 
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
 switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_iron_mine_location_check_5;} // Iron mines don't build in cities
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_iron_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_iron_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_iron_mine_location_check_2;} // Iron mines can't build within 50 tiles (Manhattan distance) of a town.
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_location_check_1;} // No restrictions on funded industries
+//switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_iron_mine_location_check_2;} // Iron mines can't build within 50 tiles (Manhattan distance) of a town.
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_location_check_2;} // No restrictions on funded industries
 
 item (FEAT_INDUSTRIES, industry_iron_mine) {
 	property {
@@ -1227,12 +1324,11 @@ switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_7, nearby_tile
 
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_6, extra_callback_info2 == IND_CREATION_GENERATION) {1: CB_RESULT_LOCATION_ALLOW; switch_logging_camp_location_check_7;} // Ignore tree requirement when generating map, since industries are generated before trees.
 
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_5, industry_distance(industry_paper_mill,-1) >= 60) {1: switch_logging_camp_location_check_6; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of paper mill
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_5, industry_distance(industry_paper_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_logging_camp_location_check_6; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of paper mill
 switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_logging_camp_location_check_5;} // Logging camps don't build in cities
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_logging_camp_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_logging_camp_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_logging_camp_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_1, town_manhattan_dist(1,1)) {0..50: return CB_RESULT_LOCATION_DISALLOW; switch_logging_camp_location_check_2;} // Logging camps can't build within 50 tiles of a town.
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_location_check_1;} // No restrictions on funded industries
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_location_check_2;} // No restrictions on funded industries
 
 item (FEAT_INDUSTRIES, industry_logging_camp) {
 	property {
@@ -1842,12 +1938,12 @@ tilelayout industry_layout_oil_wells_2 {
 	4,0:	ind_tile_oil_wells;		4,2:	ind_tile_oil_wells;
 }
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
-switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_5;} // Iron mines don't build in cities
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_5;} // Oil wells don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_oil_wells_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_wells_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-// switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_2;} // Oil wells can't build within 50 tiles (Manhattan distance) of a town.
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_location_check_2;} // No restrictions on funded industries
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_1, nearby_tile_height(0,0) > 2) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_2;} // Farms must be built at tile height 2 or below.
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_location_check_1;} // No restrictions on funded industries
 
 item (FEAT_INDUSTRIES, industry_oil_wells) {
 	property {
