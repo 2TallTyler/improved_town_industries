@@ -83,7 +83,7 @@ tilelayout industry_layout_logging_camp_1 {
 	1,0:	ind_tile_logging_camp_3;	1,1:	ind_tile_logging_camp_1;	1,2:	ind_tile_logging_camp_2;
 }
 
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, last_month_transported("WOOD") > 0) {1: return 1; return 0;}
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, last_month_transported("WOOD") > 0 && produced_cargo_waiting("WOOD") <= 500) {1: return 1; return 0;}
 
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_7, nearby_tile_class(2,0) == TILE_CLASS_TREES || nearby_tile_class(2,1) == TILE_CLASS_TREES || nearby_tile_class(2,2) == TILE_CLASS_TREES && nearby_tile_class(0,3) == TILE_CLASS_TREES || nearby_tile_class(1,3) == TILE_CLASS_TREES) {1: CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Check for trees near camp. Not every tile must have a tree - just one on each side southeast and southwest of the industry.
 
