@@ -1,0 +1,106 @@
+/* // Industry Construction Switches - Read from bottom to top // */
+
+
+/* Don't allow the same industry within 100 tiles - secondary industries only */
+switch (FEAT_INDUSTRIES, SELF, switch_PLACEHOLDER_THIS_INDUSTRY_distance_competitor, industry_distance(industry_PLACEHOLDER_THIS_INDUSTRY, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Second industry switch - secondary industries only except Factory; only use one per industry */
+
+// Only allow a second oil refinery if a paper mill, steel mill, and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map.
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_second_2, industry_count(industry_steel_mill,-1) > 0 && industry_count(industry_factory,-1) > 0 ) {1: switch_PLACEHOLDER_THIS_INDUSTRY_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} // Only allow a second paper mill if a steel mill and factory already exist
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_second_1, // Check if this will be the second oil refinery in the world
+	industry_count(industry_oil_refinery,-1) == 1) {1: switch_oil_refinery_second_2; switch_PLACEHOLDER_THIS_INDUSTRY_distance_competitor;}
+
+
+// Only allow a second paper mill if a steel mill and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map.
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_second_2, industry_count(industry_steel_mill,-1) > 0 && industry_count(industry_factory,-1) > 0 ) {1: switch_PLACEHOLDER_THIS_INDUSTRY_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} 
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_second_1, // Check if this will be the second paper mill in the world
+	industry_count(industry_paper_mill,-1) == 1) {1: switch_paper_mill_second_2; switch_PLACEHOLDER_THIS_INDUSTRY_distance_competitor;}
+
+// Only allow a steel mill if a factory already exists. Factory must come first because it's the only destination for steel.
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_second_1, industry_count(industry_factory,-1) > 0 ) {1: switch_PLACEHOLDER_THIS_INDUSTRY_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} // Only allow a steel mill if a factory already exists
+
+
+
+
+
+/* Population Check - secondary industries only */
+
+switch (FEAT_INDUSTRIES, PARENT, switch_PLACEHOLDER_THIS_INDUSTRY_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= LOAD_TEMP(1)) {1: switch_PLACEHOLDER_THIS_INDUSTRY_second_1; CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_PLACEHOLDER_THIS_INDUSTRY_population_check_1, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)	* 300 +
+	industry_town_count(industry_paper_mill,-1) 	* 300 +
+	industry_town_count(industry_steel_mill,-1)		* 300 +
+	industry_town_count(industry_factory,-1)		* 300 +
+	300 // Add population required for this industry
+	, 1))
+	{switch_PLACEHOLDER_THIS_INDUSTRY_population_check_2;}
+
+
+/* Town Distance Check - secondary industries only */
+
+// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+switch (FEAT_INDUSTRIES, SELF, switch_PLACEHOLDER_THIS_INDUSTRY_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_PLACEHOLDER_THIS_INDUSTRY_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_PLACEHOLDER_THIS_INDUSTRY_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_PLACEHOLDER_THIS_INDUSTRY_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+
+
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_PLACEHOLDER_THIS_INDUSTRY_density_high,
+	industry_count(industry_PLACEHOLDER_THIS_INDUSTRY, -1) < PLACEHOLDER_IND_TOTAL * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_PLACEHOLDER_THIS_INDUSTRY_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_PLACEHOLDER_THIS_INDUSTRY_density_normal,
+	industry_count(industry_PLACEHOLDER_THIS_INDUSTRY, -1) < PLACEHOLDER_IND_TOTAL * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_PLACEHOLDER_THIS_INDUSTRY_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_PLACEHOLDER_THIS_INDUSTRY_density_low,
+	industry_count(industry_PLACEHOLDER_THIS_INDUSTRY, -1) < PLACEHOLDER_IND_TOTAL * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_PLACEHOLDER_THIS_INDUSTRY_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_PLACEHOLDER_THIS_INDUSTRY_density_verylow,
+	industry_count(industry_PLACEHOLDER_THIS_INDUSTRY, -1) < PLACEHOLDER_IND_TOTAL * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_PLACEHOLDER_THIS_INDUSTRY_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_PLACEHOLDER_THIS_INDUSTRY_density_selector, param_industry_density) {
+	0: switch_PLACEHOLDER_THIS_INDUSTRY_density_verylow;
+	1: switch_PLACEHOLDER_THIS_INDUSTRY_density_low;
+	2: switch_PLACEHOLDER_THIS_INDUSTRY_density_normal;
+	3: switch_PLACEHOLDER_THIS_INDUSTRY_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+
+
+Placeholders to replace:
+
+	PLACEHOLDER_THIS_INDUSTRY
+	PLACEHOLDER_IND_TOTAL
+*/
+
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_PLACEHOLDER_THIS_INDUSTRY_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_PLACEHOLDER_THIS_INDUSTRY_density_selector;}

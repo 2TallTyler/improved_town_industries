@@ -1,8 +1,5 @@
 # Industry Chain
 
-## Objects
-* Create objects of all industry tiles, for expansion as well as mocking up industry sprite kitbashes in different graphics sets
-
 ## Parameters
 * Generate primary industries only
 * Industries need workers (passengers)
@@ -28,10 +25,6 @@
 * Location:			Country
 * Produce: 			Oil
 * Receive: 			None
-
-### Oil Rig
-* Availability:		use default		
-* Produce: 			use default
 
 ### Oil Refinery
 * Availability:		1900

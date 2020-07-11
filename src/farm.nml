@@ -118,7 +118,54 @@ switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_4, is_city) {1: retu
 switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_farm_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_farm_location_check_3;} // Add up the town zone radii and store it in temporary register 0
 switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_1, nearby_tile_height(0,0) > 2) {1: return CB_RESULT_LOCATION_DISALLOW; switch_farm_location_check_2;} // Farms must be built at tile height 2 or below.
-switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_farm_location_check_1;} // No restrictions on funded industries
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_farm_density_high,
+	industry_count(industry_farm, -1) < 12 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_farm_density_normal,
+	industry_count(industry_farm, -1) < 12 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_farm_density_low,
+	industry_count(industry_farm, -1) < 5 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_farm_density_verylow,
+	industry_count(industry_farm, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_farm_density_selector, param_industry_density) {
+	0: switch_farm_density_verylow;
+	1: switch_farm_density_low;
+	2: switch_farm_density_normal;
+	3: switch_farm_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+	
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_farm_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return 1; switch_farm_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_farm) {
 	property {
@@ -144,7 +191,8 @@ item (FEAT_INDUSTRIES, industry_farm) {
 		];
 	}
 	graphics {
-		location_check:			switch_farm_location_check_0;
+		location_check:			switch_farm_allow_funded;
+		construction_probability:	1;
 	}
 } 
  

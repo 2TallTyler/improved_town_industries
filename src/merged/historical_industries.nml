@@ -7,50 +7,48 @@ grf {
 	version: 0;
 	min_compatible_version: 0;
 	url: string(STR_WEBSITE);
-/*
+
 param 0 {
-  extra_bank {
-   name: string(STR_PARAM_NAME_EXTRA_BANK);
-   desc: string(STR_PARAM_DESC_EXTRA_BANK);
-   type: bool;
-   def_value: 0;
+  param_industry_density {
+   name: string(STR_PARAM_NAME_INDUSTRY_DENSITY);
+   desc: string(STR_PARAM_DESC_INDUSTRY_DENSITY);
+   type: int;
+   min_value: 0;
+   max_value: 3;
+   def_value: 2;
+   names:	{
+	0:	string(STR_DENSITY_VERY_LOW);
+	1:	string(STR_DENSITY_LOW);
+	2:	string(STR_DENSITY_NORMAL);
+	3:	string(STR_DENSITY_HIGH);
+   };
    }}
-   
+
 param 1 {
-  extra_hotel {
-   name: string(STR_PARAM_NAME_EXTRA_HOTEL);
-   desc: string(STR_PARAM_DESC_EXTRA_HOTEL);
+  param_primary_only {
+   name: string(STR_PARAM_NAME_PRIMARY_ONLY);
+   desc: string(STR_PARAM_DESC_PRIMARY_ONLY);
    def_value: 0;
    type: bool;
    }}
-
-param 2 {
-  extra_tropic {
-   name: string(STR_PARAM_NAME_EXTRA_TROPIC);
-   desc: string(STR_PARAM_DESC_EXTRA_TROPIC);
-   def_value: 0;
-   type: bool;
-   }} 
-
-param 3 {
-  improved_mail {
-   name: string(STR_PARAM_NAME_IMPROVED_MAIL);
-   desc: string(STR_PARAM_DESC_IMPROVED_MAIL);
-   def_value: 1;
-   type: bool;
-   }}   
-*/
 }
 
+/*
+// Create an error if the map is smaller than 256 x 256
+if (map_min_edge < 256 && map_max_edge < 512) {
+	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
+}
+*/
 
+// Create an error if OpenTTD version is before 1.10.0
 if (version_openttd(1,10,0,28004) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
+// Disable base game industries
 disable_item(FEAT_INDUSTRIES, 0, 36);
 
 // End Header
-
 // Begin Cargos
 
 cargotable {
@@ -227,7 +225,54 @@ switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_4, is_city) {1: retu
 switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_farm_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_farm_location_check_3;} // Add up the town zone radii and store it in temporary register 0
 switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_1, nearby_tile_height(0,0) > 2) {1: return CB_RESULT_LOCATION_DISALLOW; switch_farm_location_check_2;} // Farms must be built at tile height 2 or below.
-switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_farm_location_check_1;} // No restrictions on funded industries
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_farm_density_high,
+	industry_count(industry_farm, -1) < 12 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_farm_density_normal,
+	industry_count(industry_farm, -1) < 12 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_farm_density_low,
+	industry_count(industry_farm, -1) < 5 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_farm_density_verylow,
+	industry_count(industry_farm, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_farm_density_selector, param_industry_density) {
+	0: switch_farm_density_verylow;
+	1: switch_farm_density_low;
+	2: switch_farm_density_normal;
+	3: switch_farm_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+	
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_farm_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return 1; switch_farm_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_farm) {
 	property {
@@ -253,7 +298,8 @@ item (FEAT_INDUSTRIES, industry_farm) {
 		];
 	}
 	graphics {
-		location_check:			switch_farm_location_check_0;
+		location_check:			switch_farm_allow_funded;
+		construction_probability:	1;
 	}
 } 
  
@@ -480,8 +526,55 @@ switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_dista
 switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_5;} // Coal mines don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_coal_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, nearby_tile_height(0,0) < 4) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Coal mines must be built at tile height 2 or above.
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_location_check_1;} // No restrictions on funded industries
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, nearby_tile_height(0,0) < 4) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Coal mines must be built at tile height 2 or above./* // Industry Construction Switches - Read from bottom to top // */
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_density_high,
+	industry_count(industry_coal_mine, -1) < 12 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_coal_mine_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_density_normal,
+	industry_count(industry_coal_mine, -1) < 6 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_coal_mine_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_density_low,
+	industry_count(industry_coal_mine, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_coal_mine_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_density_verylow,
+	industry_count(industry_coal_mine, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_coal_mine_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_density_selector, param_industry_density) {
+	0: switch_coal_mine_density_verylow;
+	1: switch_coal_mine_density_low;
+	2: switch_coal_mine_density_normal;
+	3: switch_coal_mine_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return 1; switch_coal_mine_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_coal_mine) {
 	property {
@@ -500,7 +593,8 @@ item (FEAT_INDUSTRIES, industry_coal_mine) {
 		layouts:				[industry_layout_coal_mine,];
 	}
 	graphics {
-		location_check:			switch_coal_mine_location_check_0;
+		location_check:			switch_coal_mine_allow_funded;
+		construction_probability:	1;
 	}
 }
 
@@ -701,34 +795,72 @@ tilelayout industry_layout_power_plant_5 {
 6,0:	ind_tile_power_plant_4;	/*6,1:	clear;*/					6,2:	ind_tile_power_plant_4;
 }
 
-switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_population_adder_total_1, [ // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-STORE_TEMP(LOAD_TEMP(1)*200 + LOAD_TEMP(2)*300 + LOAD_TEMP(3)*300 + LOAD_TEMP(4)*300, 0),
-population >= LOAD_TEMP(0)+200,])
-
-{1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_population_adder_oil_refinery_2, STORE_TEMP(industry_town_count(industry_oil_refinery,-1), 4)) {switch_power_plant_population_adder_total_1;} // If oil refinery available, store number of oil refineries in this town
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_population_adder_oil_refinery_1, current_year >= 1800) {1: switch_power_plant_population_adder_oil_refinery_2; switch_power_plant_population_adder_total_1;} // Check if oil refinery available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_population_adder_paper_mill_2, STORE_TEMP(industry_town_count(industry_paper_mill,-1), 3)) {switch_power_plant_population_adder_oil_refinery_1;} // If paper mill available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_population_adder_paper_mill_1, current_year >= 1800) {1: switch_power_plant_population_adder_paper_mill_2; switch_power_plant_population_adder_total_1;} // Check if power_plant available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_population_adder_steel_mill_2, STORE_TEMP(industry_town_count(industry_steel_mill,-1), 2)) {switch_power_plant_population_adder_paper_mill_1;} // If steel mill available, store number of steel mills in this town
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_population_adder_steel_mill_1, current_year >= 1856) {1: switch_power_plant_population_adder_steel_mill_2; switch_power_plant_population_adder_total_1;} // Check if steel mills available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_population_adder_factory_2, STORE_TEMP(industry_town_count(industry_factory,-1), 1)) {switch_power_plant_population_adder_steel_mill_1;} // If factory available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_population_adder_factory_1, current_year >= 1800) {1: switch_power_plant_population_adder_factory_2; switch_power_plant_population_adder_total_1;} // Check if factory available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_location_check_4, // Don't allow a second oil refinery to be constructed unless other types have at least one
-	industry_count(industry_steel_mill,-1) >= 1 || industry_count(industry_paper_mill,-1) >= 1 || industry_count(industry_factory,-1) >= 1 )
-	{1: switch_power_plant_population_adder_factory_1; CB_RESULT_LOCATION_DISALLOW;}
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_location_check_3, // Check if this will be the second oil refinery in the world
-	industry_count(industry_oil_refinery,-1) == 1) {1: switch_power_plant_location_check_4; switch_power_plant_population_adder_factory_1;} 
+/* // Industry Construction Switches - Read from bottom to top // */
 
 
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_power_plant_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_power_plant_location_check_2;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_power_plant_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_location_check_1;} // No restrictions on funded industries
+/* Don't allow the same industry within 100 tiles - secondary industries only */
+switch (FEAT_INDUSTRIES, SELF, switch_power_plant_distance_competitor, industry_distance(industry_power_plant, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Population Check - different for power plants, only requiring at least 500 population with no regard for other industries */
+
+switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_population_check_1, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= 500) {1: switch_power_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Town Distance Check - secondary industries only */
+
+// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+switch (FEAT_INDUSTRIES, SELF, switch_power_plant_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_power_plant_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_power_plant_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_power_plant_density_high,
+	industry_count(industry_power_plant, -1) < 4 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_power_plant_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_power_plant_density_normal,
+	industry_count(industry_power_plant, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_power_plant_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_power_plant_density_low,
+	industry_count(industry_power_plant, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_power_plant_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_power_plant_density_verylow,
+	industry_count(industry_power_plant, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_power_plant_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_power_plant_density_selector, param_industry_density) {
+	0: switch_power_plant_density_verylow;
+	1: switch_power_plant_density_low;
+	2: switch_power_plant_density_normal;
+	3: switch_power_plant_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_power_plant) {
 	property {
@@ -741,8 +873,6 @@ item (FEAT_INDUSTRIES, industry_power_plant) {
 		];
 		name:					string(STR_NAME_POWER_PLANT);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
-		prob_map_gen:			8;
-		prob_in_game:			8;
 		fund_cost_multiplier:	100;
 		layouts:				[
 			industry_layout_power_plant_1,
@@ -754,8 +884,8 @@ item (FEAT_INDUSTRIES, industry_power_plant) {
 		map_colour:				208;
 	}
 	graphics {
-		location_check:			switch_power_plant_location_check_0;
-		construction_probability:	(current_year >= 1882) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		location_check:			switch_power_plant_allow_funded;
+		construction_probability:	(current_year >= 1882 && param_primary_only == 0) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1882);
 	}
 }
@@ -920,8 +1050,54 @@ switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_5, industry_dista
 switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_iron_mine_location_check_5;} // Iron mines don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_iron_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-//switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_1, town_manhattan_dist(1,1) < 50) {1: return CB_RESULT_LOCATION_DISALLOW; switch_iron_mine_location_check_2;} // Iron mines can't build within 50 tiles (Manhattan distance) of a town.
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_location_check_2;} // No restrictions on funded industries
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_density_high,
+	industry_count(industry_iron_mine, -1) < 12 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_iron_mine_location_check_2; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_density_normal,
+	industry_count(industry_iron_mine, -1) < 6 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_iron_mine_location_check_2; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_density_low,
+	industry_count(industry_iron_mine, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_iron_mine_location_check_2; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_density_verylow,
+	industry_count(industry_iron_mine, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_iron_mine_location_check_2; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_density_selector, param_industry_density) {
+	0: switch_iron_mine_density_verylow;
+	1: switch_iron_mine_density_low;
+	2: switch_iron_mine_density_normal;
+	3: switch_iron_mine_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return 1; switch_iron_mine_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_iron_mine) {
 	property {
@@ -941,8 +1117,8 @@ item (FEAT_INDUSTRIES, industry_iron_mine) {
 		conflicting_ind_types:	[industry_steel_mill];
 	}
 	graphics {
-		location_check:			switch_iron_mine_location_check_0;
-		construction_probability:	(current_year >= 1856) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		location_check:			switch_iron_mine_allow_funded;
+		construction_probability:	(current_year >= 1856) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
 	}
 }
@@ -1067,36 +1243,84 @@ tilelayout industry_layout_steel_mill_1 {
 
 }
 
-switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_population_adder_total_1, [ // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-STORE_TEMP(LOAD_TEMP(1)*300 + LOAD_TEMP(2)*300 + LOAD_TEMP(3)*300 + LOAD_TEMP(4)*300, 0),
-population >= LOAD_TEMP(0)+300,])
+/* // Industry Construction Switches - Read from bottom to top // */
 
-{1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+/* Don't allow the same industry within 100 tiles - secondary industries only */
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_distance_competitor, industry_distance(industry_steel_mill, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_oil_refinery_2, STORE_TEMP(industry_town_count(industry_oil_refinery,-1), 4)) {switch_steel_mill_population_adder_total_1;} // If oil refinery available, store number of oil refineries in this town
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_oil_refinery_1, current_year >= 1800) {1: switch_steel_mill_population_adder_oil_refinery_2; switch_steel_mill_population_adder_total_1;} // Check if oil refinery available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_paper_mill_2, STORE_TEMP(industry_town_count(industry_paper_mill,-1), 3)) {switch_steel_mill_population_adder_oil_refinery_1;} // If paper mill available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_paper_mill_1, current_year >= 1800) {1: switch_steel_mill_population_adder_paper_mill_2; switch_steel_mill_population_adder_total_1;} // Check if factory available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_steel_mill_2, STORE_TEMP(industry_town_count(industry_steel_mill,-1), 2)) {switch_steel_mill_population_adder_paper_mill_1;} // If steel mill available, store number of steel mills in this town
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_steel_mill_1, current_year >= 1856) {1: switch_steel_mill_population_adder_steel_mill_2; switch_steel_mill_population_adder_total_1;} // Check if steel mills available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_factory_2, STORE_TEMP(industry_town_count(industry_factory,-1), 1)) {switch_steel_mill_population_adder_steel_mill_1;} // If factory available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_factory_1, current_year >= 1800) {1: switch_steel_mill_population_adder_factory_2; switch_steel_mill_population_adder_total_1;} // Check if factory available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_5, industry_distance(industry_iron_mine,-1) >= 60) {1: switch_steel_mill_population_adder_factory_1; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of iron mine
-
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_4, // Don't allow a second oil refinery to be constructed unless other types have at least one
-	industry_count(industry_steel_mill,-1) >= 1 || industry_count(industry_paper_mill,-1) >= 1 || industry_count(industry_factory,-1) >= 1 )
-	{1: switch_steel_mill_location_check_5; CB_RESULT_LOCATION_DISALLOW;}
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_3, // Check if this will be the second oil refinery in the world
-	industry_count(industry_oil_refinery,-1) == 1) {1: switch_steel_mill_location_check_4; switch_steel_mill_population_adder_factory_1;} 
+// Only allow a steel mill if a factory already exists. Factory must come first because it's the only destination for steel.
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_second_1, industry_count(industry_factory,-1) > 0 ) {1: switch_steel_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} // Only allow a steel mill if a factory already exists
 
 
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_steel_mill_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_steel_mill_location_check_2;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_steel_mill_location_check_1;} // No restrictions on funded industries
+/* Population Check - secondary industries only */
+
+switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= LOAD_TEMP(1)) {1: switch_steel_mill_second_1; CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_check_1, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)	* 300 +
+	industry_town_count(industry_paper_mill,-1) 	* 300 +
+	industry_town_count(industry_steel_mill,-1)		* 300 +
+	industry_town_count(industry_factory,-1)		* 300 +
+	300 // Add population required for this industry
+	, 1))
+	{switch_steel_mill_population_check_2;}
+
+
+/* Town Distance Check - secondary industries only */
+
+// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_steel_mill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_steel_mill_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_density_high,
+	industry_count(industry_steel_mill, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_steel_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_density_normal,
+	industry_count(industry_steel_mill, -1) < 2 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_steel_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_density_low,
+	industry_count(industry_steel_mill, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_steel_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_density_verylow,
+	industry_count(industry_steel_mill, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_steel_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_density_selector, param_industry_density) {
+	0: switch_steel_mill_density_verylow;
+	1: switch_steel_mill_density_low;
+	2: switch_steel_mill_density_normal;
+	3: switch_steel_mill_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_steel_mill_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_steel_mill) {
 	property {
@@ -1107,19 +1331,17 @@ item (FEAT_INDUSTRIES, industry_steel_mill) {
 								accept_cargo("IORE", produce_cargo("STEL",1)),
 								accept_cargo("COAL", produce_cargo("STEL",1)),
 								accept_cargo("PASS"),
-								produce_cargo("PASS",10),
+								produce_cargo("PASS",6),
 		];
 		name:					string(STR_NAME_STEEL_MILL);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_STEEL_MILL));
-		prob_map_gen:			1;
-		prob_in_game:			1;
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_steel_mill_1,];
 		map_colour:				10;
 	}
 	graphics {
-		location_check:			switch_steel_mill_location_check_0;
-		construction_probability:	(current_year >= 1856) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		location_check:			switch_steel_mill_allow_funded;
+		construction_probability:	(current_year >= 1856 && param_primary_only == 0) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
 	}
 }
@@ -1285,34 +1507,82 @@ tilelayout industry_layout_factory_2x2 {
 	3,3:	ind_tile_factory_1_S;
 }
 
-switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_adder_total_1, [ // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-STORE_TEMP(LOAD_TEMP(1)*200 + LOAD_TEMP(2)*300 + LOAD_TEMP(3)*300 + LOAD_TEMP(4)*300, 0),
-population >= LOAD_TEMP(0)+200,])
-
-{1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_adder_oil_refinery_2, STORE_TEMP(industry_town_count(industry_oil_refinery,-1), 4)) {switch_factory_population_adder_total_1;} // If oil refinery available, store number of oil refineries in this town
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_adder_oil_refinery_1, current_year >= 1800) {1: switch_factory_population_adder_oil_refinery_2; switch_factory_population_adder_total_1;} // Check if oil refinery available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_adder_paper_mill_2, STORE_TEMP(industry_town_count(industry_paper_mill,-1), 3)) {switch_factory_population_adder_oil_refinery_1;} // If paper mill available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_adder_paper_mill_1, current_year >= 1800) {1: switch_factory_population_adder_paper_mill_2; switch_factory_population_adder_total_1;} // Check if factory available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_adder_steel_mill_2, STORE_TEMP(industry_town_count(industry_steel_mill,-1), 2)) {switch_factory_population_adder_paper_mill_1;} // If steel mill available, store number of steel mills in this town
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_adder_steel_mill_1, current_year >= 1856) {1: switch_factory_population_adder_steel_mill_2; switch_factory_population_adder_total_1;} // Check if steel mills available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_adder_factory_2, STORE_TEMP(industry_town_count(industry_factory,-1), 1)) {switch_factory_population_adder_steel_mill_1;} // If factory available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_adder_factory_1, current_year >= 1800) {1: switch_factory_population_adder_factory_2; switch_factory_population_adder_total_1;} // Check if factory available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_4, // Don't allow a second oil refinery to be constructed unless other types have at least one
-	industry_count(industry_steel_mill,-1) >= 1 || industry_count(industry_paper_mill,-1) >= 1 || industry_count(industry_factory,-1) >= 1 )
-	{1: switch_factory_population_adder_factory_1; CB_RESULT_LOCATION_DISALLOW;}
-switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_3, // Check if this will be the second oil refinery in the world
-	industry_count(industry_oil_refinery,-1) == 1) {1: switch_factory_location_check_4; switch_factory_population_adder_factory_1;} 
+/* // Industry Construction Switches - Read from bottom to top // */
 
 
-switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_factory_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_factory_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_location_check_2;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_factory_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_factory_location_check_1;} // No restrictions on funded industries
+/* Don't allow the same industry within 100 tiles - secondary industries only */
+switch (FEAT_INDUSTRIES, SELF, switch_factory_distance_competitor, industry_distance(industry_factory, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Population Check - secondary industries only */
+
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= LOAD_TEMP(1)) {1: switch_factory_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_1, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)	* 300 +
+	industry_town_count(industry_paper_mill,-1) 	* 300 +
+	industry_town_count(industry_steel_mill,-1)		* 300 +
+	industry_town_count(industry_factory,-1)		* 300 +
+	300 // Add population required for this industry
+	, 1))
+	{switch_factory_population_check_2;}
+
+
+/* Town Distance Check - secondary industries only */
+
+// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+switch (FEAT_INDUSTRIES, SELF, switch_factory_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_factory_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_factory_density_high,
+	industry_count(industry_factory, -1) < 7 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_factory_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_factory_density_normal,
+	industry_count(industry_factory, -1) < 6 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_factory_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_factory_density_low,
+	industry_count(industry_factory, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_factory_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_factory_density_verylow,
+	industry_count(industry_factory, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_factory_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_factory_density_selector, param_industry_density) {
+	0: switch_factory_density_verylow;
+	1: switch_factory_density_low;
+	2: switch_factory_density_normal;
+	3: switch_factory_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_factory_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_factory) {
 	property {
@@ -1333,9 +1603,9 @@ item (FEAT_INDUSTRIES, industry_factory) {
 		conflicting_ind_types:	[industry_steel_mill];
 	}
 	graphics {
-		location_check:			switch_factory_location_check_0;
+		location_check:			switch_factory_allow_funded;
 		colour:					COLOUR_PALE_GREEN;
-		construction_probability:	(current_year >= 1800) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		construction_probability:	(current_year >= 1800 && param_primary_only == 0) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
 	}
 }
@@ -1460,7 +1730,54 @@ switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_5, industry_di
 switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_logging_camp_location_check_5;} // Logging camps don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_logging_camp_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_logging_camp_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_location_check_2;} // No restrictions on funded industries
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_density_high,
+	industry_count(industry_logging_camp, -1) < 12 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_logging_camp_location_check_2; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_density_normal,
+	industry_count(industry_logging_camp, -1) < 6 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_logging_camp_location_check_2; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_density_low,
+	industry_count(industry_logging_camp, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_logging_camp_location_check_2; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_density_verylow,
+	industry_count(industry_logging_camp, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_logging_camp_location_check_2; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_density_selector, param_industry_density) {
+	0: switch_logging_camp_density_verylow;
+	1: switch_logging_camp_density_low;
+	2: switch_logging_camp_density_normal;
+	3: switch_logging_camp_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return 1; switch_logging_camp_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_logging_camp) {
 	property {
@@ -1476,9 +1793,10 @@ item (FEAT_INDUSTRIES, industry_logging_camp) {
 		layouts:				[industry_layout_logging_camp_1,];
 	}
 	graphics {
-		location_check:			switch_logging_camp_location_check_0;
+		location_check:			switch_logging_camp_allow_funded;
 		control_special:		switch_logging_camp_production_check_1;
-		extra_text_industry:	string(STR_EXTRA_TEXT_LOGGING_CAMP);	
+		extra_text_industry:	string(STR_EXTRA_TEXT_LOGGING_CAMP);
+		construction_probability:	1;
 	}
 }
 
@@ -1723,36 +2041,88 @@ tilelayout industry_layout_paper_mill_1 {
 4,0:	ind_tile_paper_mill_9_W;	4,1:	ind_tile_paper_mill_9_S;	4,2:	ind_tile_paper_mill_logs_1;	4,3:	ind_tile_paper_mill_logs_1;
 }
 
-switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_population_adder_total_1, [ // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-STORE_TEMP(LOAD_TEMP(1)*300 + LOAD_TEMP(2)*300 + LOAD_TEMP(3)*300 + LOAD_TEMP(4)*300, 0),
-population >= LOAD_TEMP(0)+300,])
+/* // Industry Construction Switches - Read from bottom to top // */
 
-{1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+/* Don't allow the same industry within 100 tiles - secondary industries only */
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_distance_competitor, industry_distance(industry_paper_mill, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_population_adder_oil_refinery_2, STORE_TEMP(industry_town_count(industry_oil_refinery,-1), 4)) {switch_paper_mill_population_adder_total_1;} // If oil refinery available, store number of oil refineries in this town
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_population_adder_oil_refinery_1, current_year >= 1800) {1: switch_paper_mill_population_adder_oil_refinery_2; switch_paper_mill_population_adder_total_1;} // Check if oil refinery available in current year
+/* Second industry switch - only use one per industry */
 
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_population_adder_paper_mill_2, STORE_TEMP(industry_town_count(industry_paper_mill,-1), 3)) {switch_paper_mill_population_adder_oil_refinery_1;} // If paper mill available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_population_adder_paper_mill_1, current_year >= 1800) {1: switch_paper_mill_population_adder_paper_mill_2; switch_paper_mill_population_adder_total_1;} // Check if factory available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_population_adder_steel_mill_2, STORE_TEMP(industry_town_count(industry_steel_mill,-1), 2)) {switch_paper_mill_population_adder_paper_mill_1;} // If steel mill available, store number of steel mills in this town
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_population_adder_steel_mill_1, current_year >= 1856) {1: switch_paper_mill_population_adder_steel_mill_2; switch_paper_mill_population_adder_total_1;} // Check if steel mills available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_population_adder_factory_2, STORE_TEMP(industry_town_count(industry_factory,-1), 1)) {switch_paper_mill_population_adder_steel_mill_1;} // If factory available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_population_adder_factory_1, current_year >= 1800) {1: switch_paper_mill_population_adder_factory_2; switch_paper_mill_population_adder_total_1;} // Check if factory available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_location_check_5, industry_distance(industry_logging_camp,-1) >= 60) {1: switch_paper_mill_population_adder_factory_1; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of logging camp
-
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_location_check_4, // Don't allow a second oil refinery to be constructed unless other types have at least one
-	industry_count(industry_steel_mill,-1) >= 1 || industry_count(industry_paper_mill,-1) >= 1 || industry_count(industry_factory,-1) >= 1 )
-	{1: switch_paper_mill_location_check_5; CB_RESULT_LOCATION_DISALLOW;}
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_location_check_3, // Check if this will be the second oil refinery in the world
-	industry_count(industry_oil_refinery,-1) == 1) {1: switch_paper_mill_location_check_4; switch_paper_mill_population_adder_factory_1;} 
+// Only allow a second paper mill if a steel mill and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map.
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_second_2, industry_count(industry_steel_mill,-1) > 0 && industry_count(industry_factory,-1) > 0 ) {1: switch_paper_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} 
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_second_1, // Check if this will be the second paper mill in the world
+	industry_count(industry_paper_mill,-1) == 1) {1: switch_paper_mill_second_2; switch_paper_mill_distance_competitor;}
 
 
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_paper_mill_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_paper_mill_location_check_2;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_paper_mill_location_check_1;} // No restrictions on funded industries
+/* Population Check - secondary industries only */
+
+switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= LOAD_TEMP(1)) {1: switch_paper_mill_second_1; CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_population_check_1, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)	* 300 +
+	industry_town_count(industry_paper_mill,-1) 	* 300 +
+	industry_town_count(industry_steel_mill,-1)		* 300 +
+	industry_town_count(industry_factory,-1)		* 300 +
+	300 // Add population required for this industry
+	, 1))
+	{switch_paper_mill_population_check_2;}
+
+
+/* Town Distance Check - secondary industries only */
+
+// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_paper_mill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_paper_mill_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_density_high,
+	industry_count(industry_paper_mill, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_paper_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_density_normal,
+	industry_count(industry_paper_mill, -1) < 2 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_paper_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_density_low,
+	industry_count(industry_paper_mill, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_paper_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_density_verylow,
+	industry_count(industry_paper_mill, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_paper_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_density_selector, param_industry_density) {
+	0: switch_paper_mill_density_verylow;
+	1: switch_paper_mill_density_low;
+	2: switch_paper_mill_density_normal;
+	3: switch_paper_mill_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_paper_mill_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_paper_mill) {
 	property {
@@ -1762,7 +2132,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill) {
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
 								accept_cargo("RFPR", produce_cargo("GOOD",1)),
 								accept_cargo("PASS"),
-								produce_cargo("PASS",10),
+								produce_cargo("PASS",8),
 		];
 		name:					string(STR_NAME_PAPER_MILL);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
@@ -1773,8 +2143,8 @@ item (FEAT_INDUSTRIES, industry_paper_mill) {
 		layouts:				[industry_layout_paper_mill_1,];
 	}
 	graphics {
-		location_check:			switch_paper_mill_location_check_0;
-		construction_probability:	(current_year >= 1885) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		location_check:			switch_paper_mill_allow_funded;
+		construction_probability:	(current_year >= 1885 && param_primary_only == 0) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1885);
 		colour:					COLOUR_DARK_GREEN;
 	}
@@ -2070,12 +2440,59 @@ tilelayout industry_layout_oil_wells_2 {
 	4,0:	ind_tile_oil_wells;		4,2:	ind_tile_oil_wells;
 }
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of oil refinery, farm, or logging camp
 switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_5;} // Oil wells don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_oil_wells_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_wells_location_check_3;} // Add up the town zone radii and store it in temporary register 0
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_1, nearby_tile_height(0,0) > 2) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_2;} // Farms must be built at tile height 2 or below.
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_location_check_1;} // No restrictions on funded industries
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_density_high,
+	industry_count(industry_oil_wells, -1) < 12 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_oil_wells_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_density_normal,
+	industry_count(industry_oil_wells, -1) < 8 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_oil_wells_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_density_low,
+	industry_count(industry_oil_wells, -1) < 4 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_oil_wells_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_density_verylow,
+	industry_count(industry_oil_wells, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_oil_wells_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_density_selector, param_industry_density) {
+	0: switch_oil_wells_density_verylow;
+	1: switch_oil_wells_density_low;
+	2: switch_oil_wells_density_normal;
+	3: switch_oil_wells_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+
+*/
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_oil_wells) {
 	property {
@@ -2092,8 +2509,8 @@ item (FEAT_INDUSTRIES, industry_oil_wells) {
 		layouts:				[industry_layout_oil_wells_1, industry_layout_oil_wells_2,];
 	}
 	graphics {
-		location_check:			switch_oil_wells_location_check_0;
-		construction_probability:	(current_year >= 1900) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		location_check:			switch_oil_wells_allow_funded;
+		construction_probability:	(current_year >= 1900) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1900);
 	}
 }
@@ -2263,36 +2680,95 @@ tilelayout industry_layout_oil_refinery_1 {
 7,0:	ind_tile_oil_refinery_2;	7,1:	ind_tile_oil_refinery_2;	7,2:	ind_tile_oil_refinery_2;	7,3:	ind_tile_oil_refinery_2;	7,4:	ind_tile_oil_refinery_2;
 }
 
+/* // Industry Construction Switches - Read from bottom to top // */
 
 
 
-switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_population_adder_total_1, [ // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-STORE_TEMP(LOAD_TEMP(1)*300 + LOAD_TEMP(2)*300 + LOAD_TEMP(3)*300 + LOAD_TEMP(4)*300, 0),
-population >= LOAD_TEMP(0)+300,])
+// Oil refinery must be within 15 tiles of water
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_water, water_distance <= 15 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-{1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+/* Don't allow the same industry within 100 tiles - secondary industries only */
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_competitor, industry_distance(industry_oil_refinery, -1) > 100 ) {1: switch_oil_refinery_distance_water; CB_RESULT_LOCATION_DISALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_adder_oil_refinery_2, STORE_TEMP(industry_town_count(industry_oil_refinery,-1), 4)) {switch_oil_refinery_population_adder_total_1;} // If oil refinery available, store number of oil refineries in this town
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_adder_oil_refinery_1, current_year >= 1800) {1: switch_oil_refinery_population_adder_oil_refinery_2; switch_oil_refinery_population_adder_total_1;} // Check if oil refinery available in current year
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_adder_paper_mill_2, STORE_TEMP(industry_town_count(industry_paper_mill,-1), 3)) {switch_oil_refinery_population_adder_oil_refinery_1;} // If paper mill available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_adder_paper_mill_1, current_year >= 1800) {1: switch_oil_refinery_population_adder_paper_mill_2; switch_oil_refinery_population_adder_total_1;} // Check if factory available in current year
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_adder_steel_mill_2, STORE_TEMP(industry_town_count(industry_steel_mill,-1), 2)) {switch_oil_refinery_population_adder_paper_mill_1;} // If steel mill available, store number of steel mills in this town
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_adder_steel_mill_1, current_year >= 1856) {1: switch_oil_refinery_population_adder_steel_mill_2; switch_oil_refinery_population_adder_total_1;} // Check if steel mills available in current year
+/* Second industry switch - secondary industries only except Factory; only use one per industry */
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_adder_factory_2, STORE_TEMP(industry_town_count(industry_factory,-1), 1)) {switch_oil_refinery_population_adder_steel_mill_1;} // If factory available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_adder_factory_1, current_year >= 1800) {1: switch_oil_refinery_population_adder_factory_2; switch_oil_refinery_population_adder_total_1;} // Check if factory available in current year
+// Only allow a second oil refinery if a paper mill, steel mill, and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map.
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_second_2, industry_count(industry_steel_mill,-1) > 0 && industry_count(industry_factory,-1) > 0 ) {1: switch_oil_refinery_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} // Only allow a second paper mill if a steel mill and factory already exist
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_second_1, // Check if this will be the second oil refinery in the world
+	industry_count(industry_oil_refinery,-1) == 1) {1: switch_oil_refinery_second_2; switch_oil_refinery_distance_competitor;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_location_check_4, // Don't allow a second oil refinery to be constructed unless other types have at least one
-	industry_count(industry_steel_mill,-1) >= 1 || industry_count(industry_paper_mill,-1) >= 1 || industry_count(industry_factory,-1) >= 1 )
-	{1: switch_oil_refinery_population_adder_factory_1; CB_RESULT_LOCATION_DISALLOW;}
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_location_check_3, // Check if this will be the second oil refinery in the world
-	industry_count(industry_oil_refinery,-1) == 1) {1: switch_oil_refinery_location_check_4; switch_oil_refinery_population_adder_factory_1;} 
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_oil_refinery_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_refinery_location_check_2;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_oil_refinery_location_check_1;} // No restrictions on funded industries
+/* Population Check - secondary industries only */
+
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= LOAD_TEMP(1)) {1: switch_oil_refinery_second_1; CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_check_1, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)	* 300 +
+	industry_town_count(industry_paper_mill,-1) 	* 300 +
+	industry_town_count(industry_steel_mill,-1)		* 300 +
+	industry_town_count(industry_factory,-1)		* 300 +
+	300 // Add population required for this industry
+	, 1))
+	{switch_oil_refinery_population_check_2;}
+
+
+/* Town Distance Check - secondary industries only */
+
+// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_oil_refinery_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_refinery_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_density_high,
+	industry_count(industry_oil_refinery, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_oil_refinery_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_density_normal,
+	industry_count(industry_oil_refinery, -1) < 2 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_oil_refinery_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_density_low,
+	industry_count(industry_oil_refinery, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_oil_refinery_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_density_verylow,
+	industry_count(industry_oil_refinery, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_oil_refinery_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_density_selector, param_industry_density) {
+	0: switch_oil_refinery_density_verylow;
+	1: switch_oil_refinery_density_low;
+	2: switch_oil_refinery_density_normal;
+	3: switch_oil_refinery_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_refinery_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_oil_refinery) {
 	property {
@@ -2301,7 +2777,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery) {
 		cargo_types:			[
 								accept_cargo("OIL_", produce_cargo("RFPR",0.75), produce_cargo("GOOD",0.25)),
 								accept_cargo("PASS"),
-								produce_cargo("PASS",10),
+								produce_cargo("PASS",6),
 		];
 		name:					string(STR_NAME_OIL_REFINERY);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
@@ -2312,8 +2788,8 @@ item (FEAT_INDUSTRIES, industry_oil_refinery) {
 		map_colour:				191;
 	}
 	graphics {
-		location_check:			switch_oil_refinery_location_check_0;
-		construction_probability:	(current_year >= 1900) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		location_check:			switch_oil_refinery_allow_funded;
+		construction_probability:	(current_year >= 1900 && param_primary_only == 0) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1900);
 		colour:					COLOUR_YELLOW;
 	}

@@ -4,7 +4,21 @@ STR_GRF_NAME						:{TITLE} {VERSION}
 STR_GRF_DESC						:{ORANGE}Not for public consumption yet. {BLACK}But it's going to be cool. I promise.{}{}{BLACK}Coded by 2TallTyler.
 STR_WEBSITE							:https://github.com/2TallTyler/historical-industries/blob/master/README.md
 
-STR_ERROR_GAME_VERSION					:Historical Industries requires OpenTTD version 1.10.0, JGR version 0.34, or better
+STR_ERROR_GAME_VERSION					:Improved Town Industries requires OpenTTD version 1.10.0, JGR version 0.34, or better
+STR_ERROR_MAP_TOO_SMALL					:Improved Town Industries needs a map size of at least 256x256.
+
+STR_PARAM_NAME_INDUSTRY_DENSITY			:Industry Density
+STR_PARAM_DESC_INDUSTRY_DENSITY			:{ORANGE}Must match Industry Density in game settings. Must be Very Low or higher.
+
+STR_DENSITY_FUNDED_ONLY					:Funded Only
+STR_DENSITY_MINIMAL						:Minimal
+STR_DENSITY_VERY_LOW					:Very Low
+STR_DENSITY_LOW							:Low
+STR_DENSITY_NORMAL						:Normal
+STR_DENSITY_HIGH						:High
+
+STR_PARAM_NAME_PRIMARY_ONLY				:Generate Primary Industries Only
+STR_PARAM_DESC_PRIMARY_ONLY				:Only primary industries will be generated. Secondary industries must be funded by the player.
 
 STR_FUND_AVAILABLE_1800					:{BLACK}Introduced: {YELLOW}1800
 STR_FUND_AVAILABLE_1856					:{BLACK}Introduced: {YELLOW}1856

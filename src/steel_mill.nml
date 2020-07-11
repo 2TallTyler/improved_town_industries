@@ -76,36 +76,84 @@ tilelayout industry_layout_steel_mill_1 {
 
 }
 
-switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_population_adder_total_1, [ // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-STORE_TEMP(LOAD_TEMP(1)*300 + LOAD_TEMP(2)*300 + LOAD_TEMP(3)*300 + LOAD_TEMP(4)*300, 0),
-population >= LOAD_TEMP(0)+300,])
+/* // Industry Construction Switches - Read from bottom to top // */
 
-{1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+/* Don't allow the same industry within 100 tiles - secondary industries only */
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_distance_competitor, industry_distance(industry_steel_mill, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_oil_refinery_2, STORE_TEMP(industry_town_count(industry_oil_refinery,-1), 4)) {switch_steel_mill_population_adder_total_1;} // If oil refinery available, store number of oil refineries in this town
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_oil_refinery_1, current_year >= 1800) {1: switch_steel_mill_population_adder_oil_refinery_2; switch_steel_mill_population_adder_total_1;} // Check if oil refinery available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_paper_mill_2, STORE_TEMP(industry_town_count(industry_paper_mill,-1), 3)) {switch_steel_mill_population_adder_oil_refinery_1;} // If paper mill available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_paper_mill_1, current_year >= 1800) {1: switch_steel_mill_population_adder_paper_mill_2; switch_steel_mill_population_adder_total_1;} // Check if factory available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_steel_mill_2, STORE_TEMP(industry_town_count(industry_steel_mill,-1), 2)) {switch_steel_mill_population_adder_paper_mill_1;} // If steel mill available, store number of steel mills in this town
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_steel_mill_1, current_year >= 1856) {1: switch_steel_mill_population_adder_steel_mill_2; switch_steel_mill_population_adder_total_1;} // Check if steel mills available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_factory_2, STORE_TEMP(industry_town_count(industry_factory,-1), 1)) {switch_steel_mill_population_adder_steel_mill_1;} // If factory available, store number of factories in this town
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_adder_factory_1, current_year >= 1800) {1: switch_steel_mill_population_adder_factory_2; switch_steel_mill_population_adder_total_1;} // Check if factory available in current year
-
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_5, industry_distance(industry_iron_mine,-1) >= 60) {1: switch_steel_mill_population_adder_factory_1; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of iron mine
-
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_4, // Don't allow a second oil refinery to be constructed unless other types have at least one
-	industry_count(industry_steel_mill,-1) >= 1 || industry_count(industry_paper_mill,-1) >= 1 || industry_count(industry_factory,-1) >= 1 )
-	{1: switch_steel_mill_location_check_5; CB_RESULT_LOCATION_DISALLOW;}
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_3, // Check if this will be the second oil refinery in the world
-	industry_count(industry_oil_refinery,-1) == 1) {1: switch_steel_mill_location_check_4; switch_steel_mill_population_adder_factory_1;} 
+// Only allow a steel mill if a factory already exists. Factory must come first because it's the only destination for steel.
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_second_1, industry_count(industry_factory,-1) > 0 ) {1: switch_steel_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} // Only allow a steel mill if a factory already exists
 
 
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_steel_mill_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_steel_mill_location_check_2;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_location_check_0, extra_callback_info2 == IND_CREATION_FUND) {1: return CB_RESULT_LOCATION_ALLOW; switch_steel_mill_location_check_1;} // No restrictions on funded industries
+/* Population Check - secondary industries only */
+
+switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= LOAD_TEMP(1)) {1: switch_steel_mill_second_1; CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_check_1, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)	* 300 +
+	industry_town_count(industry_paper_mill,-1) 	* 300 +
+	industry_town_count(industry_steel_mill,-1)		* 300 +
+	industry_town_count(industry_factory,-1)		* 300 +
+	300 // Add population required for this industry
+	, 1))
+	{switch_steel_mill_population_check_2;}
+
+
+/* Town Distance Check - secondary industries only */
+
+// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_steel_mill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_steel_mill_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_density_high,
+	industry_count(industry_steel_mill, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_steel_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_density_normal,
+	industry_count(industry_steel_mill, -1) < 2 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_steel_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_density_low,
+	industry_count(industry_steel_mill, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_steel_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_density_verylow,
+	industry_count(industry_steel_mill, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_steel_mill_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_density_selector, param_industry_density) {
+	0: switch_steel_mill_density_verylow;
+	1: switch_steel_mill_density_low;
+	2: switch_steel_mill_density_normal;
+	3: switch_steel_mill_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+*/
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_steel_mill_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_steel_mill) {
 	property {
@@ -116,19 +164,17 @@ item (FEAT_INDUSTRIES, industry_steel_mill) {
 								accept_cargo("IORE", produce_cargo("STEL",1)),
 								accept_cargo("COAL", produce_cargo("STEL",1)),
 								accept_cargo("PASS"),
-								produce_cargo("PASS",10),
+								produce_cargo("PASS",6),
 		];
 		name:					string(STR_NAME_STEEL_MILL);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_STEEL_MILL));
-		prob_map_gen:			1;
-		prob_in_game:			1;
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_steel_mill_1,];
 		map_colour:				10;
 	}
 	graphics {
-		location_check:			switch_steel_mill_location_check_0;
-		construction_probability:	(current_year >= 1856) ? CB_RESULT_IND_PROBABILITY_FROM_PROPERTY : 0;
+		location_check:			switch_steel_mill_allow_funded;
+		construction_probability:	(current_year >= 1856 && param_primary_only == 0) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
 	}
 }

@@ -7,46 +7,45 @@ grf {
 	version: 0;
 	min_compatible_version: 0;
 	url: string(STR_WEBSITE);
-/*
+
 param 0 {
-  extra_bank {
-   name: string(STR_PARAM_NAME_EXTRA_BANK);
-   desc: string(STR_PARAM_DESC_EXTRA_BANK);
-   type: bool;
-   def_value: 0;
+  param_industry_density {
+   name: string(STR_PARAM_NAME_INDUSTRY_DENSITY);
+   desc: string(STR_PARAM_DESC_INDUSTRY_DENSITY);
+   type: int;
+   min_value: 0;
+   max_value: 3;
+   def_value: 2;
+   names:	{
+	0:	string(STR_DENSITY_VERY_LOW);
+	1:	string(STR_DENSITY_LOW);
+	2:	string(STR_DENSITY_NORMAL);
+	3:	string(STR_DENSITY_HIGH);
+   };
    }}
-   
+
 param 1 {
-  extra_hotel {
-   name: string(STR_PARAM_NAME_EXTRA_HOTEL);
-   desc: string(STR_PARAM_DESC_EXTRA_HOTEL);
+  param_primary_only {
+   name: string(STR_PARAM_NAME_PRIMARY_ONLY);
+   desc: string(STR_PARAM_DESC_PRIMARY_ONLY);
    def_value: 0;
    type: bool;
    }}
-
-param 2 {
-  extra_tropic {
-   name: string(STR_PARAM_NAME_EXTRA_TROPIC);
-   desc: string(STR_PARAM_DESC_EXTRA_TROPIC);
-   def_value: 0;
-   type: bool;
-   }} 
-
-param 3 {
-  improved_mail {
-   name: string(STR_PARAM_NAME_IMPROVED_MAIL);
-   desc: string(STR_PARAM_DESC_IMPROVED_MAIL);
-   def_value: 1;
-   type: bool;
-   }}   
-*/
 }
 
+/*
+// Create an error if the map is smaller than 256 x 256
+if (map_min_edge < 256 && map_max_edge < 512) {
+	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
+}
+*/
 
+// Create an error if OpenTTD version is before 1.10.0
 if (version_openttd(1,10,0,28004) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
+// Disable base game industries
 disable_item(FEAT_INDUSTRIES, 0, 36);
 
 // End Header
