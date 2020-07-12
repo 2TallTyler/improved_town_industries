@@ -44,7 +44,11 @@ property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
 graphics {default:		sprlay_power_plant_3;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_4) { // Cooling tower
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {
+	substitute:			02; 
+	accepted_cargos: 	[[PASS, 8], [COAL, 8]];
+	land_shape_flags:	bitmask(LSF_ONLY_ON_FLAT_LAND);
+	}
 graphics {
 	default:	sprlay_power_plant_4;
 	tile_check:	switch_power_plant_cooling_tower_availability;

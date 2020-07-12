@@ -11,7 +11,6 @@
 * Goods
 * Oil
 * Chemicals
-* Grain
 * Food
 * Coal
 * Iron
