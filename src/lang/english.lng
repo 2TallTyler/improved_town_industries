@@ -20,6 +20,9 @@ STR_DENSITY_HIGH						:High
 STR_PARAM_NAME_PRIMARY_ONLY				:Generate Primary Industries Only
 STR_PARAM_DESC_PRIMARY_ONLY				:Only primary industries will be generated. Secondary industries must be funded by the player.
 
+STR_PARAM_NAME_MINE_CLUSTER				:Mines build in clusters
+STR_PARAM_DESC_MINE_CLUSTER				:Coal and iron mines tend to build in clusters.
+
 STR_FUND_AVAILABLE_1800					:{BLACK}Introduced: {YELLOW}1800
 STR_FUND_AVAILABLE_1856					:{BLACK}Introduced: {YELLOW}1856
 STR_FUND_AVAILABLE_1882					:{BLACK}Introduced: {YELLOW}1882

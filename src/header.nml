@@ -31,6 +31,15 @@ param 1 {
    def_value: 0;
    type: bool;
    }}
+
+param 2 {
+  param_mine_cluster {
+   name: string(STR_PARAM_NAME_MINE_CLUSTER);
+   desc: string(STR_PARAM_DESC_MINE_CLUSTER);
+   def_value: 1;
+   type: bool;
+   }}
+
 }
 
 /*
