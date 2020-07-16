@@ -55,9 +55,9 @@ param 3 {
    }}
 
 param 4 {
-  param_coal_mine_elevation {
-   name: string(STR_PARAM_NAME_COAL_MINE_ELEVATION);
-   desc: string(STR_PARAM_DESC_COAL_MINE_ELEVATION);
+  param_elevation_checks {
+   name: string(STR_PARAM_NAME_ELEVATION_CHECKS);
+   desc: string(STR_PARAM_DESC_ELEVATION_CHECKS);
    def_value: 0;
    type: bool;
    }}

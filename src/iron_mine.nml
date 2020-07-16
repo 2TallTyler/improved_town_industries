@@ -140,9 +140,13 @@ Industry Totals on 256 x 256 map:
 	Power Plant		1				1			3				4
 */
 
-// Funded industries aren't restricted by industry totals
+// Prospected industries aren't restricted by industry totals, but must meet other requirements
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
+	{1: switch_iron_mine_location_check_2; switch_iron_mine_density_selector;}
+
+// Funded industries have no restrictions
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return 1; switch_iron_mine_density_selector;}
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_allow_prospected;}
 
 item (FEAT_INDUSTRIES, industry_iron_mine) {
 	property {

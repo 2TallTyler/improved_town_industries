@@ -160,14 +160,23 @@ Industry Totals on 256 x 256 map:
 	Power Plant		1				1			3				4
 */
 
-// Funded industries aren't restricted by industry totals
+// If "Generate primary only" parameter enabled, disallow random generation of secondary industries
+switch (FEAT_INDUSTRIES, SELF, switch_power_plant_generate_primary_only, param_primary_only)
+	{1: return CB_RESULT_LOCATION_DISALLOW; switch_power_plant_density_selector;}
+
+// Prospected industries aren't restricted by industry totals, but must meet other requirements
+switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
+	{1: switch_power_plant_town_distance_check_1; switch_power_plant_generate_primary_only;}
+
+// Funded industries have no restrictions
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_density_selector;}
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_allow_prospected;}
 
 item (FEAT_INDUSTRIES, industry_power_plant) {
 	property {
 		substitute:				INDUSTRYTYPE_POWER_PLANT;
 		life_type:				IND_LIFE_TYPE_BLACK_HOLE;
+		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
 								accept_cargo("COAL"),
 								accept_cargo("PASS"),
@@ -187,7 +196,7 @@ item (FEAT_INDUSTRIES, industry_power_plant) {
 	}
 	graphics {
 		location_check:			switch_power_plant_allow_funded;
-		construction_probability:	(current_year >= 1882 && param_primary_only == 0) ? 1 : 0;
+		construction_probability:	(current_year >= 1882) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1882);
 	}
 }
