@@ -10,7 +10,7 @@ July 15, 2020
 ### 1.0.1
 July 16, 2020
 
-- Add: Parameter for elevation requirements on Coal Mine, Farm, and Oil Wells (fixes #1)
+- Add: Parameter to enable elevation requirements for Coal Mine, Farm, and Oil Wells (fixes #1)
 - Change: Use Default TTD strings for industry names where possible to utilize base game translations. Exceptions:
   - Nearby station names must use literal strings
   - Power Plant and Logging Camp strings don't exist in OpenTTD (they are called "Power Station" and "Lumber Mill")
