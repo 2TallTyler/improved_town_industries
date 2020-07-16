@@ -212,7 +212,7 @@ item (FEAT_INDUSTRIES, industry_factory) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
-		name:					string(STR_NAME_FACTORY);
+		name:					TTD_STR_INDUSTRY_NAME_FACTORY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
 		prob_map_gen:			3;
 		prob_in_game:			3;
@@ -242,7 +242,7 @@ item (FEAT_INDUSTRIES, industry_factory) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
-		name:					string(STR_NAME_FACTORY);
+		name:					TTD_STR_INDUSTRY_NAME_FACTORY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
 		prob_map_gen:			3;
 		prob_in_game:			3;
@@ -271,7 +271,7 @@ item (FEAT_OBJECTS, object_item_factory_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FACTORY);
+		name:					TTD_STR_INDUSTRY_NAME_FACTORY;
 		climates_available:		ALL_CLIMATES;
 		build_cost_multiplier:	0;
 		remove_cost_multiplier:	0;

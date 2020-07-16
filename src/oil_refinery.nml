@@ -252,7 +252,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",6),
 		];
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
 		prob_map_gen:			1;
 		prob_in_game:			1;
@@ -272,7 +272,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -291,7 +291,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_2) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -310,7 +310,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_3) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -329,7 +329,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_4) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -348,7 +348,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_5) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -367,7 +367,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_6) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -386,7 +386,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_7) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -405,7 +405,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_8) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -424,7 +424,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_9) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -443,7 +443,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_10) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -462,7 +462,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_11) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;

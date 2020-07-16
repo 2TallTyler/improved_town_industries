@@ -11,6 +11,9 @@ July 15, 2020
 Unreleased, July 16, 2020
 
 - Add: Parameter for elevation requirements on Coal Mine, Farm, and Oil Wells (fixes #1)
+- Change: Use Default TTD strings for industry names where possible to utilize base game translations. Exceptions:
+  - Nearby station names must use literal strings
+  - Power Plant and Logging Camp strings don't exist in OpenTTD (they are called "Power Station" and "Lumber Mill")
 - Fix: Industries can be funded as intended (fixes #3)
 - Fix: Remove industry limit when using funding "Many random industries" in Scenario Editor (fixes #3)
 - Fix: Secondary industries can be funded when "Generate primary only" parameter is enabled (fixes #4)

@@ -301,7 +301,7 @@ item (FEAT_INDUSTRIES, industry_farm) {
 		cargo_types:			[
 								produce_cargo("FOOD",12),
 		];
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
 		prob_map_gen:			30;
 		prob_in_game:			20;
@@ -329,7 +329,7 @@ item (FEAT_OBJECTS, object_item_farm_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -347,7 +347,7 @@ item (FEAT_OBJECTS, object_item_farm_2) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -365,7 +365,7 @@ item (FEAT_OBJECTS, object_item_farm_3) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -383,7 +383,7 @@ item (FEAT_OBJECTS, object_item_farm_4) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -401,7 +401,7 @@ item (FEAT_OBJECTS, object_item_farm_5) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -419,7 +419,7 @@ item (FEAT_OBJECTS, object_item_farm_6) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -600,7 +600,7 @@ item (FEAT_INDUSTRIES, industry_coal_mine) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",15),
 		];
-		name:					string(STR_NAME_COAL_MINE);
+		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_COAL_MINE));
 		prob_map_gen:			15;
 		prob_in_game:			15;
@@ -623,7 +623,7 @@ item (FEAT_OBJECTS, object_item_coal_mine_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_COAL_MINE);
+		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -642,7 +642,7 @@ item (FEAT_OBJECTS, object_item_coal_mine_2) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_COAL_MINE);
+		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -661,7 +661,7 @@ item (FEAT_OBJECTS, object_item_coal_mine_3) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_COAL_MINE);
+		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -680,7 +680,7 @@ item (FEAT_OBJECTS, object_item_coal_mine_4) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_COAL_MINE);
+		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -699,7 +699,7 @@ item (FEAT_OBJECTS, object_item_coal_mine_5) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_COAL_MINE);
+		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -1150,7 +1150,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",8),
 		];
-		name:					string(STR_NAME_IRON_MINE);
+		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));
 		prob_map_gen:			15;
 		prob_in_game:			15;
@@ -1193,7 +1193,7 @@ item (FEAT_OBJECTS, object_item_iron_mine) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_IRON_MINE);
+		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
 		climates_available:		ALL_CLIMATES;
 		build_cost_multiplier:	0;
 		remove_cost_multiplier:	0;
@@ -1384,7 +1384,7 @@ item (FEAT_INDUSTRIES, industry_steel_mill) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",6),
 		];
-		name:					string(STR_NAME_STEEL_MILL);
+		name:					TTD_STR_INDUSTRY_NAME_STEEL_MILL;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_STEEL_MILL));
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_steel_mill_1,];
@@ -1413,7 +1413,7 @@ item (FEAT_OBJECTS, object_item_steel_mill_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_STEEL_MILL);
+		name:					TTD_STR_INDUSTRY_NAME_STEEL_MILL;
 		climates_available:		ALL_CLIMATES;
 		build_cost_multiplier:	0;
 		remove_cost_multiplier:	0;
@@ -1431,7 +1431,7 @@ item (FEAT_OBJECTS, object_item_steel_mill_2) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_STEEL_MILL);
+		name:					TTD_STR_INDUSTRY_NAME_STEEL_MILL;
 		climates_available:		ALL_CLIMATES;
 		build_cost_multiplier:	0;
 		remove_cost_multiplier:	0;
@@ -1660,7 +1660,7 @@ item (FEAT_INDUSTRIES, industry_factory) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
-		name:					string(STR_NAME_FACTORY);
+		name:					TTD_STR_INDUSTRY_NAME_FACTORY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
 		prob_map_gen:			3;
 		prob_in_game:			3;
@@ -1690,7 +1690,7 @@ item (FEAT_INDUSTRIES, industry_factory) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
-		name:					string(STR_NAME_FACTORY);
+		name:					TTD_STR_INDUSTRY_NAME_FACTORY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
 		prob_map_gen:			3;
 		prob_in_game:			3;
@@ -1719,7 +1719,7 @@ item (FEAT_OBJECTS, object_item_factory_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FACTORY);
+		name:					TTD_STR_INDUSTRY_NAME_FACTORY;
 		climates_available:		ALL_CLIMATES;
 		build_cost_multiplier:	0;
 		remove_cost_multiplier:	0;
@@ -2206,7 +2206,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",8),
 		];
-		name:					string(STR_NAME_PAPER_MILL);
+		name:					TTD_STR_INDUSTRY_NAME_PAPER_MILL;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
 		prob_map_gen:			1;
 		prob_in_game:			1;
@@ -2233,7 +2233,7 @@ item (FEAT_OBJECTS, object_item_paper_mill_9) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_PAPER_MILL);
+		name:					TTD_STR_INDUSTRY_NAME_PAPER_MILL;
 		climates_available:		ALL_CLIMATES;
 		build_cost_multiplier:	0;
 		remove_cost_multiplier:	0;
@@ -2444,7 +2444,7 @@ item (FEAT_INDUSTRIES, industry_oil_wells) {
 		cargo_types:			[
 								produce_cargo("OIL_",12),
 		];
-		name:					string(STR_NAME_OIL_WELLS);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_WELLS;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_WELLS));
 		prob_map_gen:			15;
 		prob_in_game:			15;
@@ -2462,7 +2462,7 @@ item (FEAT_OBJECTS, object_item_oil_wells_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_WELLS);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_WELLS;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2731,7 +2731,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",6),
 		];
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
 		prob_map_gen:			1;
 		prob_in_game:			1;
@@ -2751,7 +2751,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2770,7 +2770,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_2) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2789,7 +2789,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_3) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2808,7 +2808,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_4) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2827,7 +2827,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_5) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2846,7 +2846,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_6) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2865,7 +2865,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_7) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2884,7 +2884,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_8) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2903,7 +2903,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_9) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2922,7 +2922,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_10) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2941,7 +2941,7 @@ item (FEAT_OBJECTS, object_item_oil_refinery_11) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_REFINERY);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;

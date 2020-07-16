@@ -194,7 +194,7 @@ item (FEAT_INDUSTRIES, industry_oil_wells) {
 		cargo_types:			[
 								produce_cargo("OIL_",12),
 		];
-		name:					string(STR_NAME_OIL_WELLS);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_WELLS;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_WELLS));
 		prob_map_gen:			15;
 		prob_in_game:			15;
@@ -212,7 +212,7 @@ item (FEAT_OBJECTS, object_item_oil_wells_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_OIL_WELLS);
+		name:					TTD_STR_INDUSTRY_NAME_OIL_WELLS;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;

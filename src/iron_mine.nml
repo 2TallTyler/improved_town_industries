@@ -157,7 +157,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine) {
 								accept_cargo("PASS"),
 								produce_cargo("PASS",8),
 		];
-		name:					string(STR_NAME_IRON_MINE);
+		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));
 		prob_map_gen:			15;
 		prob_in_game:			15;
@@ -200,7 +200,7 @@ item (FEAT_OBJECTS, object_item_iron_mine) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_IRON_MINE);
+		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
 		climates_available:		ALL_CLIMATES;
 		build_cost_multiplier:	0;
 		remove_cost_multiplier:	0;

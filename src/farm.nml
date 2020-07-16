@@ -164,7 +164,7 @@ item (FEAT_INDUSTRIES, industry_farm) {
 		cargo_types:			[
 								produce_cargo("FOOD",12),
 		];
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
 		prob_map_gen:			30;
 		prob_in_game:			20;
@@ -192,7 +192,7 @@ item (FEAT_OBJECTS, object_item_farm_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -210,7 +210,7 @@ item (FEAT_OBJECTS, object_item_farm_2) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -228,7 +228,7 @@ item (FEAT_OBJECTS, object_item_farm_3) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -246,7 +246,7 @@ item (FEAT_OBJECTS, object_item_farm_4) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -264,7 +264,7 @@ item (FEAT_OBJECTS, object_item_farm_5) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -282,7 +282,7 @@ item (FEAT_OBJECTS, object_item_farm_6) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FARM);
+		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
