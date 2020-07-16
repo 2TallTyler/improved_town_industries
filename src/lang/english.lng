@@ -31,7 +31,7 @@ STR_PARAM_NAME_MINE_CLUSTER				:Natural Resource Veins
 STR_PARAM_DESC_MINE_CLUSTER				:{SILVER}Coal Mines,{BLACK}, {SILVER}Iron Mines{BLACK}, and {SILVER}Oil Wells{BLACK} tend to build near each other. Does not affect funded industries.
 
 STR_PARAM_NAME_ELEVATION_CHECKS			:Industry elevation requirements 
-STR_PARAM_DESC_ELEVATION_CHECKS			:Enable elevation checks: Coal Mines must be elevation 4 or higher, Farm and Oil Wells must be elevation 2 or less.
+STR_PARAM_DESC_ELEVATION_CHECKS			:Enable elevation checks: {SILVER}Coal Mines{BLACK} must be elevation 4 or higher, {SILVER}Farm{BLACK} and {SILVER}Oil Wells{BLACK} must be elevation 2 or less.
 
 STR_FUND_AVAILABLE_1800					:{BLACK}Introduced: {YELLOW}1800
 STR_FUND_AVAILABLE_1856					:{BLACK}Introduced: {YELLOW}1856
