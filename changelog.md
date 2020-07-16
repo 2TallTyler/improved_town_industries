@@ -8,7 +8,7 @@ July 15, 2020
 - Release
 
 ### 1.0.1
-Unreleased, July 16, 2020
+July 16, 2020
 
 - Add: Parameter for elevation requirements on Coal Mine, Farm, and Oil Wells (fixes #1)
 - Change: Use Default TTD strings for industry names where possible to utilize base game translations. Exceptions:
