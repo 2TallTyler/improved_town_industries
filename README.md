@@ -1,5 +1,7 @@
 # Improved Town Industries
 
+![A busy paper mill](/docs/paper_mill.png)
+
 ## Overview
 
 - Simple cargos accepted by multiple industries, designed for asymmetric Cargodist
