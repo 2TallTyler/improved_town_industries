@@ -18,3 +18,8 @@ July 16, 2020
 - Fix: Remove industry limit when using funding "Many random industries" in Scenario Editor (fixes #3)
 - Fix: Secondary industries can be funded when "Generate primary only" parameter is enabled (fixes #4)
 - Fix: Oil Refinery no longer needs to be near water when funding "Many random industries" in Scenario Editor
+
+### 1.0.2
+July 16, 2020
+
+- Add: Parameter to require oil refineries to generate near water

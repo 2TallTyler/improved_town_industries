@@ -22,7 +22,7 @@ STR_PARAM_NAME_PRIMARY_ONLY				:Generate Primary Industries Only
 STR_PARAM_DESC_PRIMARY_ONLY				:Disable automatic generation of {SILVER}Factories{BLACK}, {SILVER}Steel Mills{BLACK}, {SILVER}Power Plants{BLACK}, {SILVER}Paper Mills{BLACK}, and {SILVER}Oil Refineries{BLACK}. Does not affect funded industries.
 
 STR_PARAM_NAME_FOOD_FACTORY				:Food Destination
-STR_PARAM_DESC_FOOD_FACTORY				:Where Food from Farms is delivered.{}{}{SILVER}Directly to towns {ORANGE}requires a house set which accepts Food{BLACK}, such as Improved Town Layouts.
+STR_PARAM_DESC_FOOD_FACTORY				:Where Food from {SILVER}Farms {BLACK}is delivered.{}{}{SILVER}Directly to towns {ORANGE}requires a house set which accepts Food{BLACK}, such as Improved Town Layouts.
 
 STR_PARAM_FOOD_FACTORY_HOUSES			:Directly to towns (requires house set which accepts Food)
 STR_PARAM_FOOD_FACTORY_FACTORY			:Processed to Goods at Factory
@@ -32,6 +32,9 @@ STR_PARAM_DESC_MINE_CLUSTER				:{SILVER}Coal Mines,{BLACK}, {SILVER}Iron Mines{B
 
 STR_PARAM_NAME_ELEVATION_CHECKS			:Industry elevation requirements 
 STR_PARAM_DESC_ELEVATION_CHECKS			:Enable elevation checks: {SILVER}Coal Mines{BLACK} must be elevation 4 or higher, {SILVER}Farm{BLACK} and {SILVER}Oil Wells{BLACK} must be elevation 2 or less.
+
+STR_PARAM_NAME_REFINERY_WATER			:Oil Refinery only builds near water
+STR_PARAM_DESC_REFINERY_WATER			:Require {SILVER}Oil Refinery {BLACK}to build near water (ocean or river). Does not affect funded industries.
 
 STR_FUND_AVAILABLE_1800					:{BLACK}Introduced: {YELLOW}1800
 STR_FUND_AVAILABLE_1856					:{BLACK}Introduced: {YELLOW}1856
