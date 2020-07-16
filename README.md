@@ -8,7 +8,7 @@
 - Processing industries spawn near towns
 - Most industries accept and create passengers as workers
 - Industries have realistic invention dates for gameplay as early as 1700
-- Includes Object tiles for visually expanding industries
+- Includes object tiles for visually expanding industries
 - Designed for Temperate climate only
 - Uses only base game sprites, so visually compatible with any base graphics set including original TTD, OpenGFX, aBase, zBase, and NightGFX.
 - Requires OpenTTD version 1.10.0, JGR version 0.34, or better.
