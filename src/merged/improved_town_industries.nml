@@ -4,8 +4,8 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 0;
-	min_compatible_version: 0;
+	version: 1;
+	min_compatible_version: 1;
 	url: string(STR_WEBSITE);
 
 param 0 {
@@ -33,14 +33,6 @@ param 1 {
    }}
 
 param 2 {
-  param_mine_cluster {
-   name: string(STR_PARAM_NAME_MINE_CLUSTER);
-   desc: string(STR_PARAM_DESC_MINE_CLUSTER);
-   def_value: 1;
-   type: bool;
-   }}
-
-param 3 {
   param_food_factory {
    name: string(STR_PARAM_NAME_FOOD_FACTORY);
    desc: string(STR_PARAM_DESC_FOOD_FACTORY);
@@ -52,6 +44,22 @@ param 3 {
 	0:	string(STR_PARAM_FOOD_FACTORY_HOUSES);
 	1:	string(STR_PARAM_FOOD_FACTORY_FACTORY);
    };
+   }}
+   
+param 3 {
+  param_mine_cluster {
+   name: string(STR_PARAM_NAME_MINE_CLUSTER);
+   desc: string(STR_PARAM_DESC_MINE_CLUSTER);
+   def_value: 1;
+   type: bool;
+   }}
+
+param 4 {
+  param_coal_mine_elevation {
+   name: string(STR_PARAM_NAME_COAL_MINE_ELEVATION);
+   desc: string(STR_PARAM_DESC_COAL_MINE_ELEVATION);
+   def_value: 0;
+   type: bool;
    }}
 }
 
@@ -525,7 +533,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_dista
 switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_5;} // Coal mines don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_coal_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, nearby_tile_height(0,0) < 4) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Coal mines must be built at tile height 2 or above./* // Industry Construction Switches - Read from bottom to top // */
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, nearby_tile_height(0,0) < 4 && param_coal_mine_elevation == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Coal mines must be built at tile height 2 or above./* // Industry Construction Switches - Read from bottom to top // */
 
 
 /*	Slot Reservations - all industries */
@@ -573,7 +581,7 @@ Industry Totals on 256 x 256 map:
 
 // Funded industries aren't restricted by industry totals
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return 1; switch_coal_mine_density_selector;}
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_density_selector;}
 
 item (FEAT_INDUSTRIES, industry_coal_mine) {
 	property {
