@@ -33,13 +33,16 @@ spritelayout sprlay_factory_1_S {
 item (FEAT_INDUSTRYTILES, ind_tile_factory_1_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		/*accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8],[RFPR, 8],[FOOD, 8]];*/
+	}
 	graphics {default:			sprlay_factory_1_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_factory_1_E) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8]];
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		/*accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8],[RFPR, 8],[FOOD, 8]];*/
 	}
 	graphics {
 		default:				sprlay_factory_1_E;
@@ -48,7 +51,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_factory_1_E) {
 item (FEAT_INDUSTRYTILES, ind_tile_factory_1_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8]];
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		/*accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8],[RFPR, 8],[FOOD, 8]];*/
 	}
 	graphics {
 		default:				sprlay_factory_1_W;
@@ -57,7 +61,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_factory_1_W) {
 item (FEAT_INDUSTRYTILES, ind_tile_factory_1_S) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8]];
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		/*accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8],[RFPR, 8],[FOOD, 8]];*/
 	}
 	graphics {
 		default:				sprlay_factory_1_S;
@@ -187,6 +192,7 @@ Industry Totals on 256 x 256 map:
 switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_factory_density_selector;}
 
+if (param_food_factory == 0) {
 item (FEAT_INDUSTRIES, industry_factory) {
 	property {
 		substitute:				INDUSTRYTYPE_TEMPERATE_FACTORY;
@@ -194,6 +200,7 @@ item (FEAT_INDUSTRIES, industry_factory) {
 		cargo_types:			[
 								accept_cargo("STEL", produce_cargo("GOOD",1)),
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
+								accept_cargo("RFPR", produce_cargo("GOOD",1)),
 								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
@@ -211,7 +218,38 @@ item (FEAT_INDUSTRIES, industry_factory) {
 		construction_probability:	(current_year >= 1800 && param_primary_only == 0) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
 	}
-}
+}}
+
+if (param_food_factory == 1) {
+item (FEAT_INDUSTRIES, industry_factory) {
+	property {
+		substitute:				INDUSTRYTYPE_TEMPERATE_FACTORY;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		cargo_types:			[
+								accept_cargo("STEL", produce_cargo("GOOD",1)),
+								accept_cargo("WOOD", produce_cargo("GOOD",1)),
+								accept_cargo("RFPR", produce_cargo("GOOD",1)),
+								accept_cargo("FOOD", produce_cargo("GOOD",1)),
+								accept_cargo("PASS"),
+								produce_cargo("PASS",10),
+		];
+		name:					string(STR_NAME_FACTORY);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
+		prob_map_gen:			3;
+		prob_in_game:			3;
+		fund_cost_multiplier:	100;
+		layouts:				[industry_layout_factory_2x2, industry_layout_factory_1x2, industry_layout_factory_2x1];
+		conflicting_ind_types:	[industry_steel_mill];
+	}
+	graphics {
+		location_check:			switch_factory_allow_funded;
+		colour:					COLOUR_PALE_GREEN;
+		construction_probability:	(current_year >= 1800 && param_primary_only == 0) ? 1 : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
+	}
+}}
+
+
 
 switch (FEAT_OBJECTS, SELF, switch_object_graphics_factory_1, relative_pos) {
 	relative_coord(0, 0): sprlay_factory_1_N;
@@ -234,6 +272,7 @@ item (FEAT_OBJECTS, object_item_factory_1) {
 	}
 	graphics {
 		default:				switch_object_graphics_factory_1;
+		colour:					COLOUR_PALE_GREEN;
 	}
 }
 

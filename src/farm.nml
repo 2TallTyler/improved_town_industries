@@ -39,21 +39,6 @@ spritelayout sprlay_farm_6 { // Empty tile
 	ground		{sprite:2116;}
 }
 
-/* Autoslope Fields */
-
-spritelayout sprlay_farm_field_1 {
- 	ground {
- 		// normal ground sprite - always draw
- 		sprite: 4126 + LOAD_TEMP(0);
- 	}
- }
-
-switch (FEAT_OBJECTS, SELF, switch_farm_field_1_autoslope, [
- 	STORE_TEMP(slope_to_sprite_offset(tile_slope), 0),
-	]) {
-		sprlay_farm_field_1;
- }
-
 item (FEAT_INDUSTRYTILES, ind_tile_farm_1_N) { // House north
 property {substitute:	02;}
 graphics {default:		sprlay_farm_1_N;}}
@@ -173,7 +158,7 @@ item (FEAT_INDUSTRIES, industry_farm) {
 		life_type:				IND_LIFE_TYPE_ORGANIC;
 		spec_flags:				bitmask(IND_FLAG_PLANT_FIELDS_WHEN_BUILT, IND_FLAG_PLANT_FIELDS_PERIODICALLY);
 		cargo_types:			[
-								produce_cargo("FOOD",10),
+								produce_cargo("FOOD",12),
 		];
 		name:					string(STR_NAME_FARM);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
@@ -304,25 +289,6 @@ item (FEAT_OBJECTS, object_item_farm_6) {
 	}
 	graphics {
 		default:				sprlay_farm_6;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_farm_field_1) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_FIELD_1);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE, OBJ_FLAG_NO_FOUNDATIONS);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-	}
-	graphics {
-		default:				switch_farm_field_1_autoslope;
-		purchase:				sprlay_farm_field_1;
 	}
 }
 

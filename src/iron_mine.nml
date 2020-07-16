@@ -81,10 +81,10 @@ tilelayout industry_layout_iron_mine {
 
 // Iron Mine Industry
 
-// If an odd number of industries exist, then must build within 100 tiles of another coal mine
+// If an odd number of industries exist, then must build within 100 tiles of another iron mine
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_cluster_2, industry_distance(industry_iron_mine, -1) <= 100) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-// Check if an even number of coal mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering
+// Check if an even number ofironl mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_cluster_1, industry_count(industry_iron_mine, -1) % 2 == 0) {1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_cluster_2;}
 
 // Check if mine clustering parameter is enabled and smallest map edge is >= 512 (clustering doesn't work well on small maps)
@@ -151,7 +151,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine) {
 		cargo_types:			[
 								produce_cargo("IORE",15),
 								accept_cargo("PASS"),
-								produce_cargo("PASS",15),
+								produce_cargo("PASS",8),
 		];
 		name:					string(STR_NAME_IRON_MINE);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));

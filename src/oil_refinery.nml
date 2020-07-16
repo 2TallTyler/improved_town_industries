@@ -239,7 +239,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery) {
 		substitute:				INDUSTRYTYPE_OIL_REFINERY;
 		life_type:				IND_LIFE_TYPE_PROCESSING;
 		cargo_types:			[
-								accept_cargo("OIL_", produce_cargo("RFPR",0.75), produce_cargo("GOOD",0.25)),
+								accept_cargo("OIL_", produce_cargo("RFPR",1)),
 								accept_cargo("PASS"),
 								produce_cargo("PASS",6),
 		];

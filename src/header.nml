@@ -40,6 +40,19 @@ param 2 {
    type: bool;
    }}
 
+param 3 {
+  param_food_factory {
+   name: string(STR_PARAM_NAME_FOOD_FACTORY);
+   desc: string(STR_PARAM_DESC_FOOD_FACTORY);
+   type: int;
+   min_value: 0;
+   max_value: 1;
+   def_value: 1;
+   names:	{
+	0:	string(STR_PARAM_FOOD_FACTORY_HOUSES);
+	1:	string(STR_PARAM_FOOD_FACTORY_FACTORY);
+   };
+   }}
 }
 
 /*

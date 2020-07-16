@@ -63,7 +63,7 @@ oil_refinery.close()
 print("Python: Writing combined NML file")
 
 # create a new file on disk, which will have a name and be writable
-processed_nml_file = codecs.open('nmlc/historical_industries.nml','w','utf8')
+processed_nml_file = codecs.open('nmlc/improved_town_industries.nml','w','utf8')
 
 # write stuff into the file
 processed_nml_file.write('\n'.join(sections)) # join the list of templated stuff with newlines, and write to a file

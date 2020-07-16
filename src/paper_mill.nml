@@ -1,45 +1,5 @@
 // Begin Paper Mill
 
-spritelayout sprlay_paper_mill_1 { // Log yard empty
-	ground		{sprite:2022;}
-	building	{sprite:2212;}
-}
-
-spritelayout sprlay_paper_mill_2 { // Log yard full
-	ground		{sprite:2022;}
-	building	{sprite:2213;}
-}
-
-spritelayout sprlay_paper_mill_3 { // Tall building closed
-	ground		{sprite:2022;}
-	building	{sprite:2205; xoffset:-3; yoffset:-5;}
-}
-
-spritelayout sprlay_paper_mill_4 { // Tall building open
-	ground		{sprite:2022;}
-	building	{sprite:2206; xoffset:-3; yoffset:-5;}
-}
-
-spritelayout sprlay_paper_mill_5 { // Smokestack building empty yard
-	ground		{sprite:2022;}
-	building	{sprite:2208;}
-}
-
-spritelayout sprlay_paper_mill_6 { // Smokestack building paper yard
-	ground		{sprite:2022;}
-	building	{sprite:2209;}
-}
-
-spritelayout sprlay_paper_mill_7 { // Canopy
-	ground		{sprite:2022;}
-	building	{sprite:2214; xoffset:-3; yoffset:-3;}
-}
-
-spritelayout sprlay_paper_mill_8 { // Mill building
-	ground		{sprite:2022;}
-	building	{sprite:2202;}
-}
-
 spritelayout sprlay_paper_mill_9_N {
 	ground		{sprite:3981;}
 	building	{sprite:2169; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT;}
@@ -247,150 +207,6 @@ switch (FEAT_OBJECTS, SELF, switch_object_graphics_paper_mill_9, relative_pos) {
     relative_coord(1, 1): sprlay_paper_mill_9_S;
 }
 
-item (FEAT_OBJECTS, object_item_paper_mill_1) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_PAPER_MILL);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1845;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_paper_mill_1;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_paper_mill_2) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_PAPER_MILL);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1845;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_paper_mill_2;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_paper_mill_3) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_PAPER_MILL);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1845;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_paper_mill_3;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_paper_mill_4) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_PAPER_MILL);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1845;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_paper_mill_4;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_paper_mill_5) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_PAPER_MILL);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1845;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_paper_mill_5;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_paper_mill_6) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_PAPER_MILL);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1845;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_paper_mill_6;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_paper_mill_7) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_PAPER_MILL);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1845;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_paper_mill_7;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_paper_mill_8) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_PAPER_MILL);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1845;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_paper_mill_8;
-	}
-}
-
 item (FEAT_OBJECTS, object_item_paper_mill_9) {
 	property {
 		class:					"HSIN";
@@ -405,6 +221,7 @@ item (FEAT_OBJECTS, object_item_paper_mill_9) {
 	}
 	graphics {
 		default:				switch_object_graphics_paper_mill_9;
+		colour:					COLOUR_DARK_GREEN;
 	}
 }
 
