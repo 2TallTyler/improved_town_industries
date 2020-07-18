@@ -40,27 +40,27 @@ spritelayout sprlay_farm_6 { // Empty tile
 }
 
 item (FEAT_INDUSTRYTILES, ind_tile_farm_1_N) { // House north
-property {substitute:	02;}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_farm_1_N;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_farm_1_E) { // House east
-property {substitute:	02;}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_farm_1_E;}}
  
 item (FEAT_INDUSTRYTILES, ind_tile_farm_2) { // Hay shed
-property {substitute:	02;}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_farm_2;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_farm_3) { // Barn
-property {substitute:	02;}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_farm_3;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_farm_4) { // Silos
-property {substitute:	02;}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_farm_4;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_farm_5) { // Farmyard
-property {substitute:	02;}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_farm_5;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_farm_6) { // empty tile
@@ -163,6 +163,7 @@ item (FEAT_INDUSTRIES, industry_farm) {
 		spec_flags:				bitmask(IND_FLAG_PLANT_FIELDS_WHEN_BUILT, IND_FLAG_PLANT_FIELDS_PERIODICALLY);
 		cargo_types:			[
 								produce_cargo("FOOD",12),
+								accept_cargo("RFPR"),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_FARM;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
