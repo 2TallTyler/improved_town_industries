@@ -22,7 +22,7 @@ July 16, 2020
 ### 1.0.2
 July 16, 2020
 
-- Add: Parameter to require oil refineries to generate near water
+- ~~Add: Parameter to require oil refineries to generate near water~~ Removed in 1.1.0
 
 ### 1.1.0
 July 18, 2020
