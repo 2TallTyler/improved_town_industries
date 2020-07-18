@@ -20,7 +20,7 @@
 
 - Added cargos to Temperate industries and added some industries and behaviors from Sub-arctic and Sub-tropical
 - Cargos are generic and have multiple destinations, designed for asymmetric Cargodist gameplay.
-  - For example, the Oil Refinery processes Oil into Chemicals, which can be delivered to the Paper Mill or the Factory.
+  - For example, the Oil Refinery processes Oil into Chemicals, which can be delivered to the Farm as fertilizer, the Factory as plastics, or the Paper Mill as the industrial chemicals used to break down wood pulp.
 - The additional cargos require NewGRF vehicles which support additional cargos.
 - Food can be delivered directly to towns when a NewGRF house set accepts Food (recommended: Improved Town Layouts) or converted to Goods by the Factory
 
