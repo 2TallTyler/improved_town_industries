@@ -4,8 +4,8 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 1;
-	min_compatible_version: 1;
+	version: 2;
+	min_compatible_version: 2;
 	url: string(STR_WEBSITE);
 
 param 0 {
@@ -33,28 +33,6 @@ param 1 {
    }}
 
 param 2 {
-  param_food_factory {
-   name: string(STR_PARAM_NAME_FOOD_FACTORY);
-   desc: string(STR_PARAM_DESC_FOOD_FACTORY);
-   type: int;
-   min_value: 0;
-   max_value: 1;
-   def_value: 1;
-   names:	{
-	0:	string(STR_PARAM_FOOD_FACTORY_HOUSES);
-	1:	string(STR_PARAM_FOOD_FACTORY_FACTORY);
-   };
-   }}
-   
-param 3 {
-  param_mine_cluster {
-   name: string(STR_PARAM_NAME_MINE_CLUSTER);
-   desc: string(STR_PARAM_DESC_MINE_CLUSTER);
-   def_value: 1;
-   type: bool;
-   }}
-
-param 4 {
   param_elevation_checks {
    name: string(STR_PARAM_NAME_ELEVATION_CHECKS);
    desc: string(STR_PARAM_DESC_ELEVATION_CHECKS);

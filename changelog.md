@@ -28,5 +28,10 @@ July 16, 2020
 July 18, 2020
 
 - Add: Farms accept Chemicals as fertilizer
+- Change: Factory always accepts Food
+- Change: Rewrite parameter description for elevation requirement
+- Remove: Parameter to change Factory acceptance of Food. Factory now always accepts Food.
+- Remove: Parameter to disable extractive industry clustering
+  - Map size check already handles this well; no need for confusion
 - Remove: Parameter to require oil refineries to generate near water
   - Simplification of an unneccesary parameter. This requirement is already disabled in Scenario Editor and funded industries, so its only use is for industries created during world generation or during a game.
