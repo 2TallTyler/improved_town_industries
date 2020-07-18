@@ -61,14 +61,6 @@ param 4 {
    def_value: 0;
    type: bool;
    }}
-   
-param 5 {
-  param_refinery_water {
-   name: string(STR_PARAM_NAME_REFINERY_WATER);
-   desc: string(STR_PARAM_DESC_REFINERY_WATER);
-   def_value: 0;
-   type: bool;
-   }}
 }
 
 /*
