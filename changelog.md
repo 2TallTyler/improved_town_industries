@@ -23,3 +23,10 @@ July 16, 2020
 July 16, 2020
 
 - Add: Parameter to require oil refineries to generate near water
+
+### 1.1.0
+July 18, 2020
+
+- Add: Farms accept Chemicals as fertilizer
+- Remove: Parameter to require oil refineries to generate near water
+  - Simplification of an unneccesary parameter. This requirement is already disabled in Scenario Editor and funded industries, so its only use is for industries created during world generation or during a game.
