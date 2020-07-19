@@ -4,8 +4,8 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 2;
-	min_compatible_version: 2;
+	version: 3;
+	min_compatible_version: 3;
 	url: string(STR_WEBSITE);
 
 param 0 {
@@ -43,7 +43,7 @@ param 2 {
 
 
 // Create an error if the map is smaller than 256 x 256
-if (map_min_edge < 256 && map_max_edge < 512) {
+if (map_min_edge < 256 || map_max_edge < 512) {
 	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
 }
 
@@ -65,7 +65,7 @@ cargotable {
 	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, FOOD, RFPR, 
 }
 
-item (FEAT_CARGOS, cargo_passengers, 0x00) {
+item (FEAT_CARGOS, cargo_passengers, 0) {
 	property {
 		number:						0x00;
 		sprite:						4297;
@@ -89,33 +89,9 @@ item (FEAT_CARGOS, cargo_passengers, 0x00) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_coal, 0x01) {
+item (FEAT_CARGOS, cargo_mail, 0x01) {
 	property {
 		number:						0x01;
-		sprite:						4298;
-		type_name:					TTD_STR_CARGO_PLURAL_COAL;
-		unit_name:					TTD_STR_CARGO_SINGULAR_COAL;
-		type_abbreviation:			TTD_STR_ABBREV_COAL;
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_BULK);
-		cargo_label:				"COAL";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_COAL;
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		0x06;
-		cargo_payment_list_colour:	0x06;
-		price_factor:				56;
-		capacity_multiplier:		1;		
-	}
-}
-
-item (FEAT_CARGOS, cargo_mail, 0x02) {
-	property {
-		number:						0x02;
 		sprite:						4299;
 		type_name:					TTD_STR_CARGO_PLURAL_MAIL;
 		unit_name:					TTD_STR_CARGO_SINGULAR_MAIL;
@@ -137,33 +113,9 @@ item (FEAT_CARGOS, cargo_mail, 0x02) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_oil, 0x03) {
+item (FEAT_CARGOS, cargo_goods, 0x02) {
 	property {
-		number:						0x03;
-		sprite:						4300;
-		type_name:					TTD_STR_CARGO_PLURAL_OIL;
-		unit_name:					TTD_STR_CARGO_SINGULAR_OIL;
-		type_abbreviation:			TTD_STR_ABBREV_OIL;
-		weight:						0.9;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_LIQUID);
-		cargo_label:				"OIL_";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_LITERS;
-		items_of_cargo:				TTD_STR_QUANTITY_OIL;
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		0xAE;
-		cargo_payment_list_colour:	0xAE;
-		price_factor:				93;
-		capacity_multiplier:		1;		
-	}
-}
-
-item (FEAT_CARGOS, cargo_goods, 0x05) {
-	property {
-		number:						0x05;
+		number:						0x02;
 		sprite:						4302;
 		type_name:					TTD_STR_CARGO_PLURAL_GOODS;
 		unit_name:					TTD_STR_CARGO_SINGULAR_GOODS;
@@ -185,9 +137,33 @@ item (FEAT_CARGOS, cargo_goods, 0x05) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_wood, 0x07) {
+item (FEAT_CARGOS, cargo_food, 0x03) {
 	property {
-		number:						0x07;
+		number:						0x03;
+		sprite:						4312;
+		type_name:					TTD_STR_CARGO_PLURAL_FOOD;
+		unit_name:					TTD_STR_CARGO_SINGULAR_FOOD;
+		type_abbreviation:			TTD_STR_ABBREV_FOOD;
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_REFRIGERATED, CC_EXPRESS);
+		cargo_label:				"FOOD";
+		town_growth_effect:			TOWNGROWTH_FOOD;
+		town_growth_multiplier:		1.0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				TTD_STR_QUANTITY_FOOD;
+		penalty_lowerbound:			0;
+		single_penalty_length:		24;
+		station_list_colour:		48;
+		cargo_payment_list_colour:	48;
+		price_factor:				158;
+		capacity_multiplier:		1;		
+	}
+}
+
+item (FEAT_CARGOS, cargo_wood, 0x04) {
+	property {
+		number:						0x04;
 		sprite:						4304;
 		type_name:					TTD_STR_CARGO_PLURAL_WOOD;
 		unit_name:					TTD_STR_CARGO_SINGULAR_WOOD;
@@ -209,9 +185,33 @@ item (FEAT_CARGOS, cargo_wood, 0x07) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_iore, 0x08) {
+item (FEAT_CARGOS, cargo_coal, 0x05) {
 	property {
-		number:						0x08;
+		number:						0x05;
+		sprite:						4298;
+		type_name:					TTD_STR_CARGO_PLURAL_COAL;
+		unit_name:					TTD_STR_CARGO_SINGULAR_COAL;
+		type_abbreviation:			TTD_STR_ABBREV_COAL;
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_BULK);
+		cargo_label:				"COAL";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				TTD_STR_QUANTITY_COAL;
+		penalty_lowerbound:			30;
+		single_penalty_length:		255;
+		station_list_colour:		0x06;
+		cargo_payment_list_colour:	0x06;
+		price_factor:				56;
+		capacity_multiplier:		1;		
+	}
+}
+
+item (FEAT_CARGOS, cargo_iore, 0x06) {
+	property {
+		number:						0x06;
 		sprite:						4305;
 		type_name:					TTD_STR_CARGO_PLURAL_IRON_ORE;
 		unit_name:					TTD_STR_CARGO_SINGULAR_IRON_ORE;
@@ -233,9 +233,9 @@ item (FEAT_CARGOS, cargo_iore, 0x08) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_steel, 0x0C) {
+item (FEAT_CARGOS, cargo_steel, 0x07) {
 	property {
-		number:						0x0C;
+		number:						0x07;
 		sprite:						4306;
 		type_name:					TTD_STR_CARGO_PLURAL_STEEL;
 		unit_name:					TTD_STR_CARGO_SINGULAR_STEEL;
@@ -257,57 +257,34 @@ item (FEAT_CARGOS, cargo_steel, 0x0C) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_steel, 0x0C) {
+
+item (FEAT_CARGOS, cargo_oil, 0x08) {
 	property {
-		number:						0x0C;
-		sprite:						4306;
-		type_name:					TTD_STR_CARGO_PLURAL_STEEL;
-		unit_name:					TTD_STR_CARGO_SINGULAR_STEEL;
-		type_abbreviation:			TTD_STR_ABBREV_STEEL;
-		weight:						1;
+		number:						0x08;
+		sprite:						4300;
+		type_name:					TTD_STR_CARGO_PLURAL_OIL;
+		unit_name:					TTD_STR_CARGO_SINGULAR_OIL;
+		type_abbreviation:			TTD_STR_ABBREV_OIL;
+		weight:						0.9;
 		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS);
-		cargo_label:				"STEL";
+		cargo_classes:				bitmask(CC_LIQUID);
+		cargo_label:				"OIL_";
 		town_growth_effect:			TOWNGROWTH_NONE;
 		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_STEEL;
-		penalty_lowerbound:			14;
+		units_of_cargo:				TTD_STR_LITERS;
+		items_of_cargo:				TTD_STR_QUANTITY_OIL;
+		penalty_lowerbound:			30;
 		single_penalty_length:		255;
-		station_list_colour:		10;
-		cargo_payment_list_colour:	10;
-		price_factor:				126;
+		station_list_colour:		0xAE;
+		cargo_payment_list_colour:	0xAE;
+		price_factor:				93;
 		capacity_multiplier:		1;		
 	}
 }
 
-item (FEAT_CARGOS, cargo_food, 0x0B) {
+item (FEAT_CARGOS, cargo_chemicals, 0x09) {
 	property {
-		number:						0x0B;
-		sprite:						4312;
-		type_name:					TTD_STR_CARGO_PLURAL_FOOD;
-		unit_name:					TTD_STR_CARGO_SINGULAR_FOOD;
-		type_abbreviation:			TTD_STR_ABBREV_FOOD;
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_REFRIGERATED, CC_EXPRESS, CC_COVERED);
-		cargo_label:				"FOOD";
-		town_growth_effect:			TOWNGROWTH_FOOD;
-		town_growth_multiplier:		1.0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_FOOD;
-		penalty_lowerbound:			0;
-		single_penalty_length:		24;
-		station_list_colour:		48;
-		cargo_payment_list_colour:	48;
-		price_factor:				158;
-		capacity_multiplier:		1;		
-	}
-}
-
-item (FEAT_CARGOS, cargo_chemicals, 23) {
-	property {
-		number:						23;
+		number:						0x09;
 		sprite:						4314;
 		type_name:					string(STR_CARGO_NAME_CHEMICALS);
 		unit_name:					string(STR_CARGO_NAME_CHEMICALS);
@@ -2616,6 +2593,8 @@ item (FEAT_INDUSTRIES, industry_oil_wells) {
 		prob_in_game:			15;
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_oil_wells_1, industry_layout_oil_wells_2,];
+		map_colour:				152;
+		spec_flags:				0;
 	}
 	graphics {
 		location_check:			switch_oil_wells_allow_funded;

@@ -200,6 +200,8 @@ item (FEAT_INDUSTRIES, industry_oil_wells) {
 		prob_in_game:			15;
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_oil_wells_1, industry_layout_oil_wells_2,];
+		map_colour:				152;
+		spec_flags:				0;
 	}
 	graphics {
 		location_check:			switch_oil_wells_allow_funded;

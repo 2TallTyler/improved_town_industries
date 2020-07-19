@@ -37,3 +37,10 @@ July 18, 2020
   - Map size check already handles this well; no need for confusion
 - Remove: Parameter to require oil refineries to generate near water
   - Simplification of an unneccesary parameter. This requirement is already disabled in Scenario Editor and funded industries, so its only use is for industries created during world generation or during a game.
+
+### 1.2.0
+July 19, 2020
+
+- Fix: Override special flags for Oil Wells to allow production increases and build past 1950
+- Fix: Redefine cargo IDs for proper ordering in the Cargo Flow Legend
+- Fix: Map too small error triggers properly on rectangular maps
