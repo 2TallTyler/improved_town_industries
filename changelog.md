@@ -31,6 +31,7 @@ July 18, 2020
 - Add: Loading ITI on a map smaller than 256x256 now gives a fatal error rather than breaking without notice, since industries won't generate below this size
 - Change: Factory always accepts Food
 - Change: Rewrite parameter description for elevation requirement
+- Fix: Disable all default cargos and define from scratch
 - Remove: Parameter to change Factory acceptance of Food. Factory now always accepts Food.
 - Remove: Parameter to disable extractive industry clustering
   - Map size check already handles this well; no need for confusion
