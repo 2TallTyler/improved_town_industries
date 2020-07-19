@@ -28,6 +28,7 @@ July 16, 2020
 July 18, 2020
 
 - Add: Farms accept Chemicals as fertilizer
+- Add: Loading ITI on a map smaller than 256x256 now gives a fatal error rather than breaking without notice, since industries won't generate below this size
 - Change: Factory always accepts Food
 - Change: Rewrite parameter description for elevation requirement
 - Remove: Parameter to change Factory acceptance of Food. Factory now always accepts Food.

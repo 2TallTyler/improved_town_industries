@@ -41,19 +41,21 @@ param 2 {
    }}
 }
 
-/*
+
 // Create an error if the map is smaller than 256 x 256
 if (map_min_edge < 256 && map_max_edge < 512) {
 	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
 }
-*/
 
-// Create an error if OpenTTD version is before 1.10.0
+// Create an error if OpenTTD version is before 1.10.0 (required for increased cargo types at industries)
 if (version_openttd(1,10,0,28004) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
 // Disable base game industries
 disable_item(FEAT_INDUSTRIES, 0, 36);
+
+// Disable unused cargo types
+disable_item(FEAT_CARGOS, 0, 30);
 
 // End Header
