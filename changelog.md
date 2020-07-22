@@ -44,3 +44,8 @@ July 19, 2020
 - Fix: Override special flags for Oil Wells to allow production increases and build past 1950
 - Fix: Redefine cargo IDs for proper ordering in the Cargo Flow Legend
 - Fix: Map too small error triggers properly on rectangular maps
+
+### 1.2.1
+July 22, 2020
+
+- Fix: Houses now produce Mail properly, instead of Goods
