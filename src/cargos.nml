@@ -28,33 +28,9 @@ item (FEAT_CARGOS, cargo_passengers, 0) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_mail, 0x01) {
+item (FEAT_CARGOS, cargo_goods, 0x01) {
 	property {
 		number:						0x01;
-		sprite:						4299;
-		type_name:					TTD_STR_CARGO_PLURAL_MAIL;
-		unit_name:					TTD_STR_CARGO_SINGULAR_MAIL;
-		type_abbreviation:			TTD_STR_ABBREV_MAIL;
-		weight:						0.25;
-		is_freight:					0;
-		cargo_classes:				bitmask(CC_MAIL);
-		cargo_label:				"MAIL";
-		town_growth_effect:			TOWNGROWTH_MAIL;
-		town_growth_multiplier:		1.0;
-		units_of_cargo:				TTD_STR_BAGS;
-		items_of_cargo:				TTD_STR_QUANTITY_MAIL;
-		penalty_lowerbound:			6;
-		single_penalty_length:		24;
-		station_list_colour:		15;
-		cargo_payment_list_colour:	15;
-		price_factor:				156;
-		capacity_multiplier:		2;		
-	}
-}
-
-item (FEAT_CARGOS, cargo_goods, 0x02) {
-	property {
-		number:						0x02;
 		sprite:						4302;
 		type_name:					TTD_STR_CARGO_PLURAL_GOODS;
 		unit_name:					TTD_STR_CARGO_SINGULAR_GOODS;
@@ -72,6 +48,30 @@ item (FEAT_CARGOS, cargo_goods, 0x02) {
 		station_list_colour:		194;
 		cargo_payment_list_colour:	194;
 		price_factor:				166;
+		capacity_multiplier:		2;		
+	}
+}
+
+item (FEAT_CARGOS, cargo_mail, 0x02) {
+	property {
+		number:						0x02;
+		sprite:						4299;
+		type_name:					TTD_STR_CARGO_PLURAL_MAIL;
+		unit_name:					TTD_STR_CARGO_SINGULAR_MAIL;
+		type_abbreviation:			TTD_STR_ABBREV_MAIL;
+		weight:						0.25;
+		is_freight:					0;
+		cargo_classes:				bitmask(CC_MAIL);
+		cargo_label:				"MAIL";
+		town_growth_effect:			TOWNGROWTH_MAIL;
+		town_growth_multiplier:		1.0;
+		units_of_cargo:				TTD_STR_BAGS;
+		items_of_cargo:				TTD_STR_QUANTITY_MAIL;
+		penalty_lowerbound:			6;
+		single_penalty_length:		24;
+		station_list_colour:		15;
+		cargo_payment_list_colour:	15;
+		price_factor:				156;
 		capacity_multiplier:		2;		
 	}
 }

@@ -179,7 +179,7 @@ Industry Totals on 256 x 256 map:
 
 */
 
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
+// Prospected industries or those created in the Scenario Editor by funding "Many random industries" aren't restricted by industry totals, but must meet other requirements
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
 	{1: switch_oil_wells_location_check_1; switch_oil_wells_density_selector;}
 
