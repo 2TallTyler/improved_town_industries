@@ -43,7 +43,7 @@ param 2 {
 
 
 // Create an error if the map is smaller than 256 x 256
-if (map_min_edge < 256 || map_max_edge < 512) {
+if (map_min_edge < 256 || map_max_edge < 256) {
 	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
 }
 
