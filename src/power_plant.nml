@@ -179,6 +179,7 @@ item (FEAT_INDUSTRIES, industry_power_plant) {
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
 								accept_cargo("COAL"),
+								accept_cargo("RCYC"),
 								accept_cargo("PASS"),
 								produce_cargo("PASS",2),
 		];

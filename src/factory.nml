@@ -311,6 +311,7 @@ item (FEAT_INDUSTRIES, industry_factory) {
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
 								accept_cargo("RFPR", produce_cargo("GOOD",1)),
 								accept_cargo("FOOD", produce_cargo("GOOD",1)),
+								accept_cargo("RCYC", produce_cargo("GOOD",1)),
 								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];

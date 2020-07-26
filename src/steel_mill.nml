@@ -172,6 +172,7 @@ item (FEAT_INDUSTRIES, industry_steel_mill) {
 		cargo_types:			[
 								accept_cargo("IORE", produce_cargo("STEL",1)),
 								accept_cargo("COAL", produce_cargo("STEL",1)),
+								accept_cargo("RCYC", produce_cargo("STEL",1)),
 								accept_cargo("PASS"),
 								produce_cargo("PASS",6),
 		];

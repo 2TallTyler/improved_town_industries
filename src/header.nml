@@ -4,8 +4,8 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 6;
-	min_compatible_version: 6;
+	version: 7;
+	min_compatible_version: 7;
 	url: string(STR_WEBSITE);
 
 	param 0 {
@@ -67,18 +67,30 @@ grf {
 		}
 	}
 
-	
+	param 5 {
+		param_recyclables {
+			name: string(STR_PARAM_NAME_RECYCLABLES);
+			desc: string(STR_PARAM_DESC_RECYCLABLES);
+			def_value: 0;
+			type: bool;
+		}
+	}
+
 }
 
+// Create an error if OpenTTD version is before 1.10.0 (required for increased cargo types at industries)
+if (version_openttd(1,10,0,28004) > openttd_version) {
+	error(FATAL, string(STR_ERROR_GAME_VERSION));
+}
 
 // Create an error if the map is smaller than 256 x 256
 if (map_min_edge < 256 || map_max_edge < 256) {
 	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
 }
 
-// Create an error if OpenTTD version is before 1.10.0 (required for increased cargo types at industries)
-if (version_openttd(1,10,0,28004) > openttd_version) {
-	error(FATAL, string(STR_ERROR_GAME_VERSION));
+// Create an error if Recyclables parameter is active but Improved Town Layouts isn't active or is too old
+if (param_recyclables == 1 && (param["TT\03\01", 254] < 7 || (grf_current_status("TT\03\01") == 0 && grf_future_status("TT\03\01") == 0))) {
+	error(FATAL, string(STR_ERROR_RCLC_NEEDS_ITL));
 }
 
 // Disable base game industries
