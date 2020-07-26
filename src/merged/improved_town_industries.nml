@@ -1749,7 +1749,8 @@ switch (FEAT_INDUSTRIES, SELF, switch_factory_distance_competitor, industry_dist
 switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
 	population >= LOAD_TEMP(1)) {1: switch_factory_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_1, STORE_TEMP(
+// Add population required by other industries. 300 population required for Factory
+switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_late, STORE_TEMP(
 	// Count existing processing industries in town
 	industry_town_count(industry_oil_refinery,-1)	* 300 +
 	industry_town_count(industry_paper_mill,-1) 	* 300 +
@@ -1759,6 +1760,19 @@ switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_1, STORE_TEMP(
 	, 1))
 	{switch_factory_population_check_2;}
 
+// Add population required by other industries. If ITL Early Pop loaded, only 100 population required for Factory before 1850
+switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_early, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)	* 300 +
+	industry_town_count(industry_paper_mill,-1) 	* 300 +
+	industry_town_count(industry_steel_mill,-1)		* 300 +
+	industry_town_count(industry_factory,-1)		* 300 +
+	100 // Add population required for this industry
+	, 1))
+	{switch_factory_population_check_2;}
+
+// If Improved Town Layouts is enabled with Reduced Early Population parameter active, check year for Factory population requirement (1800-1849: pop 100, 1850+: pop 300)
+switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_1, current_year < 1850 && param["TT\03\01", 4] == 1) {1: switch_factory_population_check_early; switch_factory_population_check_late;}
 
 /* Town Distance Check - secondary industries only */
 

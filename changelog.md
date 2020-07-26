@@ -53,4 +53,5 @@ July 22, 2020
 ### 1.2.2
 July 25, 2020
 
+- Change: Population requirement for Factory reduced to 150 if Improved Town Layouts is loaded with the Reduced Early House Population parameter active 
 - Fix: Map too small error actually requires 256x256, not 256x512
