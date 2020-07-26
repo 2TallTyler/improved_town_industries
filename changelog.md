@@ -49,3 +49,8 @@ July 19, 2020
 July 22, 2020
 
 - Fix: Houses now produce Mail properly, instead of Goods
+
+### 1.2.2
+July 25, 2020
+
+- Fix: Map too small error actually requires 256x256, not 256x512
