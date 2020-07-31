@@ -28,25 +28,25 @@ spritelayout sprlay_steel_mill_2_W {
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_1_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_E) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_1_E;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_1_W;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_S) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_1_S;}
 }
 
@@ -54,13 +54,13 @@ item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_S) {
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_2_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_2_W;}
 }
 

@@ -32,15 +32,15 @@ spritelayout sprlay_power_plant_5_W { // Coal pile W
 switch (FEAT_INDUSTRYTILES, SELF, switch_power_plant_cooling_tower_availability, current_year >= 1918) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_1) { // Powerhouse
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8],[RCYC, 8]];}
 graphics {default:		sprlay_power_plant_1;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_2) { // Power terminals
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8],[RCYC, 8]];}
 graphics {default:		sprlay_power_plant_2;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_3) { // Transformers
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8],[RCYC, 8]];}
 graphics {default:		sprlay_power_plant_3;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_4) { // Cooling tower
@@ -55,11 +55,11 @@ graphics {
 }}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_5_N) { // Coal pile N
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8],[RCYC, 8]];}
 graphics {default:		sprlay_power_plant_5_N;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_5_W) { // Coal pile W
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8],[RCYC, 8]];}
 graphics {default:		sprlay_power_plant_5_W;}}
 
 

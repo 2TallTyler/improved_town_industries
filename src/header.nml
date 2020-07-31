@@ -6,6 +6,7 @@ grf {
 	desc: string(STR_GRF_DESC);
 	version: 7;
 	min_compatible_version: 7;
+
 	url: string(STR_WEBSITE);
 
 	param 0 {
