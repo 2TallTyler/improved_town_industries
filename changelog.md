@@ -55,3 +55,9 @@ July 25, 2020
 
 - Change: Population requirement for Factory reduced to 100 if Improved Town Layouts is loaded with the Reduced Early House Population parameter active 
 - Fix: Map too small error actually requires 256x256, not 256x512
+
+### 1.3.2
+July 31, 2020
+
+- Fix: Cargo labels reorganized (again) to fix Goods and Food acceptance by base game houses (#7)
+- Change: Rewritten NewGRF description mentions the need for NewGRF vehicles (#8)
