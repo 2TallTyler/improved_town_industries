@@ -83,6 +83,18 @@ tilelayout industry_layout_logging_camp_1 {
 	1,0:	ind_tile_logging_camp_3;	1,1:	ind_tile_logging_camp_1;	1,2:	ind_tile_logging_camp_2;
 }
 
+tilelayout industry_layout_logging_camp_2 {
+	0,0:	ind_tile_logging_camp_1;	0,1:	ind_tile_logging_camp_6;	0,2:	ind_tile_logging_camp_4;	0,3:	ind_tile_logging_camp_4;
+	1,0:	ind_tile_logging_camp_1;	1,1:	ind_tile_logging_camp_3;	1,2:	ind_tile_logging_camp_2;	1,3:	ind_tile_logging_camp_5;
+}
+
+tilelayout industry_layout_logging_camp_3 {
+	0,0:	ind_tile_logging_camp_5;	0,1:	ind_tile_logging_camp_1;	0,2:	ind_tile_logging_camp_1;
+	1,0:	ind_tile_logging_camp_6;	1,1:	ind_tile_logging_camp_4;	1,2:	ind_tile_logging_camp_2;
+										2,1:	ind_tile_logging_camp_3;	2,2:	ind_tile_logging_camp_6;
+}
+
+
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, last_month_transported("WOOD") > 0 && transported_last_month_pct("WOOD") > 60) {1: return 1; return 0;}
 
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_7, nearby_tile_class(2,0) == TILE_CLASS_TREES || nearby_tile_class(2,1) == TILE_CLASS_TREES || nearby_tile_class(2,2) == TILE_CLASS_TREES && nearby_tile_class(0,3) == TILE_CLASS_TREES || nearby_tile_class(1,3) == TILE_CLASS_TREES) {1: CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Check for trees near camp. Not every tile must have a tree - just one on each side southeast and southwest of the industry.
@@ -157,7 +169,11 @@ item (FEAT_INDUSTRIES, industry_logging_camp) {
 		prob_map_gen:			15;
 		prob_in_game:			15;
 		fund_cost_multiplier:	40;
-		layouts:				[industry_layout_logging_camp_1,];
+		layouts:				[
+			industry_layout_logging_camp_1,
+			industry_layout_logging_camp_2,
+			industry_layout_logging_camp_3,
+		];
 	}
 	graphics {
 		location_check:			switch_logging_camp_allow_funded;

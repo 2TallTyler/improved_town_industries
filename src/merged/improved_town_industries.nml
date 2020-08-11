@@ -1026,6 +1026,10 @@ spritelayout sprlay_coal_mine_5_W { // Coal pile W
 	building	{sprite:2024;}
 }
 
+spritelayout sprlay_coal_mine_6 {
+	ground		{sprite:2022;}
+}
+
 switch (FEAT_INDUSTRYTILES, PARENT, switch_coal_mine_animation_2, this_month_transported("COAL") > 0) {1: return CB_RESULT_START_ANIMATION; return CB_RESULT_STOP_ANIMATION;}
 
 switch (FEAT_INDUSTRYTILES, SELF, switch_coal_mine_animation_1, animation_frame) {
@@ -1034,7 +1038,7 @@ switch (FEAT_INDUSTRYTILES, SELF, switch_coal_mine_animation_1, animation_frame)
 	2:	sprlay_coal_mine_1_c;
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_1) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_1) { // hoist
 property {
 	substitute:				02; 
 	accepted_cargos: 		[[PASS, 8]];
@@ -1047,30 +1051,45 @@ graphics {
 	anim_control:		switch_coal_mine_animation_2;
 }}
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_2) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_2) { // long building
 property {substitute:	02; accepted_cargos: [[PASS, 8]];}
 graphics {default:		sprlay_coal_mine_2;}}
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_3) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_3) { // elevated building
 property {substitute:	02; accepted_cargos: [[PASS, 8]];}
 graphics {default:		sprlay_coal_mine_3;}}
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_4) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_4) { // single tile coal pile
 property {substitute:	02; accepted_cargos: [[PASS, 8]];}
 graphics {default:		sprlay_coal_mine_4;}}
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_N) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_N) { // large coal pile N
 property {substitute:	02; accepted_cargos: [[PASS, 8]];}
 graphics {default:		sprlay_coal_mine_5_N;}}
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_W) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_W) { // large coal pile W
 property {substitute:	02; accepted_cargos: [[PASS, 8]];}
 graphics {default:		sprlay_coal_mine_5_W;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_6) { // blank tile
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_6;}}
 
 tilelayout industry_layout_coal_mine {
 	0,0:	ind_tile_coal_mine_1;	0,1:	ind_tile_coal_mine_2;	0,2:	ind_tile_coal_mine_5_N;
 	1,0:	ind_tile_coal_mine_4;	1,1:	ind_tile_coal_mine_3;	1,2:	ind_tile_coal_mine_5_W;
 }
+
+tilelayout industry_layout_coal_mine_2 {
+	0,0:	ind_tile_coal_mine_1;	0,1:	ind_tile_coal_mine_3;	0,2:	ind_tile_coal_mine_2;
+	1,0:	ind_tile_coal_mine_4;	1,1:	ind_tile_coal_mine_4;	1,2:	ind_tile_coal_mine_3;
+}
+
+tilelayout industry_layout_coal_mine_3 {
+	0,0:	ind_tile_coal_mine_2;	0,1:	ind_tile_coal_mine_1;	0,2:	ind_tile_coal_mine_3;
+	1,0:	ind_tile_coal_mine_6;	1,1:	ind_tile_coal_mine_4;
+}
+	
 
 // Coal Mine Industry
 
@@ -1157,7 +1176,11 @@ item (FEAT_INDUSTRIES, industry_coal_mine) {
 		prob_map_gen:			15;
 		prob_in_game:			15;
 		fund_cost_multiplier:	100;
-		layouts:				[industry_layout_coal_mine,];
+		layouts:				[
+			industry_layout_coal_mine,
+			industry_layout_coal_mine_2,
+			industry_layout_coal_mine_3,
+		];
 	}
 	graphics {
 		location_check:			switch_coal_mine_allow_funded;
@@ -2115,6 +2138,93 @@ tilelayout industry_layout_factory_2x2 {
 	3,3:	ind_tile_factory_1_S;
 }
 
+tilelayout industry_layout_factory_3x2 {
+	0,0:	ind_tile_factory_1_N;
+	0,1:	ind_tile_factory_1_E;
+	1,0:	ind_tile_factory_1_W;
+	1,1:	ind_tile_factory_1_S;
+	
+	0,2:	ind_tile_factory_1_N;
+	0,3:	ind_tile_factory_1_E;
+	1,2:	ind_tile_factory_1_W;
+	1,3:	ind_tile_factory_1_S;
+	
+	2,0:	ind_tile_factory_1_N;
+	2,1:	ind_tile_factory_1_E;
+	3,0:	ind_tile_factory_1_W;
+	3,1:	ind_tile_factory_1_S;
+	
+	2,2:	ind_tile_factory_1_N;
+	2,3:	ind_tile_factory_1_E;
+	3,2:	ind_tile_factory_1_W;
+	3,3:	ind_tile_factory_1_S;
+	
+	4,0:	ind_tile_factory_1_N;
+	4,1:	ind_tile_factory_1_E;
+	5,0:	ind_tile_factory_1_W;
+	5,1:	ind_tile_factory_1_S;
+	
+	4,2:	ind_tile_factory_1_N;
+	4,3:	ind_tile_factory_1_E;
+	5,2:	ind_tile_factory_1_W;
+	5,3:	ind_tile_factory_1_S;
+}
+
+tilelayout industry_layout_factory_C {
+	0,0:	ind_tile_factory_1_N;
+	0,1:	ind_tile_factory_1_E;
+	1,0:	ind_tile_factory_1_W;
+	1,1:	ind_tile_factory_1_S;
+	
+	0,2:	ind_tile_factory_1_N;
+	0,3:	ind_tile_factory_1_E;
+	1,2:	ind_tile_factory_1_W;
+	1,3:	ind_tile_factory_1_S;
+	
+	2,0:	ind_tile_factory_1_N;
+	2,1:	ind_tile_factory_1_E;
+	3,0:	ind_tile_factory_1_W;
+	3,1:	ind_tile_factory_1_S;
+	
+
+	
+	4,0:	ind_tile_factory_1_N;
+	4,1:	ind_tile_factory_1_E;
+	5,0:	ind_tile_factory_1_W;
+	5,1:	ind_tile_factory_1_S;
+	
+	4,2:	ind_tile_factory_1_N;
+	4,3:	ind_tile_factory_1_E;
+	5,2:	ind_tile_factory_1_W;
+	5,3:	ind_tile_factory_1_S;
+}
+
+tilelayout industry_layout_factory_L {
+	0,0:	ind_tile_factory_1_N;
+	0,1:	ind_tile_factory_1_E;
+	1,0:	ind_tile_factory_1_W;
+	1,1:	ind_tile_factory_1_S;
+	
+	0,2:	ind_tile_factory_1_N;
+	0,3:	ind_tile_factory_1_E;
+	1,2:	ind_tile_factory_1_W;
+	1,3:	ind_tile_factory_1_S;
+	
+	2,0:	ind_tile_factory_1_N;
+	2,1:	ind_tile_factory_1_E;
+	3,0:	ind_tile_factory_1_W;
+	3,1:	ind_tile_factory_1_S;
+	
+	
+	4,0:	ind_tile_factory_1_N;
+	4,1:	ind_tile_factory_1_E;
+	5,0:	ind_tile_factory_1_W;
+	5,1:	ind_tile_factory_1_S;
+	
+}
+
+
+
 /* // Industry Construction Switches - Read from bottom to top // */
 
 
@@ -2232,7 +2342,14 @@ item (FEAT_INDUSTRIES, industry_factory) {
 		prob_map_gen:			3;
 		prob_in_game:			3;
 		fund_cost_multiplier:	100;
-		layouts:				[industry_layout_factory_2x2, industry_layout_factory_1x2, industry_layout_factory_2x1];
+		layouts:				[
+				industry_layout_factory_2x2, 
+				industry_layout_factory_1x2, 
+				industry_layout_factory_2x1,
+				industry_layout_factory_3x2,
+				industry_layout_factory_C,
+				industry_layout_factory_L,
+			];
 		conflicting_ind_types:	[industry_steel_mill];
 	}
 	graphics {
@@ -2354,6 +2471,18 @@ tilelayout industry_layout_logging_camp_1 {
 	1,0:	ind_tile_logging_camp_3;	1,1:	ind_tile_logging_camp_1;	1,2:	ind_tile_logging_camp_2;
 }
 
+tilelayout industry_layout_logging_camp_2 {
+	0,0:	ind_tile_logging_camp_1;	0,1:	ind_tile_logging_camp_6;	0,2:	ind_tile_logging_camp_4;	0,3:	ind_tile_logging_camp_4;
+	1,0:	ind_tile_logging_camp_1;	1,1:	ind_tile_logging_camp_3;	1,2:	ind_tile_logging_camp_2;	1,3:	ind_tile_logging_camp_5;
+}
+
+tilelayout industry_layout_logging_camp_3 {
+	0,0:	ind_tile_logging_camp_5;	0,1:	ind_tile_logging_camp_1;	0,2:	ind_tile_logging_camp_1;
+	1,0:	ind_tile_logging_camp_6;	1,1:	ind_tile_logging_camp_4;	1,2:	ind_tile_logging_camp_2;
+										2,1:	ind_tile_logging_camp_3;	2,2:	ind_tile_logging_camp_6;
+}
+
+
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, last_month_transported("WOOD") > 0 && transported_last_month_pct("WOOD") > 60) {1: return 1; return 0;}
 
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_7, nearby_tile_class(2,0) == TILE_CLASS_TREES || nearby_tile_class(2,1) == TILE_CLASS_TREES || nearby_tile_class(2,2) == TILE_CLASS_TREES && nearby_tile_class(0,3) == TILE_CLASS_TREES || nearby_tile_class(1,3) == TILE_CLASS_TREES) {1: CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Check for trees near camp. Not every tile must have a tree - just one on each side southeast and southwest of the industry.
@@ -2428,7 +2557,11 @@ item (FEAT_INDUSTRIES, industry_logging_camp) {
 		prob_map_gen:			15;
 		prob_in_game:			15;
 		fund_cost_multiplier:	40;
-		layouts:				[industry_layout_logging_camp_1,];
+		layouts:				[
+			industry_layout_logging_camp_1,
+			industry_layout_logging_camp_2,
+			industry_layout_logging_camp_3,
+		];
 	}
 	graphics {
 		location_check:			switch_logging_camp_allow_funded;
@@ -2582,53 +2715,88 @@ spritelayout sprlay_paper_mill_logs_1 {
 	building	{sprite:2071;}
 }
 
+spritelayout sprlay_paper_mill_logs_2 {
+	ground		{sprite:2022;}
+	building	{sprite:2070;}
+}
+
+spritelayout sprlay_paper_mill_transformers {
+	ground		{sprite:2022;}
+	building	{sprite:2054;}
+}
+
+spritelayout sprlay_paper_mill_empty {
+	ground		{sprite:2022;}
+}
+
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_paper_mill_9_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_E) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_paper_mill_9_E;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_paper_mill_9_W;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_S) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_paper_mill_9_S;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_1) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_paper_mill_chem_1;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_2) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_paper_mill_chem_2;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_3) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_paper_mill_chem_3;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_logs_1) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[WOOD, 8],[RFPR, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_paper_mill_logs_1;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_logs_2) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+	graphics {default:			sprlay_paper_mill_logs_2;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_transformers) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+	graphics {default:			sprlay_paper_mill_transformers;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_empty) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+	graphics {default:			sprlay_paper_mill_empty;}
 }
 
 tilelayout industry_layout_paper_mill_1 {
@@ -2637,6 +2805,20 @@ tilelayout industry_layout_paper_mill_1 {
 2,0:	ind_tile_paper_mill_chem_1;	2,1:	ind_tile_paper_mill_chem_3;	2,2:	ind_tile_paper_mill_9_W;	2,3:	ind_tile_paper_mill_9_S;
 3,0:	ind_tile_paper_mill_9_N;	3,1:	ind_tile_paper_mill_9_E;	3,2:	ind_tile_paper_mill_logs_1;	3,3:	ind_tile_paper_mill_logs_1;
 4,0:	ind_tile_paper_mill_9_W;	4,1:	ind_tile_paper_mill_9_S;	4,2:	ind_tile_paper_mill_logs_1;	4,3:	ind_tile_paper_mill_logs_1;
+}
+
+tilelayout industry_layout_paper_mill_2 {
+0,0:	ind_tile_paper_mill_9_N;			0,1:	ind_tile_paper_mill_9_E;	0,2:	ind_tile_paper_mill_logs_1;
+1,0:	ind_tile_paper_mill_9_W;			1,1:	ind_tile_paper_mill_9_S;	1,2:	ind_tile_paper_mill_logs_1;		1,3:	ind_tile_paper_mill_empty;
+2,0:	ind_tile_paper_mill_transformers;	2,1:	ind_tile_paper_mill_9_N;	2,2:	ind_tile_paper_mill_9_E;		2,3:	ind_tile_paper_mill_logs_2;
+											3,1:	ind_tile_paper_mill_9_W;	3,2:	ind_tile_paper_mill_9_S;
+}
+
+tilelayout industry_layout_paper_mill_3 {
+0,0:	ind_tile_paper_mill_chem_3;		0,1:	ind_tile_paper_mill_chem_1;		0,2:	ind_tile_paper_mill_9_N;	0,3:	ind_tile_paper_mill_9_E;
+1,0:	ind_tile_paper_mill_logs_1;		1,1:	ind_tile_paper_mill_empty;		1,2:	ind_tile_paper_mill_9_W;	1,3:	ind_tile_paper_mill_9_S;
+2,0:	ind_tile_paper_mill_logs_2;		2,1:	ind_tile_paper_mill_9_N;		2,2:	ind_tile_paper_mill_9_E;
+3,0:	ind_tile_paper_mill_logs_1;		3,1:	ind_tile_paper_mill_9_W;		3,2:	ind_tile_paper_mill_9_S;
 }
 
 /* // Industry Construction Switches - Read from bottom to top // */
@@ -2747,7 +2929,11 @@ item (FEAT_INDUSTRIES, industry_paper_mill) {
 		prob_in_game:			1;
 		fund_cost_multiplier:	100;
 		map_colour:				184;
-		layouts:				[industry_layout_paper_mill_1,];
+		layouts:				[
+			industry_layout_paper_mill_1,
+			industry_layout_paper_mill_2,
+			industry_layout_paper_mill_3,
+		];
 	}
 	graphics {
 		location_check:			switch_paper_mill_allow_funded;
@@ -3085,67 +3271,67 @@ spritelayout sprlay_oil_refinery_11 { // Pumps with reflector
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_1) { // Office
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_1;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_2) { // Large tank
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_2;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_3) { // Tall tank
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_3;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_4) { // Burner tower
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_4;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_5) { // Pipe frame red
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_5;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_6) { // Pipe frame 2
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_6;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_7) { // Pipe frame 3
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_7;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_8) { // Bare ground
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_8;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_9) { // Food silo
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_9;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_10) { // Pumps with boxes
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_10;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_11) { // Pump with reflector
 	property {
 		substitute:				02;
-		accepted_cargos:		[[OIL_, 8],[PASS, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 	graphics {default:			sprlay_oil_refinery_11;}
 }
 
@@ -3158,6 +3344,23 @@ tilelayout industry_layout_oil_refinery_1 {
 
 6,0:	ind_tile_oil_refinery_2;	6,1:	ind_tile_oil_refinery_2;	6,2:	ind_tile_oil_refinery_2;	6,3:	ind_tile_oil_refinery_2;	6,4:	ind_tile_oil_refinery_1;
 7,0:	ind_tile_oil_refinery_2;	7,1:	ind_tile_oil_refinery_2;	7,2:	ind_tile_oil_refinery_2;	7,3:	ind_tile_oil_refinery_2;	7,4:	ind_tile_oil_refinery_2;
+}
+
+tilelayout industry_layout_oil_refinery_2 {
+0,0:	ind_tile_oil_refinery_5;	0,1:	ind_tile_oil_refinery_2;	0,2:	ind_tile_oil_refinery_10;	0,3:	ind_tile_oil_refinery_11;	0,4:	ind_tile_oil_refinery_6;
+1,0:	ind_tile_oil_refinery_5;	1,1:	ind_tile_oil_refinery_2;	1,2:	ind_tile_oil_refinery_1;	1,3:	ind_tile_oil_refinery_8;	1,4:	ind_tile_oil_refinery_3;
+2,0:	ind_tile_oil_refinery_5;	2,1:	ind_tile_oil_refinery_4;	2,2:	ind_tile_oil_refinery_7;	2,3:	ind_tile_oil_refinery_8;	2,4:	ind_tile_oil_refinery_9;
+3,0:	ind_tile_oil_refinery_3;	3,1:	ind_tile_oil_refinery_6;	3,2:	ind_tile_oil_refinery_1;	3,3:	ind_tile_oil_refinery_2;	3,4:	ind_tile_oil_refinery_2;
+4,0:	ind_tile_oil_refinery_9;	4,1:	ind_tile_oil_refinery_8;	4,2:	ind_tile_oil_refinery_11;	4,3:	ind_tile_oil_refinery_2;	4,4:	ind_tile_oil_refinery_2;
+}
+
+tilelayout industry_layout_oil_refinery_3 {
+0,0:	ind_tile_oil_refinery_2;	0,1:	ind_tile_oil_refinery_2;						0,3:	ind_tile_oil_refinery_3;	0,4:	ind_tile_oil_refinery_1;
+1,0:	ind_tile_oil_refinery_2;	1,1:	ind_tile_oil_refinery_2;						1,3:	ind_tile_oil_refinery_1;	1,4:	ind_tile_oil_refinery_4;
+2,0:	ind_tile_oil_refinery_7;															2,3:	ind_tile_oil_refinery_5;	2,4:	ind_tile_oil_refinery_7;
+3,0:	ind_tile_oil_refinery_11;															3,3:	ind_tile_oil_refinery_5;	3,4:	ind_tile_oil_refinery_2;	3,5:	ind_tile_oil_refinery_2;
+4,0:	ind_tile_oil_refinery_2;	4,1:	ind_tile_oil_refinery_2;						4,3:	ind_tile_oil_refinery_11;	4,4:	ind_tile_oil_refinery_10;	4,5:	ind_tile_oil_refinery_9;
+5,0:	ind_tile_oil_refinery_2;	5,1:	ind_tile_oil_refinery_2;						5,3:	ind_tile_oil_refinery_9;	5,4:	ind_tile_oil_refinery_3;	5,5:	ind_tile_oil_refinery_7;
 }
 
 /* // Industry Construction Switches - Read from bottom to top // */
@@ -3273,7 +3476,11 @@ item (FEAT_INDUSTRIES, industry_oil_refinery) {
 		prob_map_gen:			1;
 		prob_in_game:			1;
 		fund_cost_multiplier:	100;
-		layouts:				[industry_layout_oil_refinery_1,];
+		layouts:				[
+			industry_layout_oil_refinery_1,
+			industry_layout_oil_refinery_2,
+			industry_layout_oil_refinery_3,
+		];
 		map_colour:				191;
 	}
 	graphics {

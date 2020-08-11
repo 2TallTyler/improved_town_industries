@@ -38,6 +38,10 @@ spritelayout sprlay_coal_mine_5_W { // Coal pile W
 	building	{sprite:2024;}
 }
 
+spritelayout sprlay_coal_mine_6 {
+	ground		{sprite:2022;}
+}
+
 switch (FEAT_INDUSTRYTILES, PARENT, switch_coal_mine_animation_2, this_month_transported("COAL") > 0) {1: return CB_RESULT_START_ANIMATION; return CB_RESULT_STOP_ANIMATION;}
 
 switch (FEAT_INDUSTRYTILES, SELF, switch_coal_mine_animation_1, animation_frame) {
@@ -46,7 +50,7 @@ switch (FEAT_INDUSTRYTILES, SELF, switch_coal_mine_animation_1, animation_frame)
 	2:	sprlay_coal_mine_1_c;
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_1) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_1) { // hoist
 property {
 	substitute:				02; 
 	accepted_cargos: 		[[PASS, 8]];
@@ -59,30 +63,45 @@ graphics {
 	anim_control:		switch_coal_mine_animation_2;
 }}
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_2) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_2) { // long building
 property {substitute:	02; accepted_cargos: [[PASS, 8]];}
 graphics {default:		sprlay_coal_mine_2;}}
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_3) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_3) { // elevated building
 property {substitute:	02; accepted_cargos: [[PASS, 8]];}
 graphics {default:		sprlay_coal_mine_3;}}
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_4) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_4) { // single tile coal pile
 property {substitute:	02; accepted_cargos: [[PASS, 8]];}
 graphics {default:		sprlay_coal_mine_4;}}
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_N) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_N) { // large coal pile N
 property {substitute:	02; accepted_cargos: [[PASS, 8]];}
 graphics {default:		sprlay_coal_mine_5_N;}}
 
-item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_W) {
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5_W) { // large coal pile W
 property {substitute:	02; accepted_cargos: [[PASS, 8]];}
 graphics {default:		sprlay_coal_mine_5_W;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_6) { // blank tile
+property {substitute:	02; accepted_cargos: [[PASS, 8]];}
+graphics {default:		sprlay_coal_mine_6;}}
 
 tilelayout industry_layout_coal_mine {
 	0,0:	ind_tile_coal_mine_1;	0,1:	ind_tile_coal_mine_2;	0,2:	ind_tile_coal_mine_5_N;
 	1,0:	ind_tile_coal_mine_4;	1,1:	ind_tile_coal_mine_3;	1,2:	ind_tile_coal_mine_5_W;
 }
+
+tilelayout industry_layout_coal_mine_2 {
+	0,0:	ind_tile_coal_mine_1;	0,1:	ind_tile_coal_mine_3;	0,2:	ind_tile_coal_mine_2;
+	1,0:	ind_tile_coal_mine_4;	1,1:	ind_tile_coal_mine_4;	1,2:	ind_tile_coal_mine_3;
+}
+
+tilelayout industry_layout_coal_mine_3 {
+	0,0:	ind_tile_coal_mine_2;	0,1:	ind_tile_coal_mine_1;	0,2:	ind_tile_coal_mine_3;
+	1,0:	ind_tile_coal_mine_6;	1,1:	ind_tile_coal_mine_4;
+}
+	
 
 // Coal Mine Industry
 
@@ -169,7 +188,11 @@ item (FEAT_INDUSTRIES, industry_coal_mine) {
 		prob_map_gen:			15;
 		prob_in_game:			15;
 		fund_cost_multiplier:	100;
-		layouts:				[industry_layout_coal_mine,];
+		layouts:				[
+			industry_layout_coal_mine,
+			industry_layout_coal_mine_2,
+			industry_layout_coal_mine_3,
+		];
 	}
 	graphics {
 		location_check:			switch_coal_mine_allow_funded;

@@ -115,6 +115,93 @@ tilelayout industry_layout_factory_2x2 {
 	3,3:	ind_tile_factory_1_S;
 }
 
+tilelayout industry_layout_factory_3x2 {
+	0,0:	ind_tile_factory_1_N;
+	0,1:	ind_tile_factory_1_E;
+	1,0:	ind_tile_factory_1_W;
+	1,1:	ind_tile_factory_1_S;
+	
+	0,2:	ind_tile_factory_1_N;
+	0,3:	ind_tile_factory_1_E;
+	1,2:	ind_tile_factory_1_W;
+	1,3:	ind_tile_factory_1_S;
+	
+	2,0:	ind_tile_factory_1_N;
+	2,1:	ind_tile_factory_1_E;
+	3,0:	ind_tile_factory_1_W;
+	3,1:	ind_tile_factory_1_S;
+	
+	2,2:	ind_tile_factory_1_N;
+	2,3:	ind_tile_factory_1_E;
+	3,2:	ind_tile_factory_1_W;
+	3,3:	ind_tile_factory_1_S;
+	
+	4,0:	ind_tile_factory_1_N;
+	4,1:	ind_tile_factory_1_E;
+	5,0:	ind_tile_factory_1_W;
+	5,1:	ind_tile_factory_1_S;
+	
+	4,2:	ind_tile_factory_1_N;
+	4,3:	ind_tile_factory_1_E;
+	5,2:	ind_tile_factory_1_W;
+	5,3:	ind_tile_factory_1_S;
+}
+
+tilelayout industry_layout_factory_C {
+	0,0:	ind_tile_factory_1_N;
+	0,1:	ind_tile_factory_1_E;
+	1,0:	ind_tile_factory_1_W;
+	1,1:	ind_tile_factory_1_S;
+	
+	0,2:	ind_tile_factory_1_N;
+	0,3:	ind_tile_factory_1_E;
+	1,2:	ind_tile_factory_1_W;
+	1,3:	ind_tile_factory_1_S;
+	
+	2,0:	ind_tile_factory_1_N;
+	2,1:	ind_tile_factory_1_E;
+	3,0:	ind_tile_factory_1_W;
+	3,1:	ind_tile_factory_1_S;
+	
+
+	
+	4,0:	ind_tile_factory_1_N;
+	4,1:	ind_tile_factory_1_E;
+	5,0:	ind_tile_factory_1_W;
+	5,1:	ind_tile_factory_1_S;
+	
+	4,2:	ind_tile_factory_1_N;
+	4,3:	ind_tile_factory_1_E;
+	5,2:	ind_tile_factory_1_W;
+	5,3:	ind_tile_factory_1_S;
+}
+
+tilelayout industry_layout_factory_L {
+	0,0:	ind_tile_factory_1_N;
+	0,1:	ind_tile_factory_1_E;
+	1,0:	ind_tile_factory_1_W;
+	1,1:	ind_tile_factory_1_S;
+	
+	0,2:	ind_tile_factory_1_N;
+	0,3:	ind_tile_factory_1_E;
+	1,2:	ind_tile_factory_1_W;
+	1,3:	ind_tile_factory_1_S;
+	
+	2,0:	ind_tile_factory_1_N;
+	2,1:	ind_tile_factory_1_E;
+	3,0:	ind_tile_factory_1_W;
+	3,1:	ind_tile_factory_1_S;
+	
+	
+	4,0:	ind_tile_factory_1_N;
+	4,1:	ind_tile_factory_1_E;
+	5,0:	ind_tile_factory_1_W;
+	5,1:	ind_tile_factory_1_S;
+	
+}
+
+
+
 /* // Industry Construction Switches - Read from bottom to top // */
 
 
@@ -232,7 +319,14 @@ item (FEAT_INDUSTRIES, industry_factory) {
 		prob_map_gen:			3;
 		prob_in_game:			3;
 		fund_cost_multiplier:	100;
-		layouts:				[industry_layout_factory_2x2, industry_layout_factory_1x2, industry_layout_factory_2x1];
+		layouts:				[
+				industry_layout_factory_2x2, 
+				industry_layout_factory_1x2, 
+				industry_layout_factory_2x1,
+				industry_layout_factory_3x2,
+				industry_layout_factory_C,
+				industry_layout_factory_L,
+			];
 		conflicting_ind_types:	[industry_steel_mill];
 	}
 	graphics {

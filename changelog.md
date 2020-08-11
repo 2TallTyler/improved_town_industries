@@ -63,7 +63,9 @@ July 31, 2020
 - Change: Rewritten NewGRF description mentions the need for NewGRF vehicles (#8)
 
 ### 1.4.0
-Unreleased
+August 11, 2020
 
 - Add: Parameter to disable automatic field generation
 - Add: Decorative objects for each type of farm field, with terrain awareness
+- Add: Additional industry tile layouts for Coal Mine, Logging Camp, Oil Refinery, Paper Mill, and Factory
+  - Thanks to YaoAngelsin for designing many of these
