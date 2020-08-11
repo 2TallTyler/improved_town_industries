@@ -61,3 +61,9 @@ July 31, 2020
 
 - Fix: Cargo labels reorganized (again) to fix Goods and Food acceptance by base game houses (#7)
 - Change: Rewritten NewGRF description mentions the need for NewGRF vehicles (#8)
+
+### 1.4.0
+Unreleased
+
+- Add: Parameter to disable automatic field generation
+- Add: Decorative objects for each type of farm field, with terrain awareness

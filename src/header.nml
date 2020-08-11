@@ -4,41 +4,55 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 5;
-	min_compatible_version: 5;
+	version: 6;
+	min_compatible_version: 6;
 	url: string(STR_WEBSITE);
 
-param 0 {
-  param_industry_density {
-   name: string(STR_PARAM_NAME_INDUSTRY_DENSITY);
-   desc: string(STR_PARAM_DESC_INDUSTRY_DENSITY);
-   type: int;
-   min_value: 0;
-   max_value: 3;
-   def_value: 2;
-   names:	{
-	0:	string(STR_DENSITY_VERY_LOW);
-	1:	string(STR_DENSITY_LOW);
-	2:	string(STR_DENSITY_NORMAL);
-	3:	string(STR_DENSITY_HIGH);
-   };
-   }}
+	param 0 {
+		param_industry_density {
+			name: string(STR_PARAM_NAME_INDUSTRY_DENSITY);
+			desc: string(STR_PARAM_DESC_INDUSTRY_DENSITY);
+			type: int;
+			min_value: 0;
+			max_value: 3;
+			def_value: 2;
+			names:	{
+				0:	string(STR_DENSITY_VERY_LOW);
+				1:	string(STR_DENSITY_LOW);
+				2:	string(STR_DENSITY_NORMAL);
+				3:	string(STR_DENSITY_HIGH);
+			};
+		}
+	}
 
-param 1 {
-  param_primary_only {
-   name: string(STR_PARAM_NAME_PRIMARY_ONLY);
-   desc: string(STR_PARAM_DESC_PRIMARY_ONLY);
-   def_value: 0;
-   type: bool;
-   }}
+	param 1 {
+		param_primary_only {
+			name: string(STR_PARAM_NAME_PRIMARY_ONLY);
+			desc: string(STR_PARAM_DESC_PRIMARY_ONLY);
+			def_value: 0;
+			type: bool;
+		}
+	}
 
-param 2 {
-  param_elevation_checks {
-   name: string(STR_PARAM_NAME_ELEVATION_CHECKS);
-   desc: string(STR_PARAM_DESC_ELEVATION_CHECKS);
-   def_value: 0;
-   type: bool;
-   }}
+	param 2 {
+		param_elevation_checks {
+			name: string(STR_PARAM_NAME_ELEVATION_CHECKS);
+			desc: string(STR_PARAM_DESC_ELEVATION_CHECKS);
+			def_value: 0;
+			type: bool;
+		}
+	}
+	
+	param 3 {
+		param_auto_farm_fields {
+			name: string(STR_PARAM_NAME_AUTO_FARM_FIELDS);
+			desc: string(STR_PARAM_DESC_AUTO_FARM_FIELDS);
+			def_value: 1;
+			type: bool;
+		}
+	}
+
+	
 }
 
 
