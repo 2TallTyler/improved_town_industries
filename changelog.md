@@ -69,4 +69,4 @@ August 11, 2020
 - Add: Decorative objects for each type of farm field, with terrain awareness
 - Add: Additional industry tile layouts for Coal Mine, Logging Camp, Oil Refinery, Paper Mill, and Factory
   - Thanks to YaoAngelsin for designing many of these
-- Add parameter to make Logging Camp behave like the vanilla Forest. This is the new default, but players can still choose the previous sub-tropic Lumber Mill behavior.
+- Add/Change: Added parameter to make Logging Camp behave like the vanilla Forest. This is the new default, but players can still choose the previous sub-tropic Lumber Mill behavior.
