@@ -301,7 +301,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_prospected, extra_callback_i
 switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_factory_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_factory) {
+item (FEAT_INDUSTRIES, industry_factory, 5) {
 	property {
 		substitute:				INDUSTRYTYPE_TEMPERATE_FACTORY;
 		life_type:				IND_LIFE_TYPE_PROCESSING;

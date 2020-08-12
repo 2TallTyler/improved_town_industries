@@ -187,7 +187,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_allow_prospected, extra_callback
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_oil_wells) {
+item (FEAT_INDUSTRIES, industry_oil_wells, 8) {
 	property {
 		substitute:				INDUSTRYTYPE_OIL_WELLS;
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;

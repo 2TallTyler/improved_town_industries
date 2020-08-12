@@ -259,7 +259,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_prospected, extra_callb
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_refinery_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_oil_refinery) {
+item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 	property {
 		substitute:				INDUSTRYTYPE_OIL_REFINERY;
 		life_type:				IND_LIFE_TYPE_PROCESSING;

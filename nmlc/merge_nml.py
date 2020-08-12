@@ -48,10 +48,6 @@ paper_mill = codecs.open("src/paper_mill.nml",'r','utf8')
 sections.append(paper_mill.read())
 paper_mill.close()
 
-# food_factory = codecs.open("src/food_factory.nml",'r','utf8')
-# sections.append(food_factory.read())
-# food_factory.close()
-
 oil_wells = codecs.open("src/oil_wells.nml",'r','utf8')
 sections.append(oil_wells.read())
 oil_wells.close()

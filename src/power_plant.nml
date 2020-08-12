@@ -172,7 +172,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_prospected, extra_callba
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_power_plant) {
+item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 	property {
 		substitute:				INDUSTRYTYPE_POWER_PLANT;
 		life_type:				IND_LIFE_TYPE_BLACK_HOLE;

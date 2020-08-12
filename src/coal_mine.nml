@@ -174,7 +174,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_allow_prospected, extra_callback
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_coal_mine) {
+item (FEAT_INDUSTRIES, industry_coal_mine, 1) {
 	property {
 		substitute:				INDUSTRYTYPE_COAL_MINE;
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;

@@ -163,7 +163,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_allow_prospected, extra_callbac
 switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_steel_mill_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_steel_mill) {
+item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
 	property {
 		substitute:				INDUSTRYTYPE_STEEL_MILL;
 		override:				INDUSTRYTYPE_STEEL_MILL;

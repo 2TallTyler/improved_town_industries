@@ -162,7 +162,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_farm_allow_funded, extra_callback_info2 ==
 */
 
 if(param_auto_farm_fields == 1) { 
-	item (FEAT_INDUSTRIES, industry_farm) {
+	item (FEAT_INDUSTRIES, industry_farm, 0) {
 		property {
 			substitute:				INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
 			life_type:				IND_LIFE_TYPE_ORGANIC;
@@ -193,7 +193,7 @@ if(param_auto_farm_fields == 1) {
 		}
 	} 
 } else {
-item (FEAT_INDUSTRIES, industry_farm) {
+item (FEAT_INDUSTRIES, industry_farm, 0) {
 		property {
 			substitute:				INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
 			life_type:				IND_LIFE_TYPE_ORGANIC;

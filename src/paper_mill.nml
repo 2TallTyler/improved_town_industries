@@ -231,7 +231,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_prospected, extra_callbac
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_paper_mill_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_paper_mill) {
+item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
 	property {
 		substitute:				INDUSTRYTYPE_PAPER_MILL;
 		life_type:				IND_LIFE_TYPE_PROCESSING;

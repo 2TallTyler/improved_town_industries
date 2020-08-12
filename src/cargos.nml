@@ -1,7 +1,7 @@
 // Begin Cargos
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, FOOD, RFPR, 
+	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, FOOD, RFPR, RCYC,
 }
 
 // Original ID

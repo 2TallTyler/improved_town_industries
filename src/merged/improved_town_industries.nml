@@ -4,8 +4,9 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 6;
-	min_compatible_version: 6;
+	version: 8;
+	min_compatible_version: 8;
+
 	url: string(STR_WEBSITE);
 
 	param 0 {
@@ -67,18 +68,30 @@ grf {
 		}
 	}
 
-	
+	param 5 {
+		param_recyclables {
+			name: string(STR_PARAM_NAME_RECYCLABLES);
+			desc: string(STR_PARAM_DESC_RECYCLABLES);
+			def_value: 0;
+			type: bool;
+		}
+	}
+
 }
 
+// Create an error if OpenTTD version is before 1.10.0 (required for increased cargo types at industries)
+if (version_openttd(1,10,0,28004) > openttd_version) {
+	error(FATAL, string(STR_ERROR_GAME_VERSION));
+}
 
 // Create an error if the map is smaller than 256 x 256
 if (map_min_edge < 256 || map_max_edge < 256) {
 	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
 }
 
-// Create an error if OpenTTD version is before 1.10.0 (required for increased cargo types at industries)
-if (version_openttd(1,10,0,28004) > openttd_version) {
-	error(FATAL, string(STR_ERROR_GAME_VERSION));
+// Create an error if Recyclables parameter is active but Improved Town Layouts isn't active or is too old
+if (param_recyclables == 1 && (param["TT\03\01", 254] < 7 || (grf_current_status("TT\03\01") == 0 && grf_future_status("TT\03\01") == 0))) {
+	error(FATAL, string(STR_ERROR_RCLC_NEEDS_ITL));
 }
 
 // Disable base game industries
@@ -87,11 +100,44 @@ disable_item(FEAT_INDUSTRIES, 0, 36);
 // Disable unused cargo types
 disable_item(FEAT_CARGOS, 0, 30);
 
+
+/*
+
+Industry Item IDs
+
+0: Farm
+1: Coal Mine
+2: Power Plant
+3: Iron Mine
+4: Steel Mill
+5: Factory
+6: Logging Camp
+7: Paper Mill
+8: Oil Wells
+9: Oil Refinery
+
+
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+
+*/
+
 // End Header
 // Begin Cargos
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, FOOD, RFPR, 
+	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, FOOD, RFPR, RCYC,
 }
 
 // Original ID
@@ -344,6 +390,32 @@ item (FEAT_CARGOS, cargo_steel, 0x09) {
 	}
 }
 
+// Recyclables enabled only if parameter is active and Improved Town Layouts is loaded before or after this NewGRF
+if (param_recyclables == 1 && param["TT\03\01", 254] >= 7) {
+	item (FEAT_CARGOS, cargo_recyclables, 0x0A) {
+		property {
+			number:						0x0A;
+			sprite:						4319;
+			type_name:					string(STR_CARGO_NAME_RECYCLABLES);
+			unit_name:					string(STR_CARGO_NAME_RECYCLABLES);
+			type_abbreviation:			string(STR_CARGO_ABBREV_RECYCLABLES);
+			weight:						1.0;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_BULK, CC_PIECE_GOODS);
+			cargo_label:				"RCYC";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1.0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_RECYCLABLES);
+			penalty_lowerbound:			10;
+			single_penalty_length:		255;
+			station_list_colour:		165;
+			cargo_payment_list_colour:	165;
+			price_factor:				100;
+			capacity_multiplier:		1;		
+		}
+	}
+}
 
 // End Cargos
 // Begin Farm
@@ -510,7 +582,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_farm_allow_funded, extra_callback_info2 ==
 */
 
 if(param_auto_farm_fields == 1) { 
-	item (FEAT_INDUSTRIES, industry_farm) {
+	item (FEAT_INDUSTRIES, industry_farm, 0) {
 		property {
 			substitute:				INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
 			life_type:				IND_LIFE_TYPE_ORGANIC;
@@ -518,6 +590,7 @@ if(param_auto_farm_fields == 1) {
 			cargo_types:			[
 									produce_cargo("FOOD",12),
 									accept_cargo("RFPR"),
+									accept_cargo("RCYC"),
 			];
 			name:					TTD_STR_INDUSTRY_NAME_FARM;
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
@@ -540,7 +613,7 @@ if(param_auto_farm_fields == 1) {
 		}
 	} 
 } else {
-item (FEAT_INDUSTRIES, industry_farm) {
+item (FEAT_INDUSTRIES, industry_farm, 0) {
 		property {
 			substitute:				INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
 			life_type:				IND_LIFE_TYPE_ORGANIC;
@@ -548,6 +621,7 @@ item (FEAT_INDUSTRIES, industry_farm) {
 			cargo_types:			[
 									produce_cargo("FOOD",12),
 									accept_cargo("RFPR"),
+									accept_cargo("RCYC"),
 			];
 			name:					TTD_STR_INDUSTRY_NAME_FARM;
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
@@ -1177,7 +1251,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_allow_prospected, extra_callback
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_coal_mine) {
+item (FEAT_INDUSTRIES, industry_coal_mine, 1) {
 	property {
 		substitute:				INDUSTRYTYPE_COAL_MINE;
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
@@ -1339,15 +1413,15 @@ spritelayout sprlay_power_plant_5_W { // Coal pile W
 switch (FEAT_INDUSTRYTILES, SELF, switch_power_plant_cooling_tower_availability, current_year >= 1918) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_1) { // Powerhouse
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8],[RCYC, 8]];}
 graphics {default:		sprlay_power_plant_1;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_2) { // Power terminals
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8],[RCYC, 8]];}
 graphics {default:		sprlay_power_plant_2;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_3) { // Transformers
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8],[RCYC, 8]];}
 graphics {default:		sprlay_power_plant_3;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_4) { // Cooling tower
@@ -1362,11 +1436,11 @@ graphics {
 }}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_5_N) { // Coal pile N
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8],[RCYC, 8]];}
 graphics {default:		sprlay_power_plant_5_N;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_5_W) { // Coal pile W
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8],[RCYC, 8]];}
 graphics {default:		sprlay_power_plant_5_W;}}
 
 
@@ -1479,13 +1553,14 @@ switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_prospected, extra_callba
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_power_plant) {
+item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 	property {
 		substitute:				INDUSTRYTYPE_POWER_PLANT;
 		life_type:				IND_LIFE_TYPE_BLACK_HOLE;
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
 								accept_cargo("COAL"),
+								accept_cargo("RCYC"),
 								accept_cargo("PASS"),
 								produce_cargo("PASS",2),
 		];
@@ -1731,7 +1806,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_allow_prospected, extra_callback
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_iron_mine) {
+item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
 	property {
 		substitute:				INDUSTRYTYPE_IRON_ORE_MINE;
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
@@ -1827,25 +1902,25 @@ spritelayout sprlay_steel_mill_2_W {
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_1_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_E) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_1_E;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_1_W;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_S) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_1_S;}
 }
 
@@ -1853,13 +1928,13 @@ item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_S) {
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_2_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8]];}
+		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
 	graphics {default:			sprlay_steel_mill_2_W;}
 }
 
@@ -1962,7 +2037,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_allow_prospected, extra_callbac
 switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_steel_mill_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_steel_mill) {
+item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
 	property {
 		substitute:				INDUSTRYTYPE_STEEL_MILL;
 		override:				INDUSTRYTYPE_STEEL_MILL;
@@ -1971,6 +2046,7 @@ item (FEAT_INDUSTRIES, industry_steel_mill) {
 		cargo_types:			[
 								accept_cargo("IORE", produce_cargo("STEL",1)),
 								accept_cargo("COAL", produce_cargo("STEL",1)),
+								accept_cargo("RCYC", produce_cargo("STEL",1)),
 								accept_cargo("PASS"),
 								produce_cargo("PASS",6),
 		];
@@ -2339,7 +2415,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_prospected, extra_callback_i
 switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_factory_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_factory) {
+item (FEAT_INDUSTRIES, industry_factory, 5) {
 	property {
 		substitute:				INDUSTRYTYPE_TEMPERATE_FACTORY;
 		life_type:				IND_LIFE_TYPE_PROCESSING;
@@ -2349,6 +2425,7 @@ item (FEAT_INDUSTRIES, industry_factory) {
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
 								accept_cargo("RFPR", produce_cargo("GOOD",1)),
 								accept_cargo("FOOD", produce_cargo("GOOD",1)),
+								accept_cargo("RCYC", produce_cargo("GOOD",1)),
 								accept_cargo("PASS"),
 								produce_cargo("PASS",10),
 		];
@@ -2559,7 +2636,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_allow_funded, extra_callback_
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_allow_prospected;}
 
 if (param_clearcut == 1) {
-	item (FEAT_INDUSTRIES, industry_logging_camp) {
+	item (FEAT_INDUSTRIES, industry_logging_camp, 6) {
 		property {
 			substitute:				INDUSTRYTYPE_LUMBER_MILL;
 			life_type:				IND_LIFE_TYPE_PROCESSING;
@@ -2584,7 +2661,7 @@ if (param_clearcut == 1) {
 		}
 	}
 } else {
-	item (FEAT_INDUSTRIES, industry_logging_camp) {
+	item (FEAT_INDUSTRIES, industry_logging_camp, 6) {
 		property {
 			substitute:				INDUSTRYTYPE_FOREST;
 			life_type:				IND_LIFE_TYPE_ORGANIC;
@@ -2948,7 +3025,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_prospected, extra_callbac
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_paper_mill_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_paper_mill) {
+item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
 	property {
 		substitute:				INDUSTRYTYPE_PAPER_MILL;
 		life_type:				IND_LIFE_TYPE_PROCESSING;
@@ -2956,6 +3033,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill) {
 		cargo_types:			[
 								accept_cargo("WOOD", produce_cargo("GOOD",1)),
 								accept_cargo("RFPR", produce_cargo("GOOD",1)),
+								accept_cargo("RCYC", produce_cargo("GOOD",1)),
 								accept_cargo("PASS"),
 								produce_cargo("PASS",8),
 		];
@@ -3194,7 +3272,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_allow_prospected, extra_callback
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_oil_wells) {
+item (FEAT_INDUSTRIES, industry_oil_wells, 8) {
 	property {
 		substitute:				INDUSTRYTYPE_OIL_WELLS;
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
@@ -3497,7 +3575,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_prospected, extra_callb
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_refinery_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_oil_refinery) {
+item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 	property {
 		substitute:				INDUSTRYTYPE_OIL_REFINERY;
 		life_type:				IND_LIFE_TYPE_PROCESSING;

@@ -156,7 +156,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_allow_funded, extra_callback_
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_allow_prospected;}
 
 if (param_clearcut == 1) {
-	item (FEAT_INDUSTRIES, industry_logging_camp) {
+	item (FEAT_INDUSTRIES, industry_logging_camp, 6) {
 		property {
 			substitute:				INDUSTRYTYPE_LUMBER_MILL;
 			life_type:				IND_LIFE_TYPE_PROCESSING;
@@ -181,7 +181,7 @@ if (param_clearcut == 1) {
 		}
 	}
 } else {
-	item (FEAT_INDUSTRIES, industry_logging_camp) {
+	item (FEAT_INDUSTRIES, industry_logging_camp, 6) {
 		property {
 			substitute:				INDUSTRYTYPE_FOREST;
 			life_type:				IND_LIFE_TYPE_ORGANIC;
