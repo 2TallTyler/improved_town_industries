@@ -27,6 +27,12 @@ STR_PARAM_DESC_ELEVATION_CHECKS		:Enable elevation checks: {SILVER}Coal Mines{BL
 STR_PARAM_NAME_AUTO_FARM_FIELDS		:Farms build fields
 STR_PARAM_DESC_AUTO_FARM_FIELDS		:Choose if {SILVER}Farms {BLACK}construct fields, as in vanilla OpenTTD.{}{}Field tiles are available as decorative objects.
 
+STR_PARAM_NAME_CLEARCUT				:Logging Camp behavior
+STR_PARAM_DESC_CLEARCUT				:{WHITE}- Like Forest{BLACK} (vanilla Temperate climate). Does not cut trees. Subject to vanilla production changes. {ORANGE}Recommended.{}{}{WHITE}- Like Lumber Mill{BLACK} (vanilla Sub-tropic climate). Cuts trees within reach for production. Included for backwards compatibility.
+
+STR_PARAM_CLEARCUT_FOREST			:Like Forest
+STR_PARAM_CLEARCUT_LUMBER_MILL		:Like Lumber Mill
+
 STR_FUND_AVAILABLE_1800				:{BLACK}Introduced: {YELLOW}1800
 STR_FUND_AVAILABLE_1856				:{BLACK}Introduced: {YELLOW}1856
 STR_FUND_AVAILABLE_1882				:{BLACK}Introduced: {YELLOW}1882

@@ -94,14 +94,11 @@ tilelayout industry_layout_logging_camp_3 {
 										2,1:	ind_tile_logging_camp_3;	2,2:	ind_tile_logging_camp_6;
 }
 
+/* Switch for clearcutting trees */
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, last_month_transported("WOOD") > 0 && transported_last_month_pct("WOOD") > 70) {1: return 1; return 0;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, last_month_transported("WOOD") > 0 && transported_last_month_pct("WOOD") > 60) {1: return 1; return 0;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_7, nearby_tile_class(2,0) == TILE_CLASS_TREES || nearby_tile_class(2,1) == TILE_CLASS_TREES || nearby_tile_class(2,2) == TILE_CLASS_TREES && nearby_tile_class(0,3) == TILE_CLASS_TREES || nearby_tile_class(1,3) == TILE_CLASS_TREES) {1: CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Check for trees near camp. Not every tile must have a tree - just one on each side southeast and southwest of the industry.
-
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_6, extra_callback_info2 == IND_CREATION_GENERATION) {1: CB_RESULT_LOCATION_ALLOW; switch_logging_camp_location_check_7;} // Ignore tree requirement when generating map, since industries are generated before trees.
-
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_5, industry_distance(industry_paper_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_logging_camp_location_check_6; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of paper mill
+/* Location checks - specific to Lumber Camps */ 
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_5, industry_distance(industry_paper_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of paper mill
 switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_logging_camp_location_check_5;} // Logging camps don't build in cities
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_logging_camp_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_logging_camp_location_check_3;} // Add up the town zone radii and store it in temporary register 0
@@ -158,28 +155,52 @@ switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_allow_prospected, extra_callb
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_logging_camp) {
-	property {
-		substitute:				INDUSTRYTYPE_LUMBER_MILL;
-		life_type:				IND_LIFE_TYPE_PROCESSING;
-		cargo_types:			[produce_cargo("WOOD",2),];
-		spec_flags:				bitmask(IND_FLAG_CUT_TREES);
-		name:					string(STR_NAME_LOGGING_CAMP);
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_LOGGING_CAMP));
-		prob_map_gen:			15;
-		prob_in_game:			15;
-		fund_cost_multiplier:	40;
-		layouts:				[
-			industry_layout_logging_camp_1,
-			industry_layout_logging_camp_2,
-			industry_layout_logging_camp_3,
-		];
+if (param_clearcut == 1) {
+	item (FEAT_INDUSTRIES, industry_logging_camp) {
+		property {
+			substitute:				INDUSTRYTYPE_LUMBER_MILL;
+			life_type:				IND_LIFE_TYPE_PROCESSING;
+			cargo_types:			[produce_cargo("WOOD",2),];
+			spec_flags:				bitmask(IND_FLAG_CUT_TREES);
+			name:					string(STR_NAME_LOGGING_CAMP);
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_LOGGING_CAMP));
+			prob_map_gen:			15;
+			prob_in_game:			15;
+			fund_cost_multiplier:	40;
+			layouts:				[
+				industry_layout_logging_camp_1,
+				industry_layout_logging_camp_2,
+				industry_layout_logging_camp_3,
+			];
+		}
+		graphics {
+			location_check:			switch_logging_camp_allow_funded;
+			control_special:		switch_logging_camp_production_check_1;
+			extra_text_industry:	string(STR_EXTRA_TEXT_LOGGING_CAMP);
+			construction_probability:	1;
+		}
 	}
-	graphics {
-		location_check:			switch_logging_camp_allow_funded;
-		control_special:		switch_logging_camp_production_check_1;
-		extra_text_industry:	string(STR_EXTRA_TEXT_LOGGING_CAMP);
-		construction_probability:	1;
+} else {
+	item (FEAT_INDUSTRIES, industry_logging_camp) {
+		property {
+			substitute:				INDUSTRYTYPE_FOREST;
+			life_type:				IND_LIFE_TYPE_ORGANIC;
+			cargo_types:			[produce_cargo("WOOD",13),];
+			name:					string(STR_NAME_LOGGING_CAMP);
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_LOGGING_CAMP));
+			prob_map_gen:			15;
+			prob_in_game:			15;
+			fund_cost_multiplier:	40;
+			layouts:				[
+				industry_layout_logging_camp_1,
+				industry_layout_logging_camp_2,
+				industry_layout_logging_camp_3,
+			];
+		}
+		graphics {
+			location_check:			switch_logging_camp_allow_funded;
+			construction_probability:	1;
+		}
 	}
 }
 
