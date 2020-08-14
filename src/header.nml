@@ -89,8 +89,8 @@ if (map_min_edge < 256 || map_max_edge < 256) {
 	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
 }
 
-// Create an error if Recyclables parameter is active but Improved Town Layouts isn't active or is too old
-if (param_recyclables == 1 && (param["TT\03\01", 254] < 7 || (grf_current_status("TT\03\01") == 0 && grf_future_status("TT\03\01") == 0))) {
+// Create an error if Recyclables parameter is active but Improved Town Layouts isn't active or is too old (requires Version 8 or newer)
+if (param_recyclables == 1 && (param["TT\03\01", 254] < 8 || (grf_current_status("TT\03\01") == 0 && grf_future_status("TT\03\01") == 0))) {
 	error(FATAL, string(STR_ERROR_RCLC_NEEDS_ITL));
 }
 

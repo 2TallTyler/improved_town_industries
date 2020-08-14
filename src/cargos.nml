@@ -255,7 +255,7 @@ item (FEAT_CARGOS, cargo_steel, 0x09) {
 }
 
 // Recyclables enabled only if parameter is active and Improved Town Layouts is loaded before or after this NewGRF
-if (param_recyclables == 1 && param["TT\03\01", 254] >= 7) {
+if (param_recyclables == 1 && param["TT\03\01", 254] >= 8) {
 	item (FEAT_CARGOS, cargo_recyclables, 0x0A) {
 		property {
 			number:						0x0A;
