@@ -48,6 +48,7 @@
   - *Factory (plastics)
   - *Farm (organic waste/compost)
   - Power Plant (waste to energy incineration)
+  
   *These industries turn recyclables into their usual production (Steel, Goods, or Food), at a 1:1 rate, giving you more secondary products to transport
 
 ### Industries are invented at realistic dates in history
