@@ -38,6 +38,18 @@
   - Like town buildings, industries produce passengers without checking if passengers were delivered to them
   - Tying industry passenger creation to delivered passengers isn't possible because imperfect station ratings and symmetric Cargodist would produce a negative feedback loop, eliminating all demand for passenger traffic to industries
 
+### Towns generate recyclables 
+**(requires Improved Town Layouts)**
+- Recyclables are produced by houses and accepted by a variety of industries.
+  - Markets, stadiums, and tall buildings are all big producers and might justify their own stations with a dedicated truck or two, while low-density suburbs can get away with a multiple-stop pickup route.
+- Recyclables are accepted at:
+  - *Steel Mill (scrap metal)
+  - *Paper Mill (paper and cardboard)
+  - *Factory (plastics)
+  - *Farm (organic waste/compost)
+  - Power Plant (waste to energy incineration)
+  *These industries turn recyclables into their usual production (Steel, Goods, or Food), at a 1:1 rate, giving you more secondary products to transport
+
 ### Industries are invented at realistic dates in history
 
 - Always: Farm, Coal Mine, Logging Camp
