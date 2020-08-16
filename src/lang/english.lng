@@ -8,6 +8,7 @@ STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/m
 STR_ERROR_GAME_VERSION				:{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better
 STR_ERROR_MAP_TOO_SMALL				:{TITLE} needs a map size of at least 256x256.
 STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Recyclables requires Improved Town Layouts version 1.2.0 or better
+STR_ERROR_CONFLICTING_INDUSTRY_NEWGRF	:{TITLE} is incompatible with other industry NewGRFs and has been disabled.
 
 STR_PARAM_NAME_INDUSTRY_DENSITY		:Industry Density
 STR_PARAM_DESC_INDUSTRY_DENSITY		:{ORANGE}Must match Industry Density in game settings.

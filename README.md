@@ -10,8 +10,9 @@
 - Industries have realistic invention dates for gameplay as early as 1700
 - Includes object tiles for visually expanding industries
 - Designed for Temperate climate only
-- Uses only base game sprites, so visually compatible with any base graphics set including original TTD, OpenGFX, aBase, zBase, and NightGFX.
-- Requires OpenTTD version 1.10.0, JGR version 0.34, or better.
+- Uses only base game sprites, so visually compatible with any base graphics set including original TTD, OpenGFX, aBase, zBase, and NightGFX
+- Incompatible with other industry sets
+- Requires OpenTTD version 1.10.0, JGR version 0.34, or better
 - Requires NewGRF vehicles which support additional cargos
 
 ## Features
@@ -19,9 +20,9 @@
 ### Expanded industry and cargo chains
 
 - Added cargos to Temperate industries and added some industries and behaviors from Sub-arctic and Sub-tropical
-- Cargos are generic and have multiple destinations, designed for asymmetric Cargodist gameplay.
+- Cargos are generic and have multiple destinations, designed for asymmetric Cargodist gameplay
   - For example, the Oil Refinery processes Oil into Chemicals, which can be delivered to the Farm as fertilizer, the Factory as plastics, or the Paper Mill as the industrial chemicals used to break down wood pulp.
-- The additional cargos require NewGRF vehicles which support additional cargos.
+- The additional cargos require NewGRF vehicles which support additional cargos
 - Food can be delivered directly to towns when a NewGRF house set accepts Food (recommended: Improved Town Layouts) or converted to Goods by the Factory
 
 ### Processing industries spawn near towns
