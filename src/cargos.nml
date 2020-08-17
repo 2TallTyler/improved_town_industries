@@ -271,7 +271,7 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 8) {
 			town_growth_multiplier:		1.0;
 			units_of_cargo:				TTD_STR_TONS;
 			items_of_cargo:				string(STR_CARGO_QUANTITY_RECYCLABLES);
-			penalty_lowerbound:			10;
+			penalty_lowerbound:			255;
 			single_penalty_length:		255;
 			station_list_colour:		165;
 			cargo_payment_list_colour:	165;
