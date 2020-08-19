@@ -56,6 +56,10 @@ oil_refinery = codecs.open("src/oil_refinery.nml",'r','utf8')
 sections.append(oil_refinery.read())
 oil_refinery.close()
 
+recycling_center = codecs.open("src/recycling_center.nml",'r','utf8')
+sections.append(recycling_center.read())
+recycling_center.close()
+
 print("Python: Writing combined NML file")
 
 # create a new file on disk, which will have a name and be writable
