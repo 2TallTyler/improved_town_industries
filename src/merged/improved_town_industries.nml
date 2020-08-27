@@ -449,7 +449,7 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
 			type_abbreviation:			string(STR_CARGO_ABBREV_WASTE);
 			weight:						1.0;
 			is_freight:					1;
-			cargo_classes:				bitmask(CC_BULK, CC_PIECE_GOODS);
+			cargo_classes:				bitmask(CC_BULK, CC_PIECE_GOODS, CC_COVERED);
 			cargo_label:				"WSTE";
 			town_growth_effect:			TOWNGROWTH_NONE;
 			town_growth_multiplier:		0;
