@@ -5,8 +5,10 @@ STR_GRF_DESC						:{ORANGE}Vanilla-inspired industries{BLACK} with new chains, c
 
 STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
 
-STR_ERROR_GAME_VERSION				:{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better
+STR_ERROR_GAME_VERSION				:{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better.
 STR_ERROR_MAP_TOO_SMALL				:{TITLE} needs a map size of at least 256x256.
+STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Waste & Recycled Materials requires Improved Town Layouts version 1.2.0 or better.
+STR_ERROR_CONFLICTING_INDUSTRY_NEWGRF	:{TITLE} is incompatible with other industry NewGRFs and has been disabled.
 
 STR_PARAM_NAME_INDUSTRY_DENSITY		:Industry Density
 STR_PARAM_DESC_INDUSTRY_DENSITY		:{ORANGE}Must match Industry Density in game settings.
@@ -27,6 +29,9 @@ STR_PARAM_DESC_ELEVATION_CHECKS		:Enable elevation checks: {SILVER}Coal Mines{BL
 STR_PARAM_NAME_AUTO_FARM_FIELDS		:Farms build fields
 STR_PARAM_DESC_AUTO_FARM_FIELDS		:Choose if {SILVER}Farms {BLACK}construct fields, as in vanilla OpenTTD.{}{}Field tiles are available as decorative objects.
 
+STR_PARAM_NAME_RECYCLABLES			:Enable Waste & Recycled Materials
+STR_PARAM_DESC_RECYCLABLES			:{ORANGE}Requires Improved Town Layouts NewGRF.{BLACK} Enables {SILVER}Recycling Center{BLACK} to sort Waste from town buildings into Recycled Materials for transport to industries.{}{}
+
 STR_PARAM_NAME_CLEARCUT				:Logging Camp behavior
 STR_PARAM_DESC_CLEARCUT				:{WHITE}- Like Forest{BLACK} (vanilla Temperate climate). Does not cut trees. Subject to vanilla production changes. {ORANGE}Recommended.{}{}{WHITE}- Like Lumber Mill{BLACK} (vanilla Sub-tropic climate). Cuts trees within reach for production. Included for backwards compatibility.
 
@@ -38,6 +43,7 @@ STR_FUND_AVAILABLE_1856				:{BLACK}Introduced: {YELLOW}1856
 STR_FUND_AVAILABLE_1882				:{BLACK}Introduced: {YELLOW}1882
 STR_FUND_AVAILABLE_1885				:{BLACK}Introduced: {YELLOW}1885
 STR_FUND_AVAILABLE_1900				:{BLACK}Introduced: {YELLOW}1900
+STR_FUND_AVAILABLE_1945				:{BLACK}Introduced: {YELLOW}1945
 
 STR_NAME_OBJECT_MENU				:Industry Tiles
 STR_NAME_OBJECT_MENU_FIELDS			:Farm Tiles
@@ -56,6 +62,7 @@ STR_NAME_FACTORY					:Factory
 STR_NAME_COAL_MINE					:Coal Mine
 STR_NAME_OIL_WELLS					:Oil Wells
 STR_NAME_PAPER_MILL					:Paper Mill
+STR_NAME_RECYCLING_CENTER			:Recycling Center
 
 STR_NAME_FIELD_1					:Field
 
@@ -63,3 +70,11 @@ STR_NAME_FIELD_1					:Field
 STR_CARGO_NAME_CHEMICALS			:Chemicals
 STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}CH
 STR_CARGO_QUANTITY_CHEMICALS		:{VOLUME} of chemicals
+
+STR_CARGO_NAME_RECYCLABLES			:Recycled Materials
+STR_CARGO_ABBREV_RECYCLABLES		:{TINYFONT}RM
+STR_CARGO_QUANTITY_RECYCLABLES		:{WEIGHT} of recycled materials
+
+STR_CARGO_NAME_WASTE				:Waste
+STR_CARGO_ABBREV_WASTE				:{TINYFONT}WS
+STR_CARGO_QUANTITY_WASTE			:{WEIGHT} of waste

@@ -4,8 +4,9 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 6;
-	min_compatible_version: 6;
+	version: 8;
+	min_compatible_version: 8;
+
 	url: string(STR_WEBSITE);
 
 	param 0 {
@@ -67,13 +68,15 @@ grf {
 		}
 	}
 
-	
-}
+	param 5 {
+		param_recyclables {
+			name: string(STR_PARAM_NAME_RECYCLABLES);
+			desc: string(STR_PARAM_DESC_RECYCLABLES);
+			def_value: 0;
+			type: bool;
+		}
+	}
 
-
-// Create an error if the map is smaller than 256 x 256
-if (map_min_edge < 256 || map_max_edge < 256) {
-	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
 }
 
 // Create an error if OpenTTD version is before 1.10.0 (required for increased cargo types at industries)
@@ -81,10 +84,77 @@ if (version_openttd(1,10,0,28004) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
+// Create an error if the map is smaller than 256 x 256
+if (map_min_edge < 256 || map_max_edge < 256) {
+	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
+}
+
+// Create an error if a conflicting industry replacement set is active
+if (
+	   grf_current_status("EELS") == 1 			|| grf_future_status("EELS") == 1			// Eels
+	|| grf_current_status("EN\15\01") == 1 		|| grf_future_status("EN\15\01") == 1		// Apollo Rocket Industry Set
+	|| grf_current_status("MCEe") == 1			|| grf_future_status("MCEe") == 1			// ECSext
+	|| grf_current_status("\F1%\00\05") == 1	|| grf_future_status("\F1%\00\05") == 1		// FIRS 1
+	|| grf_current_status("\F1%\00\07") == 1	|| grf_future_status("\F1%\00\07") == 1		// FIRS 3
+	|| grf_current_status("MCF1") == 1			|| grf_future_status("MCF1") == 1			// FIXES
+	|| grf_current_status("frMI") == 1			|| grf_future_status("frMI") == 1			// Manual Industries II
+	|| grf_current_status("McMi") == 1 			|| grf_future_status("McMi") == 1			// Manpower Industries
+	|| grf_current_status("\45\4E\31\01") == 1 	|| grf_future_status("\45\4E\31\01") == 1	// North Korean Industry Set
+	|| grf_current_status("\44\44\06\02") == 1 	|| grf_future_status("\44\44\06\02") == 1	// Pikka's Basic Industries
+	|| grf_current_status("\52\54\4E\41") == 1	|| grf_future_status("\52\54\4E\41") == 1	// Representative UK Train Set - Extended (adds nuclear industry chain)
+	|| grf_current_status("\41\4C\01\01") == 1	|| grf_future_status("\41\4C\01\01") == 1	// station's name from nearby industries
+	|| grf_current_status("\44\44\01\10") == 1	|| grf_future_status("\44\44\01\10") == 1	// Town and Industry - Basic Industries
+	|| grf_current_status("\44\44\06\03") == 1 	|| grf_future_status("\44\44\06\03") == 1	// UKRS Industries Brick Chain v1.5
+	|| grf_current_status("\6A\54\72\83") == 1	|| grf_future_status("\6A\54\72\83") == 1	// Wannaroo Basic Industries
+	|| grf_current_status("\6A\64\72\04") == 1	|| grf_future_status("\6A\64\72\04") == 1	// Wannaroo Extra Industries
+	|| grf_current_status("\56\45\03\03") == 1	|| grf_future_status("\56\45\03\03") == 1	// YETI Extended Towns and Industries
+	|| grf_current_status("\4E\4D\11\13") == 1	|| grf_future_status("\4E\4D\11\13") == 1	// North American Industry Set (NAIS)
+	) {
+	error(FATAL, string(STR_ERROR_CONFLICTING_INDUSTRY_NEWGRF));
+}
+
+// Create an error if Recyclables parameter is active but Improved Town Layouts isn't active or is too old (requires Version 8 or newer)
+if (param_recyclables == 1 && (param["TT\03\01", 254] < 9 || (grf_current_status("TT\03\01") == 0 && grf_future_status("TT\03\01") == 0))) {
+	error(FATAL, string(STR_ERROR_RCLC_NEEDS_ITL));
+}
+
 // Disable base game industries
 disable_item(FEAT_INDUSTRIES, 0, 36);
 
 // Disable unused cargo types
 disable_item(FEAT_CARGOS, 0, 30);
+
+
+/*
+
+Industry Item IDs
+
+0: Farm
+1: Coal Mine
+2: Power Plant
+3: Iron Mine
+4: Steel Mill
+5: Factory
+6: Logging Camp
+7: Paper Mill
+8: Oil Wells
+9: Oil Refinery
+
+
+Industry Totals on 256 x 256 map:
+
+	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells		1				4			8				12
+	Farm			1				5			12				12
+	Lumber Camp		1				3			8				12
+	Coal Mine		1				3			6				12
+	Iron Mine		1				3			6				12
+	Steel Mill		1				1			2				3
+	Factory			1				3			6				7
+	Paper Mill		1				1			2				3
+	Oil Refinery	1				1			2				3
+	Power Plant		1				1			3				4
+
+*/
 
 // End Header

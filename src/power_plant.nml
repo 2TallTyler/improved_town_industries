@@ -32,15 +32,15 @@ spritelayout sprlay_power_plant_5_W { // Coal pile W
 switch (FEAT_INDUSTRYTILES, SELF, switch_power_plant_cooling_tower_availability, current_year >= 1918) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_1) { // Powerhouse
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_power_plant_1;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_2) { // Power terminals
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_power_plant_2;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_3) { // Transformers
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_power_plant_3;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_4) { // Cooling tower
@@ -55,11 +55,11 @@ graphics {
 }}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_5_N) { // Coal pile N
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_power_plant_5_N;}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_5_W) { // Coal pile W
-property {substitute:	02; accepted_cargos: [[PASS, 8], [COAL, 8]];}
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
 graphics {default:		sprlay_power_plant_5_W;}}
 
 
@@ -121,7 +121,7 @@ switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_town_distance_check_1, STORE
 
 // Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_density_high,
-	industry_count(industry_power_plant, -1) < 4 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	industry_count(industry_power_plant, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
 	{1: switch_power_plant_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
 
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_density_normal,
@@ -147,17 +147,18 @@ switch (FEAT_INDUSTRIES, SELF, switch_power_plant_density_selector, param_indust
 /*
 Industry Totals on 256 x 256 map:
 
-	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
-	Oil Wells		1				4			8				12
-	Farm			1				5			12				12
-	Lumber Camp		1				3			8				12
-	Coal Mine		1				3			6				12
-	Iron Mine		1				3			6				12
-	Steel Mill		1				1			2				3
-	Factory			1				3			6				7
-	Paper Mill		1				1			2				3
-	Oil Refinery	1				1			2				3
-	Power Plant		1				1			3				4
+	Industry			Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells			1				3			8				12
+	Farm				1				5			12				12
+	Lumber Camp			1				3			8				12
+	Coal Mine			1				3			6				12
+	Iron Mine			1				3			6				12
+	Steel Mill			1				1			1				2
+	Factory				1				3			6				7
+	Paper Mill			1				1			1				2
+	Oil Refinery		1				1			1				2
+	Power Plant			1				1			3				3
+	Recycling Center	1				1			3				4
 */
 
 // If "Generate primary only" parameter enabled, disallow random generation of secondary industries
@@ -172,13 +173,14 @@ switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_prospected, extra_callba
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_power_plant) {
+item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 	property {
 		substitute:				INDUSTRYTYPE_POWER_PLANT;
 		life_type:				IND_LIFE_TYPE_BLACK_HOLE;
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
 								accept_cargo("COAL"),
+								accept_cargo("WSTE"),
 								accept_cargo("PASS"),
 								produce_cargo("PASS",2),
 		];

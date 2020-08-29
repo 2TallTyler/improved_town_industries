@@ -134,17 +134,18 @@ switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_density_selector, param_indus
 /*
 Industry Totals on 256 x 256 map:
 
-	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
-	Oil Wells		1				4			8				12
-	Farm			1				5			12				12
-	Lumber Camp		1				3			8				12
-	Coal Mine		1				3			6				12
-	Iron Mine		1				3			6				12
-	Steel Mill		1				1			2				3
-	Factory			1				3			6				7
-	Paper Mill		1				1			2				3
-	Oil Refinery	1				1			2				3
-	Power Plant		1				1			3				4
+	Industry			Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells			1				3			8				12
+	Farm				1				5			12				12
+	Lumber Camp			1				3			8				12
+	Coal Mine			1				3			6				12
+	Iron Mine			1				3			6				12
+	Steel Mill			1				1			1				2
+	Factory				1				3			6				7
+	Paper Mill			1				1			1				2
+	Oil Refinery		1				1			1				2
+	Power Plant			0				1			3				3
+	Recycling Center	1				1			3				4
 */
 
 // Prospected industries aren't restricted by industry totals, but must meet other requirements
@@ -156,7 +157,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_allow_funded, extra_callback_
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_allow_prospected;}
 
 if (param_clearcut == 1) {
-	item (FEAT_INDUSTRIES, industry_logging_camp) {
+	item (FEAT_INDUSTRIES, industry_logging_camp, 6) {
 		property {
 			substitute:				INDUSTRYTYPE_LUMBER_MILL;
 			life_type:				IND_LIFE_TYPE_PROCESSING;
@@ -181,7 +182,7 @@ if (param_clearcut == 1) {
 		}
 	}
 } else {
-	item (FEAT_INDUSTRIES, industry_logging_camp) {
+	item (FEAT_INDUSTRIES, industry_logging_camp, 6) {
 		property {
 			substitute:				INDUSTRYTYPE_FOREST;
 			life_type:				IND_LIFE_TYPE_ORGANIC;

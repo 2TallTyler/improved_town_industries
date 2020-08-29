@@ -1,7 +1,7 @@
 // Begin Cargos
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, FOOD, RFPR, 
+	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, FOOD, RFPR, RCYC, WSTE
 }
 
 // Original ID
@@ -254,5 +254,55 @@ item (FEAT_CARGOS, cargo_steel, 0x09) {
 	}
 }
 
+// Recyclables enabled only if parameter is active and Improved Town Layouts is loaded before or after this NewGRF
+if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
+	item (FEAT_CARGOS, cargo_recyclables, 0x0A) {
+		property {
+			number:						0x0A;
+			sprite:						4319;
+			type_name:					string(STR_CARGO_NAME_RECYCLABLES);
+			unit_name:					string(STR_CARGO_NAME_RECYCLABLES);
+			type_abbreviation:			string(STR_CARGO_ABBREV_RECYCLABLES);
+			weight:						1.0;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_BULK, CC_PIECE_GOODS, CC_COVERED);
+			cargo_label:				"RCYC";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_RECYCLABLES);
+			penalty_lowerbound:			30;
+			single_penalty_length:		255;
+			station_list_colour:		165;
+			cargo_payment_list_colour:	165;
+			price_factor:				100;
+			capacity_multiplier:		1;		
+		}
+	}
+	
+	item (FEAT_CARGOS, cargo_waste, 0x0B) {
+		property {
+			number:						0x0B;
+			sprite:						4315;
+			type_name:					string(STR_CARGO_NAME_WASTE);
+			unit_name:					string(STR_CARGO_NAME_WASTE);
+			type_abbreviation:			string(STR_CARGO_ABBREV_WASTE);
+			weight:						1.0;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_BULK, CC_PIECE_GOODS, CC_COVERED);
+			cargo_label:				"WSTE";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_WASTE);
+			penalty_lowerbound:			30;
+			single_penalty_length:		255;
+			station_list_colour:		134;
+			cargo_payment_list_colour:	134;
+			price_factor:				100;
+			capacity_multiplier:		1;		
+		}
+	}
+}
 
 // End Cargos

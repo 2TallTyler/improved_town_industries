@@ -1,0 +1,423 @@
+// Begin Recycling Center
+
+spritelayout sprlay_recycling_center_shed { // Main building
+	ground		{sprite:2022;}
+	building	{sprite:2190;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_recycling_center_dock { // Loading dock
+	ground		{sprite:2022;}
+	building	{sprite:2193;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_recycling_center_silo { // Large silo
+	ground		{sprite:1420;}
+	building	{sprite:2196;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_recycling_center_yard { // grass and fence
+	ground		{sprite:2022;}
+	building	{sprite:2199;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_recycling_center_pumps_box { // Pumps with boxes
+	ground		{sprite:1420;}
+	building	{sprite:2349;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_recycling_center_pumps_reflector { // Pumps with reflector
+	ground		{sprite:1420;}
+	building	{sprite:2352;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+spritelayout sprlay_recycling_center_silos { // Twin silos
+	ground		{sprite:1420;}
+	building	{sprite:2115;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+spritelayout sprlay_recycling_center_office { // Office
+	ground		{sprite:1420;}
+	building	{sprite:2095; yoffset:2; xoffset:2;}
+}
+	
+spritelayout sprlay_recycling_center_paved { // Empty paved tilelayout
+	ground		{sprite:1420;}	
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_shed) {
+	property {
+		substitute:				11;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_recycling_center_shed;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_dock) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_recycling_center_dock;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_silo) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_recycling_center_silo;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_yard) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_recycling_center_yard;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_pumps_box) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_recycling_center_pumps_box;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_pumps_reflector) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_recycling_center_pumps_reflector;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_twin_silos) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_recycling_center_silos;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_office) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_recycling_center_office;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_paved) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_recycling_center_paved;
+	}
+}
+
+tilelayout industry_layout_recycling_center_1 {
+	0,0:	ind_tile_recycling_center_twin_silos;
+	0,1:	ind_tile_recycling_center_twin_silos;
+	0,2:	ind_tile_recycling_center_dock;
+	
+	1,0:	ind_tile_recycling_center_shed;
+	1,1:	ind_tile_recycling_center_shed;
+	1,2:	ind_tile_recycling_center_dock;
+
+	2,0:	ind_tile_recycling_center_shed;
+	2,1:	ind_tile_recycling_center_shed;
+}
+
+tilelayout industry_layout_recycling_center_2 {
+	0,0:	ind_tile_recycling_center_twin_silos;
+	0,1:	ind_tile_recycling_center_shed;
+	0,2:	ind_tile_recycling_center_dock;
+	
+	1,0:	ind_tile_recycling_center_shed;
+	1,1:	ind_tile_recycling_center_shed;
+	1,2:	ind_tile_recycling_center_office;
+}
+
+tilelayout industry_layout_recycling_center_3 {
+	0,0:	ind_tile_recycling_center_twin_silos;
+	0,1:	ind_tile_recycling_center_dock;
+	
+	1,0:	ind_tile_recycling_center_shed;
+	1,1:	ind_tile_recycling_center_dock;
+	
+	2,0:	ind_tile_recycling_center_shed;
+	2,1:	ind_tile_recycling_center_yard;
+	
+	3,0:	ind_tile_recycling_center_shed;
+	3,1:	ind_tile_recycling_center_yard;
+}
+
+
+/* // Industry Construction Switches - Read from bottom to top // */
+
+/* Don't allow the same industry within 100 tiles - secondary industries only */
+switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_distance_competitor, industry_distance(industry_recycling_center, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Population Check - secondary industries only */
+
+switch (FEAT_INDUSTRIES, PARENT, switch_industry_recycling_center_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= LOAD_TEMP(1)) {1: switch_industry_recycling_center_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_population_check_1, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)	* 300 +
+	industry_town_count(industry_paper_mill,-1) 	* 300 +
+	industry_town_count(industry_steel_mill,-1)		* 300 +
+	industry_town_count(industry_factory,-1)		* 300 +
+	300 // Add population required for this industry
+	, 1))
+	{switch_industry_recycling_center_population_check_2;}
+
+
+/* Town Distance Check - secondary industries only */
+
+// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_industry_recycling_center_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_industry_recycling_center_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_industry_recycling_center_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+
+
+/*	Slot Reservations - all industries */
+
+// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
+switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_density_high,
+	industry_count(industry_recycling_center, -1) < 4 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_industry_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_density_normal,
+	industry_count(industry_recycling_center, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_industry_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_density_low,
+	industry_count(industry_recycling_center, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_industry_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_density_verylow,
+	industry_count(industry_recycling_center, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
+	{1: switch_industry_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+
+// Get the selected industry density from parameter and redirect to the appropriate switch
+switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_density_selector, param_industry_density) {
+	0: switch_industry_recycling_center_density_verylow;
+	1: switch_industry_recycling_center_density_low;
+	2: switch_industry_recycling_center_density_normal;
+	3: switch_industry_recycling_center_density_high;
+}
+
+/*
+Industry Totals on 256 x 256 map:
+
+	Industry			Very Low (10)	Low (25)	Normal (55)		High (80)
+	Oil Wells			1				3			8				12
+	Farm				1				5			12				12
+	Lumber Camp			1				3			8				12
+	Coal Mine			1				3			6				12
+	Iron Mine			1				3			6				12
+	Steel Mill			1				1			1				2
+	Factory				1				3			6				7
+	Paper Mill			1				1			1				2
+	Oil Refinery		1				1			1				2
+	Power Plant			0				1			3				3
+	Recycling Center	1				1			3				4
+*/
+
+
+// Funded industries aren't restricted by industry totals
+switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_industry_recycling_center_density_selector;}
+
+
+if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {	
+	item (FEAT_INDUSTRIES, industry_recycling_center) {
+		property {
+			substitute:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
+			override:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
+			life_type:				IND_LIFE_TYPE_PROCESSING;
+			cargo_types:			[
+				accept_cargo("WSTE", produce_cargo("RCYC",1)),
+				accept_cargo("PASS"),
+				produce_cargo("PASS",4),
+			];
+			name:					string(STR_NAME_RECYCLING_CENTER);
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_RECYCLING_CENTER));
+			prob_map_gen:			5;
+			prob_in_game:			3;
+			map_colour:				139;
+			fund_cost_multiplier:	100;
+			layouts:				[
+				industry_layout_recycling_center_1,
+				industry_layout_recycling_center_2,
+				industry_layout_recycling_center_3,
+			];
+		}
+		graphics {
+			location_check:			switch_industry_recycling_center_allow_funded;
+			colour:					COLOUR_MAUVE;
+			construction_probability:	(current_year >= 1945) ? 1 : 0;
+			extra_text_fund:		string(STR_FUND_AVAILABLE_1945);
+		}
+	}
+	
+
+	item (FEAT_OBJECTS, object_item_recycling_center_1) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_RECYCLING_CENTER);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1945;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_recycling_center_shed;
+			colour:					COLOUR_MAUVE;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_recycling_center_2) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_RECYCLING_CENTER);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1945;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_recycling_center_dock;
+			colour:					COLOUR_MAUVE;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_recycling_center_3) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_RECYCLING_CENTER);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1945;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_recycling_center_silo;
+			colour:					COLOUR_MAUVE;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_recycling_center_4) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_RECYCLING_CENTER);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1945;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_recycling_center_yard;
+			colour:					COLOUR_MAUVE;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_recycling_center_5) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_RECYCLING_CENTER);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1945;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_recycling_center_pumps_box;
+			colour:					COLOUR_MAUVE;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_recycling_center_6) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_RECYCLING_CENTER);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1945;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_recycling_center_pumps_reflector;
+			colour:					COLOUR_MAUVE;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_recycling_center_7) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_RECYCLING_CENTER);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1945;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_recycling_center_silos;
+			colour:					COLOUR_MAUVE;
+		}
+	}
+}
+// End Recycling Center

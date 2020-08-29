@@ -48,10 +48,6 @@ paper_mill = codecs.open("src/paper_mill.nml",'r','utf8')
 sections.append(paper_mill.read())
 paper_mill.close()
 
-# food_factory = codecs.open("src/food_factory.nml",'r','utf8')
-# sections.append(food_factory.read())
-# food_factory.close()
-
 oil_wells = codecs.open("src/oil_wells.nml",'r','utf8')
 sections.append(oil_wells.read())
 oil_wells.close()
@@ -59,6 +55,10 @@ oil_wells.close()
 oil_refinery = codecs.open("src/oil_refinery.nml",'r','utf8')
 sections.append(oil_refinery.read())
 oil_refinery.close()
+
+recycling_center = codecs.open("src/recycling_center.nml",'r','utf8')
+sections.append(recycling_center.read())
+recycling_center.close()
 
 print("Python: Writing combined NML file")
 
