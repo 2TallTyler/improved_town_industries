@@ -1,6 +1,6 @@
 # Improved Town Industries
 
-![A busy paper mill](/docs/paper_mill.png)
+![Trucks drop off Waste at a recycling center while passenger trains bring employees to work](/docs/recycling_center.png)
 
 ## Overview
 
