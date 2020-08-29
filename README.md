@@ -1,6 +1,6 @@
 # Improved Town Industries
 
-![Trucks drop off Waste at a recycling center while passenger trains bring employees to work](/docs/recycling_center.png)
+![Trucks drop off Waste at a recycling center while passenger trains bring employees to work](/docs/recycling_center.PNG)
 
 ## Overview
 
