@@ -75,6 +75,7 @@ August 11, 2020
 August 29, 2020
 
 - Add: Waste & Recycling (see Readme)
+  - A big thanks to **jrook1445** for helping me understand the house production loop and writing clever code, and to **/u/Pop06095** on reddit for playtesting and providing great feedback!
 - Add: Chemicals delivered to Farms (as fertilizer) are now converted into Food at a 1:1 rate, as with deliveries to the Paper Mill
 - Add: Loading ITI alongside most incompatible industry sets throws a fatal error which disables ITI. The list of incompatible industries is defined manually, so please notify me of new/additional incompatible NewGRFs.
 - Codechange: Industries now have defined industry IDs for future update stability
