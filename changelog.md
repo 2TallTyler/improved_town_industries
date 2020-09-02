@@ -79,3 +79,11 @@ August 29, 2020
 - Add: Chemicals delivered to Farms (as fertilizer) are now converted into Food at a 1:1 rate, as with deliveries to the Paper Mill
 - Add: Loading ITI alongside most incompatible industry sets throws a fatal error which disables ITI. The list of incompatible industries is defined manually, so please notify me of new/additional incompatible NewGRFs.
 - Codechange: Industries now have defined industry IDs for future update stability
+
+### 1.5.1
+September 2, 2020
+
+- Change: Primary industries may generate in (owned by) a city
+  - The minimum distance still applies, but if a player starts a game with "Proportion of towns that will become cities" set to 1 in 1, primary industries will now generate
+  - Banning primary industries next to cities has not proved necessary
+- Fix: Recycling Center obeys "Generate Primary Industries Only" parameter

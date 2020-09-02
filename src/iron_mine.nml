@@ -91,9 +91,8 @@ switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_cluster_1, industry_count(indust
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_cluster_0, map_min_edge >= 512) {1: switch_iron_mine_cluster_1; CB_RESULT_LOCATION_ALLOW;}
 
 
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_iron_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
-switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_4, is_city) {1: return CB_RESULT_LOCATION_DISALLOW; switch_iron_mine_location_check_5;} // Iron mines don't build in cities
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_iron_mine_location_check_4; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_iron_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill, or 30 tiles of farm or logging camp
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_iron_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
 
 
