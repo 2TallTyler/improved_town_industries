@@ -21,7 +21,7 @@ STR_DENSITY_NORMAL					:Normal
 STR_DENSITY_HIGH					:High
 
 STR_PARAM_NAME_PRIMARY_ONLY			:Generate Primary Industries Only
-STR_PARAM_DESC_PRIMARY_ONLY			:Disable automatic generation of {SILVER}Factories{BLACK}, {SILVER}Steel Mills{BLACK}, {SILVER}Power Plants{BLACK}, {SILVER}Paper Mills{BLACK}, and {SILVER}Oil Refineries{BLACK}. Does not affect funded industries.
+STR_PARAM_DESC_PRIMARY_ONLY			:Disable automatic generation of {SILVER}Factories{BLACK}, {SILVER}Steel Mills{BLACK}, {SILVER}Power Plants{BLACK}, {SILVER}Paper Mills{BLACK}, {SILVER}Oil Refineries{BLACK}, and {SILVER}Recycling Centers{BLACK} (if enabled). Does not affect funded industries.
 
 STR_PARAM_NAME_ELEVATION_CHECKS		:Industry elevation requirements 
 STR_PARAM_DESC_ELEVATION_CHECKS		:Enable elevation checks: {SILVER}Coal Mines{BLACK} must be elevation 4 or higher, {SILVER}Farm{BLACK} and {SILVER}Oil Wells{BLACK} must be elevation 2 or less.{}{}{ORANGE}Do not enable {BLACK}with {ORANGE}Very Flat {BLACK}terrain type, as {SILVER}Coal Mine {BLACK} will not generate.
