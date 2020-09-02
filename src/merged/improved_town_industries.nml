@@ -4,7 +4,7 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 8;
+	version: 9;
 	min_compatible_version: 8;
 
 	url: string(STR_WEBSITE);
@@ -4072,15 +4072,15 @@ tilelayout industry_layout_recycling_center_3 {
 /* // Industry Construction Switches - Read from bottom to top // */
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
-switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_distance_competitor, industry_distance(industry_recycling_center, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_distance_competitor, industry_distance(industry_recycling_center, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
 
 /* Population Check - secondary industries only */
 
-switch (FEAT_INDUSTRIES, PARENT, switch_industry_recycling_center_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_industry_recycling_center_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= LOAD_TEMP(1)) {1: switch_recycling_center_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_population_check_1, STORE_TEMP(
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_population_check_1, STORE_TEMP(
 	// Count existing processing industries in town
 	industry_town_count(industry_oil_refinery,-1)	* 300 +
 	industry_town_count(industry_paper_mill,-1) 	* 300 +
@@ -4088,41 +4088,41 @@ switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_population_check
 	industry_town_count(industry_factory,-1)		* 300 +
 	300 // Add population required for this industry
 	, 1))
-	{switch_industry_recycling_center_population_check_2;}
+	{switch_recycling_center_population_check_2;}
 
 
 /* Town Distance Check - secondary industries only */
 
 // Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
-switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_industry_recycling_center_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_industry_recycling_center_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_industry_recycling_center_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_recycling_center_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_recycling_center_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
 
 
 /*	Slot Reservations - all industries */
 
 // Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
-switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_density_high,
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_density_high,
 	industry_count(industry_recycling_center, -1) < 4 * (map_x_edge / 256) * (map_y_edge / 256)) 
-	{1: switch_industry_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+	{1: switch_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_density_normal,
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_density_normal,
 	industry_count(industry_recycling_center, -1) < 3 * (map_x_edge / 256) * (map_y_edge / 256)) 
-	{1: switch_industry_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+	{1: switch_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_density_low,
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_density_low,
 	industry_count(industry_recycling_center, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
-	{1: switch_industry_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+	{1: switch_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_density_verylow,
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_density_verylow,
 	industry_count(industry_recycling_center, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
-	{1: switch_industry_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
+	{1: switch_recycling_center_town_distance_check_1; return CB_RESULT_LOCATION_DISALLOW;}
 
 // Get the selected industry density from parameter and redirect to the appropriate switch
-switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_density_selector, param_industry_density) {
-	0: switch_industry_recycling_center_density_verylow;
-	1: switch_industry_recycling_center_density_low;
-	2: switch_industry_recycling_center_density_normal;
-	3: switch_industry_recycling_center_density_high;
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_density_selector, param_industry_density) {
+	0: switch_recycling_center_density_verylow;
+	1: switch_recycling_center_density_low;
+	2: switch_recycling_center_density_normal;
+	3: switch_recycling_center_density_high;
 }
 
 /*
@@ -4142,10 +4142,17 @@ Industry Totals on 256 x 256 map:
 	Recycling Center	1				1			3				4
 */
 
+// If "Generate primary only" parameter enabled, disallow random generation of secondary industries
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_generate_primary_only, param_primary_only)
+	{1: return CB_RESULT_LOCATION_DISALLOW; switch_recycling_center_density_selector;}
 
-// Funded industries aren't restricted by industry totals
-switch (FEAT_INDUSTRIES, SELF, switch_industry_recycling_center_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return CB_RESULT_LOCATION_ALLOW; switch_industry_recycling_center_density_selector;}
+// Prospected industries aren't restricted by industry totals, but must meet other requirements
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
+	{1: switch_recycling_center_town_distance_check_1; switch_recycling_center_generate_primary_only;}
+
+// Funded industries have no restrictions
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_recycling_center_allow_prospected;}
 
 
 if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {	
@@ -4154,6 +4161,7 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
 			substitute:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
 			override:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
 			life_type:				IND_LIFE_TYPE_PROCESSING;
+			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 			cargo_types:			[
 				accept_cargo("WSTE", produce_cargo("RCYC",1)),
 				accept_cargo("PASS"),
@@ -4172,7 +4180,7 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
 			];
 		}
 		graphics {
-			location_check:			switch_industry_recycling_center_allow_funded;
+			location_check:			switch_recycling_center_allow_funded;
 			colour:					COLOUR_MAUVE;
 			construction_probability:	(current_year >= 1945) ? 1 : 0;
 			extra_text_fund:		string(STR_FUND_AVAILABLE_1945);
