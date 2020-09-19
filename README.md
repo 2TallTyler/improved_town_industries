@@ -34,11 +34,9 @@
 
 ### Industries accept passengers
 
-- Most industries accept and create passengers as workers
-  - Exceptions: workers at Farms and Logging Camps live on-site and don't commute
-- Delivering passengers does not influence industry production
-  - Like town buildings, industries produce passengers without checking if passengers were delivered to them
-  - Tying industry passenger creation to delivered passengers isn't possible because imperfect station ratings and symmetric Cargodist would produce a negative feedback loop, eliminating all demand for passenger traffic to industries
+- Mines have an automatic production level for passengers
+- Secondary industries produce 1 passenger per 4 units of cargo delivered
+- Many industries accept passengers. This has no effect on cargo production.
 
 ### Towns generate Waste 
 **(requires Improved Town Layouts)**
