@@ -88,7 +88,7 @@ September 2, 2020
   - Banning primary industries next to cities has not proved necessary
 - Fix: Recycling Center obeys "Generate Primary Industries Only" parameter
 
-### Unreleased
+### 1.5.2
 TBD
 
 - Change: Secondary industry passenger production is scaled to cargo deliveries
