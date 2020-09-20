@@ -91,6 +91,7 @@ September 2, 2020
 ### Unreleased
 TBD
 
+- Change: Use base game industry count management instead of handling it within ITI
 - Change: Secondary industry passenger production is scaled to cargo deliveries
   - Each industry employs 1 worker per 4 units of cargo delivered
 - Change: Secondary industries now close if cargo is not delivered for 5 years (vanilla behavior, previously disrupted by passenger generation)
