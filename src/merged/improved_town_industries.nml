@@ -9,23 +9,6 @@ grf {
 
 	url: string(STR_WEBSITE);
 
-	param 0 {
-		param_industry_density {
-			name: string(STR_PARAM_NAME_INDUSTRY_DENSITY);
-			desc: string(STR_PARAM_DESC_INDUSTRY_DENSITY);
-			type: int;
-			min_value: 0;
-			max_value: 3;
-			def_value: 2;
-			names:	{
-				0:	string(STR_DENSITY_VERY_LOW);
-				1:	string(STR_DENSITY_LOW);
-				2:	string(STR_DENSITY_NORMAL);
-				3:	string(STR_DENSITY_HIGH);
-			};
-		}
-	}
-
 	param 1 {
 		param_primary_only {
 			name: string(STR_PARAM_NAME_PRIMARY_ONLY);
@@ -84,11 +67,6 @@ if (version_openttd(1,10,0,28004) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
-// Create an error if the map is smaller than 256 x 256
-if (map_min_edge < 256 || map_max_edge < 256) {
-	error(FATAL, string(STR_ERROR_MAP_TOO_SMALL));
-}
-
 // Create an error if a conflicting industry replacement set is active
 if (
 	   grf_current_status("EELS") == 1 			|| grf_future_status("EELS") == 1			// Eels
@@ -142,38 +120,6 @@ disable_item(FEAT_INDUSTRIES, 0, 36);
 // Disable unused cargo types
 disable_item(FEAT_CARGOS, 0, 30);
 
-
-/*
-
-Industry Item IDs
-
-0: Farm
-1: Coal Mine
-2: Power Plant
-3: Iron Mine
-4: Steel Mill
-5: Factory
-6: Logging Camp
-7: Paper Mill
-8: Oil Wells
-9: Oil Refinery
-
-
-Industry Totals on 256 x 256 map:
-
-	Industry		Very Low (10)	Low (25)	Normal (55)		High (80)
-	Oil Wells		1				4			8				12
-	Farm			1				5			12				12
-	Lumber Camp		1				3			8				12
-	Coal Mine		1				3			6				12
-	Iron Mine		1				3			6				12
-	Steel Mill		1				1			2				3
-	Factory			1				3			6				7
-	Paper Mill		1				1			2				3
-	Oil Refinery	1				1			2				3
-	Power Plant		1				1			3				4
-
-*/
 
 // End Header
 // Begin Cargos
