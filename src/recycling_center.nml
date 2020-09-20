@@ -60,6 +60,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_shed) {
 	property {
 		substitute:				11;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_shed;
@@ -69,6 +70,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_dock) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_dock;
@@ -78,6 +80,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_silo) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_silo;
@@ -87,6 +90,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_yard) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_yard;
@@ -96,6 +100,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_pumps_box) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_pumps_box;
@@ -105,6 +110,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_pumps_reflector) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_pumps_reflector;
@@ -114,6 +120,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_twin_silos) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_silos;
@@ -123,6 +130,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_office) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_office;
@@ -132,6 +140,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_paved) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_paved;
@@ -270,9 +279,7 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
 			life_type:				IND_LIFE_TYPE_PROCESSING;
 			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 			cargo_types:			[
-				accept_cargo("WSTE", produce_cargo("RCYC",1)),
-				accept_cargo("PASS"),
-				produce_cargo("PASS",4),
+				accept_cargo("WSTE", produce_cargo("RCYC",1), produce_cargo("PASS",0.25)),
 			];
 			name:					string(STR_NAME_RECYCLING_CENTER);
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_RECYCLING_CENTER));
@@ -291,6 +298,7 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
 			colour:					COLOUR_MAUVE;
 			construction_probability:	(current_year >= 1945) ? 1 : 0;
 			extra_text_fund:		string(STR_FUND_AVAILABLE_1945);
+			extra_text_industry:	string(STR_EXTRA_WORKERS);
 		}
 	}
 	

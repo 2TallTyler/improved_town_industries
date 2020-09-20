@@ -4,7 +4,7 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 9;
+	version: 10;
 	min_compatible_version: 8;
 
 	url: string(STR_WEBSITE);
@@ -1969,25 +1969,33 @@ spritelayout sprlay_steel_mill_2_W {
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_1_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_E) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_1_E;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_1_W;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_S) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_1_S;}
 }
 
@@ -1995,13 +2003,17 @@ item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_S) {
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_2_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_2_W;}
 }
 
@@ -2112,11 +2124,9 @@ item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
 		life_type:				IND_LIFE_TYPE_PROCESSING;
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
-								accept_cargo("IORE", produce_cargo("STEL",1)),
-								accept_cargo("COAL", produce_cargo("STEL",1)),
-								accept_cargo("RCYC", produce_cargo("STEL",1)),
-								accept_cargo("PASS"),
-								produce_cargo("PASS",6),
+								accept_cargo("IORE", produce_cargo("STEL",1), produce_cargo("PASS",0.25)),
+								accept_cargo("COAL", produce_cargo("STEL",1), produce_cargo("PASS",0.25)),
+								accept_cargo("RCYC", produce_cargo("STEL",1), produce_cargo("PASS",0.25)),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_STEEL_MILL;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_STEEL_MILL));
@@ -2128,6 +2138,7 @@ item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
 		location_check:			switch_steel_mill_allow_funded;
 		construction_probability:	(current_year >= 1856) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
+		extra_text_industry:	string(STR_EXTRA_WORKERS);
 	}
 }
 
@@ -2216,7 +2227,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_factory_1_N) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
-		/*accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8],[RFPR, 8],[FOOD, 8]];*/
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {default:			sprlay_factory_1_N;}
 }
@@ -2224,7 +2235,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_factory_1_E) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
-		/*accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8],[RFPR, 8],[FOOD, 8]];*/
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_factory_1_E;
@@ -2234,7 +2245,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_factory_1_W) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
-		/*accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8],[RFPR, 8],[FOOD, 8]];*/
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_factory_1_W;
@@ -2244,7 +2255,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_factory_1_S) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
-		/*accepted_cargos:		[[PASS, 8],[STEL, 8],[WOOD, 8],[RFPR, 8],[FOOD, 8]];*/
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_factory_1_S;
@@ -2382,10 +2393,7 @@ tilelayout industry_layout_factory_L {
 	
 }
 
-
-
 /* // Industry Construction Switches - Read from bottom to top // */
-
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_distance_competitor, industry_distance(industry_factory, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
@@ -2490,13 +2498,11 @@ item (FEAT_INDUSTRIES, industry_factory, 5) {
 		life_type:				IND_LIFE_TYPE_PROCESSING;
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
-								accept_cargo("STEL", produce_cargo("GOOD",1)),
-								accept_cargo("WOOD", produce_cargo("GOOD",1)),
-								accept_cargo("RFPR", produce_cargo("GOOD",1)),
-								accept_cargo("FOOD", produce_cargo("GOOD",1)),
-								accept_cargo("RCYC", produce_cargo("GOOD",1)),
-								accept_cargo("PASS"),
-								produce_cargo("PASS",10),
+								accept_cargo("STEL", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("WOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("FOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_FACTORY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
@@ -2518,6 +2524,7 @@ item (FEAT_INDUSTRIES, industry_factory, 5) {
 		colour:					COLOUR_PALE_GREEN;
 		construction_probability:	(current_year >= 1800) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
+		extra_text_industry:	string(STR_EXTRA_WORKERS);
 	}
 }
 
@@ -2914,70 +2921,92 @@ spritelayout sprlay_paper_mill_empty {
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_N) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_9_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_E) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_9_E;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_W) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_9_W;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_S) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_9_S;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_1) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_chem_1;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_2) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_chem_2;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_3) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_chem_3;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_logs_1) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_logs_1;}
 }
 
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_logs_2) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_logs_2;}
 }
 
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_transformers) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_transformers;}
 }
 
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_empty) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_empty;}
 }
 
@@ -3101,11 +3130,9 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
 		life_type:				IND_LIFE_TYPE_PROCESSING;
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
-								accept_cargo("WOOD", produce_cargo("GOOD",1)),
-								accept_cargo("RFPR", produce_cargo("GOOD",1)),
-								accept_cargo("RCYC", produce_cargo("GOOD",1)),
-								accept_cargo("PASS"),
-								produce_cargo("PASS",8),
+								accept_cargo("WOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_PAPER_MILL;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
@@ -3123,6 +3150,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
 		location_check:			switch_paper_mill_allow_funded;
 		construction_probability:	(current_year >= 1885) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1885);
+		extra_text_industry:	string(STR_EXTRA_WORKERS);
 		colour:					COLOUR_DARK_GREEN;
 	}
 }
@@ -3455,67 +3483,89 @@ spritelayout sprlay_oil_refinery_11 { // Pumps with reflector
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_1) { // Office
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_1;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_2) { // Large tank
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_2;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_3) { // Tall tank
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_3;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_4) { // Burner tower
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_4;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_5) { // Pipe frame red
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_5;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_6) { // Pipe frame 2
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_6;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_7) { // Pipe frame 3
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_7;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_8) { // Bare ground
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_8;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_9) { // Food silo
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_9;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_10) { // Pumps with boxes
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_10;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_11) { // Pump with reflector
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_oil_refinery_11;}
 }
 
@@ -3652,9 +3702,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 		life_type:				IND_LIFE_TYPE_PROCESSING;
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
-								accept_cargo("OIL_", produce_cargo("RFPR",1)),
-								accept_cargo("PASS"),
-								produce_cargo("PASS",6),
+								accept_cargo("OIL_", produce_cargo("RFPR",1), produce_cargo("PASS",0.25)),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
@@ -3672,6 +3720,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 		location_check:			switch_oil_refinery_allow_funded;
 		construction_probability:	(current_year >= 1900) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1900);
+		extra_text_industry:	string(STR_EXTRA_WORKERS);
 		colour:					COLOUR_YELLOW;
 	}
 }
@@ -3948,6 +3997,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_shed) {
 	property {
 		substitute:				11;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_shed;
@@ -3957,6 +4007,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_dock) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_dock;
@@ -3966,6 +4017,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_silo) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_silo;
@@ -3975,6 +4027,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_yard) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_yard;
@@ -3984,6 +4037,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_pumps_box) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_pumps_box;
@@ -3993,6 +4047,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_pumps_reflector) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_pumps_reflector;
@@ -4002,6 +4057,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_twin_silos) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_silos;
@@ -4011,6 +4067,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_office) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_office;
@@ -4020,6 +4077,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_recycling_center_paved) {
 	property {
 		substitute:				02;
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {
 		default:				sprlay_recycling_center_paved;
@@ -4158,9 +4216,7 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
 			life_type:				IND_LIFE_TYPE_PROCESSING;
 			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 			cargo_types:			[
-				accept_cargo("WSTE", produce_cargo("RCYC",1)),
-				accept_cargo("PASS"),
-				produce_cargo("PASS",4),
+				accept_cargo("WSTE", produce_cargo("RCYC",1), produce_cargo("PASS",0.25)),
 			];
 			name:					string(STR_NAME_RECYCLING_CENTER);
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_RECYCLING_CENTER));
@@ -4179,6 +4235,7 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
 			colour:					COLOUR_MAUVE;
 			construction_probability:	(current_year >= 1945) ? 1 : 0;
 			extra_text_fund:		string(STR_FUND_AVAILABLE_1945);
+			extra_text_industry:	string(STR_EXTRA_WORKERS);
 		}
 	}
 	

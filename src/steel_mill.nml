@@ -28,25 +28,33 @@ spritelayout sprlay_steel_mill_2_W {
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_1_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_E) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_1_E;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_1_W;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_S) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_1_S;}
 }
 
@@ -54,13 +62,17 @@ item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_S) {
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_N) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_2_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_W) {
 	property {
 		substitute:				02;
-		accepted_cargos:		[[IORE, 8],[COAL, 8],[PASS, 8],[RCYC, 8]];}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_steel_mill_2_W;}
 }
 
@@ -171,11 +183,9 @@ item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
 		life_type:				IND_LIFE_TYPE_PROCESSING;
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
-								accept_cargo("IORE", produce_cargo("STEL",1)),
-								accept_cargo("COAL", produce_cargo("STEL",1)),
-								accept_cargo("RCYC", produce_cargo("STEL",1)),
-								accept_cargo("PASS"),
-								produce_cargo("PASS",6),
+								accept_cargo("IORE", produce_cargo("STEL",1), produce_cargo("PASS",0.25)),
+								accept_cargo("COAL", produce_cargo("STEL",1), produce_cargo("PASS",0.25)),
+								accept_cargo("RCYC", produce_cargo("STEL",1), produce_cargo("PASS",0.25)),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_STEEL_MILL;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_STEEL_MILL));
@@ -187,6 +197,7 @@ item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
 		location_check:			switch_steel_mill_allow_funded;
 		construction_probability:	(current_year >= 1856) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
+		extra_text_industry:	string(STR_EXTRA_WORKERS);
 	}
 }
 

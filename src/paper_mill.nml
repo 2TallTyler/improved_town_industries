@@ -51,70 +51,92 @@ spritelayout sprlay_paper_mill_empty {
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_N) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_9_N;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_E) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_9_E;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_W) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_9_W;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_9_S) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_9_S;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_1) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_chem_1;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_2) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_chem_2;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_chem_3) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_chem_3;}
 }
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_logs_1) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_logs_1;}
 }
 
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_logs_2) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_logs_2;}
 }
 
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_transformers) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_transformers;}
 }
 
 item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_empty) {
 	property {
 		substitute:				02;
-		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
 	graphics {default:			sprlay_paper_mill_empty;}
 }
 
@@ -238,11 +260,9 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
 		life_type:				IND_LIFE_TYPE_PROCESSING;
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
-								accept_cargo("WOOD", produce_cargo("GOOD",1)),
-								accept_cargo("RFPR", produce_cargo("GOOD",1)),
-								accept_cargo("RCYC", produce_cargo("GOOD",1)),
-								accept_cargo("PASS"),
-								produce_cargo("PASS",8),
+								accept_cargo("WOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_PAPER_MILL;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
@@ -260,6 +280,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
 		location_check:			switch_paper_mill_allow_funded;
 		construction_probability:	(current_year >= 1885) ? 1 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1885);
+		extra_text_industry:	string(STR_EXTRA_WORKERS);
 		colour:					COLOUR_DARK_GREEN;
 	}
 }

@@ -87,3 +87,10 @@ September 2, 2020
   - The minimum distance still applies, but if a player starts a game with "Proportion of towns that will become cities" set to 1 in 1, primary industries will now generate
   - Banning primary industries next to cities has not proved necessary
 - Fix: Recycling Center obeys "Generate Primary Industries Only" parameter
+
+### 1.5.2
+TBD
+
+- Change: Secondary industry passenger production is scaled to cargo deliveries
+  - Each industry employs 1 worker per 4 units of cargo delivered
+- Change: Secondary industries now close if cargo is not delivered for 5 years (vanilla behavior, previously disrupted by passenger generation)
