@@ -104,57 +104,9 @@ switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_2, STORE_TEMP(town_z
 switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_1, nearby_tile_height(0,0) > 2 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_farm_location_check_2;} // Farms must be built at tile height 2 or below.
 
 
-/*	Slot Reservations - all industries */
-
-// Compare how many industries are currently on the map with the target number, scaled to the map size from a "normal" 256 x 256 map. If less than the target number, proceed to town distance checks, otherwise disallow construction.
-switch (FEAT_INDUSTRIES, SELF, switch_farm_density_high,
-	industry_count(industry_farm, -1) < 12 * (map_x_edge / 256) * (map_y_edge / 256)) 
-	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_farm_density_normal,
-	industry_count(industry_farm, -1) < 12 * (map_x_edge / 256) * (map_y_edge / 256)) 
-	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_farm_density_low,
-	industry_count(industry_farm, -1) < 5 * (map_x_edge / 256) * (map_y_edge / 256)) 
-	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_farm_density_verylow,
-	industry_count(industry_farm, -1) < 1 * (map_x_edge / 256) * (map_y_edge / 256)) 
-	{1: switch_farm_location_check_1; return CB_RESULT_LOCATION_DISALLOW;}
-
-// Get the selected industry density from parameter and redirect to the appropriate switch
-switch (FEAT_INDUSTRIES, SELF, switch_farm_density_selector, param_industry_density) {
-	0: switch_farm_density_verylow;
-	1: switch_farm_density_low;
-	2: switch_farm_density_normal;
-	3: switch_farm_density_high;
-}
-
-/*
-Industry Totals on 256 x 256 map:
-
-	Industry			Very Low (10)	Low (25)	Normal (55)		High (80)
-	Oil Wells			1				3			8				12
-	Farm				1				5			12				12
-	Lumber Camp			1				3			8				12
-	Coal Mine			1				3			6				12
-	Iron Mine			1				3			6				12
-	Steel Mill			1				1			1				2
-	Factory				1				3			6				7
-	Paper Mill			1				1			1				2
-	Oil Refinery		1				1			1				2
-	Power Plant			0				1			3				3
-	Recycling Center	1				1			3				4
-*/
-	
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
-switch (FEAT_INDUSTRIES, SELF, switch_farm_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
-	{1: switch_farm_location_check_1; switch_farm_density_selector;}
-
 // Funded industries have no restrictions
 switch (FEAT_INDUSTRIES, SELF, switch_farm_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return CB_RESULT_LOCATION_ALLOW; switch_farm_allow_prospected;}
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_farm_location_check_1;}
 
 /*
 *Parameter selects whether Farms build fields automatically
@@ -174,8 +126,6 @@ if(param_auto_farm_fields == 1) {
 			];
 			name:					TTD_STR_INDUSTRY_NAME_FARM;
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
-			prob_map_gen:			30;
-			prob_in_game:			20;
 			fund_cost_multiplier:	100;
 			layouts:				[
 				industry_layout_farm_1,
@@ -189,7 +139,7 @@ if(param_auto_farm_fields == 1) {
 		}
 		graphics {
 			location_check:			switch_farm_allow_funded;
-			construction_probability:	1;
+			construction_probability:	15;
 		}
 	} 
 } else {
@@ -205,8 +155,6 @@ item (FEAT_INDUSTRIES, industry_farm, 0) {
 			];
 			name:					TTD_STR_INDUSTRY_NAME_FARM;
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
-			prob_map_gen:			30;
-			prob_in_game:			20;
 			fund_cost_multiplier:	100;
 			layouts:				[
 				industry_layout_farm_1,
@@ -220,7 +168,7 @@ item (FEAT_INDUSTRIES, industry_farm, 0) {
 		}
 		graphics {
 			location_check:			switch_farm_allow_funded;
-			construction_probability:	1;
+			construction_probability:	18;
 		}
 	}
 }

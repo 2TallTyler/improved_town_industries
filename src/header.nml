@@ -5,7 +5,7 @@ grf {
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
 	version: 10;
-	min_compatible_version: 8;
+	min_compatible_version: 10;
 
 	url: string(STR_WEBSITE);
 
