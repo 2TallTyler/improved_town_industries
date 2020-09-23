@@ -96,6 +96,13 @@ tilelayout industry_layout_farm_7 {
 	1,0:	ind_tile_farm_1_N;	1,1:	ind_tile_farm_1_E;	1,2:	ind_tile_farm_2;
 }
 
+
+/* Extra text switch for Waste */
+
+switch (FEAT_INDUSTRIES, SELF, switch_farm_waste_text, param_recyclables == 1 && param["TT\03\01", 254] >= 9) 
+	{1: string(STR_FARM_WASTE); 0;}
+
+
 /* Industry construction checks - specific to Farms */
 
 switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_5, industry_distance(industry_farm,-1) >= 40 && industry_distance(industry_steel_mill,-1) >= 30 && industry_distance(industry_oil_refinery,-1) >= 30 && industry_distance(industry_paper_mill,-1) >= 30 && industry_distance(industry_factory,-1) >= 30 && industry_distance(industry_iron_mine,-1) >= 30 && industry_distance(industry_coal_mine,-1) >= 30 && industry_distance(industry_oil_wells,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
@@ -123,6 +130,7 @@ if(param_auto_farm_fields == 1) {
 									produce_cargo("FOOD",12),
 									accept_cargo("RFPR", produce_cargo("FOOD",1)),
 									accept_cargo("RCYC", produce_cargo("FOOD",1)),
+									accept_cargo("WSTE", produce_cargo("FOOD",0.25)),
 			];
 			name:					TTD_STR_INDUSTRY_NAME_FARM;
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
@@ -140,6 +148,7 @@ if(param_auto_farm_fields == 1) {
 		graphics {
 			location_check:			switch_farm_allow_funded;
 			construction_probability:	15;
+			extra_text_industry: switch_farm_waste_text;
 		}
 	} 
 } else {
@@ -152,6 +161,7 @@ item (FEAT_INDUSTRIES, industry_farm, 0) {
 									produce_cargo("FOOD",12),
 									accept_cargo("RFPR", produce_cargo("FOOD",1)),
 									accept_cargo("RCYC", produce_cargo("FOOD",1)),
+									accept_cargo("WSTE", produce_cargo("FOOD",0.25)),
 			];
 			name:					TTD_STR_INDUSTRY_NAME_FARM;
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
@@ -169,6 +179,7 @@ item (FEAT_INDUSTRIES, industry_farm, 0) {
 		graphics {
 			location_check:			switch_farm_allow_funded;
 			construction_probability:	18;
+			extra_text_industry: switch_farm_waste_text;
 		}
 	}
 }

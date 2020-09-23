@@ -46,6 +46,7 @@ STR_FUND_AVAILABLE_1900				:{BLACK}Introduced: {YELLOW}1900
 STR_FUND_AVAILABLE_1945				:{BLACK}Introduced: {YELLOW}1945
 
 STR_EXTRA_WORKERS					:Employs 1 worker per 4 units of cargo delivered.
+STR_FARM_WASTE						:Feeding 4 tons of Waste to the pigs produces 1 ton of food.
 
 STR_NAME_OBJECT_MENU				:Industry Tiles
 STR_NAME_OBJECT_MENU_FIELDS			:Farm Tiles
