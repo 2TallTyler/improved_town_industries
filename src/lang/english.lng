@@ -6,8 +6,7 @@ STR_GRF_DESC						:{ORANGE}Vanilla-inspired industries{BLACK} with new chains, c
 STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
 
 STR_ERROR_GAME_VERSION				:{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better.
-STR_ERROR_MAP_TOO_SMALL				:{TITLE} needs a map size of at least 256x256.
-STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Waste & Recycling chain requires Improved Town Layouts version 1.2.0 or better.
+STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Waste & Recycling chain requires Improved Town Layouts version 1.3.0 or better.
 STR_ERROR_CONFLICTING_INDUSTRY_NEWGRF	:{TITLE} is incompatible with other industry NewGRFs and has been disabled.
 
 STR_PARAM_NAME_INDUSTRY_DENSITY		:Industry Density
@@ -30,7 +29,7 @@ STR_PARAM_NAME_AUTO_FARM_FIELDS		:Farms build fields
 STR_PARAM_DESC_AUTO_FARM_FIELDS		:Choose if {SILVER}Farms {BLACK}construct fields, as in vanilla OpenTTD.{}{}Field tiles are available as decorative objects.
 
 STR_PARAM_NAME_RECYCLABLES			:Enable Waste & Recycling chain
-STR_PARAM_DESC_RECYCLABLES			:Enables {SILVER}Recycling Center{BLACK} to sort Waste from town buildings into Recycled Materials for transport to industries.{}{}{ORANGE}Requires Improved Town Layouts NewGRF, version 1.2.0 or better.
+STR_PARAM_DESC_RECYCLABLES			:Enables {SILVER}Recycling Center{BLACK} to sort Waste from town buildings into Recycled Materials for transport to industries.{}{}{ORANGE}Requires Improved Town Layouts NewGRF, version 1.3.0 or better.
 
 STR_PARAM_NAME_CLEARCUT				:Logging Camp behavior
 STR_PARAM_DESC_CLEARCUT				:{WHITE}- Like Forest{BLACK} (vanilla Temperate climate). Does not cut trees. Subject to vanilla production changes. {ORANGE}Recommended.{}{}{WHITE}- Like Lumber Mill{BLACK} (vanilla Sub-tropic climate). Cuts trees within reach for production. Included for backwards compatibility.

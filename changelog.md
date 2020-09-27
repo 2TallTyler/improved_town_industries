@@ -97,4 +97,5 @@ TBD
   - Each industry employs 1 worker per 4 units of cargo delivered
 - Add: Secondary industries now close if cargo is not delivered for 5 years (vanilla behavior, previously disrupted by passenger generation)
 - Change: Use base game industry count management instead of handling it within ITI
+- Change: Waste & Recycling parameter text and error now requires Improved Town Layouts 1.3.0 (removes year >= 1882 limit for Waste production, now that Farms accept Waste)
 - Removed: Parameter for Logging Camp to act like Sub-Tropic Lumber Mill
