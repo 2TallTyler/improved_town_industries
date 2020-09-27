@@ -46,21 +46,6 @@ grf {
 			type: bool;
 		}
 	}
-	
-	param 4 {
-		param_clearcut {
-			name: string(STR_PARAM_NAME_CLEARCUT);
-			desc: string(STR_PARAM_DESC_CLEARCUT);
-			type: int;
-			min_value: 0;
-			max_value: 1;
-			def_value: 0;
-			names: {
-				0: string(STR_PARAM_CLEARCUT_FOREST);
-				1: string(STR_PARAM_CLEARCUT_LUMBER_MILL);
-			};
-		}
-	}
 
 	param 5 {
 		param_recyclables {

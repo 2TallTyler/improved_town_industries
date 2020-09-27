@@ -91,7 +91,10 @@ September 2, 2020
 ### 1.5.2
 TBD
 
-- Change: Use base game industry count management instead of handling it within ITI
-- Change: Secondary industry passenger production is scaled to cargo deliveries
+-
+- Add: Farms accept Waste; feeding it to the pigs generates 1 ton of Food per 4 tons of Waste delivered (Recycled Materials has a 1:1 ratio, incentivizing a change once the Recycling Center is invented in 1945)
+- Add: Secondary industry passenger production is scaled to cargo deliveries
   - Each industry employs 1 worker per 4 units of cargo delivered
-- Change: Secondary industries now close if cargo is not delivered for 5 years (vanilla behavior, previously disrupted by passenger generation)
+- Add: Secondary industries now close if cargo is not delivered for 5 years (vanilla behavior, previously disrupted by passenger generation)
+- Change: Use base game industry count management instead of handling it within ITI
+- Removed: Parameter for Logging Camp to act like Sub-Tropic Lumber Mill
