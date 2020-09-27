@@ -6,7 +6,7 @@ STR_GRF_DESC						:{ORANGE}Vanilla-inspired industries{BLACK} with new chains, c
 STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
 
 STR_ERROR_GAME_VERSION				:{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better.
-STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Waste & Recycling chain requires Improved Town Layouts version 1.3.0 or better.
+STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Waste & Recycling chain requires a compatible house set (recommended: Improved Town Layouts version 1.3.0 or better).
 STR_ERROR_CONFLICTING_INDUSTRY_NEWGRF	:{TITLE} is incompatible with other industry NewGRFs and has been disabled.
 
 STR_PARAM_NAME_INDUSTRY_DENSITY		:Industry Density

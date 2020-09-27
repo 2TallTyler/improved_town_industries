@@ -229,9 +229,9 @@ switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_prospected, extra_c
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_recycling_center_allow_prospected;}
 
-/* Define industry and objects only if Waste & Recycling chain is active */
+/* Define industry and objects only if Waste & Recycling chain is active. Check parameter only and rely on error message to catch a lack of compatible house sets. */
 
-if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {	
+if (param_recyclables == 1) {	
 	item (FEAT_INDUSTRIES, industry_recycling_center) {
 		property {
 			substitute:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;

@@ -47,7 +47,11 @@ grf {
 		}
 	}
 
-	param 3 {
+/* 	
+*	This must always be Parameter 5, for compatibility with house sets which check this parameter!
+*	Note: Waste & Recyclables is activated by parameter rather than automatically if a compatible house set is loaded, to allow helping players with error messages. 
+*/
+	param 5 {
 		param_recyclables {
 			name: string(STR_PARAM_NAME_RECYCLABLES);
 			desc: string(STR_PARAM_DESC_RECYCLABLES);
@@ -105,8 +109,20 @@ if (
 	error(FATAL, string(STR_ERROR_CONFLICTING_INDUSTRY_NEWGRF));
 }
 
-/* Create an error if Recyclables parameter is active but Improved Town Layouts isn't active or is too old (requires Version 10 or newer) */
-if (param_recyclables == 1 && (param["TT\03\01", 254] < 10 || (grf_current_status("TT\03\01") == 0 && grf_future_status("TT\03\01") == 0))) {
+/* Create an error if Recyclables parameter is active but no compatible town set is active */
+if (param_recyclables == 1 &&
+
+	(
+		((grf_current_status("TT\03\01") == 1 || grf_future_status("TT\03\01") == 1) && param["TT\03\01", 254] < 11) 	// Improved Town Layouts is loaded but not recent (1.3.0 or better)
+		||																												// or
+		(grf_current_status("TT\03\01") == 0 && grf_future_status("TT\03\01") == 0) 									// Improved Town Layouts is not loaded
+	)
+
+	&&																													// And another compatible house set isn't loaded:
+	
+	grf_current_status("MLS\01") == 0 && grf_future_status("MLS\01") == 0												// OpenGFX Mars Towns - Late Start
+	
+	) {
 	error(FATAL, string(STR_ERROR_RCLC_NEEDS_ITL));
 }
 
