@@ -40,7 +40,7 @@
 
 ### Towns generate Waste 
 **(requires Improved Town Layouts)**
-- Improved Town Layouts houses produce Waste, which can be transported to the Power Plant (from 1882) for incineration or to the Recycling Center (from 1945) for conversion to Recycled Materials. Houses do not produce Waste before 1882.
+- Improved Town Layouts houses produce Waste, which can be transported to the Farm to be fed to the pigs (returns 1/4 ton of Food per ton of Waste) or to the Recycling Center (from 1945) for conversion to Recycled Materials.
 - Recycled Materials are accepted at:
   - Steel Mill (scrap metal)
   - Paper Mill (paper and cardboard)
