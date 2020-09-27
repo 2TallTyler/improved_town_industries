@@ -1,4 +1,5 @@
-// Begin Sawmill
+
+/* *** Begin Logging Camp *** */
 
 spritelayout sprlay_logging_camp_1 {
 	ground		{sprite:2022;}
@@ -94,7 +95,7 @@ tilelayout industry_layout_logging_camp_3 {
 										2,1:	ind_tile_logging_camp_3;	2,2:	ind_tile_logging_camp_6;
 }
 
-/* Switch for clearcutting trees */
+/* Switch for clearcutting trees, connected to control_special callback. Cuts trees like sub-tropical Lumber Mill when true */
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, last_month_transported("WOOD") > 0 && transported_last_month_pct("WOOD") > 70) {1: return 1; return 0;}
 
 /* Location checks - specific to Lumber Camps */ 
@@ -103,7 +104,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_3, town_euclid
 switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_logging_camp_location_check_3;} // Add up the town zone radii and store it in temporary register 0
 
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_location_check_2;}
 
@@ -259,4 +260,4 @@ item (FEAT_OBJECTS, object_item_logging_camp_6) {
 	}
 }
 
-// End Sawmill
+/* *** End Logging Camp *** */

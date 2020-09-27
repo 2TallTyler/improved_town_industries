@@ -1,4 +1,5 @@
-// Begin Coal Mine
+
+/* *** Begin Coal Mine *** */
 
 spritelayout sprlay_coal_mine_1_a { // Hoist animation 1
 	ground		{sprite:2022;}
@@ -103,26 +104,31 @@ tilelayout industry_layout_coal_mine_3 {
 }
 	
 
-// Coal Mine Industry
+/* Coal Mine Industry */
 
-
-// If an odd number of industries exist, then must build within 100 tiles of another coal mine
+/* If an odd number of industries exist, then must build within 100 tiles of another coal mine */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_2, industry_distance(industry_coal_mine, -1) <= 100) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-// Check if an even number of coal mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering
+/* Check if an even number of coal mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_1, industry_count(industry_coal_mine, -1) % 2 == 0) {1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_cluster_2;}
 
-// Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps)
+/* Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps) */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_0, map_min_edge >= 512) {1: switch_coal_mine_cluster_1; CB_RESULT_LOCATION_ALLOW;}
 
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_coal_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
+	// Don't allow construction within 60 tiles (Manhattan) of steel mill
 
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_coal_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_coal_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, nearby_tile_height(0,0) < 4 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Coal mines must be built at tile height 2 or above./* // Industry Construction Switches - Read from bottom to top // */
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+
+switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_coal_mine_location_check_3;} 
+	// Add up the town zone radii and store it in temporary register 0
+
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, nearby_tile_height(0,0) < 4 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} 
+	// Coal mines must be built at tile height 2 or above.
 
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_location_check_1;}
 
@@ -251,4 +257,4 @@ item (FEAT_OBJECTS, object_item_coal_mine_5) {
 	}
 }
 
-// End Coal Mine
+/* *** End Coal Mine *** */

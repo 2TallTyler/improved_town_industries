@@ -1,4 +1,5 @@
-// Begin Farm
+
+/* *** Begin Farm *** */
 
 spritelayout sprlay_farm_1_N { // Farmhouse N
 	ground		{sprite:2106;}
@@ -111,13 +112,13 @@ switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_2, STORE_TEMP(town_z
 switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_1, nearby_tile_height(0,0) > 2 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_farm_location_check_2;} // Farms must be built at tile height 2 or below.
 
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_farm_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_farm_location_check_1;}
 
 /*
-*Parameter selects whether Farms build fields automatically
-*Uses if/then and otherwise-identical industry blocks, since special flags cannot be assigned to a parameter.
+*	Parameter selects whether Farms build fields automatically
+*	Uses if/then and otherwise-identical industry blocks, since special flags cannot be assigned to a parameter.
 */
 
 if(param_auto_farm_fields == 1) { 
@@ -613,4 +614,4 @@ switch (FEAT_OBJECTS, SELF, switch_farm_field_9_autoslope, [
 	}
 }
 
-// End Farm
+/* *** End Farm *** */

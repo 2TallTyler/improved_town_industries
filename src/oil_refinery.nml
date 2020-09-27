@@ -1,4 +1,4 @@
-// Begin Oil Refinery
+/* *** Begin Oil Refinery *** */
 
 spritelayout sprlay_oil_refinery_1 { // Office
 	ground		{sprite:1420;}
@@ -183,11 +183,11 @@ tilelayout industry_layout_oil_refinery_3 {
 5,0:	ind_tile_oil_refinery_2;	5,1:	ind_tile_oil_refinery_2;						5,3:	ind_tile_oil_refinery_9;	5,4:	ind_tile_oil_refinery_3;	5,5:	ind_tile_oil_refinery_7;
 }
 
-/* // Industry Construction Switches - Read from bottom to top // */
+/* Industry Construction Switches - Read from bottom to top */
 
 
 
-// Generated oil refineries must be within 15 tiles of water. Does not apply to industries prospected in the Scenario Editor by building "Many random industries"
+/* Generated oil refineries must be within 15 tiles of water. Does not apply to industries prospected in the Scenario Editor by building "Many random industries" */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_water, water_distance > 15 && game_mode != GAMEMODE_EDITOR) {1: CB_RESULT_LOCATION_DISALLOW; CB_RESULT_LOCATION_ALLOW;}
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
@@ -197,7 +197,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_competitor, industry
 
 /* Second industry switch - secondary industries only except Factory; only use one per industry */
 
-// Only allow a second oil refinery if a paper mill, steel mill, and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map.
+/* Only allow a second oil refinery if a paper mill, steel mill, and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map. */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_second_2, industry_count(industry_steel_mill,-1) > 0 && industry_count(industry_factory,-1) > 0 ) {1: switch_oil_refinery_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} // Only allow a second paper mill if a steel mill and factory already exist
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_second_1, // Check if this will be the second oil refinery in the world
 	industry_count(industry_oil_refinery,-1) == 1) {1: switch_oil_refinery_second_2; switch_oil_refinery_distance_competitor;}
@@ -221,20 +221,20 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_check_1, STORE_TEM
 
 /* Town Distance Check - secondary industries only */
 
-// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_oil_refinery_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_refinery_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
 
 
-// If "Generate primary only" parameter enabled, disallow random generation of secondary industries
+/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_generate_primary_only, param_primary_only)
 	{1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_refinery_town_distance_check_1;}
 
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
 	{1: switch_oil_refinery_town_distance_check_1; switch_oil_refinery_generate_primary_only;}
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_refinery_allow_prospected;}
 
@@ -474,4 +474,4 @@ item (FEAT_OBJECTS, object_item_oil_refinery_11) {
 	}
 }
 
-// End Oil Refinery
+/* *** End Oil Refinery *** */

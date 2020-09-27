@@ -1,4 +1,15 @@
-// Begin Header
+/* *** Begin Header *** */
+
+/*
+*
+*	Welcome to Improved Town Industries!
+*	
+*/
+
+/* Block comments like these explain the next chunk of code */
+
+// Inline comments like these explain how the previous bit of code works
+
 
 grf {
 	grfid: "TT\04\01";
@@ -62,12 +73,12 @@ grf {
 
 }
 
-// Create an error if OpenTTD version is before 1.10.0 (required for increased cargo types at industries)
+/* Create an error if OpenTTD version is before 1.10.0 (required for increased cargo types at industries) */
 if (version_openttd(1,10,0,28004) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
-// Create an error if a conflicting industry replacement set is active
+/* Create an error if a conflicting industry replacement set is active */
 if (
 	   grf_current_status("EELS") == 1 			|| grf_future_status("EELS") == 1			// Eels
 	|| grf_current_status("EN\15\01") == 1 		|| grf_future_status("EN\15\01") == 1		// Apollo Rocket Industry Set
@@ -109,20 +120,22 @@ if (
 	error(FATAL, string(STR_ERROR_CONFLICTING_INDUSTRY_NEWGRF));
 }
 
-// Create an error if Recyclables parameter is active but Improved Town Layouts isn't active or is too old (requires Version 8 or newer)
+/* Create an error if Recyclables parameter is active but Improved Town Layouts isn't active or is too old (requires Version 8 or newer) */
 if (param_recyclables == 1 && (param["TT\03\01", 254] < 9 || (grf_current_status("TT\03\01") == 0 && grf_future_status("TT\03\01") == 0))) {
 	error(FATAL, string(STR_ERROR_RCLC_NEEDS_ITL));
 }
 
-// Disable base game industries
-disable_item(FEAT_INDUSTRIES, 0, 36);
+/* Disable base game industries */
+disable_item(FEAT_INDUSTRIES);
 
-// Disable unused cargo types
-disable_item(FEAT_CARGOS, 0, 30);
+/* Disable base game cargos */
+disable_item(FEAT_CARGOS);
 
 
-// End Header
-// Begin Cargos
+/* *** End Header *** */
+
+
+/* *** Begin Cargos *** */
 
 cargotable {
 	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, FOOD, RFPR, RCYC, WSTE
@@ -429,8 +442,10 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
 	}
 }
 
-// End Cargos
-// Begin Farm
+/* *** End Cargos *** */
+
+
+/* *** Begin Farm *** */
 
 spritelayout sprlay_farm_1_N { // Farmhouse N
 	ground		{sprite:2106;}
@@ -543,13 +558,13 @@ switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_2, STORE_TEMP(town_z
 switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_1, nearby_tile_height(0,0) > 2 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_farm_location_check_2;} // Farms must be built at tile height 2 or below.
 
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_farm_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_farm_location_check_1;}
 
 /*
-*Parameter selects whether Farms build fields automatically
-*Uses if/then and otherwise-identical industry blocks, since special flags cannot be assigned to a parameter.
+*	Parameter selects whether Farms build fields automatically
+*	Uses if/then and otherwise-identical industry blocks, since special flags cannot be assigned to a parameter.
 */
 
 if(param_auto_farm_fields == 1) { 
@@ -1045,8 +1060,10 @@ switch (FEAT_OBJECTS, SELF, switch_farm_field_9_autoslope, [
 	}
 }
 
-// End Farm
-// Begin Coal Mine
+/* *** End Farm *** */
+
+
+/* *** Begin Coal Mine *** */
 
 spritelayout sprlay_coal_mine_1_a { // Hoist animation 1
 	ground		{sprite:2022;}
@@ -1151,26 +1168,31 @@ tilelayout industry_layout_coal_mine_3 {
 }
 	
 
-// Coal Mine Industry
+/* Coal Mine Industry */
 
-
-// If an odd number of industries exist, then must build within 100 tiles of another coal mine
+/* If an odd number of industries exist, then must build within 100 tiles of another coal mine */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_2, industry_distance(industry_coal_mine, -1) <= 100) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-// Check if an even number of coal mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering
+/* Check if an even number of coal mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_1, industry_count(industry_coal_mine, -1) % 2 == 0) {1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_cluster_2;}
 
-// Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps)
+/* Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps) */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_0, map_min_edge >= 512) {1: switch_coal_mine_cluster_1; CB_RESULT_LOCATION_ALLOW;}
 
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_coal_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
+	// Don't allow construction within 60 tiles (Manhattan) of steel mill
 
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_coal_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of steel mill
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_coal_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, nearby_tile_height(0,0) < 4 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} // Coal mines must be built at tile height 2 or above./* // Industry Construction Switches - Read from bottom to top // */
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+
+switch (FEAT_INDUSTRIES, PARENT, switch_coal_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_coal_mine_location_check_3;} 
+	// Add up the town zone radii and store it in temporary register 0
+
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, nearby_tile_height(0,0) < 4 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_coal_mine_location_check_2;} 
+	// Coal mines must be built at tile height 2 or above.
 
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_location_check_1;}
 
@@ -1299,8 +1321,10 @@ item (FEAT_OBJECTS, object_item_coal_mine_5) {
 	}
 }
 
-// End Coal Mine
-// Begin Power Plant
+/* *** End Coal Mine *** */
+
+
+/* *** Begin Power Plant *** */
 
 spritelayout sprlay_power_plant_1 { // Powerhouse
 	ground		{sprite:1420;}
@@ -1399,7 +1423,7 @@ tilelayout industry_layout_power_plant_5 {
 6,0:	ind_tile_power_plant_4;	/*6,1:	clear;*/					6,2:	ind_tile_power_plant_4;
 }
 
-/* // Industry Construction Switches - Read from bottom to top // */
+/* Industry Construction Switches - Read from bottom to top */
 
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
@@ -1414,20 +1438,20 @@ switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_population_check_1, // Check
 
 /* Town Distance Check - secondary industries only */
 
-// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_power_plant_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_power_plant_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
 
 
-// If "Generate primary only" parameter enabled, disallow random generation of secondary industries
+/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_generate_primary_only, param_primary_only)
 	{1: return CB_RESULT_LOCATION_DISALLOW; switch_power_plant_town_distance_check_1;}
 
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
 	{1: switch_power_plant_town_distance_check_1; switch_power_plant_generate_primary_only;}
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_allow_prospected;}
 
@@ -1533,8 +1557,10 @@ item (FEAT_OBJECTS, object_item_power_plant_4) {
 	}
 }
 
-// End Power Plant
-// Begin Iron Mine
+/* *** End Power Plant *** */
+
+
+/* *** Begin Iron Mine *** */
 
 spritelayout sprlay_iron_mine_00 {ground{sprite:2325;}}
 spritelayout sprlay_iron_mine_01 {ground{sprite:2326;}}
@@ -1615,24 +1641,28 @@ tilelayout industry_layout_iron_mine {
 	3,0:	ind_tile_iron_mine_30;	3,1:	ind_tile_iron_mine_31;	3,2:	ind_tile_iron_mine_32;	3,3:	ind_tile_iron_mine_33;
 }
 
-// Iron Mine Industry
+/* Iron Mine Industry */
 
-// If an odd number of industries exist, then must build within 100 tiles of another iron mine
+/* If an odd number of industries exist, then must build within 100 tiles of another iron mine */
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_cluster_2, industry_distance(industry_iron_mine, -1) <= 100) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-// Check if an even number ofironl mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering
+/* Check if an even number ofironl mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering */
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_cluster_1, industry_count(industry_iron_mine, -1) % 2 == 0) {1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_cluster_2;}
 
-// Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps)
+/* Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps) */
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_cluster_0, map_min_edge >= 512) {1: switch_iron_mine_cluster_1; CB_RESULT_LOCATION_ALLOW;}
 
+/* Don't allow construction within 30 tiles of farm (Manhattan), to avoid placing in a field */
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_5, industry_distance(industry_farm,-1) >= 30) {1: switch_iron_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
 
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_5, industry_distance(industry_farm,-1) >= 30) {1: switch_iron_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 30 tiles of farm (Manhattan), to avoid placing in a field
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+225) {1: switch_iron_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
+/* Don't build too close to a town. Two switches, read bottom to top. */
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+225) {1: switch_iron_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_3;} 
+	// Add up the town zone radii and store it in temporary register 0
 
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_location_check_2;}
 
@@ -1659,7 +1689,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
 	}
 }
 
-// Iron Mine Objects
+/* Iron Mine Objects */
 
 switch (FEAT_OBJECTS, SELF, switch_object_graphics_iron_mine, relative_pos) {
 	relative_coord(0,0): sprlay_iron_mine_00;
@@ -1700,8 +1730,10 @@ item (FEAT_OBJECTS, object_item_iron_mine) {
 	}
 }
 
-// End Iron Mine
-// Begin Steel Mill
+/* *** End Iron Mine *** */
+
+
+/* *** Begin Steel Mill *** */
 
 spritelayout sprlay_steel_mill_1_N {
 	ground		{sprite:2118;}
@@ -1791,12 +1823,12 @@ tilelayout industry_layout_steel_mill_1 {
 
 }
 
-/* // Industry Construction Switches - Read from bottom to top // */
+/* Industry Construction Switches - Read from bottom to top */
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_distance_competitor, industry_distance(industry_steel_mill, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-// Only allow a steel mill if a factory already exists. Factory must come first because it's the only destination for steel.
+// Only allow a steel mill if a factory already exists in the world. Factory must come first because it's the only destination for steel.
 switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_second_1, industry_count(industry_factory,-1) > 0 ) {1: switch_steel_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} // Only allow a steel mill if a factory already exists
 
 
@@ -1818,20 +1850,22 @@ switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_check_1, STORE_TEMP(
 
 /* Town Distance Check - secondary industries only */
 
-// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_steel_mill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_steel_mill_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_steel_mill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_steel_mill_town_distance_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
 
 
-// If "Generate primary only" parameter enabled, disallow random generation of secondary industries
+/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
 switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_generate_primary_only, param_primary_only)
 	{1: return CB_RESULT_LOCATION_DISALLOW; switch_steel_mill_town_distance_check_1;}
 
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
 switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
 	{1: switch_steel_mill_town_distance_check_1; switch_steel_mill_generate_primary_only;}
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_steel_mill_allow_prospected;}
 
@@ -1908,8 +1942,9 @@ item (FEAT_OBJECTS, object_item_steel_mill_2) {
 	}
 }
 
-// End Steel Mill
-// Begin Factory
+/* *** End Steel Mill *** */
+
+/* *** Begin Factory ** */
 
 spritelayout sprlay_factory_1_N {
 	ground		{sprite:2146;
@@ -2111,7 +2146,7 @@ tilelayout industry_layout_factory_L {
 	
 }
 
-/* // Industry Construction Switches - Read from bottom to top // */
+/* Industry Construction Switches - Read from bottom to top */
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_distance_competitor, industry_distance(industry_factory, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
@@ -2149,20 +2184,22 @@ switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_1, current_year <
 
 /* Town Distance Check - secondary industries only */
 
-// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
-switch (FEAT_INDUSTRIES, SELF, switch_factory_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_factory_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_factory_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
+switch (FEAT_INDUSTRIES, SELF, switch_factory_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_factory_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_town_distance_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
 
 
 // If "Generate primary only" parameter enabled, disallow random generation of secondary industries
 switch (FEAT_INDUSTRIES, SELF, switch_factory_generate_primary_only, param_primary_only)
 	{1: return CB_RESULT_LOCATION_DISALLOW; switch_factory_town_distance_check_1;}
 
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
 	{1: switch_factory_town_distance_check_1; switch_factory_generate_primary_only;}
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_factory_allow_prospected;}
 
@@ -2225,8 +2262,9 @@ item (FEAT_OBJECTS, object_item_factory_1) {
 	}
 }
 
-// End Factory
-// Begin Sawmill
+/* *** End Factory *** */
+
+/* *** Begin Logging Camp *** */
 
 spritelayout sprlay_logging_camp_1 {
 	ground		{sprite:2022;}
@@ -2322,7 +2360,7 @@ tilelayout industry_layout_logging_camp_3 {
 										2,1:	ind_tile_logging_camp_3;	2,2:	ind_tile_logging_camp_6;
 }
 
-/* Switch for clearcutting trees */
+/* Switch for clearcutting trees, connected to control_special callback. Cuts trees like sub-tropical Lumber Mill when true */
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, last_month_transported("WOOD") > 0 && transported_last_month_pct("WOOD") > 70) {1: return 1; return 0;}
 
 /* Location checks - specific to Lumber Camps */ 
@@ -2331,7 +2369,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_3, town_euclid
 switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_logging_camp_location_check_3;} // Add up the town zone radii and store it in temporary register 0
 
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_location_check_2;}
 
@@ -2487,8 +2525,9 @@ item (FEAT_OBJECTS, object_item_logging_camp_6) {
 	}
 }
 
-// End Sawmill
-// Begin Paper Mill
+/* *** End Logging Camp *** */
+
+/* *** Begin Paper Mill *** */
 
 spritelayout sprlay_paper_mill_9_N {
 	ground		{sprite:3981;}
@@ -2652,14 +2691,14 @@ tilelayout industry_layout_paper_mill_3 {
 3,0:	ind_tile_paper_mill_logs_1;		3,1:	ind_tile_paper_mill_9_W;		3,2:	ind_tile_paper_mill_9_S;
 }
 
-/* // Industry Construction Switches - Read from bottom to top // */
+/* Industry Construction Switches - Read from bottom to top */
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_distance_competitor, industry_distance(industry_paper_mill, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Second industry switch - only use one per industry */
 
-// Only allow a second paper mill if a steel mill and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map.
+/* Only allow a second paper mill if a steel mill and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map. */
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_second_2, industry_count(industry_steel_mill,-1) > 0 && industry_count(industry_factory,-1) > 0 ) {1: switch_paper_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} 
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_second_1, // Check if this will be the second paper mill in the world
 	industry_count(industry_paper_mill,-1) == 1) {1: switch_paper_mill_second_2; switch_paper_mill_distance_competitor;}
@@ -2683,20 +2722,22 @@ switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_population_check_1, STORE_TEMP(
 
 /* Town Distance Check - secondary industries only */
 
-// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_paper_mill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_paper_mill_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
+switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_paper_mill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_paper_mill_town_distance_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
 
 
-// If "Generate primary only" parameter enabled, disallow random generation of secondary industries
+/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_generate_primary_only, param_primary_only)
 	{1: return CB_RESULT_LOCATION_DISALLOW; switch_paper_mill_town_distance_check_1;}
 
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
 	{1: switch_paper_mill_town_distance_check_1; switch_paper_mill_generate_primary_only;}
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_paper_mill_allow_prospected;}
 
@@ -2756,8 +2797,9 @@ item (FEAT_OBJECTS, object_item_paper_mill_9) {
 	}
 }
 
-// End Paper Mill
-// Begin Oil Wells
+/* *** End Paper Mill *** */
+
+/* *** Begin Oil Wells *** */
 
 spritelayout sprlay_oil_wells_1_a { 
 	ground		{sprite:2173;}
@@ -2879,21 +2921,27 @@ tilelayout industry_layout_oil_wells_2 {
 	4,0:	ind_tile_oil_wells;		4,2:	ind_tile_oil_wells;
 }
 
-// If an odd number of industries exist, then must build within 100 tiles of another oil wells
+/* Every other oil well clusters near an existing oil well */
+
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_cluster_2, industry_distance(industry_oil_wells, -1) <= 100) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+	// If an odd number of industries exist, then must build within 100 tiles of another oil wells
 
-// Check if an even number of oil wells already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_cluster_1, industry_count(industry_oil_wells, -1) % 2 == 0) {1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_cluster_2;}
+	// Check if an even number of oil wells already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering
 
-// Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps)
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_cluster_0, map_min_edge >= 512) {1: switch_oil_wells_cluster_1; CB_RESULT_LOCATION_ALLOW;}
+	// Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps)
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_oil_wells_cluster_0; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of oil refinery, farm, or logging camp
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_oil_wells_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_wells_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_1, nearby_tile_height(0,0) > 2 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_2;} // Farms must be built at tile height 2 or below.
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_oil_wells_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
+	// Don't allow construction within 60 tiles (Manhattan) of oil refinery, farm, or logging camp
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_oil_wells_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_wells_location_check_3;} 
+	// Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_1, nearby_tile_height(0,0) > 2 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_2;} 
+	// If elevation checks are enabled, Oil Wells must be built at tile height 2 or below.
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_location_check_1;}
 
@@ -2936,8 +2984,9 @@ item (FEAT_OBJECTS, object_item_oil_wells_1) {
 	}
 }
 
-// End Oil Wells
-// Begin Oil Refinery
+/* *** End Oil Wells *** */
+
+/* *** Begin Oil Refinery *** */
 
 spritelayout sprlay_oil_refinery_1 { // Office
 	ground		{sprite:1420;}
@@ -3122,11 +3171,11 @@ tilelayout industry_layout_oil_refinery_3 {
 5,0:	ind_tile_oil_refinery_2;	5,1:	ind_tile_oil_refinery_2;						5,3:	ind_tile_oil_refinery_9;	5,4:	ind_tile_oil_refinery_3;	5,5:	ind_tile_oil_refinery_7;
 }
 
-/* // Industry Construction Switches - Read from bottom to top // */
+/* Industry Construction Switches - Read from bottom to top */
 
 
 
-// Generated oil refineries must be within 15 tiles of water. Does not apply to industries prospected in the Scenario Editor by building "Many random industries"
+/* Generated oil refineries must be within 15 tiles of water. Does not apply to industries prospected in the Scenario Editor by building "Many random industries" */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_water, water_distance > 15 && game_mode != GAMEMODE_EDITOR) {1: CB_RESULT_LOCATION_DISALLOW; CB_RESULT_LOCATION_ALLOW;}
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
@@ -3136,7 +3185,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_competitor, industry
 
 /* Second industry switch - secondary industries only except Factory; only use one per industry */
 
-// Only allow a second oil refinery if a paper mill, steel mill, and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map.
+/* Only allow a second oil refinery if a paper mill, steel mill, and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map. */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_second_2, industry_count(industry_steel_mill,-1) > 0 && industry_count(industry_factory,-1) > 0 ) {1: switch_oil_refinery_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} // Only allow a second paper mill if a steel mill and factory already exist
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_second_1, // Check if this will be the second oil refinery in the world
 	industry_count(industry_oil_refinery,-1) == 1) {1: switch_oil_refinery_second_2; switch_oil_refinery_distance_competitor;}
@@ -3160,20 +3209,20 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_check_1, STORE_TEM
 
 /* Town Distance Check - secondary industries only */
 
-// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_oil_refinery_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_refinery_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
 
 
-// If "Generate primary only" parameter enabled, disallow random generation of secondary industries
+/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_generate_primary_only, param_primary_only)
 	{1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_refinery_town_distance_check_1;}
 
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
 	{1: switch_oil_refinery_town_distance_check_1; switch_oil_refinery_generate_primary_only;}
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_refinery_allow_prospected;}
 
@@ -3413,8 +3462,9 @@ item (FEAT_OBJECTS, object_item_oil_refinery_11) {
 	}
 }
 
-// End Oil Refinery
-// Begin Recycling Center
+/* *** End Oil Refinery *** */
+
+/* *** Begin Recycling Center *** */
 
 spritelayout sprlay_recycling_center_shed { // Main building
 	ground		{sprite:2022;}
@@ -3601,7 +3651,7 @@ tilelayout industry_layout_recycling_center_3 {
 }
 
 
-/* // Industry Construction Switches - Read from bottom to top // */
+/* Industry Construction Switches - Read from bottom to top */
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_distance_competitor, industry_distance(industry_recycling_center, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
@@ -3625,24 +3675,27 @@ switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_population_check_1, STORE
 
 /* Town Distance Check - secondary industries only */
 
-// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
-switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_recycling_center_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_recycling_center_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_recycling_center_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_recycling_center_town_distance_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
 
 
 
-// If "Generate primary only" parameter enabled, disallow random generation of secondary industries
+/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_generate_primary_only, param_primary_only)
 	{1: return CB_RESULT_LOCATION_DISALLOW; switch_recycling_center_town_distance_check_1;}
 
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
 	{1: switch_recycling_center_town_distance_check_1; switch_recycling_center_generate_primary_only;}
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_recycling_center_allow_prospected;}
 
+/* Define industry and objects only if Waste & Recycling chain is active */
 
 if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {	
 	item (FEAT_INDUSTRIES, industry_recycling_center) {
@@ -3809,4 +3862,4 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
 		}
 	}
 }
-// End Recycling Center
+/* *** End Recycling Center *** */

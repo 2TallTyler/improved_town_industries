@@ -1,4 +1,4 @@
-// Begin Recycling Center
+/* *** Begin Recycling Center *** */
 
 spritelayout sprlay_recycling_center_shed { // Main building
 	ground		{sprite:2022;}
@@ -185,7 +185,7 @@ tilelayout industry_layout_recycling_center_3 {
 }
 
 
-/* // Industry Construction Switches - Read from bottom to top // */
+/* Industry Construction Switches - Read from bottom to top */
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_distance_competitor, industry_distance(industry_recycling_center, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
@@ -209,24 +209,27 @@ switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_population_check_1, STORE
 
 /* Town Distance Check - secondary industries only */
 
-// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
-switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_recycling_center_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_recycling_center_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
+switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_recycling_center_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_recycling_center_town_distance_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
 
 
 
-// If "Generate primary only" parameter enabled, disallow random generation of secondary industries
+/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_generate_primary_only, param_primary_only)
 	{1: return CB_RESULT_LOCATION_DISALLOW; switch_recycling_center_town_distance_check_1;}
 
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
 	{1: switch_recycling_center_town_distance_check_1; switch_recycling_center_generate_primary_only;}
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_recycling_center_allow_prospected;}
 
+/* Define industry and objects only if Waste & Recycling chain is active */
 
 if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {	
 	item (FEAT_INDUSTRIES, industry_recycling_center) {
@@ -393,4 +396,4 @@ if (param_recyclables == 1 && param["TT\03\01", 254] >= 9) {
 		}
 	}
 }
-// End Recycling Center
+/* *** End Recycling Center *** */

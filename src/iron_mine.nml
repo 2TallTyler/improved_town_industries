@@ -1,4 +1,5 @@
-// Begin Iron Mine
+
+/* *** Begin Iron Mine *** */
 
 spritelayout sprlay_iron_mine_00 {ground{sprite:2325;}}
 spritelayout sprlay_iron_mine_01 {ground{sprite:2326;}}
@@ -79,24 +80,28 @@ tilelayout industry_layout_iron_mine {
 	3,0:	ind_tile_iron_mine_30;	3,1:	ind_tile_iron_mine_31;	3,2:	ind_tile_iron_mine_32;	3,3:	ind_tile_iron_mine_33;
 }
 
-// Iron Mine Industry
+/* Iron Mine Industry */
 
-// If an odd number of industries exist, then must build within 100 tiles of another iron mine
+/* If an odd number of industries exist, then must build within 100 tiles of another iron mine */
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_cluster_2, industry_distance(industry_iron_mine, -1) <= 100) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-// Check if an even number ofironl mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering
+/* Check if an even number ofironl mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering */
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_cluster_1, industry_count(industry_iron_mine, -1) % 2 == 0) {1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_cluster_2;}
 
-// Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps)
+/* Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps) */
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_cluster_0, map_min_edge >= 512) {1: switch_iron_mine_cluster_1; CB_RESULT_LOCATION_ALLOW;}
 
+/* Don't allow construction within 30 tiles of farm (Manhattan), to avoid placing in a field */
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_5, industry_distance(industry_farm,-1) >= 30) {1: switch_iron_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
 
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_5, industry_distance(industry_farm,-1) >= 30) {1: switch_iron_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 30 tiles of farm (Manhattan), to avoid placing in a field
-switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+225) {1: switch_iron_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_3;} // Add up the town zone radii and store it in temporary register 0
+/* Don't build too close to a town. Two switches, read bottom to top. */
+switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+225) {1: switch_iron_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_iron_mine_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_iron_mine_location_check_3;} 
+	// Add up the town zone radii and store it in temporary register 0
 
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_iron_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_iron_mine_location_check_2;}
 
@@ -123,7 +128,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
 	}
 }
 
-// Iron Mine Objects
+/* Iron Mine Objects */
 
 switch (FEAT_OBJECTS, SELF, switch_object_graphics_iron_mine, relative_pos) {
 	relative_coord(0,0): sprlay_iron_mine_00;
@@ -164,4 +169,4 @@ item (FEAT_OBJECTS, object_item_iron_mine) {
 	}
 }
 
-// End Iron Mine
+/* *** End Iron Mine *** */

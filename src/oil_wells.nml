@@ -1,4 +1,4 @@
-// Begin Oil Wells
+/* *** Begin Oil Wells *** */
 
 spritelayout sprlay_oil_wells_1_a { 
 	ground		{sprite:2173;}
@@ -120,21 +120,27 @@ tilelayout industry_layout_oil_wells_2 {
 	4,0:	ind_tile_oil_wells;		4,2:	ind_tile_oil_wells;
 }
 
-// If an odd number of industries exist, then must build within 100 tiles of another oil wells
+/* Every other oil well clusters near an existing oil well */
+
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_cluster_2, industry_distance(industry_oil_wells, -1) <= 100) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+	// If an odd number of industries exist, then must build within 100 tiles of another oil wells
 
-// Check if an even number of oil wells already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_cluster_1, industry_count(industry_oil_wells, -1) % 2 == 0) {1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_cluster_2;}
+	// Check if an even number of oil wells already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering
 
-// Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps)
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_cluster_0, map_min_edge >= 512) {1: switch_oil_wells_cluster_1; CB_RESULT_LOCATION_ALLOW;}
+	// Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps)
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_oil_wells_cluster_0; CB_RESULT_LOCATION_DISALLOW;} // Don't allow construction within 60 tiles (Manhattan) of oil refinery, farm, or logging camp
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_oil_wells_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_wells_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_1, nearby_tile_height(0,0) > 2 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_2;} // Farms must be built at tile height 2 or below.
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_oil_wells_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
+	// Don't allow construction within 60 tiles (Manhattan) of oil refinery, farm, or logging camp
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_oil_wells_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_wells_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_wells_location_check_3;} 
+	// Add up the town zone radii and store it in temporary register 0
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_1, nearby_tile_height(0,0) > 2 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_wells_location_check_2;} 
+	// If elevation checks are enabled, Oil Wells must be built at tile height 2 or below.
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_location_check_1;}
 
@@ -177,4 +183,4 @@ item (FEAT_OBJECTS, object_item_oil_wells_1) {
 	}
 }
 
-// End Oil Wells
+/* *** End Oil Wells *** */
