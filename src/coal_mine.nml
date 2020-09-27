@@ -115,7 +115,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_1, industry_count(indust
 /* Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps) */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_0, map_min_edge >= 512) {1: switch_coal_mine_cluster_1; CB_RESULT_LOCATION_ALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_coal_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_forest,-1) >= 30) {1: switch_coal_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
 	// Don't allow construction within 60 tiles (Manhattan) of steel mill
 
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} 

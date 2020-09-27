@@ -139,7 +139,7 @@ disable_item(FEAT_CARGOS);
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, FOOD, RFPR, RCYC, WSTE
+	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, WDPR, RFPR, RCYC, WSTE, FOOD
 }
 
 // Original ID
@@ -243,26 +243,26 @@ item (FEAT_CARGOS, cargo_oil, 0x03) {
 }
 
 // Uses Livestock ID
-item (FEAT_CARGOS, cargo_food, 0x04) {
+item (FEAT_CARGOS, cargo_lumber, 0x04) {
 	property {
 		number:						0x04;
-		sprite:						4312;
-		type_name:					TTD_STR_CARGO_PLURAL_FOOD;
-		unit_name:					TTD_STR_CARGO_SINGULAR_FOOD;
-		type_abbreviation:			TTD_STR_ABBREV_FOOD;
+		sprite:						4307;
+		type_name:					string(STR_CARGO_NAME_LUMBER);
+		unit_name:					string(STR_CARGO_NAME_LUMBER);
+		type_abbreviation:			string(STR_CARGO_ABBREV_LUMBER);
 		weight:						1;
 		is_freight:					1;
-		cargo_classes:				bitmask(CC_REFRIGERATED, CC_EXPRESS);
-		cargo_label:				"FOOD";
-		town_growth_effect:			TOWNGROWTH_FOOD;
+		cargo_classes:				bitmask(CC_PIECE_GOODS);
+		cargo_label:				"WDPR";
+		town_growth_effect:			TOWNGROWTH_NONE;
 		town_growth_multiplier:		1.0;
 		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_FOOD;
-		penalty_lowerbound:			0;
-		single_penalty_length:		24;
-		station_list_colour:		48;
-		cargo_payment_list_colour:	48;
-		price_factor:				158;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_LUMBER);
+		penalty_lowerbound:			18;
+		single_penalty_length:		255;
+		station_list_colour:		58;
+		cargo_payment_list_colour:	58;
+		price_factor:				124;
 		capacity_multiplier:		1;		
 	}
 }
@@ -443,6 +443,31 @@ if (param_recyclables == 1) {
 	}
 }
 
+// Original ID, required for compatibility with older NewGRF house sets which hard-code cargo acceptance to cargo IDs rather than "FOOD"
+item (FEAT_CARGOS, cargo_food, 0x0C) {
+	property {
+		number:						0x0C;
+		sprite:						4312;
+		type_name:					TTD_STR_CARGO_PLURAL_FOOD;
+		unit_name:					TTD_STR_CARGO_SINGULAR_FOOD;
+		type_abbreviation:			TTD_STR_ABBREV_FOOD;
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_REFRIGERATED, CC_EXPRESS);
+		cargo_label:				"FOOD";
+		town_growth_effect:			TOWNGROWTH_FOOD;
+		town_growth_multiplier:		1.0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				TTD_STR_QUANTITY_FOOD;
+		penalty_lowerbound:			0;
+		single_penalty_length:		24;
+		station_list_colour:		48;
+		cargo_payment_list_colour:	48;
+		price_factor:				158;
+		capacity_multiplier:		1;		
+	}
+}
+
 /* *** End Cargos *** */
 
 
@@ -553,7 +578,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_farm_waste_text, param_recyclables == 1 &&
 
 /* Industry construction checks - specific to Farms */
 
-switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_5, industry_distance(industry_farm,-1) >= 40 && industry_distance(industry_steel_mill,-1) >= 30 && industry_distance(industry_oil_refinery,-1) >= 30 && industry_distance(industry_paper_mill,-1) >= 30 && industry_distance(industry_factory,-1) >= 30 && industry_distance(industry_iron_mine,-1) >= 30 && industry_distance(industry_coal_mine,-1) >= 30 && industry_distance(industry_oil_wells,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_5, industry_distance(industry_farm,-1) >= 40 && industry_distance(industry_steel_mill,-1) >= 30 && industry_distance(industry_oil_refinery,-1) >= 30 && industry_distance(industry_paper_mill,-1) >= 30 && industry_distance(industry_factory,-1) >= 30 && industry_distance(industry_iron_mine,-1) >= 30 && industry_distance(industry_coal_mine,-1) >= 30 && industry_distance(industry_oil_wells,-1) >= 30 && industry_distance(industry_forest,-1) >= 30) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_farm_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_farm_location_check_3;} // Add up the town zone radii and store it in temporary register 0
 switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_1, nearby_tile_height(0,0) > 2 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_farm_location_check_2;} // Farms must be built at tile height 2 or below.
@@ -1180,7 +1205,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_1, industry_count(indust
 /* Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps) */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_0, map_min_edge >= 512) {1: switch_coal_mine_cluster_1; CB_RESULT_LOCATION_ALLOW;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_coal_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_5, industry_distance(industry_steel_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_forest,-1) >= 30) {1: switch_coal_mine_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
 	// Don't allow construction within 60 tiles (Manhattan) of steel mill
 
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_coal_mine_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} 
@@ -2208,7 +2233,7 @@ item (FEAT_INDUSTRIES, industry_factory, 5) {
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
 								accept_cargo("STEL", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("WOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("WDPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 								accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 								accept_cargo("FOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 								accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
@@ -2262,137 +2287,170 @@ item (FEAT_OBJECTS, object_item_factory_1) {
 
 /* *** End Factory *** */
 
-/* *** Begin Logging Camp *** */
+/* *** Begin Sawmill *** */
 
-spritelayout sprlay_logging_camp_1 {
+spritelayout sprlay_sawmill_1 {
 	ground		{sprite:2022;}
 	building	{sprite:2070;}
 }
 
-spritelayout sprlay_logging_camp_2 {
+spritelayout sprlay_sawmill_2 {
 	ground		{sprite:2022;}
 	building	{sprite:2071;}
 }
 
-spritelayout sprlay_logging_camp_3 {
+spritelayout sprlay_sawmill_3 {
 	ground		{sprite:2022;}
 	building	{sprite:2063;}
 }
 
-spritelayout sprlay_logging_camp_4 {
+spritelayout sprlay_sawmill_4 {
 	ground		{sprite:2022;}
 	building	{sprite:2069;}
 }
 
-spritelayout sprlay_logging_camp_5 {
+spritelayout sprlay_sawmill_5 {
 	ground		{sprite:2022;}
 	building	{sprite:2066;}
 }
 
-spritelayout sprlay_logging_camp_6 {
+spritelayout sprlay_sawmill_6 {
 	ground		{sprite:2022;}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_1) {
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_1) {
 	property {
 		substitute:				11;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 	graphics {
-		default:				sprlay_logging_camp_1;
+		default:				sprlay_sawmill_1;
 	}
 }
-item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_2) {
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_2) {
 	property {
 		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 	graphics {
-		default:				sprlay_logging_camp_2;
+		default:				sprlay_sawmill_2;
 	}
 }
-item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_3) {
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_3) {
 	property {
 		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 	graphics {
-		default:				sprlay_logging_camp_3;
+		default:				sprlay_sawmill_3;
 	}
 }
-item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_4) {
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_4) {
 	property {
 		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 	graphics {
-		default:				sprlay_logging_camp_4;
+		default:				sprlay_sawmill_4;
 	}
 }
-item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_5) {
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_5) {
 	property {
 		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 	graphics {
-		default:				sprlay_logging_camp_5;
+		default:				sprlay_sawmill_5;
 	}
 }
-item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_6) {
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_6) {
 	property {
 		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 	graphics {
-		default:				sprlay_logging_camp_6;
+		default:				sprlay_sawmill_6;
 	}
 }
 
-tilelayout industry_layout_logging_camp_1 {
-	0,0:	ind_tile_logging_camp_5;	0,1:	ind_tile_logging_camp_6;	0,2:	ind_tile_logging_camp_4;
-	1,0:	ind_tile_logging_camp_3;	1,1:	ind_tile_logging_camp_1;	1,2:	ind_tile_logging_camp_2;
+tilelayout industry_layout_sawmill_1 {
+	0,0:	ind_tile_sawmill_5;	0,1:	ind_tile_sawmill_6;	0,2:	ind_tile_sawmill_4;
+	1,0:	ind_tile_sawmill_3;	1,1:	ind_tile_sawmill_1;	1,2:	ind_tile_sawmill_2;
 }
 
-tilelayout industry_layout_logging_camp_2 {
-	0,0:	ind_tile_logging_camp_1;	0,1:	ind_tile_logging_camp_6;	0,2:	ind_tile_logging_camp_4;	0,3:	ind_tile_logging_camp_4;
-	1,0:	ind_tile_logging_camp_1;	1,1:	ind_tile_logging_camp_3;	1,2:	ind_tile_logging_camp_2;	1,3:	ind_tile_logging_camp_5;
+tilelayout industry_layout_sawmill_2 {
+	0,0:	ind_tile_sawmill_1;	0,1:	ind_tile_sawmill_6;	0,2:	ind_tile_sawmill_4;	0,3:	ind_tile_sawmill_4;
+	1,0:	ind_tile_sawmill_1;	1,1:	ind_tile_sawmill_3;	1,2:	ind_tile_sawmill_2;	1,3:	ind_tile_sawmill_5;
 }
 
-tilelayout industry_layout_logging_camp_3 {
-	0,0:	ind_tile_logging_camp_5;	0,1:	ind_tile_logging_camp_1;	0,2:	ind_tile_logging_camp_1;
-	1,0:	ind_tile_logging_camp_6;	1,1:	ind_tile_logging_camp_4;	1,2:	ind_tile_logging_camp_2;
-										2,1:	ind_tile_logging_camp_3;	2,2:	ind_tile_logging_camp_6;
+tilelayout industry_layout_sawmill_3 {
+	0,0:	ind_tile_sawmill_5;	0,1:	ind_tile_sawmill_1;	0,2:	ind_tile_sawmill_1;
+	1,0:	ind_tile_sawmill_6;	1,1:	ind_tile_sawmill_4;	1,2:	ind_tile_sawmill_2;
+										2,1:	ind_tile_sawmill_3;	2,2:	ind_tile_sawmill_6;
 }
 
-/* Location checks - specific to Lumber Camps */ 
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_5, industry_distance(industry_paper_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_logging_camp_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_logging_camp_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_logging_camp_location_check_3;} // Add up the town zone radii and store it in temporary register 0
+/* Industry Construction Switches - Read from bottom to top */
 
+
+/* Don't allow the same industry within 100 tiles - secondary industries only */
+switch (FEAT_INDUSTRIES, SELF, switch_sawmill_distance_competitor, industry_distance(industry_sawmill, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Population Check - different for power plants, only requiring at least 500 population with no regard for other industries */
+
+switch (FEAT_INDUSTRIES, PARENT, switch_sawmill_population_check_1, 
+	// Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= 300) {1: switch_sawmill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Town Distance Check - secondary industries only */
+
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
+switch (FEAT_INDUSTRIES, SELF, switch_sawmill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_sawmill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_sawmill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_sawmill_town_distance_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
+
+
+/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
+switch (FEAT_INDUSTRIES, SELF, switch_sawmill_generate_primary_only, param_primary_only)
+	{1: return CB_RESULT_LOCATION_DISALLOW; switch_sawmill_town_distance_check_1;}
+
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
+switch (FEAT_INDUSTRIES, SELF, switch_sawmill_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
+	{1: switch_sawmill_town_distance_check_1; switch_sawmill_generate_primary_only;}
 
 /* Funded industries have no restrictions */
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return CB_RESULT_LOCATION_ALLOW; switch_logging_camp_location_check_2;}
+switch (FEAT_INDUSTRIES, SELF, switch_sawmill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_sawmill_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_logging_camp, 6) {
+item (FEAT_INDUSTRIES, industry_sawmill, 6) {
 	property {
-		substitute:				INDUSTRYTYPE_FOREST;
-		life_type:				IND_LIFE_TYPE_ORGANIC;
-		cargo_types:			[produce_cargo("WOOD",13),];
-		name:					string(STR_NAME_LOGGING_CAMP);
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_LOGGING_CAMP));
-		fund_cost_multiplier:	40;
+		substitute:				INDUSTRYTYPE_SAWMILL;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		cargo_types:			[accept_cargo("WOOD", produce_cargo("WDPR",1), produce_cargo("PASS",0.25)),];
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_SAWMILL));
+		fund_cost_multiplier:	20;
 		layouts:				[
-			industry_layout_logging_camp_1,
-			industry_layout_logging_camp_2,
-			industry_layout_logging_camp_3,
+			industry_layout_sawmill_1,
+			industry_layout_sawmill_2,
+			industry_layout_sawmill_3,
 		];
 	}
 	graphics {
-		location_check:			switch_logging_camp_allow_funded;
-		construction_probability:	15;
+		location_check:			switch_sawmill_allow_funded;
+		construction_probability:	(current_year >= 1800) ? 9 : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
+		extra_text_industry:	string(STR_EXTRA_WORKERS);
 	}
 }
 
-item (FEAT_OBJECTS, object_item_logging_camp_1) {
+item (FEAT_OBJECTS, object_item_sawmill_1) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_LOGGING_CAMP);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2402,15 +2460,15 @@ item (FEAT_OBJECTS, object_item_logging_camp_1) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_logging_camp_1;
+		default:				sprlay_sawmill_1;
 	}
 }
 
-item (FEAT_OBJECTS, object_item_logging_camp_2) {
+item (FEAT_OBJECTS, object_item_sawmill_2) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_LOGGING_CAMP);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2420,15 +2478,15 @@ item (FEAT_OBJECTS, object_item_logging_camp_2) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_logging_camp_2;
+		default:				sprlay_sawmill_2;
 	}
 }
 
-item (FEAT_OBJECTS, object_item_logging_camp_3) {
+item (FEAT_OBJECTS, object_item_sawmill_3) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_LOGGING_CAMP);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2438,15 +2496,15 @@ item (FEAT_OBJECTS, object_item_logging_camp_3) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_logging_camp_3;
+		default:				sprlay_sawmill_3;
 	}
 }
 
-item (FEAT_OBJECTS, object_item_logging_camp_4) {
+item (FEAT_OBJECTS, object_item_sawmill_4) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_LOGGING_CAMP);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2456,15 +2514,15 @@ item (FEAT_OBJECTS, object_item_logging_camp_4) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_logging_camp_4;
+		default:				sprlay_sawmill_4;
 	}
 }
 
-item (FEAT_OBJECTS, object_item_logging_camp_5) {
+item (FEAT_OBJECTS, object_item_sawmill_5) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_LOGGING_CAMP);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
 		build_cost_multiplier:	0;
@@ -2474,14 +2532,14 @@ item (FEAT_OBJECTS, object_item_logging_camp_5) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_logging_camp_5;
+		default:				sprlay_sawmill_5;
 	}
 }
-item (FEAT_OBJECTS, object_item_logging_camp_6) {
+item (FEAT_OBJECTS, object_item_sawmill_6) {
 	property {
 		class:					"HSIN";
 		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_LOGGING_CAMP);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
 		climates_available:		ALL_CLIMATES;
 		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE,OBJ_FLAG_ALLOW_BRIDGE);
 		build_cost_multiplier:	0;
@@ -2491,11 +2549,11 @@ item (FEAT_OBJECTS, object_item_logging_camp_6) {
 		num_views:				1;
 	}
 	graphics {
-		default:				sprlay_logging_camp_6;
+		default:				sprlay_sawmill_6;
 	}
 }
 
-/* *** End Logging Camp *** */
+/* *** End Sawmill *** */
 
 /* *** Begin Paper Mill *** */
 
@@ -2902,7 +2960,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_cluster_1, industry_count(indust
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_cluster_0, map_min_edge >= 512) {1: switch_oil_wells_cluster_1; CB_RESULT_LOCATION_ALLOW;}
 	// Disable clustering if smallest map edge is < 512 (clustering doesn't work well on small maps)
 
-switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_logging_camp,-1) >= 30) {1: switch_oil_wells_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
+switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_5, industry_distance(industry_oil_refinery,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_forest,-1) >= 30) {1: switch_oil_wells_cluster_0; CB_RESULT_LOCATION_DISALLOW;} 
 	// Don't allow construction within 60 tiles (Manhattan) of oil refinery, farm, or logging camp
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_oil_wells_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} 
 	// Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
@@ -3668,7 +3726,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_funded, extra_callb
 /* Define industry and objects only if Waste & Recycling chain is active. Check parameter only and rely on error message to catch a lack of compatible house sets. */
 
 if (param_recyclables == 1) {	
-	item (FEAT_INDUSTRIES, industry_recycling_center) {
+	item (FEAT_INDUSTRIES, industry_recycling_center, 10) {
 		property {
 			substitute:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
 			override:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
@@ -3833,3 +3891,31 @@ if (param_recyclables == 1) {
 	}
 }
 /* *** End Recycling Center *** */
+
+
+/* *** Begin Forest *** */
+
+/* Location checks - specific to Lumber Camps */ 
+switch (FEAT_INDUSTRIES, SELF, switch_forest_location_check_5, industry_distance(industry_paper_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_forest,-1) >= 30) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, switch_forest_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_forest_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_forest_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_forest_location_check_3;} // Add up the town zone radii and store it in temporary register 0
+
+
+/* Funded industries have no restrictions */
+switch (FEAT_INDUSTRIES, SELF, switch_forest_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_forest_location_check_2;}
+
+item (FEAT_INDUSTRIES, industry_forest, 11) {
+	property {
+		substitute:				INDUSTRYTYPE_FOREST;
+		life_type:				IND_LIFE_TYPE_ORGANIC;
+		cargo_types:			[produce_cargo("WOOD",13),];
+		name:					TTD_STR_INDUSTRY_NAME_FOREST;
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
+		fund_cost_multiplier:	40;
+	}
+	graphics {
+		location_check:			switch_forest_allow_funded;
+		construction_probability:	15;
+	}
+}

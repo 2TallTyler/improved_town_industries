@@ -264,7 +264,7 @@ item (FEAT_INDUSTRIES, industry_factory, 5) {
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
 								accept_cargo("STEL", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("WOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("WDPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 								accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 								accept_cargo("FOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 								accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),

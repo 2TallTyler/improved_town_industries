@@ -1,0 +1,268 @@
+
+/* *** Begin Sawmill *** */
+
+spritelayout sprlay_sawmill_1 {
+	ground		{sprite:2022;}
+	building	{sprite:2070;}
+}
+
+spritelayout sprlay_sawmill_2 {
+	ground		{sprite:2022;}
+	building	{sprite:2071;}
+}
+
+spritelayout sprlay_sawmill_3 {
+	ground		{sprite:2022;}
+	building	{sprite:2063;}
+}
+
+spritelayout sprlay_sawmill_4 {
+	ground		{sprite:2022;}
+	building	{sprite:2069;}
+}
+
+spritelayout sprlay_sawmill_5 {
+	ground		{sprite:2022;}
+	building	{sprite:2066;}
+}
+
+spritelayout sprlay_sawmill_6 {
+	ground		{sprite:2022;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_1) {
+	property {
+		substitute:				11;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_sawmill_1;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_2) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_sawmill_2;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_3) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_sawmill_3;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_4) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_sawmill_4;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_5) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_sawmill_5;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_6) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default:				sprlay_sawmill_6;
+	}
+}
+
+tilelayout industry_layout_sawmill_1 {
+	0,0:	ind_tile_sawmill_5;	0,1:	ind_tile_sawmill_6;	0,2:	ind_tile_sawmill_4;
+	1,0:	ind_tile_sawmill_3;	1,1:	ind_tile_sawmill_1;	1,2:	ind_tile_sawmill_2;
+}
+
+tilelayout industry_layout_sawmill_2 {
+	0,0:	ind_tile_sawmill_1;	0,1:	ind_tile_sawmill_6;	0,2:	ind_tile_sawmill_4;	0,3:	ind_tile_sawmill_4;
+	1,0:	ind_tile_sawmill_1;	1,1:	ind_tile_sawmill_3;	1,2:	ind_tile_sawmill_2;	1,3:	ind_tile_sawmill_5;
+}
+
+tilelayout industry_layout_sawmill_3 {
+	0,0:	ind_tile_sawmill_5;	0,1:	ind_tile_sawmill_1;	0,2:	ind_tile_sawmill_1;
+	1,0:	ind_tile_sawmill_6;	1,1:	ind_tile_sawmill_4;	1,2:	ind_tile_sawmill_2;
+										2,1:	ind_tile_sawmill_3;	2,2:	ind_tile_sawmill_6;
+}
+
+/* Industry Construction Switches - Read from bottom to top */
+
+
+/* Don't allow the same industry within 100 tiles - secondary industries only */
+switch (FEAT_INDUSTRIES, SELF, switch_sawmill_distance_competitor, industry_distance(industry_sawmill, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Population Check - different for power plants, only requiring at least 500 population with no regard for other industries */
+
+switch (FEAT_INDUSTRIES, PARENT, switch_sawmill_population_check_1, 
+	// Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= 300) {1: switch_sawmill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Town Distance Check - secondary industries only */
+
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
+switch (FEAT_INDUSTRIES, SELF, switch_sawmill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_sawmill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_sawmill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_sawmill_town_distance_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
+
+
+/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
+switch (FEAT_INDUSTRIES, SELF, switch_sawmill_generate_primary_only, param_primary_only)
+	{1: return CB_RESULT_LOCATION_DISALLOW; switch_sawmill_town_distance_check_1;}
+
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
+switch (FEAT_INDUSTRIES, SELF, switch_sawmill_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
+	{1: switch_sawmill_town_distance_check_1; switch_sawmill_generate_primary_only;}
+
+/* Funded industries have no restrictions */
+switch (FEAT_INDUSTRIES, SELF, switch_sawmill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_sawmill_allow_prospected;}
+
+item (FEAT_INDUSTRIES, industry_sawmill, 6) {
+	property {
+		substitute:				INDUSTRYTYPE_SAWMILL;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		cargo_types:			[accept_cargo("WOOD", produce_cargo("WDPR",1), produce_cargo("PASS",0.25)),];
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_SAWMILL));
+		fund_cost_multiplier:	20;
+		layouts:				[
+			industry_layout_sawmill_1,
+			industry_layout_sawmill_2,
+			industry_layout_sawmill_3,
+		];
+	}
+	graphics {
+		location_check:			switch_sawmill_allow_funded;
+		construction_probability:	(current_year >= 1800) ? 9 : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
+		extra_text_industry:	string(STR_EXTRA_WORKERS);
+	}
+}
+
+item (FEAT_OBJECTS, object_item_sawmill_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_sawmill_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_sawmill_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_sawmill_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_4;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_sawmill_5) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_5;
+	}
+}
+item (FEAT_OBJECTS, object_item_sawmill_6) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE,OBJ_FLAG_ALLOW_BRIDGE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_sawmill_6;
+	}
+}
+
+/* *** End Sawmill *** */

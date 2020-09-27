@@ -232,7 +232,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_funded, extra_callb
 /* Define industry and objects only if Waste & Recycling chain is active. Check parameter only and rely on error message to catch a lack of compatible house sets. */
 
 if (param_recyclables == 1) {	
-	item (FEAT_INDUSTRIES, industry_recycling_center) {
+	item (FEAT_INDUSTRIES, industry_recycling_center, 10) {
 		property {
 			substitute:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
 			override:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;

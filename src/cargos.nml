@@ -2,7 +2,7 @@
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, FOOD, RFPR, RCYC, WSTE
+	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, WDPR, RFPR, RCYC, WSTE, FOOD
 }
 
 // Original ID
@@ -106,26 +106,26 @@ item (FEAT_CARGOS, cargo_oil, 0x03) {
 }
 
 // Uses Livestock ID
-item (FEAT_CARGOS, cargo_food, 0x04) {
+item (FEAT_CARGOS, cargo_lumber, 0x04) {
 	property {
 		number:						0x04;
-		sprite:						4312;
-		type_name:					TTD_STR_CARGO_PLURAL_FOOD;
-		unit_name:					TTD_STR_CARGO_SINGULAR_FOOD;
-		type_abbreviation:			TTD_STR_ABBREV_FOOD;
+		sprite:						4307;
+		type_name:					string(STR_CARGO_NAME_LUMBER);
+		unit_name:					string(STR_CARGO_NAME_LUMBER);
+		type_abbreviation:			string(STR_CARGO_ABBREV_LUMBER);
 		weight:						1;
 		is_freight:					1;
-		cargo_classes:				bitmask(CC_REFRIGERATED, CC_EXPRESS);
-		cargo_label:				"FOOD";
-		town_growth_effect:			TOWNGROWTH_FOOD;
+		cargo_classes:				bitmask(CC_PIECE_GOODS);
+		cargo_label:				"WDPR";
+		town_growth_effect:			TOWNGROWTH_NONE;
 		town_growth_multiplier:		1.0;
 		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_FOOD;
-		penalty_lowerbound:			0;
-		single_penalty_length:		24;
-		station_list_colour:		48;
-		cargo_payment_list_colour:	48;
-		price_factor:				158;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_LUMBER);
+		penalty_lowerbound:			18;
+		single_penalty_length:		255;
+		station_list_colour:		58;
+		cargo_payment_list_colour:	58;
+		price_factor:				124;
 		capacity_multiplier:		1;		
 	}
 }
@@ -303,6 +303,31 @@ if (param_recyclables == 1) {
 			price_factor:				100;
 			capacity_multiplier:		1;		
 		}
+	}
+}
+
+// Original ID, required for compatibility with older NewGRF house sets which hard-code cargo acceptance to cargo IDs rather than "FOOD"
+item (FEAT_CARGOS, cargo_food, 0x0C) {
+	property {
+		number:						0x0C;
+		sprite:						4312;
+		type_name:					TTD_STR_CARGO_PLURAL_FOOD;
+		unit_name:					TTD_STR_CARGO_SINGULAR_FOOD;
+		type_abbreviation:			TTD_STR_ABBREV_FOOD;
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_REFRIGERATED, CC_EXPRESS);
+		cargo_label:				"FOOD";
+		town_growth_effect:			TOWNGROWTH_FOOD;
+		town_growth_multiplier:		1.0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				TTD_STR_QUANTITY_FOOD;
+		penalty_lowerbound:			0;
+		single_penalty_length:		24;
+		station_list_colour:		48;
+		cargo_payment_list_colour:	48;
+		price_factor:				158;
+		capacity_multiplier:		1;		
 	}
 }
 

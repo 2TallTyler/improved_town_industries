@@ -50,8 +50,8 @@
 
 ### Industries are invented at realistic dates in history
 
-- Always: Farm, Coal Mine, Logging Camp
-- 1800: Factory
+- Always: Farm, Coal Mine, Forest
+- 1800: Factory, Sawmill
 - 1856: Iron Mine and Steel Mill
 - 1882: Power Plant
 - 1885: Paper Mill

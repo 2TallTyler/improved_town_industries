@@ -91,6 +91,8 @@ September 2, 2020
 ### 1.6.0
 TBD
 
+- Add: Sawmill processes Wood into Lumber (like vanilla Sawmill)
+- Add: Forest produces Wood (replaces Logging Camp, like vanilla Forest)
 - Add: Farms accept Waste; feeding it to the pigs generates 1 ton of Food per 4 tons of Waste delivered (Recycled Materials has a 1:1 ratio, incentivizing a change once the Recycling Center is invented in 1945)
 - Add: Secondary industry passenger production is scaled to cargo deliveries
   - Each industry employs 1 worker per 4 units of cargo delivered
