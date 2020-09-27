@@ -88,14 +88,18 @@ September 2, 2020
   - Banning primary industries next to cities has not proved necessary
 - Fix: Recycling Center obeys "Generate Primary Industries Only" parameter
 
-### 1.5.2
+### 1.6.0
 TBD
 
--
 - Add: Farms accept Waste; feeding it to the pigs generates 1 ton of Food per 4 tons of Waste delivered (Recycled Materials has a 1:1 ratio, incentivizing a change once the Recycling Center is invented in 1945)
 - Add: Secondary industry passenger production is scaled to cargo deliveries
   - Each industry employs 1 worker per 4 units of cargo delivered
+  -  Symmetric Cargodist should route passengers back to the industry as workers headed to work
+  -  Passengers are no longer "Requires" cargos but are still accepted by industry tiles
 - Add: Secondary industries now close if cargo is not delivered for 5 years (vanilla behavior, previously disrupted by passenger generation)
-- Change: Use base game industry count management instead of handling it within ITI
+- Add: Waste & Recycling now compatible with other house sets which generate Waste
+  - Improved Town Layouts
+  - OpenGFX Mars Houses - Late Start
 - Change: Waste & Recycling parameter text and error now requires Improved Town Layouts 1.3.0 (removes year >= 1882 limit for Waste production, now that Farms accept Waste)
+- Change: Use base game industry count management instead of handling it within ITI=
 - Removed: Parameter for Logging Camp to act like Sub-Tropic Lumber Mill

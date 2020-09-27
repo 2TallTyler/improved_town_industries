@@ -1203,7 +1203,6 @@ item (FEAT_INDUSTRIES, industry_coal_mine, 1) {
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
 		cargo_types:			[
 								produce_cargo("COAL",15),
-								accept_cargo("PASS"),
 								produce_cargo("PASS",15),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
@@ -1464,7 +1463,6 @@ item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 		cargo_types:			[
 								accept_cargo("COAL"),
 								accept_cargo("WSTE"),
-								accept_cargo("PASS"),
 								produce_cargo("PASS",2),
 		];
 		name:					string(STR_NAME_POWER_PLANT);
@@ -1674,7 +1672,6 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
 		spec_flags:				0;
 		cargo_types:			[
 								produce_cargo("IORE",15),
-								accept_cargo("PASS"),
 								produce_cargo("PASS",8),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;

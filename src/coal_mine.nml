@@ -138,7 +138,6 @@ item (FEAT_INDUSTRIES, industry_coal_mine, 1) {
 		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
 		cargo_types:			[
 								produce_cargo("COAL",15),
-								accept_cargo("PASS"),
 								produce_cargo("PASS",15),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;

@@ -112,7 +112,6 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
 		spec_flags:				0;
 		cargo_types:			[
 								produce_cargo("IORE",15),
-								accept_cargo("PASS"),
 								produce_cargo("PASS",8),
 		];
 		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
