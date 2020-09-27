@@ -97,7 +97,7 @@ Please set your desired industry density in both the OpenTTD map generation scre
 - Enable Waste & Recycling chain
   - Enables Recycling Center to sort Waste from town buildings into Recycled Materials for transport to industries
   - See section above in README
-  - **Requires Improved Town Layouts version 1.2.0 or better**
+  - **Requires Improved Town Layouts version 1.3.0 or better**
 
 ## Limitations / Not in Scope
 
