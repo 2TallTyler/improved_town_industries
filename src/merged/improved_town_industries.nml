@@ -20,7 +20,7 @@ grf {
 
 	url: string(STR_WEBSITE);
 
-	param 1 {
+	param 0 {
 		param_primary_only {
 			name: string(STR_PARAM_NAME_PRIMARY_ONLY);
 			desc: string(STR_PARAM_DESC_PRIMARY_ONLY);
@@ -29,7 +29,7 @@ grf {
 		}
 	}
 
-	param 2 {
+	param 1 {
 		param_elevation_checks {
 			name: string(STR_PARAM_NAME_ELEVATION_CHECKS);
 			desc: string(STR_PARAM_DESC_ELEVATION_CHECKS);
@@ -38,7 +38,7 @@ grf {
 		}
 	}
 	
-	param 3 {
+	param 2 {
 		param_auto_farm_fields {
 			name: string(STR_PARAM_NAME_AUTO_FARM_FIELDS);
 			desc: string(STR_PARAM_DESC_AUTO_FARM_FIELDS);
@@ -47,7 +47,7 @@ grf {
 		}
 	}
 
-	param 5 {
+	param 3 {
 		param_recyclables {
 			name: string(STR_PARAM_NAME_RECYCLABLES);
 			desc: string(STR_PARAM_DESC_RECYCLABLES);
