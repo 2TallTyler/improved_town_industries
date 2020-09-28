@@ -6,10 +6,6 @@
 *	
 */
 
-/* Block comments like these explain the next chunk of code */
-
-// Inline comments like these explain how the previous bit of code works
-
 
 grf {
 	grfid: "TT\04\01";
@@ -76,47 +72,110 @@ if (version_openttd(1,10,0,28004) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
-/* Create an error if a conflicting industry replacement set is active */
-if (
-	   grf_current_status("EELS") == 1 			|| grf_future_status("EELS") == 1			// Eels
-	|| grf_current_status("EN\15\01") == 1 		|| grf_future_status("EN\15\01") == 1		// Apollo Rocket Industry Set
-	
-	|| grf_current_status("\4A\53\0A\70") == 1	|| grf_future_status("\4A\53\0A\70") == 1	// ECS Industries Addon
-	|| grf_current_status("\4D\65\6F\97") == 1	|| grf_future_status("\4D\65\6F\97") == 1	// ECS Agricultural vector
-	|| grf_current_status("\4D\65\6F\92") == 1	|| grf_future_status("\4D\65\6F\92") == 1	// ECS Basic vector
-	|| grf_current_status("\4D\65\6F\9F") == 1	|| grf_future_status("\4D\65\6F\9F") == 1	// ECS Basic vector II
-	|| grf_current_status("\4D\65\6F\9C") == 1	|| grf_future_status("\4D\65\6F\9C") == 1	// ECS Chemicals vector II
-	|| grf_current_status("\4D\65\6F\96") == 1	|| grf_future_status("\4D\65\6F\96") == 1	// ECS Construction vector
-	|| grf_current_status("\4D\65\6F\9D") == 1	|| grf_future_status("\4D\65\6F\9D") == 1	// ECS Houses
-	|| grf_current_status("\4D\65\6F\94") == 1	|| grf_future_status("\4D\65\6F\94") == 1	// ECS Machinery vector
-	|| grf_current_status("\4D\65\6F\91") == 1	|| grf_future_status("\4D\65\6F\91") == 1	// ECS Town vector
-	|| grf_current_status("\4D\65\6F\95") == 1	|| grf_future_status("\4D\65\6F\95") == 1	// ECS Wood vector	
-	|| grf_current_status("MCEe") == 1			|| grf_future_status("MCEe") == 1			// ECSext
-	
-	|| grf_current_status("\F1%\00\05") == 1	|| grf_future_status("\F1%\00\05") == 1		// FIRS 1	
-	|| grf_current_status("\F1%\00\06") == 1	|| grf_future_status("\F1%\00\06") == 1		// FIRS 2	
-	|| grf_current_status("\F1%\00\07") == 1	|| grf_future_status("\F1%\00\07") == 1		// FIRS 3
-	|| grf_current_status("MCF1") == 1			|| grf_future_status("MCF1") == 1			// FIXES
-	
-	|| grf_current_status("frMI") == 1			|| grf_future_status("frMI") == 1			// Manual Industries II
-	|| grf_current_status("McMi") == 1 			|| grf_future_status("McMi") == 1			// Manpower Industries
-	|| grf_current_status("\45\4E\31\01") == 1 	|| grf_future_status("\45\4E\31\01") == 1	// North Korean Industry Set
-	|| grf_current_status("\44\44\06\02") == 1 	|| grf_future_status("\44\44\06\02") == 1	// Pikka's Basic Industries
-	|| grf_current_status("\52\54\4E\41") == 1	|| grf_future_status("\52\54\4E\41") == 1	// Representative UK Train Set - Extended (adds nuclear industry chain)
-	|| grf_current_status("\41\4C\01\01") == 1	|| grf_future_status("\41\4C\01\01") == 1	// station's name from nearby industries
-	|| grf_current_status("\44\44\01\10") == 1	|| grf_future_status("\44\44\01\10") == 1	// Town and Industry - Basic Industries
-	|| grf_current_status("\44\44\06\03") == 1 	|| grf_future_status("\44\44\06\03") == 1	// UKRS Industries Brick Chain v1.5
-	
-	|| grf_current_status("\6A\54\72\83") == 1	|| grf_future_status("\6A\54\72\83") == 1	// Wannaroo Basic Industries
-	|| grf_current_status("\6A\64\72\04") == 1	|| grf_future_status("\6A\64\72\04") == 1	// Wannaroo Extra Industries
-	
-	|| grf_current_status("\56\45\03\03") == 1	|| grf_future_status("\56\45\03\03") == 1	// YETI Extended Towns and Industries
-	|| grf_current_status("\4E\4D\11\13") == 1	|| grf_future_status("\4E\4D\11\13") == 1	// North American Industry Set (NAIS)
-	|| grf_current_status("\4A\44\88\07") == 1	|| grf_future_status("\4A\44\88\07") == 1	// XIS Extreme Industry Set
-	
-	) {
-	error(FATAL, string(STR_ERROR_CONFLICTING_INDUSTRY_NEWGRF));
-}
+/* Create an error if a conflicting industry replacement set is active - thanks to FIRS for much of this code */
+
+if (grf_future_status("Meo\81")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "New Cargos"));}
+
+if (grf_future_status("Meo\82")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "New Cargos Petrol + Tourists"));}
+
+if (grf_future_status("\4D\65\6F\9D")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Houses"));}
+
+if (grf_future_status("Meo\91")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Town Vector"));}
+
+if (grf_future_status("Meo\92")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Basic Vector"));}
+
+if (grf_future_status("\4D\65\6F\9F")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Basic vector II"));}
+
+if (grf_future_status("Meo\93")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Chemical Vector"));}
+
+if (grf_future_status("\4D\65\6F\9C")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Chemicals vector II"));}
+
+if (grf_future_status("Meo\94")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Machinery Vector"));}
+
+if (grf_future_status("Meo\95")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Wood Vector"));}
+
+if (grf_future_status("Meo\96")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Construction Vector"));}
+
+if (grf_future_status("Meo\97")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Agricultural Vector"));}
+
+if (grf_future_status("Meo\98")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Basic for Arctic"));}
+
+if (grf_future_status("Meo\99")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Basic for Tropic"));}
+
+if (grf_future_status("Meo\9A")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Machinery for Tropic"));}
+
+if (grf_future_status("Meo\9B")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Construction Vector by Pikkabird"));}
+
+if (grf_future_status("Meo\9C")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Chemical Vector II"));}
+
+if (grf_future_status("MCEe")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECSext"));}
+
+if (grf_future_status("\4A\53\0A\70")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "ECS Industries Addon"));}
+
+if (grf_future_status("SK\05\01")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Luukland Citybuilder"));}
+
+if (grf_future_status("JS\0A\02")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Luukland Citybuilder"));}
+
+if (grf_future_status("JS\0A\03")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Luukland Citybuilder"));}
+
+if (grf_future_status("JS\0A\04")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Luukland Citybuilder"));}
+
+if (grf_future_status("JS\0A\05")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Luukland Citybuilder"));}
+
+if (grf_future_status("EX\01\02")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Ex Citybuilder"));}
+
+if (grf_future_status("EX\01\03")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Ex Citybuilder"));}
+
+if (grf_future_status("DD\06\01")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "UKRS Industries"));}
+
+if (grf_future_status("frMI")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Manual Industries"));}
+
+if (grf_future_status("SLTU")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Tourist Set"));}
+
+if (grf_future_status("SZ\13D")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Oil well decrease neutralizer"));}
+
+if (grf_future_status("EH\01\01")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Experts hard industries"));}
+
+if (grf_future_status("DD\06\03")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "UKRS Brick Chain"));}
+
+if (grf_future_status("DD\06\02")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Pikka Basic Industries"));}
+
+if (grf_future_status("mb\08\00")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "NewCargos by Michael Blunck"));}
+
+if (grf_future_status("EELS")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Eels"));}
+
+if (grf_future_status("EN\15\01")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Apollo Rocket Industry Set"));}
+
+if (grf_future_status("\F1%\00\05")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "FIRS 1"));}
+
+if (grf_future_status("\F1%\00\06")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "FIRS 2"));}
+
+if (grf_future_status("\F1%\00\07")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "FIRS 3"));}
+
+if (grf_future_status("MCF1")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "FIXES"));}
+
+if (grf_future_status("frMI")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Manual Industries II"));}
+
+if (grf_future_status("McMi")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Manpower Industries"));}
+
+if (grf_future_status("\45\4E\31\01")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "North Korean Industry Set"));}
+
+if (grf_future_status("\52\54\4E\41")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Representative UK Train Set - Extended"));}
+
+if (grf_future_status("\44\44\01\10")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Town and Industry - Basic Industries"));}
+
+if (grf_future_status("\41\4C\01\01")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "station's name from nearby industries"));}
+
+if (grf_future_status("\6A\54\72\83")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Wannaroo Basic Industries"));}
+
+if (grf_future_status("\6A\64\72\04")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Wannaroo Extra Industries"));}
+
+if (grf_future_status("\56\45\03\03")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "YETI Extended Towns and Industries"));}
+
+if (grf_future_status("\4E\4D\11\13")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "North American Industry Set (NAIS)"));}
+
+if (grf_future_status("\4A\44\88\07")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "XIS Extreme Industry Set"));}
+
 
 /* Create an error if Recyclables parameter is active but no compatible town set is active */
 if (param_recyclables == 1 &&

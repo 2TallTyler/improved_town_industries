@@ -7,7 +7,7 @@ STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/m
 
 STR_ERROR_GAME_VERSION				:{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better.
 STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Waste & Recycling chain requires a compatible house set (recommended: Improved Town Layouts version 1.3.0 or better).
-STR_ERROR_CONFLICTING_INDUSTRY_NEWGRF	:{TITLE} is incompatible with other industry NewGRFs and has been disabled.
+STR_ERR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_NAME_INDUSTRY_DENSITY		:Industry Density
 STR_PARAM_DESC_INDUSTRY_DENSITY		:{ORANGE}Must match Industry Density in game settings.
