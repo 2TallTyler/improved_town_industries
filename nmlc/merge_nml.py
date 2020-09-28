@@ -64,6 +64,10 @@ forest = codecs.open("src/forest.nml",'r','utf8')
 sections.append(forest.read())
 forest.close()
 
+oil_rig = codecs.open("src/oil_rig.nml",'r','utf8')
+sections.append(oil_rig.read())
+oil_rig.close()
+
 print("Python: Writing combined NML file")
 
 # create a new file on disk, which will have a name and be writable

@@ -25,3 +25,5 @@ item (FEAT_INDUSTRIES, industry_forest, 11) {
 		construction_probability:	15;
 	}
 }
+
+/* *** End Forest *** */

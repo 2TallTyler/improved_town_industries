@@ -46,6 +46,15 @@ grf {
 			type: bool;
 		}
 	}
+	
+	param 3 {
+		param_oil_rigs {
+			name: string(STR_PARAM_NAME_OIL_RIGS);
+			desc: string(STR_PARAM_DESC_OIL_RIGS);
+			def_value: 1;
+			type: bool;
+		}
+	}
 
 /* 	
 *	This must always be Parameter 5, for compatibility with house sets which check this parameter!
@@ -3919,3 +3928,24 @@ item (FEAT_INDUSTRIES, industry_forest, 11) {
 		construction_probability:	15;
 	}
 }
+
+/* *** End Forest *** */
+
+
+/* *** Begin Oil Rig *** */
+
+if (param_oil_rigs == 1) {
+	item (FEAT_INDUSTRIES, industry_oil_rig, 12) {
+		property {
+			substitute: INDUSTRYTYPE_OIL_RIG;
+			life_type: IND_LIFE_TYPE_EXTRACTIVE;
+			fund_cost_multiplier: 40;
+		}
+		graphics {
+			construction_probability: 9;
+			extra_text_fund: string(STR_FUND_AVAILABLE_1960);
+		}
+	}
+}
+
+/* *** End Oil Rig *** */
