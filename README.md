@@ -56,8 +56,8 @@
 - 1882: Power Plant
 - 1885: Paper Mill
 - 1900: Oil Wells and Oil Refinery
-
-Please set your desired industry density in both the OpenTTD map generation screen and the NewGRF parameters. This is necessary to control industry probability and reserve slots for industries invented after the game starts.
+- 1945: Recycling Center
+- 1960: Oil Rig
 
 ### Expand your industries with eyecandy objects
 
@@ -71,11 +71,7 @@ Please set your desired industry density in both the OpenTTD map generation scre
 - NewGRF vehicle sets are **required** to transport new and modified cargos. If you want to keep base game trains, OpenGFX+ Trains keeps the vanilla graphics while adding compatibility for NewGRF cargos.
 
 ## Parameters
-
-- Industry Density
-  - Must match Industry Density in game settings
-  - This is required to reserve space for industries which haven't been invented yet
-  
+ 
 - Generate Primary Industries Only
   - Disable automatic generation of Factories, Steel Mills, Power Plants, Paper Mills, Oil Refineries, and Recycling Centers (if enabled)
   - Does not affect funded industries
@@ -89,10 +85,9 @@ Please set your desired industry density in both the OpenTTD map generation scre
 - Farms build fields
   - Choose if Farms construct fields, as in vanilla OpenTTD
   - Field tiles are available as decorative objects, to construct your own fields
-  
-- Logging Camp behavior
-  - Like Forest (vanilla Temperate climate). Does not cut trees. Subject to vanilla production changes. **Recommended**
-  - Like Lumber Mill (vanilla Sub-tropic climate). Cuts trees within reach for production.
+
+- Enable Oil Rigs
+  - Choose whether Oil Rigs appear after 1960 (identical to vanilla industry).
 
 - Enable Waste & Recycling chain
   - Enables Recycling Center to sort Waste from town buildings into Recycled Materials for transport to industries
