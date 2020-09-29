@@ -156,7 +156,6 @@ item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
 		location_check:			switch_steel_mill_allow_funded;
 		construction_probability:	(current_year >= 1856) ? 3 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
-		extra_text_industry:	string(STR_EXTRA_WORKERS);
 	}
 }
 

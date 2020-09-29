@@ -258,7 +258,6 @@ if (param_recyclables == 1) {
 			colour:					COLOUR_MAUVE;
 			construction_probability:	(current_year >= 1945) ? 6 : 0;
 			extra_text_fund:		string(STR_FUND_AVAILABLE_1945);
-			extra_text_industry:	string(STR_EXTRA_WORKERS);
 		}
 	}
 	

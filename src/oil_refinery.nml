@@ -260,7 +260,6 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 		location_check:			switch_oil_refinery_allow_funded;
 		construction_probability:	(current_year >= 1900) ? 3 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1900);
-		extra_text_industry:	string(STR_EXTRA_WORKERS);
 		colour:					COLOUR_YELLOW;
 	}
 }
