@@ -333,80 +333,81 @@ item (FEAT_CARGOS, cargo_food, 0x0C) {
 	}
 }
 
-// Uses Fruit ID
-item (FEAT_CARGOS, cargo_uranium, 0x0D) {
-	property {
-		number:						0x0D;
-		sprite:						4320;
-		type_name:					string(STR_CARGO_NAME_URANIUM);
-		unit_name:					string(STR_CARGO_NAME_URANIUM);
-		type_abbreviation:			string(STR_CARGO_ABBREV_URANIUM);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
-		cargo_label:				"URAN";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_URANIUM);
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		102;
-		cargo_payment_list_colour:	102;
-		price_factor:				110;
-		capacity_multiplier:		1;		
+if (param_nuclear == 1) {
+	// Uses Fruit ID
+	item (FEAT_CARGOS, cargo_uranium, 0x0D) {
+		property {
+			number:						0x0D;
+			sprite:						4320;
+			type_name:					string(STR_CARGO_NAME_URANIUM);
+			unit_name:					string(STR_CARGO_NAME_URANIUM);
+			type_abbreviation:			string(STR_CARGO_ABBREV_URANIUM);
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
+			cargo_label:				"URAN";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_URANIUM);
+			penalty_lowerbound:			30;
+			single_penalty_length:		255;
+			station_list_colour:		102;
+			cargo_payment_list_colour:	102;
+			price_factor:				110;
+			capacity_multiplier:		1;		
+		}
+	}
+
+	// Uses Copper Ore ID
+	item (FEAT_CARGOS, cargo_nuclear_fuel, 0x0E) {
+		property {
+			number:						0x0E;
+			sprite:						4303;
+			type_name:					string(STR_CARGO_NAME_NUCLEAR_FUEL);
+			unit_name:					string(STR_CARGO_NAME_NUCLEAR_FUEL);
+			type_abbreviation:			string(STR_CARGO_ABBREV_NUCLEAR_FUEL);
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
+			cargo_label:				"NUKF";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_FUEL);
+			penalty_lowerbound:			30;
+			single_penalty_length:		255;
+			station_list_colour:		39;
+			cargo_payment_list_colour:	39;
+			price_factor:				142;
+			capacity_multiplier:		1;		
+		}
+	}
+
+	// Uses Water ID
+	item (FEAT_CARGOS, cargo_nuclear_waste, 0x0F) {
+		property {
+			number:						0x0F;
+			sprite:						4316;
+			type_name:					string(STR_CARGO_NAME_NUCLEAR_WASTE);
+			unit_name:					string(STR_CARGO_NAME_NUCLEAR_WASTE);
+			type_abbreviation:			string(STR_CARGO_ABBREV_NUCLEAR_WASTE);
+			weight:						2;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
+			cargo_label:				"NUKW";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_WASTE);
+			penalty_lowerbound:			0;
+			single_penalty_length:		25;
+			station_list_colour:		191;
+			cargo_payment_list_colour:	191;
+			price_factor:				300;
+			capacity_multiplier:		0.5;		
+		}
 	}
 }
-
-// Uses Copper Ore ID
-item (FEAT_CARGOS, cargo_nuclear_fuel, 0x0E) {
-	property {
-		number:						0x0E;
-		sprite:						4303;
-		type_name:					string(STR_CARGO_NAME_NUCLEAR_FUEL);
-		unit_name:					string(STR_CARGO_NAME_NUCLEAR_FUEL);
-		type_abbreviation:			string(STR_CARGO_ABBREV_NUCLEAR_FUEL);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
-		cargo_label:				"NUKF";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_FUEL);
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		39;
-		cargo_payment_list_colour:	39;
-		price_factor:				142;
-		capacity_multiplier:		1;		
-	}
-}
-
-// Uses Water ID
-item (FEAT_CARGOS, cargo_nuclear_waste, 0x0F) {
-	property {
-		number:						0x0F;
-		sprite:						4316;
-		type_name:					string(STR_CARGO_NAME_NUCLEAR_WASTE);
-		unit_name:					string(STR_CARGO_NAME_NUCLEAR_WASTE);
-		type_abbreviation:			string(STR_CARGO_ABBREV_NUCLEAR_WASTE);
-		weight:						2;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
-		cargo_label:				"NUKW";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_WASTE);
-		penalty_lowerbound:			0;
-		single_penalty_length:		25;
-		station_list_colour:		191;
-		cargo_payment_list_colour:	191;
-		price_factor:				300;
-		capacity_multiplier:		0.5;		
-	}
-}
-
 
 /* *** End Cargos *** */

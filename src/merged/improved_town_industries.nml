@@ -51,6 +51,15 @@ grf {
 			type: bool;
 		}
 	}
+	
+	param 4 {
+		param_nuclear {
+			name: string(STR_PARAM_NAME_NUCLEAR);
+			desc: string(STR_PARAM_DESC_NUCLEAR);
+			def_value: 1;
+			type: bool;
+		}
+	}
 
 /* 	
 *	This must always be Parameter 5, for compatibility with house sets which check this parameter!
@@ -537,81 +546,82 @@ item (FEAT_CARGOS, cargo_food, 0x0C) {
 	}
 }
 
-// Uses Fruit ID
-item (FEAT_CARGOS, cargo_uranium, 0x0D) {
-	property {
-		number:						0x0D;
-		sprite:						4320;
-		type_name:					string(STR_CARGO_NAME_URANIUM);
-		unit_name:					string(STR_CARGO_NAME_URANIUM);
-		type_abbreviation:			string(STR_CARGO_ABBREV_URANIUM);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
-		cargo_label:				"URAN";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_URANIUM);
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		102;
-		cargo_payment_list_colour:	102;
-		price_factor:				110;
-		capacity_multiplier:		1;		
+if (param_nuclear == 1) {
+	// Uses Fruit ID
+	item (FEAT_CARGOS, cargo_uranium, 0x0D) {
+		property {
+			number:						0x0D;
+			sprite:						4320;
+			type_name:					string(STR_CARGO_NAME_URANIUM);
+			unit_name:					string(STR_CARGO_NAME_URANIUM);
+			type_abbreviation:			string(STR_CARGO_ABBREV_URANIUM);
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
+			cargo_label:				"URAN";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_URANIUM);
+			penalty_lowerbound:			30;
+			single_penalty_length:		255;
+			station_list_colour:		102;
+			cargo_payment_list_colour:	102;
+			price_factor:				110;
+			capacity_multiplier:		1;		
+		}
+	}
+
+	// Uses Copper Ore ID
+	item (FEAT_CARGOS, cargo_nuclear_fuel, 0x0E) {
+		property {
+			number:						0x0E;
+			sprite:						4303;
+			type_name:					string(STR_CARGO_NAME_NUCLEAR_FUEL);
+			unit_name:					string(STR_CARGO_NAME_NUCLEAR_FUEL);
+			type_abbreviation:			string(STR_CARGO_ABBREV_NUCLEAR_FUEL);
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
+			cargo_label:				"NUKF";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_FUEL);
+			penalty_lowerbound:			30;
+			single_penalty_length:		255;
+			station_list_colour:		39;
+			cargo_payment_list_colour:	39;
+			price_factor:				142;
+			capacity_multiplier:		1;		
+		}
+	}
+
+	// Uses Water ID
+	item (FEAT_CARGOS, cargo_nuclear_waste, 0x0F) {
+		property {
+			number:						0x0F;
+			sprite:						4316;
+			type_name:					string(STR_CARGO_NAME_NUCLEAR_WASTE);
+			unit_name:					string(STR_CARGO_NAME_NUCLEAR_WASTE);
+			type_abbreviation:			string(STR_CARGO_ABBREV_NUCLEAR_WASTE);
+			weight:						2;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
+			cargo_label:				"NUKW";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_WASTE);
+			penalty_lowerbound:			0;
+			single_penalty_length:		25;
+			station_list_colour:		191;
+			cargo_payment_list_colour:	191;
+			price_factor:				300;
+			capacity_multiplier:		0.5;		
+		}
 	}
 }
-
-// Uses Copper Ore ID
-item (FEAT_CARGOS, cargo_nuclear_fuel, 0x0E) {
-	property {
-		number:						0x0E;
-		sprite:						4303;
-		type_name:					string(STR_CARGO_NAME_NUCLEAR_FUEL);
-		unit_name:					string(STR_CARGO_NAME_NUCLEAR_FUEL);
-		type_abbreviation:			string(STR_CARGO_ABBREV_NUCLEAR_FUEL);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
-		cargo_label:				"NUKF";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_FUEL);
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		39;
-		cargo_payment_list_colour:	39;
-		price_factor:				142;
-		capacity_multiplier:		1;		
-	}
-}
-
-// Uses Water ID
-item (FEAT_CARGOS, cargo_nuclear_waste, 0x0F) {
-	property {
-		number:						0x0F;
-		sprite:						4316;
-		type_name:					string(STR_CARGO_NAME_NUCLEAR_WASTE);
-		unit_name:					string(STR_CARGO_NAME_NUCLEAR_WASTE);
-		type_abbreviation:			string(STR_CARGO_ABBREV_NUCLEAR_WASTE);
-		weight:						2;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
-		cargo_label:				"NUKW";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_WASTE);
-		penalty_lowerbound:			0;
-		single_penalty_length:		25;
-		station_list_colour:		191;
-		cargo_payment_list_colour:	191;
-		price_factor:				300;
-		capacity_multiplier:		0.5;		
-	}
-}
-
 
 /* *** End Cargos *** */
 
@@ -1617,28 +1627,52 @@ switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_prospected, extra_callba
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_power_plant, 2) {
-	property {
-		substitute:				INDUSTRYTYPE_POWER_PLANT;
-		life_type:				IND_LIFE_TYPE_BLACK_HOLE;
-		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types:			[ accept_cargo("NUKF", produce_cargo("NUKW",0.5), produce_cargo("PASS",1)), ];
-		name:					string(STR_NAME_POWER_PLANT);
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
-		fund_cost_multiplier:	100;
-		layouts:				[
-			//industry_layout_power_plant_1,
-			//industry_layout_power_plant_2,
-			//industry_layout_power_plant_3,
-			//industry_layout_power_plant_4,
-			industry_layout_power_plant_5,
-			];
-		map_colour:				208;
+if (param_nuclear == 1) {
+	item (FEAT_INDUSTRIES, industry_power_plant, 2) { // Nuclear Power Plant
+		property {
+			substitute:				INDUSTRYTYPE_POWER_PLANT;
+			life_type:				IND_LIFE_TYPE_PROCESSING;
+			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
+			cargo_types:			[ accept_cargo("NUKF", produce_cargo("NUKW",0.5), produce_cargo("PASS",1)), ];
+			name:					string(STR_NAME_NUCLEAR_POWER_PLANT);
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
+			fund_cost_multiplier:	150;
+			layouts:				[ industry_layout_power_plant_5, ];
+			map_colour:				208;
+		}
+		graphics {
+			location_check:			switch_power_plant_allow_funded;
+			construction_probability:	(current_year >= 1956) ? 1 : 0;
+			extra_text_fund:		string(STR_FUND_AVAILABLE_1956);
+		}
 	}
-	graphics {
-		location_check:			switch_power_plant_allow_funded;
-		construction_probability:	(current_year >= 1956) ? 1 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1956);
+} else {
+	item (FEAT_INDUSTRIES, industry_power_plant, 2) { // Coal/Waste Power Plant
+		property {
+			substitute:				INDUSTRYTYPE_POWER_PLANT;
+			life_type:				IND_LIFE_TYPE_PROCESSING;
+			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
+			cargo_types: [ 
+					accept_cargo("COAL", produce_cargo("PASS",1)), 
+					accept_cargo("WSTE", produce_cargo("PASS",1)),
+				];
+			name:					string(STR_NAME_POWER_PLANT);
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
+			fund_cost_multiplier:	100;
+			layouts:				[
+				industry_layout_power_plant_1,
+				industry_layout_power_plant_2,
+				industry_layout_power_plant_3,
+				industry_layout_power_plant_4,
+				industry_layout_power_plant_5,
+				];
+			map_colour:				208;
+		}
+		graphics {
+			location_check:			switch_power_plant_allow_funded;
+			construction_probability:	(current_year >= 1882) ? 3 : 0;
+			extra_text_fund:		string(STR_FUND_AVAILABLE_1882);
+		}
 	}
 }
 
@@ -4158,25 +4192,27 @@ switch (FEAT_INDUSTRIES, PARENT, switch_uranium_mine_location_check_1, STORE_TEM
 switch (FEAT_INDUSTRIES, SELF, switch_uranium_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_uranium_mine_location_check_1;}
 
-item (FEAT_INDUSTRIES, industry_uranium_mine, 13) {
-	property {
-		substitute:				INDUSTRYTYPE_GOLD_MINE;
-		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
-		cargo_types:
-			[
-				produce_cargo("URAN",13),
-				accept_cargo("RFPR", produce_cargo("URAN",1), produce_cargo("PASS",0.25)),
-		];
-		name:					string(STR_NAME_URANIUM_MINE);
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_URANIUM_MINE));
-		fund_cost_multiplier:	40;
-		layouts:				[industry_layout_uranium_mine,];
-		map_colour:				102;
-	}
-	graphics {
-		location_check:				switch_uranium_mine_allow_funded;
-		construction_probability:	(current_year >= 1956) ? 1 : 0;
-		extra_text_fund:			string(STR_FUND_AVAILABLE_1956);
+if (param_nuclear == 1) {
+	item (FEAT_INDUSTRIES, industry_uranium_mine, 13) {
+		property {
+			substitute:				INDUSTRYTYPE_GOLD_MINE;
+			life_type:				IND_LIFE_TYPE_EXTRACTIVE;
+			cargo_types:
+				[
+					produce_cargo("URAN",13),
+					accept_cargo("RFPR", produce_cargo("URAN",1), produce_cargo("PASS",0.25)),
+			];
+			name:					string(STR_NAME_URANIUM_MINE);
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_URANIUM_MINE));
+			fund_cost_multiplier:	40;
+			layouts:				[industry_layout_uranium_mine,];
+			map_colour:				102;
+		}
+		graphics {
+			location_check:				switch_uranium_mine_allow_funded;
+			construction_probability:	(current_year >= 1956) ? 1 : 0;
+			extra_text_fund:			string(STR_FUND_AVAILABLE_1956);
+		}
 	}
 }
 
@@ -4317,138 +4353,139 @@ switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_allow_prospected, extra
 switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_nuclear_fuel_plant_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_nuclear_fuel_plant, 14) {
-	property {
-		substitute:				INDUSTRYTYPE_PAPER_MILL;
-		life_type:				IND_LIFE_TYPE_PROCESSING;
-		cargo_types:			[
-			accept_cargo("URAN", produce_cargo("NUKF",0.5), produce_cargo("PASS",0.25)),
-			accept_cargo("NUKW", produce_cargo("NUKF",0.75), produce_cargo("PASS",2)),
-		];
-		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_NUCLEAR_FUEL_PLANT));
-		fund_cost_multiplier:	40;
-		map_colour: 			39;
-		layouts: [
-			industry_layout_nuclear_fuel_plant_1,
-		];
+if (param_nuclear == 1) {
+	item (FEAT_INDUSTRIES, industry_nuclear_fuel_plant, 14) {
+		property {
+			substitute:				INDUSTRYTYPE_PAPER_MILL;
+			life_type:				IND_LIFE_TYPE_PROCESSING;
+			cargo_types:			[
+				accept_cargo("URAN", produce_cargo("NUKF",0.5), produce_cargo("PASS",0.25)),
+				accept_cargo("NUKW", produce_cargo("NUKF",0.75), produce_cargo("PASS",2)),
+			];
+			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_NUCLEAR_FUEL_PLANT));
+			fund_cost_multiplier:	40;
+			map_colour: 			39;
+			layouts: [
+				industry_layout_nuclear_fuel_plant_1,
+			];
+		}
+		graphics {
+			location_check:			switch_nuclear_fuel_plant_allow_funded;
+			construction_probability:	(current_year >= 1956) ? 1 : 0;
+			extra_text_fund:			string(STR_FUND_AVAILABLE_1956);
+		}
 	}
-	graphics {
-		location_check:			switch_nuclear_fuel_plant_allow_funded;
-		construction_probability:	(current_year >= 1956) ? 1 : 0;
-		extra_text_fund:			string(STR_FUND_AVAILABLE_1956);
+
+	/* Objects */
+
+	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_yard) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1956;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_nuclear_fuel_plant_yard;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_closed) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1956;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_nuclear_fuel_plant_closed;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_open) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1956;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_nuclear_fuel_plant_open;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_stack) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1956;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_nuclear_fuel_plant_stack;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_canopy) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1956;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_nuclear_fuel_plant_canopy;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_mill) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1956;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_nuclear_fuel_plant_mill;
+		}
 	}
 }
-
-/* Objects */
-
-item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_yard) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1956;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_nuclear_fuel_plant_yard;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_closed) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1956;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_nuclear_fuel_plant_closed;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_open) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1956;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_nuclear_fuel_plant_open;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_stack) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1956;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_nuclear_fuel_plant_stack;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_canopy) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1956;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_nuclear_fuel_plant_canopy;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_mill) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1956;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_nuclear_fuel_plant_mill;
-	}
-}
-
 
 /* *** End Nuclear Fuel Plant *** */

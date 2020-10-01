@@ -51,6 +51,15 @@ grf {
 			type: bool;
 		}
 	}
+	
+	param 4 {
+		param_nuclear {
+			name: string(STR_PARAM_NAME_NUCLEAR);
+			desc: string(STR_PARAM_DESC_NUCLEAR);
+			def_value: 1;
+			type: bool;
+		}
+	}
 
 /* 	
 *	This must always be Parameter 5, for compatibility with house sets which check this parameter!
