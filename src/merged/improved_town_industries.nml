@@ -206,7 +206,7 @@ if (grf_future_status("\4A\44\88\07")) { error(FATAL, string(STR_ERR_INCOMPATIBL
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, WDPR, RFPR, RCYC, WSTE, FOOD
+	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, WDPR, RFPR, RCYC, WSTE, FOOD, URAN, NUKF, NUKW
 }
 
 // Original ID
@@ -461,6 +461,7 @@ item (FEAT_CARGOS, cargo_steel, 0x09) {
 
 /* Recyclables enabled only if parameter is active. Check parameter only and rely on error message to catch a lack of compatible house sets. */
 if (param_recyclables == 1) {
+	// Uses Valuables ID
 	item (FEAT_CARGOS, cargo_recyclables, 0x0A) {
 		property {
 			number:						0x0A;
@@ -485,10 +486,11 @@ if (param_recyclables == 1) {
 		}
 	}
 	
+	// Uses Paper ID
 	item (FEAT_CARGOS, cargo_waste, 0x0B) {
 		property {
 			number:						0x0B;
-			sprite:						4315;
+			sprite:						4309;
 			type_name:					string(STR_CARGO_NAME_WASTE);
 			unit_name:					string(STR_CARGO_NAME_WASTE);
 			type_abbreviation:			string(STR_CARGO_ABBREV_WASTE);
@@ -534,6 +536,82 @@ item (FEAT_CARGOS, cargo_food, 0x0C) {
 		capacity_multiplier:		1;		
 	}
 }
+
+// Uses Fruit ID
+item (FEAT_CARGOS, cargo_uranium, 0x0D) {
+	property {
+		number:						0x0D;
+		sprite:						4320;
+		type_name:					string(STR_CARGO_NAME_URANIUM);
+		unit_name:					string(STR_CARGO_NAME_URANIUM);
+		type_abbreviation:			string(STR_CARGO_ABBREV_URANIUM);
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
+		cargo_label:				"URAN";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_URANIUM);
+		penalty_lowerbound:			30;
+		single_penalty_length:		255;
+		station_list_colour:		102;
+		cargo_payment_list_colour:	102;
+		price_factor:				110;
+		capacity_multiplier:		1;		
+	}
+}
+
+// Uses Copper Ore ID
+item (FEAT_CARGOS, cargo_nuclear_fuel, 0x0E) {
+	property {
+		number:						0x0E;
+		sprite:						4303;
+		type_name:					string(STR_CARGO_NAME_NUCLEAR_FUEL);
+		unit_name:					string(STR_CARGO_NAME_NUCLEAR_FUEL);
+		type_abbreviation:			string(STR_CARGO_ABBREV_NUCLEAR_FUEL);
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
+		cargo_label:				"NUKF";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_FUEL);
+		penalty_lowerbound:			30;
+		single_penalty_length:		255;
+		station_list_colour:		39;
+		cargo_payment_list_colour:	39;
+		price_factor:				142;
+		capacity_multiplier:		1;		
+	}
+}
+
+// Uses Water ID
+item (FEAT_CARGOS, cargo_nuclear_waste, 0x0F) {
+	property {
+		number:						0x0F;
+		sprite:						4316;
+		type_name:					string(STR_CARGO_NAME_NUCLEAR_WASTE);
+		unit_name:					string(STR_CARGO_NAME_NUCLEAR_WASTE);
+		type_abbreviation:			string(STR_CARGO_ABBREV_NUCLEAR_WASTE);
+		weight:						2;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_HAZARDOUS);
+		cargo_label:				"NUKW";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_WASTE);
+		penalty_lowerbound:			0;
+		single_penalty_length:		25;
+		station_list_colour:		191;
+		cargo_payment_list_colour:	191;
+		price_factor:				300;
+		capacity_multiplier:		0.5;		
+	}
+}
+
 
 /* *** End Cargos *** */
 
@@ -1544,27 +1622,23 @@ item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 		substitute:				INDUSTRYTYPE_POWER_PLANT;
 		life_type:				IND_LIFE_TYPE_BLACK_HOLE;
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types:			[
-								accept_cargo("COAL"),
-								accept_cargo("WSTE"),
-								produce_cargo("PASS",2),
-		];
+		cargo_types:			[ accept_cargo("NUKF", produce_cargo("NUKW",0.5), produce_cargo("PASS",1)), ];
 		name:					string(STR_NAME_POWER_PLANT);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
 		fund_cost_multiplier:	100;
 		layouts:				[
-			industry_layout_power_plant_1,
-			industry_layout_power_plant_2,
-			industry_layout_power_plant_3,
-			industry_layout_power_plant_4,
+			//industry_layout_power_plant_1,
+			//industry_layout_power_plant_2,
+			//industry_layout_power_plant_3,
+			//industry_layout_power_plant_4,
 			industry_layout_power_plant_5,
 			];
 		map_colour:				208;
 	}
 	graphics {
 		location_check:			switch_power_plant_allow_funded;
-		construction_probability:	(current_year >= 1882) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1882);
+		construction_probability:	(current_year >= 1956) ? 1 : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1956);
 	}
 }
 
@@ -1761,7 +1835,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
 		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));
 		fund_cost_multiplier:	100;
-		layouts:				[industry_layout_iron_mine,industry_layout_iron_mine,industry_layout_iron_mine,industry_layout_iron_mine,industry_layout_iron_mine,industry_layout_iron_mine,];
+		layouts:				[industry_layout_iron_mine,];
 		conflicting_ind_types:	[];
 	}
 	graphics {
@@ -3993,3 +4067,388 @@ if (param_oil_rigs == 1) {
 }
 
 /* *** End Oil Rig *** */
+
+
+/* *** Begin Uranium Mine *** */
+
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_72) {
+property {substitute:	72; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_00;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_73) {
+property {substitute:	73; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_01;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_74) {
+property {substitute:	74; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_02;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_75) {
+property {substitute:	75; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_03;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_76) {
+property {substitute:	76; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_10;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_77) {
+property {substitute:	77; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_11;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_78) {
+property {substitute:	78; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_12;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_79) {
+property {substitute:	79; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_13;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_80) {
+property {substitute:	80; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_20;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_81) {
+property {substitute:	81; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_21;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_82) {
+property {substitute:	82; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_22;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_83) {
+property {substitute:	83; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_23;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_84) {
+property {substitute:	84; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_30;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_85) {
+property {substitute:	85; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_31;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_86) {
+property {substitute:	86; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_32;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_87) {
+property {substitute:	87; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_33;}
+}
+
+tilelayout industry_layout_uranium_mine {
+	0,0:	ind_tile_uranium_mine_72;	0,1:	ind_tile_uranium_mine_73;	0,2:	ind_tile_uranium_mine_74;	0,3:	ind_tile_uranium_mine_75;
+	1,0:	ind_tile_uranium_mine_76;	1,1:	ind_tile_uranium_mine_77;	1,2:	ind_tile_uranium_mine_78;	1,3:	ind_tile_uranium_mine_79;
+	2,0:	ind_tile_uranium_mine_80;	2,1:	ind_tile_uranium_mine_81;	2,2:	ind_tile_uranium_mine_82;	2,3:	ind_tile_uranium_mine_83;
+	3,0:	ind_tile_uranium_mine_84;	3,1:	ind_tile_uranium_mine_85;	3,2:	ind_tile_uranium_mine_86;	3,3:	ind_tile_uranium_mine_87;
+}
+
+/* Location checks */ 
+switch (FEAT_INDUSTRIES, SELF, switch_uranium_mine_location_check_3, industry_distance(industry_farm,-1) >= 30) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Don't build inside a farm field
+switch (FEAT_INDUSTRIES, SELF, switch_uranium_mine_location_check_2, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_uranium_mine_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 400 = 20 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_uranium_mine_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_uranium_mine_location_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
+
+
+/* Funded industries have no restrictions */
+switch (FEAT_INDUSTRIES, SELF, switch_uranium_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_uranium_mine_location_check_1;}
+
+item (FEAT_INDUSTRIES, industry_uranium_mine, 13) {
+	property {
+		substitute:				INDUSTRYTYPE_GOLD_MINE;
+		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
+		cargo_types:
+			[
+				produce_cargo("URAN",13),
+				accept_cargo("RFPR", produce_cargo("URAN",1), produce_cargo("PASS",0.25)),
+		];
+		name:					string(STR_NAME_URANIUM_MINE);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_URANIUM_MINE));
+		fund_cost_multiplier:	40;
+		layouts:				[industry_layout_uranium_mine,];
+		map_colour:				102;
+	}
+	graphics {
+		location_check:				switch_uranium_mine_allow_funded;
+		construction_probability:	(current_year >= 1956) ? 1 : 0;
+		extra_text_fund:			string(STR_FUND_AVAILABLE_1956);
+	}
+}
+
+/* *** End Uranium Mine *** */
+
+
+/* *** Begin Nuclear Fuel Plant *** */
+
+spritelayout sprlay_nuclear_fuel_plant_yard { // Empty yard
+	ground		{sprite:1420;}
+	building	{sprite:2212;}
+}
+
+spritelayout sprlay_nuclear_fuel_plant_closed { // Tall building closed
+	ground		{sprite:1420;}
+	building	{sprite:2205;}
+}
+
+spritelayout sprlay_nuclear_fuel_plant_open { // Tall building open
+	ground		{sprite:1420;}
+	building	{sprite:2206;}
+}
+
+spritelayout sprlay_nuclear_fuel_plant_stack { // Smokestack building empty yard
+	ground		{sprite:1420;}
+	building	{sprite:2208;}
+}
+
+spritelayout sprlay_nuclear_fuel_plant_canopy { // Canopy
+	ground		{sprite:1420;}
+	building	{sprite:2214; xoffset:-3; yoffset:-3;}
+}
+
+spritelayout sprlay_nuclear_fuel_plant_mill { // Mill building
+	ground		{sprite:1420;}
+	building	{sprite:2202;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_nuclear_fuel_plant_yard) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:			sprlay_nuclear_fuel_plant_yard;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_nuclear_fuel_plant_closed) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:			sprlay_nuclear_fuel_plant_closed;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_nuclear_fuel_plant_open) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:			sprlay_nuclear_fuel_plant_open;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_nuclear_fuel_plant_stack) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:			sprlay_nuclear_fuel_plant_stack;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_nuclear_fuel_plant_canopy) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:			sprlay_nuclear_fuel_plant_canopy;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_nuclear_fuel_plant_mill) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos:		[[PASS, 8]];
+	}
+	graphics {
+		default:			sprlay_nuclear_fuel_plant_mill;
+	}
+}
+
+tilelayout industry_layout_nuclear_fuel_plant_1 {
+	0,0:	ind_tile_nuclear_fuel_plant_stack;		0,1:	ind_tile_nuclear_fuel_plant_open;	0,2:	ind_tile_nuclear_fuel_plant_open;
+	1,0:	ind_tile_nuclear_fuel_plant_mill;		1,1:	ind_tile_nuclear_fuel_plant_open;	1,2:	ind_tile_nuclear_fuel_plant_open;
+	2,0:	ind_tile_nuclear_fuel_plant_closed;		2,1:	ind_tile_nuclear_fuel_plant_canopy;	2,2:	ind_tile_nuclear_fuel_plant_closed;
+}
+
+
+/* Industry Construction Switches - Read from bottom to top */
+
+
+switch (FEAT_INDUSTRIES, PARENT, switch_nuclear_fuel_plant_population_check_1, 
+	// Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
+	population >= 500) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Town Distance Check - secondary industries only */
+
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
+switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_nuclear_fuel_plant_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_nuclear_fuel_plant_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_nuclear_fuel_plant_town_distance_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
+
+
+/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
+switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_generate_primary_only, param_primary_only)
+	{1: return CB_RESULT_LOCATION_DISALLOW; switch_nuclear_fuel_plant_town_distance_check_1;}
+
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
+switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
+	{1: switch_nuclear_fuel_plant_town_distance_check_1; switch_nuclear_fuel_plant_generate_primary_only;}
+
+/* Funded industries have no restrictions */
+switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_nuclear_fuel_plant_allow_prospected;}
+
+item (FEAT_INDUSTRIES, industry_nuclear_fuel_plant, 14) {
+	property {
+		substitute:				INDUSTRYTYPE_PAPER_MILL;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		cargo_types:			[
+			accept_cargo("URAN", produce_cargo("NUKF",0.5), produce_cargo("PASS",0.25)),
+			accept_cargo("NUKW", produce_cargo("NUKF",0.75), produce_cargo("PASS",2)),
+		];
+		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_NUCLEAR_FUEL_PLANT));
+		fund_cost_multiplier:	40;
+		map_colour: 			39;
+		layouts: [
+			industry_layout_nuclear_fuel_plant_1,
+		];
+	}
+	graphics {
+		location_check:			switch_nuclear_fuel_plant_allow_funded;
+		construction_probability:	(current_year >= 1956) ? 1 : 0;
+		extra_text_fund:			string(STR_FUND_AVAILABLE_1956);
+	}
+}
+
+/* Objects */
+
+item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_yard) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1956;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_nuclear_fuel_plant_yard;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_closed) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1956;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_nuclear_fuel_plant_closed;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_open) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1956;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_nuclear_fuel_plant_open;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_stack) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1956;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_nuclear_fuel_plant_stack;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_canopy) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1956;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_nuclear_fuel_plant_canopy;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_mill) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1956;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_nuclear_fuel_plant_mill;
+	}
+}
+
+
+/* *** End Nuclear Fuel Plant *** */

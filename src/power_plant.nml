@@ -135,27 +135,23 @@ item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 		substitute:				INDUSTRYTYPE_POWER_PLANT;
 		life_type:				IND_LIFE_TYPE_BLACK_HOLE;
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types:			[
-								accept_cargo("COAL"),
-								accept_cargo("WSTE"),
-								produce_cargo("PASS",2),
-		];
+		cargo_types:			[ accept_cargo("NUKF", produce_cargo("NUKW",0.5), produce_cargo("PASS",1)), ];
 		name:					string(STR_NAME_POWER_PLANT);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
 		fund_cost_multiplier:	100;
 		layouts:				[
-			industry_layout_power_plant_1,
-			industry_layout_power_plant_2,
-			industry_layout_power_plant_3,
-			industry_layout_power_plant_4,
+			//industry_layout_power_plant_1,
+			//industry_layout_power_plant_2,
+			//industry_layout_power_plant_3,
+			//industry_layout_power_plant_4,
 			industry_layout_power_plant_5,
 			];
 		map_colour:				208;
 	}
 	graphics {
 		location_check:			switch_power_plant_allow_funded;
-		construction_probability:	(current_year >= 1882) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1882);
+		construction_probability:	(current_year >= 1956) ? 1 : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1956);
 	}
 }
 

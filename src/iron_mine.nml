@@ -117,7 +117,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
 		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));
 		fund_cost_multiplier:	100;
-		layouts:				[industry_layout_iron_mine,industry_layout_iron_mine,industry_layout_iron_mine,industry_layout_iron_mine,industry_layout_iron_mine,industry_layout_iron_mine,];
+		layouts:				[industry_layout_iron_mine,];
 		conflicting_ind_types:	[];
 	}
 	graphics {

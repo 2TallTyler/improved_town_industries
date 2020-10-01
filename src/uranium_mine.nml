@@ -1,0 +1,113 @@
+
+/* *** Begin Uranium Mine *** */
+
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_72) {
+property {substitute:	72; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_00;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_73) {
+property {substitute:	73; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_01;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_74) {
+property {substitute:	74; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_02;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_75) {
+property {substitute:	75; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_03;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_76) {
+property {substitute:	76; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_10;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_77) {
+property {substitute:	77; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_11;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_78) {
+property {substitute:	78; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_12;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_79) {
+property {substitute:	79; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_13;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_80) {
+property {substitute:	80; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_20;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_81) {
+property {substitute:	81; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_21;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_82) {
+property {substitute:	82; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_22;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_83) {
+property {substitute:	83; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_23;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_84) {
+property {substitute:	84; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_30;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_85) {
+property {substitute:	85; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_31;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_86) {
+property {substitute:	86; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_32;}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_uranium_mine_87) {
+property {substitute:	87; accepted_cargos: [[PASS, 8]]; special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+//graphics {default:		sprlay_uranium_mine_33;}
+}
+
+tilelayout industry_layout_uranium_mine {
+	0,0:	ind_tile_uranium_mine_72;	0,1:	ind_tile_uranium_mine_73;	0,2:	ind_tile_uranium_mine_74;	0,3:	ind_tile_uranium_mine_75;
+	1,0:	ind_tile_uranium_mine_76;	1,1:	ind_tile_uranium_mine_77;	1,2:	ind_tile_uranium_mine_78;	1,3:	ind_tile_uranium_mine_79;
+	2,0:	ind_tile_uranium_mine_80;	2,1:	ind_tile_uranium_mine_81;	2,2:	ind_tile_uranium_mine_82;	2,3:	ind_tile_uranium_mine_83;
+	3,0:	ind_tile_uranium_mine_84;	3,1:	ind_tile_uranium_mine_85;	3,2:	ind_tile_uranium_mine_86;	3,3:	ind_tile_uranium_mine_87;
+}
+
+/* Location checks */ 
+switch (FEAT_INDUSTRIES, SELF, switch_uranium_mine_location_check_3, industry_distance(industry_farm,-1) >= 30) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Don't build inside a farm field
+switch (FEAT_INDUSTRIES, SELF, switch_uranium_mine_location_check_2, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_uranium_mine_location_check_3; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 400 = 20 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_uranium_mine_location_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_uranium_mine_location_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
+
+
+/* Funded industries have no restrictions */
+switch (FEAT_INDUSTRIES, SELF, switch_uranium_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
+	{1: return CB_RESULT_LOCATION_ALLOW; switch_uranium_mine_location_check_1;}
+
+item (FEAT_INDUSTRIES, industry_uranium_mine, 13) {
+	property {
+		substitute:				INDUSTRYTYPE_GOLD_MINE;
+		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
+		cargo_types:
+			[
+				produce_cargo("URAN",13),
+				accept_cargo("RFPR", produce_cargo("URAN",1), produce_cargo("PASS",0.25)),
+		];
+		name:					string(STR_NAME_URANIUM_MINE);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_URANIUM_MINE));
+		fund_cost_multiplier:	40;
+		layouts:				[industry_layout_uranium_mine,];
+		map_colour:				102;
+	}
+	graphics {
+		location_check:				switch_uranium_mine_allow_funded;
+		construction_probability:	(current_year >= 1956) ? 1 : 0;
+		extra_text_fund:			string(STR_FUND_AVAILABLE_1956);
+	}
+}
+
+/* *** End Uranium Mine *** */

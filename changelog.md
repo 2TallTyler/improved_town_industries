@@ -91,6 +91,16 @@ September 2, 2020
 ### 2.0.0
 TBD
 
+- Add: Nuclear Energy chain
+  - Uranium Mine
+    - Accepts Chemicals
+	- Produces Uranium, Passengers
+  - Nuclear Fuel Plant
+    - Accepts Uranium, Nuclear Waste
+	- Produces Nuclear Fuel, Passengers
+  - Nuclear Power Plant
+    - Accepts Nuclear Fuel
+	- Produces Nuclear Waste, Passengers
 - Add: Oil Rigs are back! (identical to Vanilla)
 - Add: Sawmill processes Wood into Lumber
 - Add: Forest produces Wood (replaces Logging Camp, identical to vanilla Forest)
@@ -105,5 +115,6 @@ TBD
   - OpenGFX Mars Houses - Late Start
 - Add: Error messages for incompatible industry NewGRFs now specifies which NewGRF is incompatible
 - Change: Waste & Recycling parameter text and error now requires Improved Town Layouts 1.3.0 (removes year >= 1882 limit for Waste production, now that Farms accept Waste)
-- Change: Use base game industry count management instead of handling it within ITI=
+- Change: Use base game industry count management instead of handling it within ITI
+- Removed: Coal/Waste-fired Power Plant replaced with Nuclear Power Plant
 - Removed: Parameter for Logging Camp to act like Sub-Tropic Lumber Mill

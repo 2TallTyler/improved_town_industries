@@ -57,6 +57,7 @@
 - 1885: Paper Mill
 - 1900: Oil Wells and Oil Refinery
 - 1945: Recycling Center
+- 1956: Uranium Mine, Nuclear Fuel Plant, Nuclear Power Plant
 - 1960: Oil Rig
 
 ### Expand your industries with eyecandy objects

@@ -68,6 +68,14 @@ oil_rig = codecs.open("src/oil_rig.nml",'r','utf8')
 sections.append(oil_rig.read())
 oil_rig.close()
 
+uranium_mine = codecs.open("src/uranium_mine.nml",'r','utf8')
+sections.append(uranium_mine.read())
+uranium_mine.close()
+
+nuclear_fuel_plant = codecs.open("src/nuclear_fuel_plant.nml",'r','utf8')
+sections.append(nuclear_fuel_plant.read())
+nuclear_fuel_plant.close()
+
 print("Python: Writing combined NML file")
 
 # create a new file on disk, which will have a name and be writable
