@@ -198,10 +198,14 @@ switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_population_check_2, // 
 
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_population_check_1, STORE_TEMP(
 	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)	* 300 +
-	industry_town_count(industry_paper_mill,-1) 	* 300 +
-	industry_town_count(industry_steel_mill,-1)		* 300 +
-	industry_town_count(industry_factory,-1)		* 300 +
+	industry_town_count(industry_oil_refinery,-1)		* 300 +
+	industry_town_count(industry_paper_mill,-1) 		* 300 +
+	industry_town_count(industry_steel_mill,-1)			* 300 +
+	industry_town_count(industry_factory,-1)			* 300 +
+	industry_town_count(industry_power_plant,-1)		* 300 +
+	industry_town_count(industry_recycling_center,-1)	* 300 +
+	industry_town_count(industry_sawmill,-1)			* 300 +
+	industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
 	300 // Add population required for this industry
 	, 1))
 	{switch_recycling_center_population_check_2;}
