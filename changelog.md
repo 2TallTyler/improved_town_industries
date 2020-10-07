@@ -98,8 +98,8 @@ TBD
   - Nuclear Fuel Plant
     - Accepts Uranium, Nuclear Waste
 	- Produces Nuclear Fuel, Passengers
-  - Nuclear Power Plant
-    - Accepts Nuclear Fuel
+  - Power Plant (existing industry)
+    - Accepts Nuclear Fuel, Oil, Coal, Waste
 	- Produces Nuclear Waste, Passengers
 - Add: Oil Rigs are back! (identical to Vanilla)
 - Add: Sawmill processes Wood into Lumber

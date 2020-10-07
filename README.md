@@ -53,11 +53,11 @@
 - Always: Farm, Coal Mine, Forest
 - 1800: Factory, Sawmill
 - 1856: Iron Mine and Steel Mill
-- 1882: Power Plant (if Nuclear chain disabled))
+- 1882: Power Plant
 - 1885: Paper Mill
 - 1900: Oil Wells and Oil Refinery
 - 1945: Recycling Center
-- 1956: Uranium Mine, Nuclear Fuel Plant, Nuclear Power Plant (if Nuclear chain enabled)
+- 1956: Uranium Mine, Nuclear Fuel Plant
 - 1960: Oil Rig
 
 ### Expand your industries with eyecandy objects
@@ -74,7 +74,7 @@
 ## Parameters
  
 - Generate Primary Industries Only
-  - Disable automatic generation of Factories, Steel Mills, Paper Mills, Oil Refineries, Power Plants, (if enabled) and Recycling Centers (if enabled)
+  - Disable automatic generation of Factories, Steel Mills, Paper Mills, Oil Refineries, Power Plants, and Recycling Centers (if enabled)
   - Does not affect funded industries
 
 - Industry elevation requirements
@@ -89,6 +89,9 @@
 
 - Enable Oil Rigs
   - Choose whether Oil Rigs appear after 1960 (identical to vanilla industry).
+
+- Enable Nuclear Energy chain
+  - Enables Uranium Mine and Nuclear Fuel Plant, from 1956. Power Plant accepts Nuclear Fuel and produces Nuclear Waste.
 
 - Enable Waste & Recycling chain
   - Enables Recycling Center to sort Waste from town buildings into Recycled Materials for transport to industries

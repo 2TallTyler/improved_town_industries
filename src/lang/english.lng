@@ -32,7 +32,7 @@ STR_PARAM_NAME_OIL_RIGS				:Enable Oil Rigs
 STR_PARAM_DESC_OIL_RIGS				:Choose whether {SILVER}Oil Rigs{BLACK} appear after 1960 (identical to vanilla industry).
 
 STR_PARAM_NAME_NUCLEAR				:Enable Nuclear Energy chain
-STR_PARAM_DESC_NUCLEAR				:Enables {SILVER}Uranium Mine{BLACK}, {SILVER}Nuclear Fuel Plant{BLACK}, and {SILVER}Nuclear Power Plant{BLACK}, from 1956.{}{}If disabled, {SILVER}Power Plant{BLACK} is available from 1882 and accepts Coal and Waste.
+STR_PARAM_DESC_NUCLEAR				:Enables {SILVER}Uranium Mine{BLACK} and {SILVER}Nuclear Fuel Plant{BLACK}, from 1956. {SILVER}Power Plant{BLACK} accepts Nuclear Fuel and produces Nuclear Waste.
 
 STR_PARAM_NAME_RECYCLABLES			:Enable Waste & Recycling chain
 STR_PARAM_DESC_RECYCLABLES			:Enables {SILVER}Recycling Center{BLACK} to sort Waste from town buildings into Recycled Materials for transport to industries.{}{}{ORANGE}Requires Improved Town Layouts NewGRF, version 1.3.0 or better.
@@ -60,7 +60,6 @@ STR_EXTRA_TEXT_LOGGING_CAMP			:Transport wood to begin clearing trees and increa
 STR_NAME_OIL_REFINERY				:Oil Refinery
 STR_NAME_FARM						:Farm
 STR_NAME_POWER_PLANT				:Power Plant
-STR_NAME_NUCLEAR_POWER_PLANT		:Nuclear Power Plant
 STR_NAME_FACTORY					:Factory
 STR_NAME_COAL_MINE					:Coal Mine
 STR_NAME_OIL_WELLS					:Oil Wells

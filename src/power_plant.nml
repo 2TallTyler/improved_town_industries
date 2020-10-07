@@ -20,48 +20,40 @@ spritelayout sprlay_power_plant_4 { // Cooling tower
 	ground		{sprite:3981;}
 	building	{sprite:2047;}
 }
-spritelayout sprlay_power_plant_5_N { // Coal pile N
-	ground		{sprite:2022;}
-	building	{sprite:2023;}
-}
-
-spritelayout sprlay_power_plant_5_W { // Coal pile W
-	ground		{sprite:2022;}
-	building	{sprite:2024;}
-}
 
 switch (FEAT_INDUSTRYTILES, SELF, switch_power_plant_cooling_tower_availability, current_year >= 1918) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-item (FEAT_INDUSTRYTILES, ind_tile_power_plant_1) { // Powerhouse
-property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
-graphics {default:		sprlay_power_plant_1;}}
-
-item (FEAT_INDUSTRYTILES, ind_tile_power_plant_2) { // Power terminals
-property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
-graphics {default:		sprlay_power_plant_2;}}
-
-item (FEAT_INDUSTRYTILES, ind_tile_power_plant_3) { // Transformers
-property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
-graphics {default:		sprlay_power_plant_3;}}
-
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_4) { // Cooling tower
 property {
-	substitute:			02; 
-	accepted_cargos: 	[[PASS, 8], [COAL, 8]];
+	substitute:			07; 
+	accepted_cargos: 	[[PASS, 8]];
+	special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	land_shape_flags:	bitmask(LSF_ONLY_ON_FLAT_LAND);
 	}
 graphics {
-	default:	sprlay_power_plant_4;
 	tile_check:	switch_power_plant_cooling_tower_availability;
 }}
 
-item (FEAT_INDUSTRYTILES, ind_tile_power_plant_5_N) { // Coal pile N
-property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
-graphics {default:		sprlay_power_plant_5_N;}}
+item (FEAT_INDUSTRYTILES, ind_tile_power_plant_1) { // Powerhouse
+property {
+	substitute:	08; 
+	accepted_cargos: 	[[PASS, 8]];
+	special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+}
 
-item (FEAT_INDUSTRYTILES, ind_tile_power_plant_5_W) { // Coal pile W
-property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
-graphics {default:		sprlay_power_plant_5_W;}}
+item (FEAT_INDUSTRYTILES, ind_tile_power_plant_2) { // Power terminals
+property {
+	substitute:	09; 
+	accepted_cargos: 	[[PASS, 8]];
+	special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_power_plant_3) { // Transformers
+property {
+	substitute:	10; 
+	accepted_cargos: 	[[PASS, 8]];
+	special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+}
 
 
 tilelayout industry_layout_power_plant_1 {
@@ -71,20 +63,14 @@ tilelayout industry_layout_power_plant_1 {
 }
 
 tilelayout industry_layout_power_plant_2 {
-0,0:	ind_tile_power_plant_1;	0,1:	ind_tile_power_plant_5_N;
-1,0:	ind_tile_power_plant_1;	1,1:	ind_tile_power_plant_5_W;
+0,0:	ind_tile_power_plant_1;
+1,0:	ind_tile_power_plant_1;	1,1:	ind_tile_power_plant_3;
 2,0:	ind_tile_power_plant_2;	2,1:	ind_tile_power_plant_3;
 }
 
-tilelayout industry_layout_power_plant_3 {
-/*0,0:	clear;	*/				0,1:	ind_tile_power_plant_4;		/*0,2:	clear;*/	0,3:	ind_tile_power_plant_1;	0,4:	ind_tile_power_plant_5_N;
-1,0:	ind_tile_power_plant_4;	/*1,1:	clear;	*/					/*1,2:	clear;*/	1,3:	ind_tile_power_plant_1;	1,4:	ind_tile_power_plant_5_W;
-/*2,0:	clear;	*/				2,1:	ind_tile_power_plant_4;		/*2,2:	clear;*/	2,3:	ind_tile_power_plant_2;	2,4:	ind_tile_power_plant_3;
-}
-
 tilelayout industry_layout_power_plant_4 {
-0,0:	ind_tile_power_plant_5_N;	0,1:	ind_tile_power_plant_1;
-1,0:	ind_tile_power_plant_5_W;	1,1:	ind_tile_power_plant_1;
+0,0:	ind_tile_power_plant_4;		0,1:	ind_tile_power_plant_1;
+1,0:	ind_tile_power_plant_3;		1,1:	ind_tile_power_plant_1;
 2,0:	ind_tile_power_plant_3;		2,1:	ind_tile_power_plant_2;
 }
 
@@ -142,54 +128,36 @@ switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_prospected, extra_callba
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_allow_prospected;}
 
-if (param_nuclear == 1) {
-	item (FEAT_INDUSTRIES, industry_power_plant, 2) { // Nuclear Power Plant
-		property {
-			substitute:				INDUSTRYTYPE_POWER_PLANT;
-			life_type:				IND_LIFE_TYPE_PROCESSING;
-			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-			cargo_types:			[ accept_cargo("NUKF", produce_cargo("NUKW",0.5), produce_cargo("PASS",1)), ];
-			name:					string(STR_NAME_NUCLEAR_POWER_PLANT);
-			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
-			fund_cost_multiplier:	150;
-			layouts:				[ industry_layout_power_plant_5, ];
-			map_colour:				208;
-		}
-		graphics {
-			location_check:			switch_power_plant_allow_funded;
-			construction_probability:	(current_year >= 1956) ? 1 : 0;
-			extra_text_fund:		string(STR_FUND_AVAILABLE_1956);
-		}
+/* Power Plant industry */
+item (FEAT_INDUSTRIES, industry_power_plant, 2) {
+	property {
+		substitute:				INDUSTRYTYPE_POWER_PLANT;
+		life_type:				IND_LIFE_TYPE_PROCESSING;
+		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
+		cargo_types: [ 
+				accept_cargo("COAL", produce_cargo("PASS",0.25)),
+				accept_cargo("OIL_", produce_cargo("PASS",0.25)), 
+				accept_cargo("WSTE", produce_cargo("PASS",0.25)),
+				accept_cargo("NUKF", produce_cargo("NUKW",0.5), produce_cargo("PASS",2)),
+			];
+		name:					string(STR_NAME_POWER_PLANT);
+		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
+		fund_cost_multiplier:	100;
+		layouts:				[
+			industry_layout_power_plant_1,
+			industry_layout_power_plant_2,
+			industry_layout_power_plant_4,
+			industry_layout_power_plant_5,
+			];
+		map_colour:				208;
 	}
-} else {
-	item (FEAT_INDUSTRIES, industry_power_plant, 2) { // Coal/Waste Power Plant
-		property {
-			substitute:				INDUSTRYTYPE_POWER_PLANT;
-			life_type:				IND_LIFE_TYPE_PROCESSING;
-			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-			cargo_types: [ 
-					accept_cargo("COAL", produce_cargo("PASS",1)), 
-					accept_cargo("WSTE", produce_cargo("PASS",1)),
-				];
-			name:					string(STR_NAME_POWER_PLANT);
-			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
-			fund_cost_multiplier:	100;
-			layouts:				[
-				industry_layout_power_plant_1,
-				industry_layout_power_plant_2,
-				industry_layout_power_plant_3,
-				industry_layout_power_plant_4,
-				industry_layout_power_plant_5,
-				];
-			map_colour:				208;
-		}
-		graphics {
-			location_check:			switch_power_plant_allow_funded;
-			construction_probability:	(current_year >= 1882) ? 3 : 0;
-			extra_text_fund:		string(STR_FUND_AVAILABLE_1882);
-		}
+	graphics {
+		location_check:			switch_power_plant_allow_funded;
+		construction_probability:	(current_year >= 1882) ? 3 : 0;
+		extra_text_fund:		string(STR_FUND_AVAILABLE_1882);
 	}
 }
+
 
 item (FEAT_OBJECTS, object_item_power_plant_1) {
 	property {
