@@ -114,6 +114,7 @@ TBD
   - Improved Town Layouts
   - OpenGFX Mars Houses - Late Start
 - Add: Error messages for incompatible industry NewGRFs now specifies which NewGRF is incompatible
+- Change: Transporting Waste pays slightly more
 - Change: Waste & Recycling parameter text and error now requires Improved Town Layouts 1.3.0 (removes year >= 1882 limit for Waste production, now that Farms accept Waste)
 - Change: Use base game industry count management instead of handling it within ITI
 - Removed: Parameter for Logging Camp to act like Sub-Tropic Lumber Mill
