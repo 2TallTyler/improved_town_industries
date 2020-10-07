@@ -145,7 +145,7 @@ item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 				accept_cargo("COAL", produce_cargo("PASS",0.25)),
 				accept_cargo("OIL_", produce_cargo("PASS",0.25)), 
 				accept_cargo("WSTE", produce_cargo("PASS",0.25)),
-				accept_cargo("NUKF", produce_cargo("NUKW",0.5), produce_cargo("PASS",2)),
+				accept_cargo("NUKF", produce_cargo("NUKW",0.5), produce_cargo("PASS",0.5)),
 			];
 		name:					string(STR_NAME_POWER_PLANT);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
