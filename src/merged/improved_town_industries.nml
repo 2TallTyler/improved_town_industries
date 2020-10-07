@@ -1545,6 +1545,7 @@ property {
 	land_shape_flags:	bitmask(LSF_ONLY_ON_FLAT_LAND);
 	}
 graphics {
+	default: sprlay_power_plant_4;
 	tile_check:	switch_power_plant_cooling_tower_availability;
 }}
 
@@ -1553,21 +1554,27 @@ property {
 	substitute:	08; 
 	accepted_cargos: 	[[PASS, 8]];
 	special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
-}
+graphics {
+	default: sprlay_power_plant_1;
+}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_2) { // Power terminals
 property {
 	substitute:	09; 
 	accepted_cargos: 	[[PASS, 8]];
 	special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
-}
+graphics {
+	default: sprlay_power_plant_2;
+}}
 
 item (FEAT_INDUSTRYTILES, ind_tile_power_plant_3) { // Transformers
 property {
 	substitute:	10; 
 	accepted_cargos: 	[[PASS, 8]];
 	special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
-}
+graphics {
+	default: sprlay_power_plant_3;
+}}
 
 
 tilelayout industry_layout_power_plant_1 {

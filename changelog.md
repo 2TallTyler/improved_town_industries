@@ -88,7 +88,7 @@ September 2, 2020
   - Banning primary industries next to cities has not proved necessary
 - Fix: Recycling Center obeys "Generate Primary Industries Only" parameter
 
-### 2.0.0
+### 1.6.0
 TBD
 
 - Add: Nuclear Energy chain
