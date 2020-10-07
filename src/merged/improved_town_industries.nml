@@ -76,8 +76,9 @@ grf {
 
 }
 
-/* Disable base game industries */
-disable_item(FEAT_INDUSTRIES);
+/* Disable base game industries, except Oil Rig */
+disable_item(FEAT_INDUSTRIES, 0, 4);
+disable_item(FEAT_INDUSTRIES, 6, 36);
 
 /* Disable base game cargos */
 disable_item(FEAT_CARGOS);
@@ -4262,6 +4263,11 @@ item (FEAT_OBJECTS, object_item_forest_cut) {
 
 /* *** Begin Oil Rig *** */
 
+if (param_oil_rigs == 0) {
+	disable_item(FEAT_INDUSTRIES, 5);
+}
+
+/*
 if (param_oil_rigs == 1) {
 	item (FEAT_INDUSTRIES, industry_oil_rig, 12) {
 		property {
@@ -4275,6 +4281,7 @@ if (param_oil_rigs == 1) {
 		}
 	}
 }
+*/
 
 /* *** End Oil Rig *** */
 

@@ -1,6 +1,11 @@
 
 /* *** Begin Oil Rig *** */
 
+if (param_oil_rigs == 0) {
+	disable_item(FEAT_INDUSTRIES, 5);
+}
+
+/*
 if (param_oil_rigs == 1) {
 	item (FEAT_INDUSTRIES, industry_oil_rig, 12) {
 		property {
@@ -14,5 +19,6 @@ if (param_oil_rigs == 1) {
 		}
 	}
 }
+*/
 
 /* *** End Oil Rig *** */

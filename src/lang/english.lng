@@ -29,7 +29,7 @@ STR_PARAM_NAME_AUTO_FARM_FIELDS		:Farms build fields
 STR_PARAM_DESC_AUTO_FARM_FIELDS		:Choose if {SILVER}Farms {BLACK}construct fields, as in vanilla OpenTTD.{}{}Field tiles are available as decorative objects.
 
 STR_PARAM_NAME_OIL_RIGS				:Enable Oil Rigs
-STR_PARAM_DESC_OIL_RIGS				:Choose whether {SILVER}Oil Rigs{BLACK} appear after 1960 (identical to vanilla industry).
+STR_PARAM_DESC_OIL_RIGS				:Choose whether {SILVER}Oil Rigs{BLACK} appear after 1960 (identical to vanilla industry).{}{}{ORANGE}Temperate climate only.
 
 STR_PARAM_NAME_NUCLEAR				:Enable Nuclear Energy chain
 STR_PARAM_DESC_NUCLEAR				:Enables {SILVER}Uranium Mine{BLACK} and {SILVER}Nuclear Fuel Plant{BLACK}, from 1956. {SILVER}Power Plant{BLACK} accepts Nuclear Fuel and produces Nuclear Waste.

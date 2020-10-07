@@ -76,8 +76,9 @@ grf {
 
 }
 
-/* Disable base game industries */
-disable_item(FEAT_INDUSTRIES);
+/* Disable base game industries, except Oil Rig */
+disable_item(FEAT_INDUSTRIES, 0, 4);
+disable_item(FEAT_INDUSTRIES, 6, 36);
 
 /* Disable base game cargos */
 disable_item(FEAT_CARGOS);
