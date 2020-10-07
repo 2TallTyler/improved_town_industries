@@ -48,8 +48,8 @@ item (FEAT_CARGOS, cargo_coal, 0x01) {
 		items_of_cargo:				TTD_STR_QUANTITY_COAL;
 		penalty_lowerbound:			30;
 		single_penalty_length:		255;
-		station_list_colour:		0x06;
-		cargo_payment_list_colour:	0x06;
+		station_list_colour:		1;
+		cargo_payment_list_colour:	1;
 		price_factor:				56;
 		capacity_multiplier:		1;		
 	}
@@ -98,8 +98,8 @@ item (FEAT_CARGOS, cargo_oil, 0x03) {
 		items_of_cargo:				TTD_STR_QUANTITY_OIL;
 		penalty_lowerbound:			30;
 		single_penalty_length:		255;
-		station_list_colour:		0xAE;
-		cargo_payment_list_colour:	0xAE;
+		station_list_colour:		171;
+		cargo_payment_list_colour:	171;
 		price_factor:				93;
 		capacity_multiplier:		1;		
 	}
@@ -125,7 +125,7 @@ item (FEAT_CARGOS, cargo_lumber, 0x04) {
 		single_penalty_length:		255;
 		station_list_colour:		58;
 		cargo_payment_list_colour:	58;
-		price_factor:				124;
+		price_factor:				122;
 		capacity_multiplier:		1;		
 	}
 }
@@ -171,7 +171,7 @@ item (FEAT_CARGOS, cargo_chemicals, 0x06) {
 		town_growth_multiplier:		1.0;
 		units_of_cargo:				TTD_STR_LITERS;
 		items_of_cargo:				string(STR_CARGO_QUANTITY_CHEMICALS);
-		penalty_lowerbound:			12;
+		penalty_lowerbound:			20;
 		single_penalty_length:		255;
 		station_list_colour:		177;
 		cargo_payment_list_colour:	177;
@@ -300,9 +300,9 @@ if (param_recyclables == 1) {
 			items_of_cargo:				string(STR_CARGO_QUANTITY_WASTE);
 			penalty_lowerbound:			30;
 			single_penalty_length:		255;
-			station_list_colour:		134;
-			cargo_payment_list_colour:	134;
-			price_factor:				100;
+			station_list_colour:		87;
+			cargo_payment_list_colour:	87;
+			price_factor:				130;
 			capacity_multiplier:		1;		
 		}
 	}
@@ -400,11 +400,11 @@ if (param_nuclear == 1) {
 			town_growth_multiplier:		0;
 			units_of_cargo:				TTD_STR_TONS;
 			items_of_cargo:				string(STR_CARGO_QUANTITY_NUCLEAR_WASTE);
-			penalty_lowerbound:			0;
-			single_penalty_length:		25;
-			station_list_colour:		191;
-			cargo_payment_list_colour:	191;
-			price_factor:				300;
+			penalty_lowerbound:			10;
+			single_penalty_length:		50;
+			station_list_colour:		67;
+			cargo_payment_list_colour:	67;
+			price_factor:				180;
 			capacity_multiplier:		0.5;		
 		}
 	}
