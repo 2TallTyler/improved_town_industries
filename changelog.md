@@ -89,7 +89,7 @@ September 2, 2020
 - Fix: Recycling Center obeys "Generate Primary Industries Only" parameter
 
 ### 1.6.0
-TBD
+November 8, 2020
 
 - Add: Nuclear Energy chain
   - Uranium Mine
