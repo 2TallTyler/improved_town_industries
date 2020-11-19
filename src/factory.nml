@@ -1,4 +1,4 @@
-// Begin Factory
+/* *** Begin Factory ** */
 
 spritelayout sprlay_factory_1_N {
 	ground		{sprite:2146;
@@ -200,7 +200,7 @@ tilelayout industry_layout_factory_L {
 	
 }
 
-/* // Industry Construction Switches - Read from bottom to top // */
+/* Industry Construction Switches - Read from bottom to top */
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_distance_competitor, industry_distance(industry_factory, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
@@ -211,47 +211,59 @@ switch (FEAT_INDUSTRIES, SELF, switch_factory_distance_competitor, industry_dist
 switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
 	population >= LOAD_TEMP(1)) {1: switch_factory_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
-// Add population required by other industries. 300 population required for Factory
+/* Add population required by other industries. 300 population required for Factory */
+
+/* Population requirements from 1850 */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_late, STORE_TEMP(
-	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)	* 300 +
-	industry_town_count(industry_paper_mill,-1) 	* 300 +
-	industry_town_count(industry_steel_mill,-1)		* 300 +
-	industry_town_count(industry_factory,-1)		* 300 +
-	300 // Add population required for this industry
-	, 1))
+// Count existing processing industries in town
+industry_town_count(industry_oil_refinery,-1)		* 300 +
+industry_town_count(industry_paper_mill,-1) 		* 300 +
+industry_town_count(industry_steel_mill,-1)			* 300 +
+industry_town_count(industry_factory,-1)			* 300 +
+industry_town_count(industry_power_plant,-1)		* 300 +
+industry_town_count(industry_recycling_center,-1)	* 300 +
+industry_town_count(industry_sawmill,-1)			* 300 +
+industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
+300 // Add population required for this industry
+, 1))
 	{switch_factory_population_check_2;}
-
-// Add population required by other industries. If ITL Early Pop loaded, only 100 population required for Factory before 1850
+	
+/* Population reqirements before 1850 (old houses are smaller and cities may not have 300 population) */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_early, STORE_TEMP(
-	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)	* 300 +
-	industry_town_count(industry_paper_mill,-1) 	* 300 +
-	industry_town_count(industry_steel_mill,-1)		* 300 +
-	industry_town_count(industry_factory,-1)		* 300 +
-	100 // Add population required for this industry
-	, 1))
+// Count existing processing industries in town
+industry_town_count(industry_oil_refinery,-1)		* 300 +
+industry_town_count(industry_paper_mill,-1) 		* 300 +
+industry_town_count(industry_steel_mill,-1)			* 300 +
+industry_town_count(industry_factory,-1)			* 300 +
+industry_town_count(industry_power_plant,-1)		* 300 +
+industry_town_count(industry_recycling_center,-1)	* 300 +
+industry_town_count(industry_sawmill,-1)			* 300 +
+industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
+100 // Add population required for this industry
+, 1))
 	{switch_factory_population_check_2;}
 
-// If Improved Town Layouts is enabled with Reduced Early Population parameter active, check year for Factory population requirement (1800-1849: pop 100, 1850+: pop 300)
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_1, current_year < 1850 && param["TT\03\01", 4] == 1) {1: switch_factory_population_check_early; switch_factory_population_check_late;}
+/* If before 1850, check year for Factory population requirement (1800-1849: pop 100, 1850+: pop 300) */
+switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_1, current_year < 1850) {1: switch_factory_population_check_early; switch_factory_population_check_late;}
 
 /* Town Distance Check - secondary industries only */
 
-// Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size
-switch (FEAT_INDUSTRIES, SELF, switch_factory_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_factory_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_factory_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
+/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
+switch (FEAT_INDUSTRIES, SELF, switch_factory_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_factory_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
+	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_factory_town_distance_check_2;} 
+	// Add up the town zone radii and store it in temporary register 0
 
 
 // If "Generate primary only" parameter enabled, disallow random generation of secondary industries
 switch (FEAT_INDUSTRIES, SELF, switch_factory_generate_primary_only, param_primary_only)
 	{1: return CB_RESULT_LOCATION_DISALLOW; switch_factory_town_distance_check_1;}
 
-// Prospected industries aren't restricted by industry totals, but must meet other requirements
+/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
 	{1: switch_factory_town_distance_check_1; switch_factory_generate_primary_only;}
 
-// Funded industries have no restrictions
+/* Funded industries have no restrictions */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_factory_allow_prospected;}
 
@@ -262,7 +274,7 @@ item (FEAT_INDUSTRIES, industry_factory, 5) {
 		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[
 								accept_cargo("STEL", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("WOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+								accept_cargo("WDPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 								accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 								accept_cargo("FOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 								accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
@@ -285,7 +297,6 @@ item (FEAT_INDUSTRIES, industry_factory, 5) {
 		colour:					COLOUR_PALE_GREEN;
 		construction_probability:	(current_year >= 1800) ? 9 : 0;
 		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
-		extra_text_industry:	string(STR_EXTRA_WORKERS);
 	}
 }
 
@@ -314,4 +325,4 @@ item (FEAT_OBJECTS, object_item_factory_1) {
 	}
 }
 
-// End Factory
+/* *** End Factory *** */

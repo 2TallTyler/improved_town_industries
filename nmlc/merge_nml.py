@@ -40,9 +40,9 @@ factory = codecs.open("src/factory.nml",'r','utf8')
 sections.append(factory.read())
 factory.close()
 
-logging_camp = codecs.open("src/logging_camp.nml",'r','utf8')
-sections.append(logging_camp.read())
-logging_camp.close()
+sawmill = codecs.open("src/sawmill.nml",'r','utf8')
+sections.append(sawmill.read())
+sawmill.close()
 
 paper_mill = codecs.open("src/paper_mill.nml",'r','utf8')
 sections.append(paper_mill.read())
@@ -59,6 +59,22 @@ oil_refinery.close()
 recycling_center = codecs.open("src/recycling_center.nml",'r','utf8')
 sections.append(recycling_center.read())
 recycling_center.close()
+
+forest = codecs.open("src/forest.nml",'r','utf8')
+sections.append(forest.read())
+forest.close()
+
+oil_rig = codecs.open("src/oil_rig.nml",'r','utf8')
+sections.append(oil_rig.read())
+oil_rig.close()
+
+uranium_mine = codecs.open("src/uranium_mine.nml",'r','utf8')
+sections.append(uranium_mine.read())
+uranium_mine.close()
+
+nuclear_fuel_plant = codecs.open("src/nuclear_fuel_plant.nml",'r','utf8')
+sections.append(nuclear_fuel_plant.read())
+nuclear_fuel_plant.close()
 
 print("Python: Writing combined NML file")
 

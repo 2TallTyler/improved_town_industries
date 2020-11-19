@@ -8,13 +8,16 @@
 - Processing industries spawn near towns
 - Most industries accept and create passengers as workers
 - Industries have realistic invention dates for gameplay as early as 1700
-- When used with Improved Town Layouts, adds Waste & Recycling chain
+- When used with Improved Town Layouts or another compatible house set, adds Waste & Recycling chain
 - Includes object tiles for visually expanding industries
 - Designed for Temperate climate only
 - Uses only base game sprites, so visually compatible with any base graphics set including original TTD, OpenGFX, aBase, zBase, and NightGFX
 - Incompatible with other industry sets
 - Requires OpenTTD version 1.10.0, JGR version 0.34, or better
 - Requires NewGRF vehicles which support additional cargos
+
+## Cargo chain
+![Improved Town Industries cargo chain](/docs/industry_chart.PNG)
 
 ## Features
 
@@ -40,7 +43,7 @@
 
 ### Towns generate Waste 
 **(requires Improved Town Layouts)**
-- Improved Town Layouts houses produce Waste, which can be transported to the Power Plant (from 1882) for incineration or to the Recycling Center (from 1945) for conversion to Recycled Materials. Houses do not produce Waste before 1882.
+- Improved Town Layouts houses produce Waste, which can be transported to the Farm to be fed to the pigs (returns 1/4 ton of Food per ton of Waste) or to the Recycling Center (from 1945) for conversion to Recycled Materials.
 - Recycled Materials are accepted at:
   - Steel Mill (scrap metal)
   - Paper Mill (paper and cardboard)
@@ -50,14 +53,15 @@
 
 ### Industries are invented at realistic dates in history
 
-- Always: Farm, Coal Mine, Logging Camp
-- 1800: Factory
+- Always: Farm, Coal Mine, Forest
+- 1800: Factory, Sawmill
 - 1856: Iron Mine and Steel Mill
 - 1882: Power Plant
 - 1885: Paper Mill
 - 1900: Oil Wells and Oil Refinery
-
-Please set your desired industry density in both the OpenTTD map generation screen and the NewGRF parameters. This is necessary to control industry probability and reserve slots for industries invented after the game starts.
+- 1945: Recycling Center
+- 1956: Uranium Mine, Nuclear Fuel Plant
+- 1960: Oil Rig
 
 ### Expand your industries with eyecandy objects
 
@@ -71,13 +75,9 @@ Please set your desired industry density in both the OpenTTD map generation scre
 - NewGRF vehicle sets are **required** to transport new and modified cargos. If you want to keep base game trains, OpenGFX+ Trains keeps the vanilla graphics while adding compatibility for NewGRF cargos.
 
 ## Parameters
-
-- Industry Density
-  - Must match Industry Density in game settings
-  - This is required to reserve space for industries which haven't been invented yet
-  
+ 
 - Generate Primary Industries Only
-  - Disable automatic generation of Factories, Steel Mills, Power Plants, Paper Mills, Oil Refineries, and Recycling Centers (if enabled)
+  - Disable automatic generation of Factories, Steel Mills, Paper Mills, Oil Refineries, Power Plants, and Recycling Centers (if enabled)
   - Does not affect funded industries
 
 - Industry elevation requirements
@@ -89,15 +89,24 @@ Please set your desired industry density in both the OpenTTD map generation scre
 - Farms build fields
   - Choose if Farms construct fields, as in vanilla OpenTTD
   - Field tiles are available as decorative objects, to construct your own fields
-  
-- Logging Camp behavior
-  - Like Forest (vanilla Temperate climate). Does not cut trees. Subject to vanilla production changes. **Recommended**
-  - Like Lumber Mill (vanilla Sub-tropic climate). Cuts trees within reach for production.
+
+- Enable Oil Rigs
+  - Choose whether Oil Rigs appear after 1960 (identical to vanilla industry).
+
+- Enable Nuclear Energy chain
+  - Enables Uranium Mine and Nuclear Fuel Plant, from 1956. Power Plant accepts Nuclear Fuel and produces Nuclear Waste.
 
 - Enable Waste & Recycling chain
   - Enables Recycling Center to sort Waste from town buildings into Recycled Materials for transport to industries
   - See section above in README
-  - **Requires Improved Town Layouts version 1.2.0 or better**
+  - **Requires Improved Town Layouts version 1.3.0 or better**
+
+## Code Reference
+All code is commented and is organized into several .nml files (one for each industry) which are combined by a simple Python script into a merged .nml file for compiling into the .grf. All of these files are in /src/.
+
+All cargos are defined in cargos.nml. Incompatible NewGRFs are listed in header.nml.
+
+If you have any questions, please feel free to contact me and I will do my best to help.
 
 ## Limitations / Not in Scope
 

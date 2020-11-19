@@ -88,10 +88,34 @@ September 2, 2020
   - Banning primary industries next to cities has not proved necessary
 - Fix: Recycling Center obeys "Generate Primary Industries Only" parameter
 
-### 1.5.2
-TBD
+### 1.6.0
+November 8, 2020
 
-- Change: Use base game industry count management instead of handling it within ITI
-- Change: Secondary industry passenger production is scaled to cargo deliveries
+- Add: Nuclear Energy chain
+  - Uranium Mine
+    - Accepts Chemicals
+	- Produces Uranium, Passengers
+  - Nuclear Fuel Plant
+    - Accepts Uranium, Nuclear Waste
+	- Produces Nuclear Fuel, Passengers
+  - Power Plant (existing industry)
+    - Accepts Nuclear Fuel, Oil, Coal, Waste
+	- Produces Nuclear Waste, Passengers
+- Add: Oil Rigs are back! (identical to Vanilla)
+- Add: Sawmill processes Wood into Lumber
+- Add: Forest produces Wood (replaces Logging Camp, identical to vanilla Forest)
+- Add: Farms accept Waste; feeding it to the pigs generates 1 ton of Food per 4 tons of Waste delivered (Recycled Materials has a 1:1 ratio, incentivizing a change once the Recycling Center is invented in 1945)
+- Add: Secondary industry passenger production is scaled to cargo deliveries
   - Each industry employs 1 worker per 4 units of cargo delivered
-- Change: Secondary industries now close if cargo is not delivered for 5 years (vanilla behavior, previously disrupted by passenger generation)
+  -  Symmetric Cargodist should route passengers back to the industry as workers headed to work
+  -  Passengers are no longer "Requires" cargos but are still accepted by industry tiles
+- Add: Secondary industries now close if cargo is not delivered for 5 years (vanilla behavior, previously disrupted by passenger generation)
+- Add: Waste & Recycling now compatible with other house sets which generate Waste
+  - Improved Town Layouts
+  - OpenGFX Mars Houses - Late Start
+- Add: Error messages for incompatible industry NewGRFs now specifies which NewGRF is incompatible
+- Fix: Coal and Iron Mines now have a safety valve on their clustering mechanic, preventing a deadlock where the next mine is required to be within 100 tiles of another mine, but no owning town is within range
+- Change: Transporting Waste pays slightly more
+- Change: Waste & Recycling parameter text and error now requires Improved Town Layouts 1.3.0 (removes year >= 1882 limit for Waste production, now that Farms accept Waste)
+- Change: Use base game industry count management instead of handling it within ITI
+- Removed: Parameter for Logging Camp to act like Sub-Tropic Lumber Mill

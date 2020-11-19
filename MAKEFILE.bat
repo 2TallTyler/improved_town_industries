@@ -19,6 +19,6 @@ if /I "%c%" EQU "TT" (goto :copy
 
 :copy
 ECHO Copying to NewGRF directory
-copy /y /v %~dp0\improved_town_industries.grf C:\Users\train\Documents\OpenTTD\newgrf\
+copy /y /v %~dp0\improved_town_industries.grf C:\Users\tyler\Documents\OpenTTD\newgrf\
 pause
 exit
