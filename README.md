@@ -16,6 +16,9 @@
 - Requires OpenTTD version 1.10.0, JGR version 0.34, or better
 - Requires NewGRF vehicles which support additional cargos
 
+## Cargo chain
+![Improved Town Industries cargo chain](/docs/industry_chart.PNG)
+
 ## Features
 
 ### Expanded industry and cargo chains
@@ -97,6 +100,13 @@
   - Enables Recycling Center to sort Waste from town buildings into Recycled Materials for transport to industries
   - See section above in README
   - **Requires Improved Town Layouts version 1.3.0 or better**
+
+## Code Reference
+All code is commented and is organized into several .nml files (one for each industry) which are combined by a simple Python script into a merged .nml file for compiling into the .grf. All of these files are in /src/.
+
+All cargos are defined in cargos.nml. Incompatible NewGRFs are listed in header.nml.
+
+If you have any questions, please feel free to contact me and I will do my best to help.
 
 ## Limitations / Not in Scope
 
