@@ -106,8 +106,11 @@ tilelayout industry_layout_coal_mine_3 {
 
 /* Coal Mine Industry */
 
+/* If a cluster is required and the location check fails, count the number of forests. If there are a lot more forests than coal mines, there may be a clustering deadlock where no possible locations are in range. This can happen with low town densities. Allow one to be built anyway. */
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_3, (industry_count(industry_forest, -1) + 5) > industry_count(industry_coal_mine, -1) ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+
 /* If an odd number of industries exist, then must build within 100 tiles of another coal mine */
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_2, industry_distance(industry_coal_mine, -1) <= 100) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_2, industry_distance(industry_coal_mine, -1) <= 100) {1: CB_RESULT_LOCATION_ALLOW; switch_coal_mine_cluster_3;}
 
 /* Check if an even number of coal mines already exist on the map (0 is even) by dividing by 2 and checking for a remainder. If even, build without needing cluster. If odd, continue to next switch for clustering */
 switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_cluster_1, industry_count(industry_coal_mine, -1) % 2 == 0) {1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_cluster_2;}
