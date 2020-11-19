@@ -56,7 +56,7 @@ grf {
 		param_nuclear {
 			name: string(STR_PARAM_NAME_NUCLEAR);
 			desc: string(STR_PARAM_DESC_NUCLEAR);
-			def_value: 1;
+			def_value: 0;
 			type: bool;
 		}
 	}
