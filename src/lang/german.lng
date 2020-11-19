@@ -9,19 +9,6 @@ STR_ERROR_GAME_VERSION				:{TITLE} Braucht OpenTTD-Version 1.10.0, JGR-Version 0
 STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Die Abfall- & Recycling-Kette braucht ein kompatibles Gebäude-Set (Empfehlenswert: Improved Town Layouts Version 1.3.0 oder neuer).
 STR_ERR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE} ist nicht kompatibel mit {YELLOW}{STRING}{WHITE}.
 
-STR_PARAM_NAME_INDUSTRY_DENSITY		:Industriedichte
-STR_PARAM_DESC_INDUSTRY_DENSITY		:{ORANGE}Muss der Industriedichte in den Spieleinstellungen gleichen.
-
-STR_DENSITY_FUNDED_ONLY	:Nur durch Spieler
-STR_DENSITY_MINIMAL			:Minimal
-STR_DENSITY_VERY_LOW		:Sehr niedrig
-STR_DENSITY_LOW		  		:Niedrig
-STR_DENSITY_NORMAL			:Normal
-STR_DENSITY_HIGH				:Hoch
-
-STR_PARAM_NAME_PRIMARY_ONLY			:Generiere nur Primärindustrien
-STR_PARAM_DESC_PRIMARY_ONLY			:Deaktiviert die automatische Generation der {SILVER}Fabriken{BLACK}, {SILVER}Stahlwerke{BLACK}, {SILVER}Papiermühlen{BLACK}, {SILVER}Ölraffinerien{BLACK}, {SILVER}Kohlekraftwerke{BLACK}, {SILVER}Atomkraftwerke{BLACK} (wenn aktiviert) und {SILVER}den Recyclinghöfen{BLACK} (wenn aktiviert). Beeinflusst durch Spieler gebaute Industrien nicht.
-
 STR_PARAM_NAME_ELEVATION_CHECKS		:Industriehöhenbedingung
 STR_PARAM_DESC_ELEVATION_CHECKS		:Industriehöhenüberprüfung: {SILVER}Kohleminen{BLACK} müssen auf Höhe 4 oder höher, und {SILVER}Bauernhöfe{BLACK} und {SILVER}Ölquellen{BLACK} auf Höhe 2 oder höher platziert werden{}{}{ORANGE}Nicht {BLACK}mit {ORANGE}sehr flachem {BLACK}Landschaftstyp verwenden, da {SILVER}Kohleminen {BLACK} nicht erstellt werden können.
 
@@ -71,7 +58,7 @@ STR_NAME_NUCLEAR_FUEL_PLANT :Atomkraftwerk
 STR_NAME_FIELD_1					  :Feld
 
 
-STR_CARGO_NAME_LUMBER				 :Chemikalien
+STR_CARGO_NAME_CHEMICALS		 :Chemikalien
 STR_CARGO_ABBREV_CHEMICALS		:{TINYFONT}CH
 STR_CARGO_QUANTITY_CHEMICALS	:{VOLUME} Chemikalien
 

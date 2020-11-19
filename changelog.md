@@ -119,3 +119,9 @@ November 8, 2020
 - Change: Waste & Recycling parameter text and error now requires Improved Town Layouts 1.3.0 (removes year >= 1882 limit for Waste production, now that Farms accept Waste)
 - Change: Use base game industry count management instead of handling it within ITI
 - Removed: Parameter for Logging Camp to act like Sub-Tropic Lumber Mill
+
+### 1.6.1
+November 19, 2020
+
+- Add: German translation by WoelfiVW
+- Codechange: Remove unused strings from depreciated parameters

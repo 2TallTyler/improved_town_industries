@@ -108,6 +108,13 @@ All cargos are defined in cargos.nml. Incompatible NewGRFs are listed in header.
 
 If you have any questions, please feel free to contact me and I will do my best to help.
 
+## Translations
+Currently available in:
+- English
+- German (WoelfiVW)
+
+Please feel free to translate into your language and submit a Pull Request.
+
 ## Limitations / Not in Scope
 
 - Since all sprites come from the base graphics set, there are no snow sprites. 
