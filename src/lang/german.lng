@@ -1,0 +1,100 @@
+##grflangid 0x02
+
+STR_GRF_NAME						:{TITLE} {VERSION}
+STR_GRF_DESC						:{ORANGE}Vanilla-inspirierte Industrien{BLACK} mit neuen Industrie-Ketten, Pendlern, Industrien nahe Städten, sowie echten Einführungszeiten ab dem Jahr 1700.{}{}{SILVER}Braucht NewGRF-Fahrzeuge. Nicht kompatibel mit anderen Industrie-Sets.{}{}{ORANGE}Besuchen Sie die Website für Informationen.{}{}{BLACK}Programmiert von 2TallTyler.
+
+STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
+
+STR_ERROR_GAME_VERSION				:{TITLE} Braucht OpenTTD-Version 1.10.0, JGR-Version 0.34, oder neuer.
+STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Die Abfall- & Recycling-Kette braucht ein kompatibles Gebäude-Set (Empfehlenswert: Improved Town Layouts Version 1.3.0 oder neuer).
+STR_ERR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE} ist nicht kompatibel mit {YELLOW}{STRING}{WHITE}.
+
+STR_PARAM_NAME_INDUSTRY_DENSITY		:Industriedichte
+STR_PARAM_DESC_INDUSTRY_DENSITY		:{ORANGE}Muss der Industriedichte in den Spieleinstellungen gleichen.
+
+STR_DENSITY_FUNDED_ONLY	:Nur durch Spieler
+STR_DENSITY_MINIMAL			:Minimal
+STR_DENSITY_VERY_LOW		:Sehr niedrig
+STR_DENSITY_LOW		  		:Niedrig
+STR_DENSITY_NORMAL			:Normal
+STR_DENSITY_HIGH				:Hoch
+
+STR_PARAM_NAME_PRIMARY_ONLY			:Generiere nur Primärindustrien
+STR_PARAM_DESC_PRIMARY_ONLY			:Deaktiviert die automatische Generation der {SILVER}Fabriken{BLACK}, {SILVER}Stahlwerke{BLACK}, {SILVER}Papiermühlen{BLACK}, {SILVER}Ölraffinerien{BLACK}, {SILVER}Kohlekraftwerke{BLACK}, {SILVER}Atomkraftwerke{BLACK} (wenn aktiviert) und {SILVER}den Recyclinghöfen{BLACK} (wenn aktiviert). Beeinflusst durch Spieler gebaute Industrien nicht.
+
+STR_PARAM_NAME_ELEVATION_CHECKS		:Industriehöhenbedingung
+STR_PARAM_DESC_ELEVATION_CHECKS		:Industriehöhenüberprüfung: {SILVER}Kohleminen{BLACK} müssen auf Höhe 4 oder höher, und {SILVER}Bauernhöfe{BLACK} und {SILVER}Ölquellen{BLACK} auf Höhe 2 oder höher platziert werden{}{}{ORANGE}Nicht {BLACK}mit {ORANGE}sehr flachem {BLACK}Landschaftstyp verwenden, da {SILVER}Kohleminen {BLACK} nicht erstellt werden können.
+
+STR_PARAM_NAME_AUTO_FARM_FIELDS		:Bauernhöfe bauen Felder
+STR_PARAM_DESC_AUTO_FARM_FIELDS		:Wähle, ob, wie in Vanilla-OpenTTD, {SILVER}Bauernhöfe {BLACK}Felder bauen.{}{}Ackerflächen sind ebenfalls als dekorative Objekte verfügbar.
+
+STR_PARAM_NAME_OIL_RIGS				:Aktiviere Ölquellen
+STR_PARAM_DESC_OIL_RIGS				:Wähle, ob {SILVER}Ölquellen{BLACK} ab dem Jahr 1960 erscheinen (identisch zu den Vanilla-Industrien).{}{}{ORANGE}Nur für gemäßigtes Klima.
+
+STR_PARAM_NAME_NUCLEAR				:Aktiviert die Kernenergie-Kette
+STR_PARAM_DESC_NUCLEAR				:Aktiviert die {SILVER}Uranmine{BLACK} und das {SILVER}Atomkraftwerk{BLACK}, um 1956. {SILVER}Kohlekraftwerke{BLACK} akzeptieren Nuklearbrennstoffe und produzieren Atomabfall.
+
+STR_PARAM_NAME_RECYCLABLES			:Aktiviert die Abfall- und Recycling-Kette
+STR_PARAM_DESC_RECYCLABLES			:Aktiviert den {SILVER}Recyclinghof{BLACK}, um Müll von Gebäuden in Recyclingmaterialien für den Transport zu Industrien zu sortieren.{}{}{ORANGE}Braucht die Improved Town Layouts-NewGRF, Version 1.3.0 oder neuer.
+
+STR_FUND_AVAILABLE_1800				:{BLACK}Verfügbar ab: {YELLOW}1800
+STR_FUND_AVAILABLE_1856				:{BLACK}Verfügbar ab: {YELLOW}1856
+STR_FUND_AVAILABLE_1882				:{BLACK}Verfügbar ab: {YELLOW}1882
+STR_FUND_AVAILABLE_1885				:{BLACK}Verfügbar ab: {YELLOW}1885
+STR_FUND_AVAILABLE_1900				:{BLACK}Verfügbar ab: {YELLOW}1900
+STR_FUND_AVAILABLE_1945				:{BLACK}Verfügbar ab: {YELLOW}1945
+STR_FUND_AVAILABLE_1956				:{BLACK}Verfügbar ab: {YELLOW}1956
+STR_FUND_AVAILABLE_1960				:{BLACK}Verfügbar ab: {YELLOW}1960
+
+STR_NAME_OBJECT_MENU				  :Industrieobjekte
+STR_NAME_OBJECT_MENU_FIELDS		:Ackerflächen
+
+STR_TOWN						:{STRING}
+STR_STATION					:{STRING} {STRING}
+
+STR_NAME_STEEL_MILL					:Stahlwerk
+STR_NAME_IRON_MINE					:Eisenmine
+STR_NAME_SAWMILL					  :Sägewerk
+STR_NAME_FOREST						  :Wald
+STR_EXTRA_TEXT_LOGGING_CAMP	  :Transportiere Holz um Bäume zu fällen und die Produktion zu erhöhen
+STR_NAME_OIL_REFINERY				:Ölraffinerie
+STR_NAME_FARM			    			:Bauernhof
+STR_NAME_POWER_PLANT				:Kohlekraftwerk
+STR_NAME_FACTORY  					:Fabrik
+STR_NAME_COAL_MINE					:Kohlemine
+STR_NAME_OIL_WELLS					:Ölquelle
+STR_NAME_PAPER_MILL         :Papiermühle
+STR_NAME_RECYCLING_CENTER   :Recyclinghof
+STR_NAME_URANIUM_MINE       :Uranmine
+STR_NAME_NUCLEAR_FUEL_PLANT :Atomkraftwerk
+
+STR_NAME_FIELD_1					  :Feld
+
+
+STR_CARGO_NAME_LUMBER				 :Chemikalien
+STR_CARGO_ABBREV_CHEMICALS		:{TINYFONT}CH
+STR_CARGO_QUANTITY_CHEMICALS	:{VOLUME} Chemikalien
+
+STR_CARGO_NAME_LUMBER		  :Schnittholz
+STR_CARGO_ABBREV_LUMBER			:{TINYFONT}SH
+STR_CARGO_QUANTITY_LUMBER		:{WEIGHT} Schnittholz
+
+STR_CARGO_NAME_RECYCLABLES		:Recyclingmaterialien
+STR_CARGO_ABBREV_RECYCLABLES		:{TINYFONT}RM
+STR_CARGO_QUANTITY_RECYCLABLES	:{WEIGHT} Recyclingmaterialien
+
+STR_CARGO_NAME_WASTE		 :Müll
+STR_CARGO_ABBREV_WASTE		:{TINYFONT}NM
+STR_CARGO_QUANTITY_WASTE	:{WEIGHT} Müll
+
+STR_CARGO_NAME_URANIUM			:Uran
+STR_CARGO_ABBREV_URANIUM			:{TINYFONT}U
+STR_CARGO_QUANTITY_URANIUM		:{WEIGHT} Uran
+
+STR_CARGO_NAME_NUCLEAR_FUEL			:Nuklearbrennstoff
+STR_CARGO_ABBREV_NUCLEAR_FUEL		  :{TINYFONT}NB
+STR_CARGO_QUANTITY_NUCLEAR_FUEL	  :{WEIGHT} Nuklearbrennstoff
+
+STR_CARGO_NAME_NUCLEAR_WASTE		:Atomabfall
+STR_CARGO_ABBREV_NUCLEAR_WASTE		:{TINYFONT}AM
+STR_CARGO_QUANTITY_NUCLEAR_WASTE	:{WEIGHT} Atomabfall
