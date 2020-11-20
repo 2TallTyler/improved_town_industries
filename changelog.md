@@ -125,3 +125,8 @@ November 19, 2020
 
 - Add: German translation by WoelfiVW
 - Codechange: Remove unused strings from depreciated parameters
+
+### 1.6.2
+November 20, 2020
+
+- Fix: German translation
