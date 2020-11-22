@@ -130,3 +130,8 @@ November 19, 2020
 November 20, 2020
 
 - Fix: German translation
+
+### 1.6.3
+November 21, 2020
+
+- Fix: Sawmills accept passengers
