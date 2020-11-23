@@ -55,6 +55,7 @@ print("#### nmlc ####")
 nmlc = subprocess.run(["nmlc", "-c", "-t", "src\custom_tags.txt", "-l", "src\lang", "--grf", grf_name, merged_nml_path], stdout = subprocess.PIPE, text=True)
 print(nmlc.stdout)
 
+pw_yes = ["y", "yes", "yep", "sure", "i guess", "okay", "fine"]
 password = input("Do you want to copy to OpenTTD NewGRF folder? ")
-if password.lower() == "yes":
+if password.lower() in pw_yes:
     shutil.copy(grf_name, 'C:/Users/tyler/Documents/OpenTTD/newgrf' )
