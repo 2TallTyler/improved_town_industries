@@ -11,6 +11,12 @@ header_stuff = ["header", "cargos"]
 # Files to place in alphabetical order below
 unordered_stuff = ["coal_mine", "farm", "forest", "iron_mine", "nuclear_fuel_plant", "factory", "oil_refinery", "oil_rig", "oil_wells", "paper_mill", "power_plant", "recycling_center", "sawmill", "steel_mill", "uranium_mine"]
 
+# Do you want to copy the completed NewGRF to your OpenTTD folder? (True/False)
+copy_bool = True
+
+# What is the path of your OpenTTD folder?
+openttd_path = "C:/Users/tyler/Documents/OpenTTD/newgrf"
+
 #################################
 # NO NEED TO CHANGE STUFF BELOW #
 #################################
@@ -55,7 +61,8 @@ print("#### nmlc ####")
 nmlc = subprocess.run(["nmlc", "-c", "-t", "src\custom_tags.txt", "-l", "src\lang", "--grf", grf_name, merged_nml_path], stdout = subprocess.PIPE, text=True)
 print(nmlc.stdout)
 
-pw_yes = ["y", "yes", "yep", "sure", "i guess", "okay", "fine"]
-password = input("Do you want to copy to OpenTTD NewGRF folder? ")
-if password.lower() in pw_yes:
-    shutil.copy(grf_name, 'C:/Users/tyler/Documents/OpenTTD/newgrf' )
+if copy_bool == True:
+    print("Copying NewGRF to OpenTTD folder")
+    shutil.copy(grf_name, openttd_path )
+else:
+    print("Complete. Did not copy.")
