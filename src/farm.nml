@@ -146,7 +146,7 @@ if(param_auto_farm_fields == 1) {
 			];
 			name:					TTD_STR_INDUSTRY_NAME_FARM;
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
-			fund_cost_multiplier:	100;
+			fund_cost_multiplier:	116;
 			layouts:				[
 				industry_layout_farm_1,
 				industry_layout_farm_2,

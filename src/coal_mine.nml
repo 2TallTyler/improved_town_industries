@@ -123,7 +123,7 @@ item (FEAT_INDUSTRIES, industry_coal_mine, 1) {
 		];
 		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_COAL_MINE));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	85;
 		layouts:				[
 			industry_layout_coal_mine,
 			industry_layout_coal_mine_2,

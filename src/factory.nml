@@ -281,7 +281,7 @@ item (FEAT_INDUSTRIES, industry_factory, 5) {
 		];
 		name:					TTD_STR_INDUSTRY_NAME_FACTORY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	160;
 		layouts:				[
 				industry_layout_factory_2x2, 
 				industry_layout_factory_1x2, 

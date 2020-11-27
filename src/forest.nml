@@ -43,7 +43,7 @@ item (FEAT_INDUSTRIES, industry_forest, 11) {
 		cargo_types:			[produce_cargo("WOOD",13),];
 		name:					TTD_STR_INDUSTRY_NAME_FOREST;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
-		fund_cost_multiplier:	40;
+		fund_cost_multiplier:	62;
 		conflicting_ind_types:	[industry_sawmill, industry_paper_mill, industry_farm];
 	}
 	graphics {

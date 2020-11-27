@@ -239,7 +239,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 		];
 		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	255;
 		layouts:				[
 			industry_layout_oil_refinery_1,
 			industry_layout_oil_refinery_2,

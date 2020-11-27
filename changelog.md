@@ -135,3 +135,26 @@ November 20, 2020
 November 21, 2020
 
 - Fix: Sawmills accept passengers
+
+### 1.7.0
+TBD
+
+- Change: Rebalanced industry funding costs
+  - Sawmills are the cheapest industry to fund, possible to fund with a standard £300k starting loan in addition to an initial train line (Iron Horse 2)
+  - Power Plants are another good starting industry, only slightly more expensive than the Sawmill and accepting either Coal or Oil (or Waste, when enabled).
+  - Recycling Centers are relatively inexpensive but are not a good starting industry since small towns won't produce much Waste.
+  - The Factory is the standard Goods origin and isn't affordable with the starting loan, but won't be too hard to save up for.
+  - The Paper Mill also produces Goods, but unlike the Factory it accepts Wood directly without needing a Sawmill or Steel Mill. This benefit, and the complexity of paper-making, makes it more expensive than the Factory.
+  - Steel Mills and Oil Refineries are an impressive industries and an expensive investment.
+  - Nuclear Fuel Plants are high-tech and quite pricey.
+- Change: Rebalanced cargo payment rates to new industry funding costs
+  - Reduced payments for primary and secondary bulk cargos: Wood, Oil, Uranium, Lumber, Steel, Waste
+  - Increased payment for Chemicals
+  - Reduced payment for Goods, but reduced its rate of cargo decay. 
+    - Note that Food has a much quicker decay rate. On journeys longer than ~81 days, it's now more profitable to send Food to factories to be processed into Goods. Yummy preservatives! (and two delivery payments!)
+  - Increased payment for Mail, but also increased cargo decay. This is mostly because I forget about Mail, and want to incentivize not forgetting about it.
+  - Significantly increased payment for Passengers, to compensate for smaller towns with Improved Town Layouts.
+- Change: Coal, Iron, and Uranium mines may build near towns
+- Change: Removed industry clustering mechanic, which wasn't noticable and was causing problems
+- Fix: When Generating Primary Industries Only, removed incorrect errors created by Sawmills and Nuclear Fuel Plants
+- Codechange: Removed redundant industry prioritization code

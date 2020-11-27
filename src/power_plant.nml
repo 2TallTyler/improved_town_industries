@@ -147,7 +147,7 @@ item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 			];
 		name:					string(STR_NAME_POWER_PLANT);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	90;
 		layouts:				[
 			industry_layout_power_plant_1,
 			industry_layout_power_plant_2,

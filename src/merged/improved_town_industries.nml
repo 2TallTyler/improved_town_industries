@@ -239,7 +239,7 @@ item (FEAT_CARGOS, cargo_passengers, 0) {
 		single_penalty_length:		22;
 		station_list_colour:		152;
 		cargo_payment_list_colour:	152;
-		price_factor:				105;
+		price_factor:				130;
 		capacity_multiplier:		4;
 	}
 }
@@ -286,10 +286,10 @@ item (FEAT_CARGOS, cargo_mail, 0x02) {
 		units_of_cargo:				TTD_STR_BAGS;
 		items_of_cargo:				TTD_STR_QUANTITY_MAIL;
 		penalty_lowerbound:			6;
-		single_penalty_length:		24;
+		single_penalty_length:		5;
 		station_list_colour:		15;
 		cargo_payment_list_colour:	15;
-		price_factor:				156;
+		price_factor:				176;
 		capacity_multiplier:		2;		
 	}
 }
@@ -314,7 +314,7 @@ item (FEAT_CARGOS, cargo_oil, 0x03) {
 		single_penalty_length:		255;
 		station_list_colour:		171;
 		cargo_payment_list_colour:	171;
-		price_factor:				93;
+		price_factor:				72;
 		capacity_multiplier:		1;		
 	}
 }
@@ -339,7 +339,7 @@ item (FEAT_CARGOS, cargo_lumber, 0x04) {
 		single_penalty_length:		255;
 		station_list_colour:		58;
 		cargo_payment_list_colour:	58;
-		price_factor:				122;
+		price_factor:				93;
 		capacity_multiplier:		1;		
 	}
 }
@@ -361,10 +361,10 @@ item (FEAT_CARGOS, cargo_goods, 0x05) {
 		units_of_cargo:				TTD_STR_CRATES;
 		items_of_cargo:				TTD_STR_QUANTITY_GOODS;
 		penalty_lowerbound:			10;
-		single_penalty_length:		64;
+		single_penalty_length:		100;
 		station_list_colour:		194;
 		cargo_payment_list_colour:	194;
-		price_factor:				166;
+		price_factor:				144;
 		capacity_multiplier:		2;		
 	}
 }
@@ -389,7 +389,7 @@ item (FEAT_CARGOS, cargo_chemicals, 0x06) {
 		single_penalty_length:		255;
 		station_list_colour:		177;
 		cargo_payment_list_colour:	177;
-		price_factor:				117;
+		price_factor:				126;
 		capacity_multiplier:		1;		
 	}
 }
@@ -414,7 +414,7 @@ item (FEAT_CARGOS, cargo_wood, 0x07) {
 		single_penalty_length:		255;
 		station_list_colour:		55;
 		cargo_payment_list_colour:	55;
-		price_factor:				97;
+		price_factor:				50;
 		capacity_multiplier:		1;		
 	}
 }
@@ -464,7 +464,7 @@ item (FEAT_CARGOS, cargo_steel, 0x09) {
 		single_penalty_length:		255;
 		station_list_colour:		10;
 		cargo_payment_list_colour:	10;
-		price_factor:				126;
+		price_factor:				110;
 		capacity_multiplier:		1;		
 	}
 }
@@ -516,7 +516,7 @@ if (param_recyclables == 1) {
 			single_penalty_length:		255;
 			station_list_colour:		87;
 			cargo_payment_list_colour:	87;
-			price_factor:				130;
+			price_factor:				117;
 			capacity_multiplier:		1;		
 		}
 	}
@@ -568,7 +568,7 @@ if (param_nuclear == 1) {
 			single_penalty_length:		255;
 			station_list_colour:		102;
 			cargo_payment_list_colour:	102;
-			price_factor:				110;
+			price_factor:				90;
 			capacity_multiplier:		1;		
 		}
 	}
@@ -751,7 +751,7 @@ item (FEAT_INDUSTRIES, industry_coal_mine, 1) {
 		];
 		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_COAL_MINE));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	85;
 		layouts:				[
 			industry_layout_coal_mine,
 			industry_layout_coal_mine_2,
@@ -1151,7 +1151,7 @@ item (FEAT_INDUSTRIES, industry_factory, 5) {
 		];
 		name:					TTD_STR_INDUSTRY_NAME_FACTORY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	160;
 		layouts:				[
 				industry_layout_factory_2x2, 
 				industry_layout_factory_1x2, 
@@ -1344,7 +1344,7 @@ if(param_auto_farm_fields == 1) {
 			];
 			name:					TTD_STR_INDUSTRY_NAME_FARM;
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
-			fund_cost_multiplier:	100;
+			fund_cost_multiplier:	116;
 			layouts:				[
 				industry_layout_farm_1,
 				industry_layout_farm_2,
@@ -1868,7 +1868,7 @@ item (FEAT_INDUSTRIES, industry_forest, 11) {
 		cargo_types:			[produce_cargo("WOOD",13),];
 		name:					TTD_STR_INDUSTRY_NAME_FOREST;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
-		fund_cost_multiplier:	40;
+		fund_cost_multiplier:	62;
 		conflicting_ind_types:	[industry_sawmill, industry_paper_mill, industry_farm];
 	}
 	graphics {
@@ -2065,7 +2065,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
 		];
 		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	75;
 		layouts:				[industry_layout_iron_mine,];
 		conflicting_ind_types:	[industry_steel_mill, industry_farm];
 	}
@@ -2280,7 +2280,7 @@ if (param_nuclear == 1) {
 			];
 			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_NUCLEAR_FUEL_PLANT));
-			fund_cost_multiplier:	40;
+			fund_cost_multiplier:	250;
 			map_colour: 			39;
 			layouts: [
 				industry_layout_nuclear_fuel_plant_1,
@@ -2648,7 +2648,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 		];
 		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	255;
 		layouts:				[
 			industry_layout_oil_refinery_1,
 			industry_layout_oil_refinery_2,
@@ -3043,7 +3043,7 @@ item (FEAT_INDUSTRIES, industry_oil_wells, 8) {
 		];
 		name:					TTD_STR_INDUSTRY_NAME_OIL_WELLS;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_WELLS));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	139;
 		layouts:				[industry_layout_oil_wells_1, industry_layout_oil_wells_2,];
 		map_colour:				152;
 		spec_flags:				0;
@@ -3300,7 +3300,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
 		prob_map_gen:			1;
 		prob_in_game:			1;
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	200;
 		map_colour:				184;
 		layouts:				[
 			industry_layout_paper_mill_1,
@@ -3493,7 +3493,7 @@ item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 			];
 		name:					string(STR_NAME_POWER_PLANT);
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	90;
 		layouts:				[
 			industry_layout_power_plant_1,
 			industry_layout_power_plant_2,
@@ -4441,7 +4441,7 @@ item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
 		];
 		name:					TTD_STR_INDUSTRY_NAME_STEEL_MILL;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_STEEL_MILL));
-		fund_cost_multiplier:	100;
+		fund_cost_multiplier:	240;
 		layouts:				[industry_layout_steel_mill_1,];
 		map_colour:				10;
 		conflicting_ind_types:	[industry_iron_mine, industry_coal_mine, industry_farm];
@@ -4593,7 +4593,7 @@ if (param_nuclear == 1) {
 			];
 			name:					string(STR_NAME_URANIUM_MINE);
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_URANIUM_MINE));
-			fund_cost_multiplier:	40;
+			fund_cost_multiplier:	120;
 			layouts:				[industry_layout_uranium_mine,];
 			map_colour:				102;
 			conflicting_ind_types:	[industry_nuclear_fuel_plant, industry_farm];
