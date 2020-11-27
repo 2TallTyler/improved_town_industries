@@ -238,6 +238,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
 			industry_layout_paper_mill_2,
 			industry_layout_paper_mill_3,
 		];
+		conflicting_ind_types:	[industry_forest, industry_farm];
 	}
 	graphics {
 		location_check:			switch_paper_mill_allow_funded;

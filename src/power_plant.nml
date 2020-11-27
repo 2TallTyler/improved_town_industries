@@ -157,6 +157,7 @@ item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 			industry_layout_power_plant_5,
 			];
 		map_colour:				208;
+		conflicting_ind_types:	[industry_coal_mine, industry_farm];
 	}
 	graphics {
 		location_check:			switch_power_plant_allow_funded;

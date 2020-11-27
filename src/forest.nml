@@ -27,9 +27,8 @@ spritelayout sprlay_forest_cut {
 }
 
 
-/* Location checks - specific to Lumber Camps */ 
-switch (FEAT_INDUSTRIES, SELF, switch_forest_location_check_5, industry_distance(industry_paper_mill,-1) >= 60 && industry_distance(industry_farm,-1) >= 30 && industry_distance(industry_forest,-1) >= 30) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
-switch (FEAT_INDUSTRIES, SELF, switch_forest_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: switch_forest_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
+/* Location checks - specific to forest */ 
+switch (FEAT_INDUSTRIES, SELF, switch_forest_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
 switch (FEAT_INDUSTRIES, PARENT, switch_forest_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_forest_location_check_3;} // Add up the town zone radii and store it in temporary register 0
 
 
@@ -45,6 +44,7 @@ item (FEAT_INDUSTRIES, industry_forest, 11) {
 		name:					TTD_STR_INDUSTRY_NAME_FOREST;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
 		fund_cost_multiplier:	40;
+		conflicting_ind_types:	[industry_sawmill, industry_paper_mill, industry_farm];
 	}
 	graphics {
 		location_check:			switch_forest_allow_funded;

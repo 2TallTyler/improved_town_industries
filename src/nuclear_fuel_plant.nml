@@ -165,6 +165,7 @@ if (param_nuclear == 1) {
 			layouts: [
 				industry_layout_nuclear_fuel_plant_1,
 			];
+			conflicting_ind_types:	[industry_uranium_mine, industry_power_plant, industry_farm];
 		}
 		graphics {
 			location_check:			switch_nuclear_fuel_plant_allow_funded;

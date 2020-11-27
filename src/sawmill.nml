@@ -186,6 +186,7 @@ item (FEAT_INDUSTRIES, industry_sawmill, 6) {
 			industry_layout_sawmill_2,
 			industry_layout_sawmill_3,
 		];
+		conflicting_ind_types:	[industry_forest, industry_farm];
 	}
 	graphics {
 		location_check:			switch_sawmill_allow_funded;

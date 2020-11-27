@@ -151,6 +151,7 @@ item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
 		fund_cost_multiplier:	100;
 		layouts:				[industry_layout_steel_mill_1,];
 		map_colour:				10;
+		conflicting_ind_types:	[industry_iron_mine, industry_coal_mine, industry_farm];
 	}
 	graphics {
 		location_check:			switch_steel_mill_allow_funded;

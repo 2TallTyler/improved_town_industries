@@ -259,6 +259,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 			industry_layout_oil_refinery_3,
 		];
 		map_colour:				191;
+		conflicting_ind_types:	[industry_oil_wells, industry_farm];
 	}
 	graphics {
 		location_check:			switch_oil_refinery_allow_funded;

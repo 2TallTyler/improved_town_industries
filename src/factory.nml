@@ -290,7 +290,7 @@ item (FEAT_INDUSTRIES, industry_factory, 5) {
 				industry_layout_factory_C,
 				industry_layout_factory_L,
 			];
-		conflicting_ind_types:	[industry_steel_mill];
+		conflicting_ind_types:	[industry_farm];
 	}
 	graphics {
 		location_check:			switch_factory_allow_funded;

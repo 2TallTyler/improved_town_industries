@@ -256,6 +256,7 @@ if (param_recyclables == 1) {
 				industry_layout_recycling_center_2,
 				industry_layout_recycling_center_3,
 			];
+			conflicting_ind_types:	[industry_farm];
 		}
 		graphics {
 			location_check:			switch_recycling_center_allow_funded;
