@@ -209,7 +209,8 @@ switch (FEAT_INDUSTRIES, SELF, switch_factory_distance_competitor, industry_dist
 /* Population Check - secondary industries only */
 
 switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_factory_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+	population >= LOAD_TEMP(1))
+		{1: switch_factory_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Add population required by other industries. 300 population required for Factory */
 
