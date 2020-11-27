@@ -185,28 +185,15 @@ tilelayout industry_layout_oil_refinery_3 {
 
 /* Industry Construction Switches - Read from bottom to top */
 
-
-
 /* Generated oil refineries must be within 15 tiles of water. Does not apply to industries prospected in the Scenario Editor by building "Many random industries" */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_water, water_distance > 15 && game_mode != GAMEMODE_EDITOR) {1: CB_RESULT_LOCATION_DISALLOW; CB_RESULT_LOCATION_ALLOW;}
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_competitor, industry_distance(industry_oil_refinery, -1) > 100 ) {1: switch_oil_refinery_distance_water; CB_RESULT_LOCATION_DISALLOW;}
 
-
-
-/* Second industry switch - secondary industries only except Factory; only use one per industry */
-
-/* Only allow a second oil refinery if a paper mill, steel mill, and factory already exist. Prevents duplicate industries from hogging limited population on a small or early map. */
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_second_2, industry_count(industry_steel_mill,-1) > 0 && industry_count(industry_factory,-1) > 0 ) {1: switch_oil_refinery_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} // Only allow a second paper mill if a steel mill and factory already exist
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_second_1, // Check if this will be the second oil refinery in the world
-	industry_count(industry_oil_refinery,-1) == 1) {1: switch_oil_refinery_second_2; switch_oil_refinery_distance_competitor;}
-
-
 /* Population Check - secondary industries only */
-
 switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_oil_refinery_second_1; CB_RESULT_LOCATION_DISALLOW;}
+	population >= LOAD_TEMP(1)) {1: switch_oil_refinery_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_population_check_1, STORE_TEMP(
 	// Count existing processing industries in town

@@ -94,14 +94,10 @@ tilelayout industry_layout_steel_mill_1 {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_distance_competitor, industry_distance(industry_steel_mill, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
 
-// Only allow a steel mill if a factory already exists in the world. Factory must come first because it's the only destination for steel.
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_second_1, industry_count(industry_factory,-1) > 0 ) {1: switch_steel_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;} // Only allow a steel mill if a factory already exists
-
-
 /* Population Check - secondary industries only */
 
 switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_steel_mill_second_1; CB_RESULT_LOCATION_DISALLOW;}
+	population >= LOAD_TEMP(1)) {1: switch_steel_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_population_check_1, STORE_TEMP(
 	// Count existing processing industries in town
