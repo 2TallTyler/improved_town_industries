@@ -177,10 +177,11 @@ item (FEAT_INDUSTRIES, industry_sawmill, 6) {
 	property {
 		substitute:				INDUSTRYTYPE_SAWMILL;
 		life_type:				IND_LIFE_TYPE_PROCESSING;
+		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 		cargo_types:			[accept_cargo("WOOD", produce_cargo("WDPR",1), produce_cargo("PASS",0.25)),];
 		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
 		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_SAWMILL));
-		fund_cost_multiplier:	20;
+		fund_cost_multiplier:	80;
 		layouts:				[
 			industry_layout_sawmill_1,
 			industry_layout_sawmill_2,
