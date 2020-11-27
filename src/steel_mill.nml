@@ -92,7 +92,7 @@ tilelayout industry_layout_steel_mill_1 {
 /* Industry Construction Switches - Read from bottom to top */
 
 /* Don't allow the same industry within 100 tiles - secondary industries only */
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_distance_competitor, industry_distance(industry_steel_mill, -1) > 100 ) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_distance_competitor, industry_distance(industry_steel_mill, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Population Check - secondary industries only */
 

@@ -1,5 +1,6 @@
 /* Begin Shared Switches */
 
+/* Shared function for processing industries to check the population required to build and store it in temporary register 1 */
 switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store, STORE_TEMP(
 	// Count existing processing industries in town
 	industry_town_count(industry_oil_refinery,-1)		* 300 +
@@ -13,5 +14,34 @@ switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store, STORE_TEMP(
 	300 // Add population required for this industry
 	, 1))
 	{return 0;}
+
+/* Shared function for processing industries to build in an industrial district */
+
+/* Check the range of other industries */
+/* Note: If an industry doesn't exist within range, the distance is 65535, which evaluates to False */
+switch (FEAT_INDUSTRIES, SELF, switch_industrial_district_2,
+		(industry_distance(industry_oil_refinery, -1) < 15) ||
+		(industry_distance(industry_paper_mill, -1) < 15) ||
+		(industry_distance(industry_steel_mill, -1) < 15) ||
+		(industry_distance(industry_factory, -1) < 15) ||
+		(industry_distance(industry_power_plant, -1) < 15) ||
+		(industry_distance(industry_recycling_center, -1) < 15) ||
+		(industry_distance(industry_sawmill, -1) < 15) ||
+		(industry_distance(industry_nuclear_fuel_plant, -1) < 15)
+	) // 1 if this industry is within 20 tiles of an industry, 0 if out of range
+	{1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+
+/* Check if another industry exists in town */
+switch (FEAT_INDUSTRIES, SELF, switch_industrial_district_1,
+		(industry_town_count(industry_oil_refinery,-1) > 0) ||
+		(industry_town_count(industry_paper_mill,-1) > 0) ||
+		(industry_town_count(industry_steel_mill,-1) > 0) ||
+		(industry_town_count(industry_factory,-1) > 0) ||
+		(industry_town_count(industry_power_plant,-1) > 0) ||
+		(industry_town_count(industry_recycling_center,-1) > 0) ||
+		(industry_town_count(industry_sawmill,-1) > 0) ||
+		(industry_town_count(industry_nuclear_fuel_plant,-1) > 0)
+	) // 1 if another industry exists in town, 0 if no other industry exists
+		{1: switch_industrial_district_2; CB_RESULT_LOCATION_ALLOW;}
 
 /* End Shared Switches */

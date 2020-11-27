@@ -139,6 +139,7 @@ November 21, 2020
 ### 1.7.0
 TBD
 
+- Add: Processing industries in towns are now grouped into "industrial zones," within 15 tiles of another industry
 - Change: Rebalanced industry funding costs
   - Sawmills are the cheapest industry to fund, possible to fund with a standard £300k starting loan in addition to an initial train line (Iron Horse 2)
   - Power Plants are another good starting industry, only slightly more expensive than the Sawmill and accepting either Coal or Oil (or Waste, when enabled).
