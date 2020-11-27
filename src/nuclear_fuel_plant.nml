@@ -153,6 +153,7 @@ if (param_nuclear == 1) {
 		property {
 			substitute:				INDUSTRYTYPE_PAPER_MILL;
 			life_type:				IND_LIFE_TYPE_PROCESSING;
+			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
 			cargo_types:			[
 				accept_cargo("URAN", produce_cargo("NUKF",0.5), produce_cargo("PASS",0.25)),
 				accept_cargo("NUKW", produce_cargo("NUKF",0.75), produce_cargo("PASS",2)),
