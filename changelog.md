@@ -149,12 +149,9 @@ TBD
   - Steel Mills and Oil Refineries are an impressive industries and an expensive investment.
   - Nuclear Fuel Plants are high-tech and quite pricey.
 - Change: Rebalanced cargo payment rates to new industry funding costs
-  - Reduced payments for primary and secondary bulk cargos: Wood, Oil, Uranium, Lumber, Steel, Waste
+  - Reduced payments for primary and secondary bulk cargos (Wood, Oil, Uranium, Lumber, Steel, Waste) to incentivize completing further steps of the industry chain
   - Increased payment for Chemicals
-  - Reduced payment for Goods, but reduced its rate of cargo decay. 
-    - Note that Food has a much quicker decay rate. On journeys longer than ~81 days, it's now more profitable to send Food to factories to be processed into Goods. Yummy preservatives! (and two delivery payments!)
-  - Increased payment for Mail, but also increased cargo decay. This is mostly because I forget about Mail, and want to incentivize not forgetting about it.
-  - Significantly increased payment for Passengers, to compensate for smaller towns with Improved Town Layouts.
+  - Reduced payment for Goods
 - Change: Coal, Iron, and Uranium mines may build near towns
 - Change: Removed industry clustering mechanic, which wasn't noticable and was causing problems
 - Fix: When Generating Primary Industries Only, removed incorrect errors created by Sawmills and Nuclear Fuel Plants

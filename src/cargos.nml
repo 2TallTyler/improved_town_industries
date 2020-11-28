@@ -25,7 +25,7 @@ item (FEAT_CARGOS, cargo_passengers, 0) {
 		single_penalty_length:		22;
 		station_list_colour:		152;
 		cargo_payment_list_colour:	152;
-		price_factor:				130;
+		price_factor:				105;
 		capacity_multiplier:		4;
 	}
 }
@@ -72,10 +72,10 @@ item (FEAT_CARGOS, cargo_mail, 0x02) {
 		units_of_cargo:				TTD_STR_BAGS;
 		items_of_cargo:				TTD_STR_QUANTITY_MAIL;
 		penalty_lowerbound:			6;
-		single_penalty_length:		5;
+		single_penalty_length:		24;
 		station_list_colour:		15;
 		cargo_payment_list_colour:	15;
-		price_factor:				176;
+		price_factor:				166;
 		capacity_multiplier:		2;		
 	}
 }
@@ -147,7 +147,7 @@ item (FEAT_CARGOS, cargo_goods, 0x05) {
 		units_of_cargo:				TTD_STR_CRATES;
 		items_of_cargo:				TTD_STR_QUANTITY_GOODS;
 		penalty_lowerbound:			10;
-		single_penalty_length:		100;
+		single_penalty_length:		64;
 		station_list_colour:		194;
 		cargo_payment_list_colour:	194;
 		price_factor:				144;
