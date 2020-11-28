@@ -96,10 +96,10 @@ if (param_recyclables == 1 &&
 		||																												// or
 		(grf_current_status("TT\03\01") == 0 && grf_future_status("TT\03\01") == 0) 									// Improved Town Layouts is not loaded
 	)
-
 	&&																													// And another compatible house set isn't loaded:
-	
-	grf_current_status("MLS\01") == 0 && grf_future_status("MLS\01") == 0												// OpenGFX Mars Towns - Late Start
+	grf_future_status("MLS\01") == 0	// OpenGFX Mars Towns - Late Start
+	&&
+	grf_future_status("TT12") == 0		// Yankee Houses
 	
 	) {
 	error(FATAL, string(STR_ERROR_RCLC_NEEDS_ITL));
