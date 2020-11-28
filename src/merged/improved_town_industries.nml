@@ -186,6 +186,8 @@ if (grf_future_status("\F1%\00\06")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_
 
 if (grf_future_status("\F1%\00\07")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "FIRS 3"));}
 
+if (grf_future_status("\F1%\00\08")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "FIRS 4"));}
+
 if (grf_future_status("MCF1")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "FIXES"));}
 
 if (grf_future_status("frMI")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Manual Industries II"));}
