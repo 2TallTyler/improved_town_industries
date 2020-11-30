@@ -1,24 +1,10 @@
 
 /* *** Begin Oil Rig *** */
 
+/* Use default Oil Rig instead of defining it ourselves, to use base game distance from map edge settings. No way to access that menu setting with a custom industry. */
+/* If Oil Rigs are disabled, disable the base game item. */
 if (param_oil_rigs == 0) {
 	disable_item(FEAT_INDUSTRIES, 5);
 }
-
-/*
-if (param_oil_rigs == 1) {
-	item (FEAT_INDUSTRIES, industry_oil_rig, 12) {
-		property {
-			substitute: INDUSTRYTYPE_OIL_RIG;
-			life_type: IND_LIFE_TYPE_EXTRACTIVE;
-			fund_cost_multiplier: 40;
-		}
-		graphics {
-			construction_probability: 9;
-			extra_text_fund: string(STR_FUND_AVAILABLE_1960);
-		}
-	}
-}
-*/
 
 /* *** End Oil Rig *** */
