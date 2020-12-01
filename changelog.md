@@ -140,8 +140,6 @@ November 21, 2020
 TBD
 
 - Add: Processing industries in towns are now grouped into "industrial zones," within 15 tiles of another industry
-- Add: Added compatibility error when loaded alongside FIRS 4
-- Add: Future recycling compatibility with Yankee Houses
 - Change: Rebalanced industry funding costs
   - Sawmills are the cheapest industry to fund, possible to fund with a standard £300k starting loan in addition to an initial train line (Iron Horse 2)
   - Power Plants are another good starting industry, only slightly more expensive than the Sawmill and accepting either Coal or Oil (or Waste, when enabled).
@@ -157,4 +155,3 @@ TBD
 - Change: Coal, Iron, and Uranium mines may build near towns
 - Change: Removed industry clustering mechanic, which wasn't noticable and was causing problems
 - Fix: When Generating Primary Industries Only, removed incorrect errors created by Sawmills and Nuclear Fuel Plants
-- Codechange: Removed redundant industry prioritization code
