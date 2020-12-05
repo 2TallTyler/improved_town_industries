@@ -88,7 +88,7 @@ if (param_nuclear == 1) {
 			];
 			name:					string(STR_NAME_URANIUM_MINE);
 			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_URANIUM_MINE));
-			fund_cost_multiplier:	120;
+			fund_cost_multiplier:	240;
 			layouts:				[industry_layout_uranium_mine,];
 			map_colour:				102;
 			conflicting_ind_types:	[industry_nuclear_fuel_plant, industry_farm];

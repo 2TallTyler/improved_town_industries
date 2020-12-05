@@ -79,6 +79,7 @@
 - Generate Primary Industries Only
   - Disable automatic generation of Factories, Steel Mills, Paper Mills, Oil Refineries, Power Plants, and Recycling Centers (if enabled)
   - Does not affect funded industries
+  - See the [industry tech tree](./docs/industry_tech_tree.md) for gameplay info
 
 - Industry elevation requirements
   - Enable elevation checks for industries. Sea level is level 0.

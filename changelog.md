@@ -141,13 +141,7 @@ TBD
 
 - Add: Processing industries in towns are now grouped into "industrial zones," within 15 tiles of another industry
 - Change: Rebalanced industry funding costs
-  - Sawmills are the cheapest industry to fund, possible to fund with a standard £300k starting loan in addition to an initial train line (Iron Horse 2)
-  - Power Plants are another good starting industry, only slightly more expensive than the Sawmill and accepting either Coal or Oil (or Waste, when enabled).
-  - Recycling Centers are relatively inexpensive but are not a good starting industry since small towns won't produce much Waste.
-  - The Factory is the standard Goods origin and isn't affordable with the starting loan, but won't be too hard to save up for.
-  - The Paper Mill also produces Goods, but unlike the Factory it accepts Wood directly without needing a Sawmill or Steel Mill. This benefit, and the complexity of paper-making, makes it more expensive than the Factory.
-  - Steel Mills and Oil Refineries are an impressive industries and an expensive investment.
-  - Nuclear Fuel Plants are high-tech and quite pricey.
+  - See the [industry tech tree](./docs/industry_tech_tree.md) for gameplay info
 - Change: Rebalanced cargo payment rates to new industry funding costs
   - Reduced payments for primary and secondary bulk cargos (Wood, Oil, Uranium, Lumber, Steel, Waste) to incentivize completing further steps of the industry chain
   - Increased payment for Chemicals

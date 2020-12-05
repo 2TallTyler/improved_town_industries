@@ -250,7 +250,7 @@ if (param_recyclables == 1) {
 			prob_map_gen:			5;
 			prob_in_game:			3;
 			map_colour:				139;
-			fund_cost_multiplier:	100;
+			fund_cost_multiplier:	31;
 			layouts:				[
 				industry_layout_recycling_center_1,
 				industry_layout_recycling_center_2,
