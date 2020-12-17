@@ -137,7 +137,7 @@ November 21, 2020
 - Fix: Sawmills accept passengers
 
 ### 1.7.0
-TBD
+December 16, 2020
 
 - Add: Processing industries in towns are now grouped into "industrial zones," within 15 tiles of another industry
 - Change: Rebalanced industry funding costs
