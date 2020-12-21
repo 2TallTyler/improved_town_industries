@@ -1,0 +1,90 @@
+##grflangid 0x014
+
+STR_GRF_NAME						:{TITLE} {VERSION}
+STR_GRF_DESC						:{ORANGE}صناعات مستوحاة من الأشكال الأصلية{BLACK} .مع سلاسل جديدة ، وعمال متنقلين ، والصناعة بالقرب من المدن ، وتواريخ تقديم حقيقية منذ عام 1700{}{}{SILVER} .يتطلب مركبات النيو جرف. لا يعمل مع مجموعات الصناعة الأخرى{}{}{ORANGE}.قم بزيارة الموقع للحصول على التعليمات {}{}{BLACK}مكتوبة من قبل 2تال تيلر .
+
+STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
+
+STR_ERROR_GAME_VERSION				:{TITLE}.يتطلب "أوبن تي تي دي" الإصدار 1.10.0 أو إصدار "جاي جي ار" 0.34 أو أفضل
+STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} .(تتطلب سلسلة النفيات وإعادة التدوير إلى مجموعة منازل متوافقة (الموصى به: نموزج المدن المحسنة، اصدار 1.3.0 أو أفضل 
+STR_ERR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE} غير متوافق مع {YELLOW}{STRING}{WHITE}.
+
+STR_PARAM_NAME_PRIMARY_ONLY			:توليد الصناعات الأولية فقط
+STR_PARAM_DESC_PRIMARY_ONLY			:تعطيل الإنشاء التلقائي لـ {SILVER}المصانع{BLACK}، {SILVER}ومصانع الحديد{BLACK}، {SILVER}ومصانع الورق{BLACK}، {SILVER}ومحطات تكرير النفط{BLACK}، {SILVER}ومحطات الطاقة{BLACK}, {SILVER}مصانع الوقود النووي {BLACK} ، إذا تم تمكينه، و {SILVER}مراكز إعادة التدوير{BLACK} ، إذا تم تمكينه، لا يؤثر في تمويل بناء المصانع  
+
+STR_PARAM_NAME_ELEVATION_CHECKS		:متطلبات الارتفاع للمصانع 
+STR_PARAM_DESC_ELEVATION_CHECKS		:مراجعات تمكين الارتفاع : {SILVER}مانجم الفحم{BLACK} ،يجب أن يكون الارتفاع 4 أو أعلى  {SILVER}المزارع{BLACK} و {SILVER}آبار النفط{BLACK}.يجب أن يكون الارتفاع 2 أو أقل{}{}{ORANGE}لا تمكن {BLACK}مع نوع التضاريس {ORANGE} المسطحة جدا {BLACK}كما أن {SILVER}مانجم الفحم {BLACK} .لن تولد
+
+STR_PARAM_NAME_AUTO_FARM_FIELDS		:المزارع تبني الحقول
+STR_PARAM_DESC_AUTO_FARM_FIELDS		:اختر ما إذا كانت  {SILVER}المزارع {BLACK}تبني الحقول، مثل نسخة "أوبن تي تي دي" الأصلية.  {}{} مربعات الحقول متاحة كديكور.
+
+STR_PARAM_NAME_OIL_RIGS				:تمكين منصات النفط
+STR_PARAM_DESC_OIL_RIGS				:اختر إذا كانت {SILVER}منصات النفط{BLACK}.ستظهر بعد 1960، مثل المصانع في النسخة الأصلية  {}{}{ORANGE}للمناخ معتدل فقط.
+
+STR_PARAM_NAME_NUCLEAR				:تمكين سلسلة الطاقة النووية
+STR_PARAM_DESC_NUCLEAR				:تمكن {SILVER}مناجم اليورانيوم{BLACK} و {SILVER}مصانع الوقود النووي{BLACK}، من 1956{SILVER}محطات الطاقة{BLACK} تقبل الوقود النووي وتنتج نفايات نووية.
+
+STR_PARAM_NAME_RECYCLABLES			:تمكين سلسلة النفايات وإعادة التدوير
+STR_PARAM_DESC_RECYCLABLES			:تمكن {SILVER}مركز إعادة التدوير{BLACK} لفرز النفايات من مباني المدينة إلى مواد معاد تدويرها لنقلها إلى المصانع.{}{}{ORANGE}يتطلب نموزج المدن المحسنة، اصدار 1.3.0 أو أفضل.
+
+STR_FUND_AVAILABLE_1800				:{BLACK}قدم عام:  {YELLOW}1800
+STR_FUND_AVAILABLE_1856				:{BLACK}قدم عام: {YELLOW}1856
+STR_FUND_AVAILABLE_1882				:{BLACK}قدم عام: {YELLOW}1882
+STR_FUND_AVAILABLE_1885				:{BLACK}قدم عام: {YELLOW}1885
+STR_FUND_AVAILABLE_1900				:{BLACK}قدم عام: {YELLOW}1900
+STR_FUND_AVAILABLE_1945				:{BLACK}قدم عام: {YELLOW}1945
+STR_FUND_AVAILABLE_1956				:{BLACK}قدم عام: {YELLOW}1956
+STR_FUND_AVAILABLE_1960				:{BLACK}قدم عام: {YELLOW}1960
+
+STR_NAME_OBJECT_MENU				:مربعات المصانع
+STR_NAME_OBJECT_MENU_FIELDS			:مربعات المزارع
+
+STR_TOWN							:{STRING}
+STR_STATION							:{STRING} {STRING}
+
+STR_NAME_STEEL_MILL					:مصنع الحديد
+STR_NAME_IRON_MINE					:منجم خام الحديد
+STR_NAME_SAWMILL					:منجرة الخشب
+STR_NAME_FOREST						:غابة
+STR_EXTRA_TEXT_LOGGING_CAMP			:انقل الأخشاب لبدء إزالة الأشجار وزيادة الإنتاج
+STR_NAME_OIL_REFINERY				:محطة تكرير النفط
+STR_NAME_FARM						:مزرعة
+STR_NAME_POWER_PLANT				:محطة طاقة
+STR_NAME_FACTORY					:مصنع
+STR_NAME_COAL_MINE					:منجم فحم
+STR_NAME_OIL_WELLS					:ابار النفط
+STR_NAME_PAPER_MILL					:مصنع ورق
+STR_NAME_RECYCLING_CENTER			:مركز إعادة التدوير
+STR_NAME_URANIUM_MINE				:منجم اليورانيوم
+STR_NAME_NUCLEAR_FUEL_PLANT			:مصنع الوقود النووي
+
+STR_NAME_FIELD_1					:حقل
+
+
+STR_CARGO_NAME_CHEMICALS			:كيماويات
+STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}CH
+STR_CARGO_QUANTITY_CHEMICALS		:{VOLUME} من الكيماويات
+
+STR_CARGO_NAME_LUMBER				:خشب منشور
+STR_CARGO_ABBREV_LUMBER				:{TINYFONT}LU
+STR_CARGO_QUANTITY_LUMBER			:{WEIGHT} من الخشب المنشور
+
+STR_CARGO_NAME_RECYCLABLES			:المواد المعاد تدويرها
+STR_CARGO_ABBREV_RECYCLABLES		:{TINYFONT}RM
+STR_CARGO_QUANTITY_RECYCLABLES		:{WEIGHT} من الالمواد المعاد تدويرها
+
+STR_CARGO_NAME_WASTE				:النفايات
+STR_CARGO_ABBREV_WASTE				:{TINYFONT}WS
+STR_CARGO_QUANTITY_WASTE			:{WEIGHT} من Waste
+
+STR_CARGO_NAME_URANIUM				:اليورانيوم
+STR_CARGO_ABBREV_URANIUM			:{TINYFONT}UR
+STR_CARGO_QUANTITY_URANIUM			:{WEIGHT} من اليورانيوم
+
+STR_CARGO_NAME_NUCLEAR_FUEL			:الوقود نووي
+STR_CARGO_ABBREV_NUCLEAR_FUEL		:{TINYFONT}NF
+STR_CARGO_QUANTITY_NUCLEAR_FUEL		:{WEIGHT} من الوقود نووي
+
+STR_CARGO_NAME_NUCLEAR_WASTE		:المخلفات نووية
+STR_CARGO_ABBREV_NUCLEAR_WASTE		:{TINYFONT}NW
+STR_CARGO_QUANTITY_NUCLEAR_WASTE	:{WEIGHT} من المخلفات نووية
