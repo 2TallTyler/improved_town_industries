@@ -149,3 +149,8 @@ December 16, 2020
 - Change: Coal, Iron, and Uranium mines may build near towns
 - Change: Removed industry clustering mechanic, which wasn't noticable and was causing problems
 - Fix: When Generating Primary Industries Only, removed incorrect errors created by Sawmills and Nuclear Fuel Plants
+
+### 1.7.1
+December 21, 2020
+
+- Add: Arabic translation
