@@ -153,4 +153,4 @@ December 16, 2020
 ### 1.7.1
 December 21, 2020
 
-- Add: Arabic translation
+- Add: Arabic translation by AviationGamerX
