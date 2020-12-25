@@ -154,3 +154,8 @@ December 16, 2020
 December 21, 2020
 
 - Add: Arabic translation by AviationGamerX
+
+### 1.7.2
+December 25, 2020
+
+- Add: French translation by arikover
