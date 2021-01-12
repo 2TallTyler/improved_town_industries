@@ -95,7 +95,7 @@ if (param_nuclear == 1) {
 		}
 		graphics {
 			construction_probability:	(current_year >= 1956) ? 1 : 0;
-			extra_text_fund:			string(STR_FUND_AVAILABLE_1956);
+			extra_text_fund:			string(STR_FUND_AVAILABLE, "1956");
 		}
 	}
 }

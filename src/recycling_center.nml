@@ -262,7 +262,7 @@ if (param_recyclables == 1) {
 			location_check:			switch_recycling_center_allow_funded;
 			colour:					COLOUR_MAUVE;
 			construction_probability:	(current_year >= 1945) ? 6 : 0;
-			extra_text_fund:		string(STR_FUND_AVAILABLE_1945);
+			extra_text_fund:		string(STR_FUND_AVAILABLE, "1945");
 		}
 	}
 	

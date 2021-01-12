@@ -27,14 +27,7 @@ STR_PARAM_DESC_NUCLEAR				:Choisir si les {SILVER}Mines d'Uranium{BLACK} et les 
 STR_PARAM_NAME_RECYCLABLES			:Recyclage des ordures
 STR_PARAM_DESC_RECYCLABLES			:Choisir d'autoriser {SILVER}Centres de Tri{BLACK} à traiter les Déchets des maisons pour en faire des Matériaux Recyclés acceptés par les industries.{}{}{ORANGE}Requiert le NewGRF Improved Town Layouts, version 1.3.0 or supérieure.
 
-STR_FUND_AVAILABLE_1800				:{BLACK}Introduction{NBSP}: {YELLOW}1800
-STR_FUND_AVAILABLE_1856				:{BLACK}Introduction{NBSP}: {YELLOW}1856
-STR_FUND_AVAILABLE_1882				:{BLACK}Introduction{NBSP}: {YELLOW}1882
-STR_FUND_AVAILABLE_1885				:{BLACK}Introduction{NBSP}: {YELLOW}1885
-STR_FUND_AVAILABLE_1900				:{BLACK}Introduction{NBSP}: {YELLOW}1900
-STR_FUND_AVAILABLE_1945				:{BLACK}Introduction{NBSP}: {YELLOW}1945
-STR_FUND_AVAILABLE_1956				:{BLACK}Introduction{NBSP}: {YELLOW}1956
-STR_FUND_AVAILABLE_1960				:{BLACK}Introduction{NBSP}: {YELLOW}1960
+STR_FUND_AVAILABLE					:{BLACK}Introduction{NBSP}: {YELLOW}{STRING}
 
 STR_NAME_OBJECT_MENU				:Industries
 STR_NAME_OBJECT_MENU_FIELDS			:Fermes

@@ -192,7 +192,7 @@ item (FEAT_INDUSTRIES, industry_sawmill, 6) {
 	graphics {
 		location_check:			switch_sawmill_allow_funded;
 		construction_probability:	(current_year >= 1800) ? 9 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1800");
 	}
 }
 

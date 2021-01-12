@@ -220,7 +220,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
 	graphics {
 		location_check:			switch_paper_mill_allow_funded;
 		construction_probability:	(current_year >= 1885) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1885);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1885");
 		colour:					COLOUR_DARK_GREEN;
 	}
 }

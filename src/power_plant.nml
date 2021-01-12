@@ -147,7 +147,7 @@ item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 	graphics {
 		location_check:			switch_power_plant_allow_funded;
 		construction_probability:	(current_year >= 1882) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1882);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1882");
 	}
 }
 
