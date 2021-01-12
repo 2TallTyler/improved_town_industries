@@ -39,7 +39,6 @@ STR_NAME_STEEL_MILL					:مصنع الحديد
 STR_NAME_IRON_MINE					:منجم خام الحديد
 STR_NAME_SAWMILL					:منجرة الخشب
 STR_NAME_FOREST						:غابة
-STR_EXTRA_TEXT_LOGGING_CAMP			:انقل الأخشاب لبدء إزالة الأشجار وزيادة الإنتاج
 STR_NAME_OIL_REFINERY				:محطة تكرير النفط
 STR_NAME_FARM						:مزرعة
 STR_NAME_POWER_PLANT				:محطة طاقة

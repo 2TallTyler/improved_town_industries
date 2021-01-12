@@ -36,7 +36,6 @@ STR_NAME_STEEL_MILL					:Stahlwerk
 STR_NAME_IRON_MINE					:Eisenmine
 STR_NAME_SAWMILL					  :Sägewerk
 STR_NAME_FOREST						  :Wald
-STR_EXTRA_TEXT_LOGGING_CAMP	  :Transportiere Holz um Bäume zu fällen und die Produktion zu erhöhen
 STR_NAME_OIL_REFINERY				:Ölraffinerie
 STR_NAME_FARM			    			:Bauernhof
 STR_NAME_POWER_PLANT				:Kraftwerk

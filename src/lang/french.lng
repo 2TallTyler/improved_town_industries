@@ -39,7 +39,6 @@ STR_NAME_STEEL_MILL					:Aciérie
 STR_NAME_IRON_MINE					:Mine de Fer
 STR_NAME_SAWMILL					:Scierie
 STR_NAME_FOREST						:Forêt
-STR_EXTRA_TEXT_LOGGING_CAMP			:Transporter du bois pour commencer l'exploitation et augmenter la production
 STR_NAME_OIL_REFINERY				:Raffinerie Pétrolière
 STR_NAME_FARM						:Ferme
 STR_NAME_POWER_PLANT				:Centrale Électrique
