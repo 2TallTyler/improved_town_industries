@@ -11,7 +11,7 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 12;
+	version: 15;
 	min_compatible_version: 11;
 
 	url: string(STR_WEBSITE);
@@ -71,6 +71,16 @@ grf {
 			desc: string(STR_PARAM_DESC_RECYCLABLES);
 			def_value: 0;
 			type: bool;
+		}
+	}
+	
+	param 6 {
+		param_industry_population {
+			name: string(STR_PARAM_NAME_INDUSTRY_POP);
+			desc: string(STR_PARAM_DESC_INDUSTRY_POP);
+			min_value: 0;
+			def_value: 300;
+			type: int;
 		}
 	}
 

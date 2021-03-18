@@ -48,8 +48,8 @@ item (FEAT_CARGOS, cargo_coal, 0x01) {
 		items_of_cargo:				TTD_STR_QUANTITY_COAL;
 		penalty_lowerbound:			30;
 		single_penalty_length:		255;
-		station_list_colour:		1;
-		cargo_payment_list_colour:	1;
+		station_list_colour:		6;
+		cargo_payment_list_colour:	6;
 		price_factor:				56;
 		capacity_multiplier:		1;		
 	}
@@ -148,8 +148,8 @@ item (FEAT_CARGOS, cargo_goods, 0x05) {
 		items_of_cargo:				TTD_STR_QUANTITY_GOODS;
 		penalty_lowerbound:			10;
 		single_penalty_length:		64;
-		station_list_colour:		194;
-		cargo_payment_list_colour:	194;
+		station_list_colour:		187;
+		cargo_payment_list_colour:	187;
 		price_factor:				144;
 		capacity_multiplier:		2;		
 	}
@@ -173,8 +173,8 @@ item (FEAT_CARGOS, cargo_chemicals, 0x06) {
 		items_of_cargo:				string(STR_CARGO_QUANTITY_CHEMICALS);
 		penalty_lowerbound:			20;
 		single_penalty_length:		255;
-		station_list_colour:		177;
-		cargo_payment_list_colour:	177;
+		station_list_colour:		51;
+		cargo_payment_list_colour:	51;
 		price_factor:				126;
 		capacity_multiplier:		1;		
 	}
@@ -198,8 +198,8 @@ item (FEAT_CARGOS, cargo_wood, 0x07) {
 		items_of_cargo:				TTD_STR_QUANTITY_WOOD;
 		penalty_lowerbound:			24;
 		single_penalty_length:		255;
-		station_list_colour:		55;
-		cargo_payment_list_colour:	55;
+		station_list_colour:		85;
+		cargo_payment_list_colour:	85;
 		price_factor:				50;
 		capacity_multiplier:		1;		
 	}
@@ -223,8 +223,8 @@ item (FEAT_CARGOS, cargo_iore, 0x08) {
 		items_of_cargo:				TTD_STR_QUANTITY_IRON_ORE;
 		penalty_lowerbound:			30;
 		single_penalty_length:		255;
-		station_list_colour:		118;
-		cargo_payment_list_colour:	118;
+		station_list_colour:		126;
+		cargo_payment_list_colour:	126;
 		price_factor:				60;
 		capacity_multiplier:		1;		
 	}

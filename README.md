@@ -112,7 +112,10 @@ If you have any questions, please feel free to contact me and I will do my best 
 ## Translations
 Currently available in:
 - English
+- Arabic (AviationGamerX)
+- French (arikover)
 - German (WoelfiVW)
+- Swedish (En okänd välgörare)
 
 Please feel free to translate into your language and submit a Pull Request.
 

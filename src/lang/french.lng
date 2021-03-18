@@ -1,0 +1,82 @@
+##grflangid 0x03
+
+STR_GRF_NAME						:{TITLE} {VERSION}
+STR_GRF_DESC						:{ORANGE}Industries inspirées des versions de base{BLACK} mais avec de nouvelles chaînes, le transit des travailleurs, l'implantation près des villes, et des dates d'introduction réalistes à partir de 1700.{}{}{SILVER}Véhicules supplémentaires (NewGRF) nécessaires. Incompatible avec d'autres sets d'industries.{}{}{ORANGE}Visiter le site pour le manuel.{}{}{BLACK}Codé par 2TallTyler.
+
+STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
+
+STR_ERROR_GAME_VERSION				:{TITLE} requiert OpenTTD 1.10.0, JGR 0.34, ou des versions ultérieures
+STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} La chaîne de recyclage requiert un set de maisons compatible (recommandé: Improved Town Layouts version 1.3.0 or supérieure).
+STR_ERR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE} est incompatible avec {YELLOW}{STRING}{WHITE}.
+
+STR_PARAM_NAME_PRIMARY_ONLY			:Générer uniquement des industries primaires
+STR_PARAM_DESC_PRIMARY_ONLY			:Désactive la génération des {SILVER}Usines{BLACK}, {SILVER}Aciéries{BLACK}, {SILVER}Usines Papetières{BLACK}, {SILVER}Raffineries Pétrolières{BLACK}, {SILVER}Centrales Électriques{BLACK}, {SILVER}Usines à Combustible Nucléaires{BLACK} (si activé) et {SILVER}Centres de Tri{BLACK} (si activé) pendant le jeu. Elles doivent être financées par le joueur.
+
+STR_PARAM_NAME_ELEVATION_CHECKS		:Prérequis en altitude
+STR_PARAM_DESC_ELEVATION_CHECKS		:Les {SILVER}Mines de Charbon{BLACK} ne seront placées qu'aux altitudes de 4 ou plus, les {SILVER}Fermes{BLACK} et les {SILVER}Puits de Pétrole{BLACK} aux altitudes de 2 ou moins.{}{}{ORANGE}Incompatible {BLACK}avec les terrains {ORANGE}très plats {BLACK}, puisque les {SILVER}Mines de Charbon{BLACK} ne pourront pa être placées.
+
+STR_PARAM_NAME_AUTO_FARM_FIELDS		:Les fermes génèrent des champs
+STR_PARAM_DESC_AUTO_FARM_FIELDS		:Choisir si les {SILVER}Fermes{BLACK} génèrent des champs, comme les fermes standard.{}{}Les champs sont disponibles en tant qu'objets décoratifs.
+
+STR_PARAM_NAME_OIL_RIGS				:Plate-formes pétrolières
+STR_PARAM_DESC_OIL_RIGS				:Choisir si les {SILVER}Plate-Formes Pétrolières{BLACK} peuvent apparaître à partir de 1960 (comme les versions standard).{}{}{ORANGE}Climat tempéré uniquement.
+
+STR_PARAM_NAME_NUCLEAR				:Industrie nucléaire
+STR_PARAM_DESC_NUCLEAR				:Choisir si les {SILVER}Mines d'Uranium{BLACK} et les {SILVER}Usines à Combustible Nucléaire{BLACK} peuvent apparaître à partir de 1956. Les {SILVER}Centrales Électriques{BLACK} acceptent du Combustible Nucléaire et produisent des Déchets Nucléaires.
+
+STR_PARAM_NAME_RECYCLABLES			:Recyclage des ordures
+STR_PARAM_DESC_RECYCLABLES			:Choisir d'autoriser {SILVER}Centres de Tri{BLACK} à traiter les Déchets des maisons pour en faire des Matériaux Recyclés acceptés par les industries.{}{}{ORANGE}Requiert le NewGRF Improved Town Layouts, version 1.3.0 or supérieure.
+
+STR_FUND_AVAILABLE					:{BLACK}Introduction{NBSP}: {YELLOW}{STRING}
+
+STR_NAME_OBJECT_MENU				:Industries
+STR_NAME_OBJECT_MENU_FIELDS			:Fermes
+
+STR_TOWN							:{STRING}
+STR_STATION							:{STRING} {STRING}
+
+STR_NAME_STEEL_MILL					:Aciérie
+STR_NAME_IRON_MINE					:Mine de Fer
+STR_NAME_SAWMILL					:Scierie
+STR_NAME_FOREST						:Forêt
+STR_NAME_OIL_REFINERY				:Raffinerie Pétrolière
+STR_NAME_FARM						:Ferme
+STR_NAME_POWER_PLANT				:Centrale Électrique
+STR_NAME_FACTORY					:Usine
+STR_NAME_COAL_MINE					:Mine de Charbon
+STR_NAME_OIL_WELLS					:Puits de Pétrole
+STR_NAME_PAPER_MILL					:Usine Papetière
+STR_NAME_RECYCLING_CENTER			:Centre de Tri
+STR_NAME_URANIUM_MINE				:Mine d'Uranium
+STR_NAME_NUCLEAR_FUEL_PLANT			:Usine à Combustible Nucléaire
+
+STR_NAME_FIELD_1					:Champ
+
+
+STR_CARGO_NAME_CHEMICALS			:Produits Chimiques
+STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}CH
+STR_CARGO_QUANTITY_CHEMICALS		:{VOLUME} de produits chimiques
+
+STR_CARGO_NAME_LUMBER				:Bois d'Œuvre
+STR_CARGO_ABBREV_LUMBER				:{TINYFONT}BO
+STR_CARGO_QUANTITY_LUMBER			:{WEIGHT} de bois d'œuvre
+
+STR_CARGO_NAME_RECYCLABLES			:Matériaux Recyclés
+STR_CARGO_ABBREV_RECYCLABLES		:{TINYFONT}MR
+STR_CARGO_QUANTITY_RECYCLABLES		:{WEIGHT} de Matériaux Recyclés
+
+STR_CARGO_NAME_WASTE				:Déchets
+STR_CARGO_ABBREV_WASTE				:{TINYFONT}DC
+STR_CARGO_QUANTITY_WASTE			:{WEIGHT} de déchets
+
+STR_CARGO_NAME_URANIUM				:Uranium
+STR_CARGO_ABBREV_URANIUM			:{TINYFONT}UR
+STR_CARGO_QUANTITY_URANIUM			:{WEIGHT} d'uranium
+
+STR_CARGO_NAME_NUCLEAR_FUEL			:Combustible Nucléaire
+STR_CARGO_ABBREV_NUCLEAR_FUEL		:{TINYFONT}CN
+STR_CARGO_QUANTITY_NUCLEAR_FUEL		:{WEIGHT} de combustible nucléaire
+
+STR_CARGO_NAME_NUCLEAR_WASTE		:Déchets Nuclaires
+STR_CARGO_ABBREV_NUCLEAR_WASTE		:{TINYFONT}DN
+STR_CARGO_QUANTITY_NUCLEAR_WASTE	:{WEIGHT} de déchets nucléaires

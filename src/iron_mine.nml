@@ -97,7 +97,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
 	}
 	graphics {
 		construction_probability:	(current_year >= 1856) ? 15 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1856");
 	}
 }
 

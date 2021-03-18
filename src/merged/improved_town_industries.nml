@@ -11,7 +11,7 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 12;
+	version: 15;
 	min_compatible_version: 11;
 
 	url: string(STR_WEBSITE);
@@ -71,6 +71,16 @@ grf {
 			desc: string(STR_PARAM_DESC_RECYCLABLES);
 			def_value: 0;
 			type: bool;
+		}
+	}
+	
+	param 6 {
+		param_industry_population {
+			name: string(STR_PARAM_NAME_INDUSTRY_POP);
+			desc: string(STR_PARAM_DESC_INDUSTRY_POP);
+			min_value: 0;
+			def_value: 300;
+			type: int;
 		}
 	}
 
@@ -273,7 +283,7 @@ item (FEAT_CARGOS, cargo_coal, 0x01) {
 		penalty_lowerbound:			30;
 		single_penalty_length:		255;
 		station_list_colour:		1;
-		cargo_payment_list_colour:	1;
+		cargo_payment_list_colour:	6;
 		price_factor:				56;
 		capacity_multiplier:		1;		
 	}
@@ -372,8 +382,8 @@ item (FEAT_CARGOS, cargo_goods, 0x05) {
 		items_of_cargo:				TTD_STR_QUANTITY_GOODS;
 		penalty_lowerbound:			10;
 		single_penalty_length:		64;
-		station_list_colour:		194;
-		cargo_payment_list_colour:	194;
+		station_list_colour:		187;
+		cargo_payment_list_colour:	187;
 		price_factor:				144;
 		capacity_multiplier:		2;		
 	}
@@ -397,8 +407,8 @@ item (FEAT_CARGOS, cargo_chemicals, 0x06) {
 		items_of_cargo:				string(STR_CARGO_QUANTITY_CHEMICALS);
 		penalty_lowerbound:			20;
 		single_penalty_length:		255;
-		station_list_colour:		177;
-		cargo_payment_list_colour:	177;
+		station_list_colour:		51;
+		cargo_payment_list_colour:	51;
 		price_factor:				126;
 		capacity_multiplier:		1;		
 	}
@@ -422,8 +432,8 @@ item (FEAT_CARGOS, cargo_wood, 0x07) {
 		items_of_cargo:				TTD_STR_QUANTITY_WOOD;
 		penalty_lowerbound:			24;
 		single_penalty_length:		255;
-		station_list_colour:		55;
-		cargo_payment_list_colour:	55;
+		station_list_colour:		85;
+		cargo_payment_list_colour:	85;
 		price_factor:				50;
 		capacity_multiplier:		1;		
 	}
@@ -447,8 +457,8 @@ item (FEAT_CARGOS, cargo_iore, 0x08) {
 		items_of_cargo:				TTD_STR_QUANTITY_IRON_ORE;
 		penalty_lowerbound:			30;
 		single_penalty_length:		255;
-		station_list_colour:		118;
-		cargo_payment_list_colour:	118;
+		station_list_colour:		126;
+		cargo_payment_list_colour:	126;
 		price_factor:				60;
 		capacity_multiplier:		1;		
 	}
@@ -639,19 +649,38 @@ if (param_nuclear == 1) {
 /* Begin Shared Switches */
 
 /* Shared function for processing industries to check the population required to build and store it in temporary register 1 */
-switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store, STORE_TEMP(
+switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store_early, STORE_TEMP(
 	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)		* 300 +
-	industry_town_count(industry_paper_mill,-1) 		* 300 +
-	industry_town_count(industry_steel_mill,-1)			* 300 +
-	industry_town_count(industry_factory,-1)			* 300 +
-	industry_town_count(industry_power_plant,-1)		* 300 +
-	industry_town_count(industry_recycling_center,-1)	* 300 +
-	industry_town_count(industry_sawmill,-1)			* 300 +
-	industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-	300 // Add population required for this industry
+	industry_town_count(industry_oil_refinery,-1)		* param_industry_population +
+	industry_town_count(industry_paper_mill,-1) 		* param_industry_population +
+	industry_town_count(industry_steel_mill,-1)			* param_industry_population +
+	industry_town_count(industry_factory,-1)			* param_industry_population +
+	industry_town_count(industry_power_plant,-1)		* param_industry_population +
+	industry_town_count(industry_recycling_center,-1)	* param_industry_population +
+	industry_town_count(industry_sawmill,-1)			* param_industry_population +
+	industry_town_count(industry_nuclear_fuel_plant,-1)	* param_industry_population +
+	(param_industry_population / 3) // Add population required for this industry
 	, 1))
 	{return 0;}
+	
+switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store_late, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)		* param_industry_population +
+	industry_town_count(industry_paper_mill,-1) 		* param_industry_population +
+	industry_town_count(industry_steel_mill,-1)			* param_industry_population +
+	industry_town_count(industry_factory,-1)			* param_industry_population +
+	industry_town_count(industry_power_plant,-1)		* param_industry_population +
+	industry_town_count(industry_recycling_center,-1)	* param_industry_population +
+	industry_town_count(industry_sawmill,-1)			* param_industry_population +
+	industry_town_count(industry_nuclear_fuel_plant,-1)	* param_industry_population +
+	param_industry_population // Add population required for this industry
+	, 1))
+	{return 0;}
+	
+switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store, current_year) {
+	0..1850: return switch_secondary_population_store_early; 
+	return switch_secondary_population_store_late;
+}
 
 /* Shared function for processing industries to build in an industrial district */
 
@@ -1132,47 +1161,9 @@ tilelayout industry_layout_factory_L {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_distance_competitor, industry_distance(industry_factory, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-
 /* Population Check - secondary industries only */
-
-switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1))
-		{1: switch_factory_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
-
-/* Add population required by other industries. 300 population required for Factory */
-
-/* Population requirements from 1850 */
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_late, STORE_TEMP(
-// Count existing processing industries in town
-industry_town_count(industry_oil_refinery,-1)		* 300 +
-industry_town_count(industry_paper_mill,-1) 		* 300 +
-industry_town_count(industry_steel_mill,-1)			* 300 +
-industry_town_count(industry_factory,-1)			* 300 +
-industry_town_count(industry_power_plant,-1)		* 300 +
-industry_town_count(industry_recycling_center,-1)	* 300 +
-industry_town_count(industry_sawmill,-1)			* 300 +
-industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-300 // Add population required for this industry
-, 1))
-	{switch_factory_population_check_2;}
-	
-/* Population reqirements before 1850 (old houses are smaller and cities may not have 300 population) */
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_early, STORE_TEMP(
-// Count existing processing industries in town
-industry_town_count(industry_oil_refinery,-1)		* 300 +
-industry_town_count(industry_paper_mill,-1) 		* 300 +
-industry_town_count(industry_steel_mill,-1)			* 300 +
-industry_town_count(industry_factory,-1)			* 300 +
-industry_town_count(industry_power_plant,-1)		* 300 +
-industry_town_count(industry_recycling_center,-1)	* 300 +
-industry_town_count(industry_sawmill,-1)			* 300 +
-industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-100 // Add population required for this industry
-, 1))
-	{switch_factory_population_check_2;}
-
-/* If before 1850, check year for Factory population requirement (1800-1849: pop 100, 1850+: pop 300) */
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_1, current_year < 1850) {1: switch_factory_population_check_early; switch_factory_population_check_late;}
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_factory_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -1224,7 +1215,7 @@ item (FEAT_INDUSTRIES, industry_factory, 5) {
 		location_check:			switch_factory_allow_funded;
 		colour:					COLOUR_PALE_GREEN;
 		construction_probability:	(current_year >= 1800) ? 9 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1800");
 	}
 }
 
@@ -2129,7 +2120,7 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
 	}
 	graphics {
 		construction_probability:	(current_year >= 1856) ? 15 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1856");
 	}
 }
 
@@ -2287,23 +2278,9 @@ tilelayout industry_layout_nuclear_fuel_plant_1 {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_distance_competitor, industry_distance(industry_nuclear_fuel_plant, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-/* Population check */
-switch (FEAT_INDUSTRIES, PARENT, switch_nuclear_fuel_plant_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_nuclear_fuel_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_population_check_1, STORE_TEMP(
-	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)		* 300 +
-	industry_town_count(industry_paper_mill,-1) 		* 300 +
-	industry_town_count(industry_steel_mill,-1)			* 300 +
-	industry_town_count(industry_factory,-1)			* 300 +
-	industry_town_count(industry_power_plant,-1)		* 300 +
-	industry_town_count(industry_recycling_center,-1)	* 300 +
-	industry_town_count(industry_sawmill,-1)			* 300 +
-	industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-	300 // Add population required for this industry
-	, 1))
-	{switch_nuclear_fuel_plant_population_check_2;}
+/* Population Check - secondary industries only */
+switch (FEAT_INDUSTRIES, PARENT, switch_nuclear_fuel_plant_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_nuclear_fuel_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -2348,7 +2325,7 @@ if (param_nuclear == 1) {
 		graphics {
 			location_check:			switch_nuclear_fuel_plant_allow_funded;
 			construction_probability:	(current_year >= 1956) ? 1 : 0;
-			extra_text_fund:			string(STR_FUND_AVAILABLE_1956);
+			extra_text_fund:			string(STR_FUND_AVAILABLE, "1956");
 		}
 	}
 
@@ -2659,9 +2636,8 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_water, water_distanc
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_competitor, industry_distance(industry_oil_refinery, -1) > 100 ) {1: switch_oil_refinery_distance_water; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Population Check - secondary industries only */
-switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_population_check_1, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	[switch_secondary_population_store(), population >= LOAD_TEMP(1)])
-		{1: switch_oil_refinery_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_oil_refinery_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -2704,7 +2680,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 	graphics {
 		location_check:			switch_oil_refinery_allow_funded;
 		construction_probability:	(current_year >= 1900) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1900);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1900");
 		colour:					COLOUR_YELLOW;
 	}
 }
@@ -3082,7 +3058,7 @@ item (FEAT_INDUSTRIES, industry_oil_wells, 8) {
 	graphics {
 		location_check:			switch_oil_wells_allow_funded;
 		construction_probability:	(current_year >= 1900) ? 15 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1900);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1900");
 	}
 }
 
@@ -3277,9 +3253,8 @@ tilelayout industry_layout_paper_mill_3 {
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_distance_competitor, industry_distance(industry_paper_mill, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Population Check - secondary industries only */
-switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_population_check_1, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	[switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
-		{1: switch_paper_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_paper_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -3328,7 +3303,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
 	graphics {
 		location_check:			switch_paper_mill_allow_funded;
 		construction_probability:	(current_year >= 1885) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1885);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1885");
 		colour:					COLOUR_DARK_GREEN;
 	}
 }
@@ -3458,10 +3433,9 @@ tilelayout industry_layout_power_plant_5 {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_distance_competitor, industry_distance(industry_power_plant, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-/* Population check */
-switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_population_check_1, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	[switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
-		{1: switch_power_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+/* Population Check - secondary industries only */
+switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_power_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -3509,7 +3483,7 @@ item (FEAT_INDUSTRIES, industry_power_plant, 2) {
 	graphics {
 		location_check:			switch_power_plant_allow_funded;
 		construction_probability:	(current_year >= 1882) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1882);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1882");
 	}
 }
 
@@ -3780,26 +3754,9 @@ tilelayout industry_layout_recycling_center_3 {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_distance_competitor, industry_distance(industry_recycling_center, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-
 /* Population Check - secondary industries only */
-
-switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_recycling_center_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_population_check_1, STORE_TEMP(
-	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)		* 300 +
-	industry_town_count(industry_paper_mill,-1) 		* 300 +
-	industry_town_count(industry_steel_mill,-1)			* 300 +
-	industry_town_count(industry_factory,-1)			* 300 +
-	industry_town_count(industry_power_plant,-1)		* 300 +
-	industry_town_count(industry_recycling_center,-1)	* 300 +
-	industry_town_count(industry_sawmill,-1)			* 300 +
-	industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-	300 // Add population required for this industry
-	, 1))
-	{switch_recycling_center_population_check_2;}
-
+switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_recycling_center_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -3852,7 +3809,7 @@ if (param_recyclables == 1) {
 			location_check:			switch_recycling_center_allow_funded;
 			colour:					COLOUR_MAUVE;
 			construction_probability:	(current_year >= 1945) ? 6 : 0;
-			extra_text_fund:		string(STR_FUND_AVAILABLE_1945);
+			extra_text_fund:		string(STR_FUND_AVAILABLE, "1945");
 		}
 	}
 	
@@ -4107,44 +4064,9 @@ tilelayout industry_layout_sawmill_3 {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_sawmill_distance_competitor, industry_distance(industry_sawmill, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-
-/* Population Check */
-switch (FEAT_INDUSTRIES, PARENT, switch_sawmill_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_sawmill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
-
-/* Population requirements from 1850 */
-switch (FEAT_INDUSTRIES, SELF, switch_sawmill_population_check_late, STORE_TEMP(
-// Count existing processing industries in town
-industry_town_count(industry_oil_refinery,-1)		* 300 +
-industry_town_count(industry_paper_mill,-1) 		* 300 +
-industry_town_count(industry_steel_mill,-1)			* 300 +
-industry_town_count(industry_factory,-1)			* 300 +
-industry_town_count(industry_power_plant,-1)		* 300 +
-industry_town_count(industry_recycling_center,-1)	* 300 +
-industry_town_count(industry_sawmill,-1)			* 300 +
-industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-300 // Add population required for this industry
-, 1))
-	{switch_sawmill_population_check_2;}
-	
-/* Population reqirements before 1850 (old houses are smaller and cities may not have 300 population) */
-switch (FEAT_INDUSTRIES, SELF, switch_sawmill_population_check_early, STORE_TEMP(
-// Count existing processing industries in town
-industry_town_count(industry_oil_refinery,-1)		* 300 +
-industry_town_count(industry_paper_mill,-1) 		* 300 +
-industry_town_count(industry_steel_mill,-1)			* 300 +
-industry_town_count(industry_factory,-1)			* 300 +
-industry_town_count(industry_power_plant,-1)		* 300 +
-industry_town_count(industry_recycling_center,-1)	* 300 +
-industry_town_count(industry_sawmill,-1)			* 300 +
-industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-100 // Add population required for this industry
-, 1))
-	{switch_sawmill_population_check_2;}
-
-/* If before 1850, check year for Factory population requirement (1800-1849: pop 100, 1850+: pop 300) */
-switch (FEAT_INDUSTRIES, SELF, switch_sawmill_population_check_1, current_year < 1850) {1: switch_sawmill_population_check_early; switch_sawmill_population_check_late;}
-
+/* Population Check - secondary industries only */
+switch (FEAT_INDUSTRIES, PARENT, switch_sawmill_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_sawmill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -4186,7 +4108,7 @@ item (FEAT_INDUSTRIES, industry_sawmill, 6) {
 	graphics {
 		location_check:			switch_sawmill_allow_funded;
 		construction_probability:	(current_year >= 1800) ? 9 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1800);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1800");
 	}
 }
 
@@ -4442,7 +4364,7 @@ item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
 	graphics {
 		location_check:			switch_steel_mill_allow_funded;
 		construction_probability:	(current_year >= 1856) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE_1856);
+		extra_text_fund:		string(STR_FUND_AVAILABLE, "1856");
 	}
 }
 
@@ -4593,7 +4515,7 @@ if (param_nuclear == 1) {
 		}
 		graphics {
 			construction_probability:	(current_year >= 1956) ? 1 : 0;
-			extra_text_fund:			string(STR_FUND_AVAILABLE_1956);
+			extra_text_fund:			string(STR_FUND_AVAILABLE, "1956");
 		}
 	}
 }

@@ -1,19 +1,38 @@
 /* Begin Shared Switches */
 
 /* Shared function for processing industries to check the population required to build and store it in temporary register 1 */
-switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store, STORE_TEMP(
+switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store_early, STORE_TEMP(
 	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)		* 300 +
-	industry_town_count(industry_paper_mill,-1) 		* 300 +
-	industry_town_count(industry_steel_mill,-1)			* 300 +
-	industry_town_count(industry_factory,-1)			* 300 +
-	industry_town_count(industry_power_plant,-1)		* 300 +
-	industry_town_count(industry_recycling_center,-1)	* 300 +
-	industry_town_count(industry_sawmill,-1)			* 300 +
-	industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-	300 // Add population required for this industry
+	industry_town_count(industry_oil_refinery,-1)		* param_industry_population +
+	industry_town_count(industry_paper_mill,-1) 		* param_industry_population +
+	industry_town_count(industry_steel_mill,-1)			* param_industry_population +
+	industry_town_count(industry_factory,-1)			* param_industry_population +
+	industry_town_count(industry_power_plant,-1)		* param_industry_population +
+	industry_town_count(industry_recycling_center,-1)	* param_industry_population +
+	industry_town_count(industry_sawmill,-1)			* param_industry_population +
+	industry_town_count(industry_nuclear_fuel_plant,-1)	* param_industry_population +
+	(param_industry_population / 3) // Add population required for this industry
 	, 1))
 	{return 0;}
+	
+switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store_late, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)		* param_industry_population +
+	industry_town_count(industry_paper_mill,-1) 		* param_industry_population +
+	industry_town_count(industry_steel_mill,-1)			* param_industry_population +
+	industry_town_count(industry_factory,-1)			* param_industry_population +
+	industry_town_count(industry_power_plant,-1)		* param_industry_population +
+	industry_town_count(industry_recycling_center,-1)	* param_industry_population +
+	industry_town_count(industry_sawmill,-1)			* param_industry_population +
+	industry_town_count(industry_nuclear_fuel_plant,-1)	* param_industry_population +
+	param_industry_population // Add population required for this industry
+	, 1))
+	{return 0;}
+	
+switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store, current_year) {
+	0..1850: return switch_secondary_population_store_early; 
+	return switch_secondary_population_store_late;
+}
 
 /* Shared function for processing industries to build in an industrial district */
 
