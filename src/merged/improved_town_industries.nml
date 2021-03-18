@@ -11,7 +11,7 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 14;
+	version: 15;
 	min_compatible_version: 11;
 
 	url: string(STR_WEBSITE);
@@ -71,6 +71,16 @@ grf {
 			desc: string(STR_PARAM_DESC_RECYCLABLES);
 			def_value: 0;
 			type: bool;
+		}
+	}
+	
+	param 6 {
+		param_industry_population {
+			name: string(STR_PARAM_NAME_INDUSTRY_POP);
+			desc: string(STR_PARAM_DESC_INDUSTRY_POP);
+			min_value: 0;
+			def_value: 300;
+			type: int;
 		}
 	}
 
@@ -639,19 +649,38 @@ if (param_nuclear == 1) {
 /* Begin Shared Switches */
 
 /* Shared function for processing industries to check the population required to build and store it in temporary register 1 */
-switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store, STORE_TEMP(
+switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store_early, STORE_TEMP(
 	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)		* 300 +
-	industry_town_count(industry_paper_mill,-1) 		* 300 +
-	industry_town_count(industry_steel_mill,-1)			* 300 +
-	industry_town_count(industry_factory,-1)			* 300 +
-	industry_town_count(industry_power_plant,-1)		* 300 +
-	industry_town_count(industry_recycling_center,-1)	* 300 +
-	industry_town_count(industry_sawmill,-1)			* 300 +
-	industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-	300 // Add population required for this industry
+	industry_town_count(industry_oil_refinery,-1)		* param_industry_population +
+	industry_town_count(industry_paper_mill,-1) 		* param_industry_population +
+	industry_town_count(industry_steel_mill,-1)			* param_industry_population +
+	industry_town_count(industry_factory,-1)			* param_industry_population +
+	industry_town_count(industry_power_plant,-1)		* param_industry_population +
+	industry_town_count(industry_recycling_center,-1)	* param_industry_population +
+	industry_town_count(industry_sawmill,-1)			* param_industry_population +
+	industry_town_count(industry_nuclear_fuel_plant,-1)	* param_industry_population +
+	(param_industry_population / 3) // Add population required for this industry
 	, 1))
 	{return 0;}
+	
+switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store_late, STORE_TEMP(
+	// Count existing processing industries in town
+	industry_town_count(industry_oil_refinery,-1)		* param_industry_population +
+	industry_town_count(industry_paper_mill,-1) 		* param_industry_population +
+	industry_town_count(industry_steel_mill,-1)			* param_industry_population +
+	industry_town_count(industry_factory,-1)			* param_industry_population +
+	industry_town_count(industry_power_plant,-1)		* param_industry_population +
+	industry_town_count(industry_recycling_center,-1)	* param_industry_population +
+	industry_town_count(industry_sawmill,-1)			* param_industry_population +
+	industry_town_count(industry_nuclear_fuel_plant,-1)	* param_industry_population +
+	param_industry_population // Add population required for this industry
+	, 1))
+	{return 0;}
+	
+switch (FEAT_INDUSTRIES, SELF, switch_secondary_population_store, current_year) {
+	0..1850: return switch_secondary_population_store_early; 
+	return switch_secondary_population_store_late;
+}
 
 /* Shared function for processing industries to build in an industrial district */
 
@@ -1132,47 +1161,9 @@ tilelayout industry_layout_factory_L {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_factory_distance_competitor, industry_distance(industry_factory, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-
 /* Population Check - secondary industries only */
-
-switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1))
-		{1: switch_factory_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
-
-/* Add population required by other industries. 300 population required for Factory */
-
-/* Population requirements from 1850 */
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_late, STORE_TEMP(
-// Count existing processing industries in town
-industry_town_count(industry_oil_refinery,-1)		* 300 +
-industry_town_count(industry_paper_mill,-1) 		* 300 +
-industry_town_count(industry_steel_mill,-1)			* 300 +
-industry_town_count(industry_factory,-1)			* 300 +
-industry_town_count(industry_power_plant,-1)		* 300 +
-industry_town_count(industry_recycling_center,-1)	* 300 +
-industry_town_count(industry_sawmill,-1)			* 300 +
-industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-300 // Add population required for this industry
-, 1))
-	{switch_factory_population_check_2;}
-	
-/* Population reqirements before 1850 (old houses are smaller and cities may not have 300 population) */
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_early, STORE_TEMP(
-// Count existing processing industries in town
-industry_town_count(industry_oil_refinery,-1)		* 300 +
-industry_town_count(industry_paper_mill,-1) 		* 300 +
-industry_town_count(industry_steel_mill,-1)			* 300 +
-industry_town_count(industry_factory,-1)			* 300 +
-industry_town_count(industry_power_plant,-1)		* 300 +
-industry_town_count(industry_recycling_center,-1)	* 300 +
-industry_town_count(industry_sawmill,-1)			* 300 +
-industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-100 // Add population required for this industry
-, 1))
-	{switch_factory_population_check_2;}
-
-/* If before 1850, check year for Factory population requirement (1800-1849: pop 100, 1850+: pop 300) */
-switch (FEAT_INDUSTRIES, SELF, switch_factory_population_check_1, current_year < 1850) {1: switch_factory_population_check_early; switch_factory_population_check_late;}
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_factory_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -2287,23 +2278,9 @@ tilelayout industry_layout_nuclear_fuel_plant_1 {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_distance_competitor, industry_distance(industry_nuclear_fuel_plant, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-/* Population check */
-switch (FEAT_INDUSTRIES, PARENT, switch_nuclear_fuel_plant_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_nuclear_fuel_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_population_check_1, STORE_TEMP(
-	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)		* 300 +
-	industry_town_count(industry_paper_mill,-1) 		* 300 +
-	industry_town_count(industry_steel_mill,-1)			* 300 +
-	industry_town_count(industry_factory,-1)			* 300 +
-	industry_town_count(industry_power_plant,-1)		* 300 +
-	industry_town_count(industry_recycling_center,-1)	* 300 +
-	industry_town_count(industry_sawmill,-1)			* 300 +
-	industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-	300 // Add population required for this industry
-	, 1))
-	{switch_nuclear_fuel_plant_population_check_2;}
+/* Population Check - secondary industries only */
+switch (FEAT_INDUSTRIES, PARENT, switch_nuclear_fuel_plant_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_nuclear_fuel_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -2659,9 +2636,8 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_water, water_distanc
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_competitor, industry_distance(industry_oil_refinery, -1) > 100 ) {1: switch_oil_refinery_distance_water; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Population Check - secondary industries only */
-switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_population_check_1, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	[switch_secondary_population_store(), population >= LOAD_TEMP(1)])
-		{1: switch_oil_refinery_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_oil_refinery_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -3277,9 +3253,8 @@ tilelayout industry_layout_paper_mill_3 {
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_distance_competitor, industry_distance(industry_paper_mill, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Population Check - secondary industries only */
-switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_population_check_1, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	[switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
-		{1: switch_paper_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_paper_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -3458,10 +3433,9 @@ tilelayout industry_layout_power_plant_5 {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_distance_competitor, industry_distance(industry_power_plant, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-/* Population check */
-switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_population_check_1, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	[switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
-		{1: switch_power_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+/* Population Check - secondary industries only */
+switch (FEAT_INDUSTRIES, PARENT, switch_power_plant_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_power_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -3780,26 +3754,9 @@ tilelayout industry_layout_recycling_center_3 {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_distance_competitor, industry_distance(industry_recycling_center, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-
 /* Population Check - secondary industries only */
-
-switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_recycling_center_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_population_check_1, STORE_TEMP(
-	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)		* 300 +
-	industry_town_count(industry_paper_mill,-1) 		* 300 +
-	industry_town_count(industry_steel_mill,-1)			* 300 +
-	industry_town_count(industry_factory,-1)			* 300 +
-	industry_town_count(industry_power_plant,-1)		* 300 +
-	industry_town_count(industry_recycling_center,-1)	* 300 +
-	industry_town_count(industry_sawmill,-1)			* 300 +
-	industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-	300 // Add population required for this industry
-	, 1))
-	{switch_recycling_center_population_check_2;}
-
+switch (FEAT_INDUSTRIES, PARENT, switch_recycling_center_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_recycling_center_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
@@ -4107,44 +4064,9 @@ tilelayout industry_layout_sawmill_3 {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_sawmill_distance_competitor, industry_distance(industry_sawmill, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-
-/* Population Check */
-switch (FEAT_INDUSTRIES, PARENT, switch_sawmill_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_sawmill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
-
-/* Population requirements from 1850 */
-switch (FEAT_INDUSTRIES, SELF, switch_sawmill_population_check_late, STORE_TEMP(
-// Count existing processing industries in town
-industry_town_count(industry_oil_refinery,-1)		* 300 +
-industry_town_count(industry_paper_mill,-1) 		* 300 +
-industry_town_count(industry_steel_mill,-1)			* 300 +
-industry_town_count(industry_factory,-1)			* 300 +
-industry_town_count(industry_power_plant,-1)		* 300 +
-industry_town_count(industry_recycling_center,-1)	* 300 +
-industry_town_count(industry_sawmill,-1)			* 300 +
-industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-300 // Add population required for this industry
-, 1))
-	{switch_sawmill_population_check_2;}
-	
-/* Population reqirements before 1850 (old houses are smaller and cities may not have 300 population) */
-switch (FEAT_INDUSTRIES, SELF, switch_sawmill_population_check_early, STORE_TEMP(
-// Count existing processing industries in town
-industry_town_count(industry_oil_refinery,-1)		* 300 +
-industry_town_count(industry_paper_mill,-1) 		* 300 +
-industry_town_count(industry_steel_mill,-1)			* 300 +
-industry_town_count(industry_factory,-1)			* 300 +
-industry_town_count(industry_power_plant,-1)		* 300 +
-industry_town_count(industry_recycling_center,-1)	* 300 +
-industry_town_count(industry_sawmill,-1)			* 300 +
-industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-100 // Add population required for this industry
-, 1))
-	{switch_sawmill_population_check_2;}
-
-/* If before 1850, check year for Factory population requirement (1800-1849: pop 100, 1850+: pop 300) */
-switch (FEAT_INDUSTRIES, SELF, switch_sawmill_population_check_1, current_year < 1850) {1: switch_sawmill_population_check_early; switch_sawmill_population_check_late;}
-
+/* Population Check - secondary industries only */
+switch (FEAT_INDUSTRIES, PARENT, switch_sawmill_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_sawmill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
