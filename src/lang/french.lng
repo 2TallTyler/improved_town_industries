@@ -27,6 +27,9 @@ STR_PARAM_DESC_NUCLEAR				:Choisir si les {SILVER}Mines d'Uranium{BLACK} et les 
 STR_PARAM_NAME_RECYCLABLES			:Recyclage des ordures
 STR_PARAM_DESC_RECYCLABLES			:Choisir d'autoriser {SILVER}Centres de Tri{BLACK} à traiter les Déchets des maisons pour en faire des Matériaux Recyclés acceptés par les industries.{}{}{ORANGE}Requiert le NewGRF Improved Town Layouts, version 1.3.0 or supérieure.
 
+STR_PARAM_NAME_INDUSTRY_POP         :Population minimum pour les industries secondaires
+STR_PARAM_DESC_INDUSTRY_POP         :La population requise pour les industries secondaires.{}{}La valeur par défaut (300) est optimisée pour le set Improved Town Layouts, où la densité de population est faible. Avec d'autres bâtiments, cette valeur devrait être fixée à au moins 1000.{}{}Note{NBSP}: avant 1850, le minimum est 1/3 de cette valeur.
+
 STR_FUND_AVAILABLE					:{BLACK}Introduction{NBSP}: {YELLOW}{STRING}
 
 STR_NAME_OBJECT_MENU				:Industries
