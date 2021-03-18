@@ -109,23 +109,9 @@ tilelayout industry_layout_nuclear_fuel_plant_1 {
 /* Don't allow the same industry within 100 tiles - secondary industries only */
 switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_distance_competitor, industry_distance(industry_nuclear_fuel_plant, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
-/* Population check */
-switch (FEAT_INDUSTRIES, PARENT, switch_nuclear_fuel_plant_population_check_2, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	population >= LOAD_TEMP(1)) {1: switch_nuclear_fuel_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
-
-switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_population_check_1, STORE_TEMP(
-	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)		* 300 +
-	industry_town_count(industry_paper_mill,-1) 		* 300 +
-	industry_town_count(industry_steel_mill,-1)			* 300 +
-	industry_town_count(industry_factory,-1)			* 300 +
-	industry_town_count(industry_power_plant,-1)		* 300 +
-	industry_town_count(industry_recycling_center,-1)	* 300 +
-	industry_town_count(industry_sawmill,-1)			* 300 +
-	industry_town_count(industry_nuclear_fuel_plant,-1)	* 300 +
-	300 // Add population required for this industry
-	, 1))
-	{switch_nuclear_fuel_plant_population_check_2;}
+/* Population Check - secondary industries only */
+switch (FEAT_INDUSTRIES, PARENT, switch_nuclear_fuel_plant_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+	{1: switch_nuclear_fuel_plant_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
 
