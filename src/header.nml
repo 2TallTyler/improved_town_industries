@@ -230,4 +230,8 @@ if (grf_future_status("\4E\4D\11\13")) { error(FATAL, string(STR_ERR_INCOMPATIBL
 
 if (grf_future_status("\4A\44\88\07")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "XIS Extreme Industry Set"));}
 
+if (grf_future_status("AZ\20\77")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Wasteland"));}
+
+if (grf_future_status("GGQT")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "One Tile Industry Set"));}
+
 /* *** End Header *** */
