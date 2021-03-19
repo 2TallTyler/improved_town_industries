@@ -230,6 +230,10 @@ if (grf_future_status("\4E\4D\11\13")) { error(FATAL, string(STR_ERR_INCOMPATIBL
 
 if (grf_future_status("\4A\44\88\07")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "XIS Extreme Industry Set"));}
 
+if (grf_future_status("AZ\20\77")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "Wasteland"));}
+
+if (grf_future_status("GGQT")) { error(FATAL, string(STR_ERR_INCOMPATIBLE_SET, "One Tile Industry Set"));}
+
 /* *** End Header *** */
 
 
@@ -282,7 +286,7 @@ item (FEAT_CARGOS, cargo_coal, 0x01) {
 		items_of_cargo:				TTD_STR_QUANTITY_COAL;
 		penalty_lowerbound:			30;
 		single_penalty_length:		255;
-		station_list_colour:		1;
+		station_list_colour:		6;
 		cargo_payment_list_colour:	6;
 		price_factor:				56;
 		capacity_multiplier:		1;		
