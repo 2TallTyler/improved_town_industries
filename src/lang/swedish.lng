@@ -27,6 +27,9 @@ STR_PARAM_DESC_NUCLEAR				:Aktiverar {SILVER}Urangruvor{BLACK} och {SILVER}Kärn
 STR_PARAM_NAME_RECYCLABLES			:Aktivera industrikedjor för Avfall och Återvinning
 STR_PARAM_DESC_RECYCLABLES			:Aktiverar {SILVER}Återvinningscentraler{BLACK} för att sortera Avfall från städer till Återvunnet Material för transport till industrier.{}{}{ORANGE}Kräver Improved Town Layouts NewGRF, version 1.3.0 eller högre.
 
+STR_PARAM_NAME_INDUSTRY_POP   :Krav på befolkningsmängd för sekundära industrier
+STR_PARAM_DESC_INDUSTRY_POP   :Den lägsta befolkningsmängden som krävs per sekundär industri.{}{}Standardvärdet på 300 är optimerat för Improved Town Layouts som genererar städer med låg population. Vid bruk av annat byggnadsset bör gränsvärdet höjas till minst 1000.{}{}Notera: Innan 1850 är kravet 1/3 av gränsvärdet.
+
 STR_FUND_AVAILABLE					:{BLACK}Introducerats: {YELLOW}{STRING}
 
 STR_NAME_OBJECT_MENU				:Industriruta
