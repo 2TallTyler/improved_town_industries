@@ -1,7 +1,7 @@
 ##grflangid 0x02
 
 STR_GRF_NAME						:{TITLE} {VERSION}
-STR_GRF_DESC						:{ORANGE}Vanilla-inspirierte Industrien{BLACK} mit neuen Industrie-Ketten, Pendlern, Industrien nahe Städten, sowie echten Einführungszeiten ab dem Jahr 1700.{}{}{SILVER}Braucht NewGRF-Fahrzeuge. Nicht kompatibel mit anderen Industrie-Sets.{}{}{ORANGE}Besuchen Sie die Website für mehr Informationen.{}{}{BLACK}Programmiert von 2TallTyler.
+STR_GRF_DESC						:{ORANGE}Vanilla-inspirierte Industrien{BLACK} mit neuen Industrie-Ketten, Pendlern, Industrien nahe Städten, sowie echten Einführungszeiten ab dem Jahre 1700.{}{}{SILVER}Braucht NewGRF-Fahrzeuge. Nicht kompatibel mit anderen Industrie-Sets.{}{}{ORANGE}Besuchen Sie die Website für mehr Informationen.{}{}{BLACK}Programmiert von 2TallTyler.
 
 STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
 
@@ -24,6 +24,9 @@ STR_PARAM_DESC_NUCLEAR				:Aktiviert die {SILVER}Uranmine{BLACK} und das {SILVER
 STR_PARAM_NAME_RECYCLABLES		:Aktiviert die Abfall- und Recycling-Kette
 STR_PARAM_DESC_RECYCLABLES		:Aktiviert den {SILVER}Recyclinghof{BLACK}, um Müll von Gebäuden in Recyclingmaterialien für den Transport zu Industrien zu sortieren.{}{}{ORANGE}Braucht die Improved Town Layouts-NewGRF, Version 1.3.0 oder neuer.
 
+STR_PARAM_NAME_INDUSTRY_POP :Bevölkerungsgrenze für sekundäre Industrien
+STR_PARAM_DESC_INDUSTRY_POP :Die minimale Bevölkerung in einer Stadt, um Sekundarindustrien zu erlauben.{}{}Standard: 300
+
 STR_FUND_AVAILABLE					:{BLACK}Verfügbar ab: {YELLOW}{STRING}
 
 STR_NAME_OBJECT_MENU				  :Industrieobjekte
@@ -45,7 +48,7 @@ STR_NAME_OIL_WELLS					:Ölquelle
 STR_NAME_PAPER_MILL         :Papiermühle
 STR_NAME_RECYCLING_CENTER   :Recyclinghof
 STR_NAME_URANIUM_MINE       :Uranmine
-STR_NAME_NUCLEAR_FUEL_PLANT :Nuklearbrennstofffabrik
+STR_NAME_NUCLEAR_FUEL_PLANT :Nukleare Aufbereitungsanlage
 
 STR_NAME_FIELD_1		:Feld
 
