@@ -159,3 +159,10 @@ December 21, 2020
 December 25, 2020
 
 - Add: French translation by arikover
+
+### 1.7.3
+March 23, 2020
+
+- Feature: Parameter for required town population per secondary industry
+- Add: Swedish translation
+- Change: Colours for dark graphs in OpenTTD 1.11
