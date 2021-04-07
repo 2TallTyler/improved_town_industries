@@ -1,4 +1,4 @@
-##grflangid 0x59
+##grflangid 0x56
 
 STR_GRF_NAME						:{TITLE} {VERSION}
 STR_GRF_DESC						:{ORANGE}默认风格的行业{BLACK}拥有新的产业链,工人通勤,城镇工业,以及真正的引进日期,可以追溯到1700年.{}{}{SILVER}需要其他NewGRF载具。与其他行业GRF不兼容.{}{}{ORANGE}访问网站以获取更多说明.{}{}{BLACK}Coded by 2TallTyler.
