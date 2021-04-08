@@ -166,3 +166,8 @@ March 23, 2020
 - Feature: Parameter for required town population per secondary industry
 - Add: Swedish translation
 - Change: Colours for dark graphs in OpenTTD 1.11
+
+### 1.7.4
+April 8, 2020
+
+- Add: Simplified Chinese translation (SuperCirno)

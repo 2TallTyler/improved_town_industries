@@ -113,6 +113,7 @@ If you have any questions, please feel free to contact me and I will do my best 
 Currently available in:
 - English
 - Arabic (AviationGamerX)
+- Simplified Chinese (SuperCirno)
 - French (arikover)
 - German (WoelfiVW)
 - Swedish (En okänd välgörare)
