@@ -116,6 +116,7 @@ Currently available in:
 - Simplified Chinese (SuperCirno)
 - French (arikover)
 - German (WoelfiVW)
+- Russian (demidovskiy)
 - Swedish (En okänd välgörare)
 
 Please feel free to translate into your language and submit a Pull Request.
