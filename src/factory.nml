@@ -206,7 +206,7 @@ tilelayout industry_layout_factory_L {
 switch (FEAT_INDUSTRIES, SELF, switch_factory_distance_competitor, industry_distance(industry_factory, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Population Check - secondary industries only */
-switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_check_1, [switch_secondary_population_store(), population >= LOAD_TEMP(1)]) 
+switch (FEAT_INDUSTRIES, PARENT, switch_factory_population_check_1, [StoreRequiredPopulation(), population >= LOAD_TEMP(1)]) 
 	{1: switch_factory_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
 
 /* Town Distance Check - secondary industries only */
