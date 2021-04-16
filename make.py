@@ -6,7 +6,7 @@
 newgrf_name = "improved_town_industries"
 
 # Files which should be first, in order (header, cargotable, etc)
-header_stuff = ["header", "cargos", "functions"]
+header_stuff = ["header", "functions", "cargos"]
 
 # Files to place in alphabetical order below
 unordered_stuff = ["coal_mine", "farm", "forest", "iron_mine", "nuclear_fuel_plant", "factory", "oil_refinery", "oil_rig", "oil_wells", "paper_mill", "power_plant", "recycling_center", "sawmill", "steel_mill", "uranium_mine"]

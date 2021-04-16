@@ -1,6 +1,29 @@
 
 /* Begin Functions */
 
+/* ================ */
+/* Global Functions */
+/* ================ */
+
+/* Choose the proper economy automatically based on the climate. 
+ * 1: Temperate (fallback)
+ * 2: not used, reserved
+ * 3: Sub-Tropic 
+ */
+if (climate == CLIMATE_TEMPERATE) {
+	selected_economy = 1;
+} else if (climate == CLIMATE_ARCTIC) {
+	selected_economy = 1;
+} else if (climate == CLIMATE_TROPIC) {
+	selected_economy = 1;
+} else if (climate == CLIMATE_TOYLAND) {
+	selected_economy = 1;
+}
+
+/* ================================== */		
+/* Functions for Temperate industries */
+/* ================================== */
+
 /* Shared function for processing industries to check the population required to build and store it in temporary register 1 */
 switch (FEAT_INDUSTRIES, SELF, StoreAdjustedRequiredPopulation, fraction, STORE_TEMP(
 	// Count existing processing industries in town
@@ -49,5 +72,9 @@ switch (FEAT_INDUSTRIES, SELF, switch_industrial_district_1,
 		(industry_town_count(industry_nuclear_fuel_plant,-1) > 0)
 	) // 1 if another industry exists in town, 0 if no other industry exists
 		{1: switch_industrial_district_2; CB_RESULT_LOCATION_ALLOW;}
+
+/* =================================== */		
+/* Functions for Sub-Tropic industries */
+/* =================================== */		
 
 /* End Functions */
