@@ -11,7 +11,7 @@ grf {
 	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
-	version: 17;
+	version: 18;
 	min_compatible_version: 11;
 
 	url: string(STR_WEBSITE);
@@ -253,7 +253,7 @@ if (climate == CLIMATE_TEMPERATE) {
 } else if (climate == CLIMATE_ARCTIC) {
 	selected_economy = 1;
 } else if (climate == CLIMATE_TROPIC) {
-	selected_economy = 1;
+	selected_economy = 3;
 } else if (climate == CLIMATE_TOYLAND) {
 	selected_economy = 1;
 }
@@ -321,10 +321,13 @@ switch (FEAT_INDUSTRIES, SELF, switch_industrial_district_1,
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, WDPR, RFPR, RCYC, WSTE, FOOD, URAN, NUKF, NUKW
+	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, WDPR, RFPR, RCYC, WSTE, FOOD, URAN, NUKF, NUKW, CHOC
 	}
 
+/* ================ */
 /* Temperate Cargos */
+/* ================ */
+
 if (selected_economy == 1) {
 
 	// Original ID
@@ -452,7 +455,7 @@ if (selected_economy == 1) {
 		}
 	}
 
-	// Original ID
+	// Original ID -- required for cargo acceptance
 	item (FEAT_CARGOS, cargo_goods, 0x05) {
 		property {
 			number:						0x05;
@@ -732,6 +735,472 @@ if (selected_economy == 1) {
 		}
 	}
 } // End Temperate cargos
+
+/* ================= */
+/* Sub-Tropic Cargos */
+/* ================= */
+
+if (selected_economy == 3) {
+	
+	// Replace passengers, keep original ID. Use cargo label "PASS" to avoid breaking vehicle refits.
+	item (FEAT_CARGOS, cargo_workers, 0x00) {
+		property {
+			number:						0x00;
+			sprite:						4297;
+			type_name:					string(STR_CARGO_NAME_WORKERS);
+			unit_name:					string(STR_CARGO_SINGULAR_WORKERS);
+			type_abbreviation:			string(STR_CARGO_ABBREV_WORKERS);
+			weight:						0.0625;
+			is_freight:					0;
+			cargo_classes:				bitmask(CC_PASSENGERS);
+			cargo_label:				"PASS";
+			town_growth_effect:			TOWNGROWTH_PASSENGERS;
+			town_growth_multiplier:		1.0;
+			units_of_cargo:				string(STR_CARGO_QUANTITY_WORKERS);
+			items_of_cargo:				string(STR_CARGO_QUANTITY_WORKERS);
+			penalty_lowerbound:			0;
+			single_penalty_length:		22;
+			station_list_colour:		152;
+			cargo_payment_list_colour:	152;
+			price_factor:				105;
+			capacity_multiplier:		4;
+		}
+	}
+
+	// Uses Coal ID
+	item (FEAT_CARGOS, cargo_rubber, 0x01) {
+		property {
+			number:						0x01;
+			sprite:						4314;
+			type_name:					TTD_STR_CARGO_PLURAL_RUBBER;
+			unit_name:					TTD_STR_CARGO_SINGULAR_RUBBER;
+			type_abbreviation:			TTD_STR_ABBREV_RUBBER;
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_LIQUID);
+			cargo_label:				"RUBR";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1;
+			units_of_cargo:				TTD_STR_LITERS;
+			items_of_cargo:				TTD_STR_QUANTITY_RUBBER;
+			penalty_lowerbound:			10;
+			single_penalty_length:		36;
+			capacity_multiplier:		1;
+			price_factor:				110;
+		}
+	}
+	
+	// Original ID, required for house compatibility.
+	item (FEAT_CARGOS, cargo_mail, 0x02) {
+		property {
+			number:						0x02;
+			sprite:						4299;
+			type_name:					TTD_STR_CARGO_PLURAL_MAIL;
+			unit_name:					TTD_STR_CARGO_SINGULAR_MAIL;
+			type_abbreviation:			TTD_STR_ABBREV_MAIL;
+			weight:						0.25;
+			is_freight:					0;
+			cargo_classes:				bitmask(CC_MAIL);
+			cargo_label:				"MAIL";
+			town_growth_effect:			TOWNGROWTH_MAIL;
+			town_growth_multiplier:		1.0;
+			units_of_cargo:				TTD_STR_BAGS;
+			items_of_cargo:				TTD_STR_QUANTITY_MAIL;
+			penalty_lowerbound:			6;
+			single_penalty_length:		24;
+			station_list_colour:		15;
+			cargo_payment_list_colour:	15;
+			price_factor:				166;
+			capacity_multiplier:		2;		
+		}
+	}
+	
+	// Cocoa beans in 0x03 Oil
+	item (FEAT_CARGOS, cargo_cocoa_beans, 0x03) {
+		property {
+			number:						0x03;
+			sprite:						4308;
+			type_name:					string(STR_CARGO_NAME_COCOA_BEANS);
+			unit_name:					string(STR_CARGO_NAME_COCOA_BEANS);
+			type_abbreviation:			string(STR_CARGO_ABBREV_COCOA_BEANS);
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_BULK, CC_COVERED);
+			cargo_label:				"COCO";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_COCOA_BEANS);
+			penalty_lowerbound:			5;
+			single_penalty_length:		30;
+			price_factor:				86;
+			capacity_multiplier:		1;
+		}
+	}
+	
+	// Animal feed in 0x04 Livestock
+	item (FEAT_CARGOS, cargo_animal_feed, 0x04) {
+		property {
+			number:						0x04;
+			sprite:						4303;
+			type_name:					string(STR_CARGO_NAME_ANIMAL_FEED);
+			unit_name:					string(STR_CARGO_NAME_ANIMAL_FEED);
+			type_abbreviation:			string(STR_CARGO_ABBREV_ANIMAL_FEED);
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_BULK);
+			cargo_label:				"GRAI";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_ANIMAL_FEED);
+			penalty_lowerbound:			4;
+			single_penalty_length:		40;
+			price_factor:				80;
+			capacity_multiplier:		1;
+		}
+	}
+	
+	// Chocolate uses Goods ID for cargo acceptance with old houses. ITL houses do not accept chocolate -- it must be exported.
+	item (FEAT_CARGOS, cargo_chocolate, 0x05) {
+		property {
+			number:						0x05;
+			sprite:						4317;
+			type_name:					string(STR_CARGO_NAME_CHOCOLATE);
+			unit_name:					string(STR_CARGO_NAME_CHOCOLATE);
+			type_abbreviation:			string(STR_CARGO_ABBREV_CHOCOLATE);
+			weight:						0.5;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_EXPRESS);
+			cargo_label:				"CHOC";
+			town_growth_effect:			TOWNGROWTH_GOODS;
+			town_growth_multiplier:		1.0;
+			units_of_cargo:				TTD_STR_CRATES;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_CHOCOLATE);
+			penalty_lowerbound:			10;
+			single_penalty_length:		64;
+			station_list_colour:		187;
+			cargo_payment_list_colour:	187;
+			price_factor:				160;
+			capacity_multiplier:		2;		
+		}
+	}
+	
+	// Sugarcane in 0x06 Grain
+	item (FEAT_CARGOS, cargo_sugarcane, 0x06) {
+		property {
+			number:						0x06;
+			sprite:						4309;
+			type_name:					string(STR_CARGO_NAME_SUGARCANE);
+			unit_name:					string(STR_CARGO_NAME_SUGARCANE);
+			type_abbreviation:			string(STR_CARGO_ABBREV_SUGARCANE);
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_BULK, CC_NON_POURABLE);
+			cargo_label:				"SGCN";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_SUGARCANE);
+			penalty_lowerbound:			5;
+			single_penalty_length:		30;
+			price_factor:				76;
+			capacity_multiplier:		1;
+		}
+	}
+	
+	// Sugar in 0x07 WOOD
+	item (FEAT_CARGOS, cargo_sugar, 0x07) {
+		property {
+			number:						0x07;
+			sprite:						4316;
+			type_name:					TTD_STR_CARGO_PLURAL_SUGAR;
+			unit_name:					TTD_STR_CARGO_SINGULAR_SUGAR;
+			type_abbreviation:			TTD_STR_ABBREV_SUGAR;
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_BULK, CC_COVERED);
+			cargo_label:				"SUGR";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				TTD_STR_QUANTITY_SUGAR;
+			penalty_lowerbound:			12;
+			single_penalty_length:		60;
+			price_factor:				102;
+			capacity_multiplier:		1;			
+		}
+	}
+	
+	// Copper ore in 0x08 Iron Ore
+	item (FEAT_CARGOS, cargo_copper_ore, 0x08) {
+		property {
+			number:						0x08;
+			sprite:						4305;
+			type_name:					TTD_STR_CARGO_PLURAL_COPPER_ORE;
+			unit_name:					TTD_STR_CARGO_PLURAL_COPPER_ORE;
+			type_abbreviation:			TTD_STR_ABBREV_COPPER_ORE;
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_BULK);
+			cargo_label:				"CORE";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				TTD_STR_QUANTITY_COPPER_ORE;
+			penalty_lowerbound:			30;
+			single_penalty_length:		255;
+			price_factor:				89;
+			capacity_multiplier:		1;				
+		}
+	}
+	
+	// Copper in 0x09 Steel
+	item (FEAT_CARGOS, cargo_copper, 0x09) {
+		property {
+			number:						0x09;
+			sprite:						4306;
+			type_name:					string(STR_CARGO_NAME_COPPER);
+			unit_name:					string(STR_CARGO_NAME_COPPER);
+			type_abbreviation:			string(STR_CARGO_ABBREV_COPPER);
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_PIECE_GOODS);
+			cargo_label:				"COPR";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_COPPER);
+			penalty_lowerbound:			7;
+			single_penalty_length:		255;
+			price_factor:				146;
+			capacity_multiplier:		1;				
+		}
+	}
+	
+	// Diamonds in 0x0A Diamonds
+	item (FEAT_CARGOS, cargo_diamonds, 0x0A) {
+		property {
+			number:						0x0A;
+			sprite:						4311;
+			type_name:					TTD_STR_CARGO_PLURAL_DIAMONDS;
+			unit_name:					TTD_STR_CARGO_SINGULAR_DIAMOND;
+			type_abbreviation:			TTD_STR_ABBREV_DIAMONDS;
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_ARMOURED);
+			cargo_label:				"DIAM";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				TTD_STR_QUANTITY_DIAMONDS;
+			penalty_lowerbound:			30;
+			single_penalty_length:		255;
+			price_factor:				172;
+			capacity_multiplier:		1;				
+		}
+	}
+	
+	// Oil in 0x0B Paper	
+	item (FEAT_CARGOS, cargo_tropic_oil, 0x0B) {
+		property {
+			number:						0x0B;
+			sprite:						4300;
+			type_name:					TTD_STR_CARGO_PLURAL_OIL;
+			unit_name:					TTD_STR_CARGO_SINGULAR_OIL;
+			type_abbreviation:			TTD_STR_ABBREV_OIL;
+			weight:						0.9;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_LIQUID);
+			cargo_label:				"OIL_";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_LITERS;
+			items_of_cargo:				TTD_STR_QUANTITY_OIL;
+			penalty_lowerbound:			30;
+			single_penalty_length:		255;
+			station_list_colour:		171;
+			cargo_payment_list_colour:	171;
+			price_factor:				72;
+			capacity_multiplier:		1;		
+		}
+	}
+	
+	// Original ID, required for compatibility with older NewGRF house sets which hard-code cargo acceptance to cargo IDs rather than "FOOD"
+	item (FEAT_CARGOS, cargo_food, 0x0C) {
+		property {
+			number:						0x0C;
+			sprite:						4312;
+			type_name:					TTD_STR_CARGO_PLURAL_FOOD;
+			unit_name:					TTD_STR_CARGO_SINGULAR_FOOD;
+			type_abbreviation:			TTD_STR_ABBREV_FOOD;
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_REFRIGERATED, CC_EXPRESS);
+			cargo_label:				"FOOD";
+			town_growth_effect:			TOWNGROWTH_FOOD;
+			town_growth_multiplier:		1.0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				TTD_STR_QUANTITY_FOOD;
+			penalty_lowerbound:			0;
+			single_penalty_length:		24;
+			station_list_colour:		48;
+			cargo_payment_list_colour:	48;
+			price_factor:				158;
+			capacity_multiplier:		1;		
+		}
+	}
+	
+	// Milk in 0x0D Fruit
+	item (FEAT_CARGOS, cargo_milk, 0x0D) {
+		property {
+			number:						0x0D;
+			sprite:						4310;
+			type_name:					string(STR_CARGO_NAME_MILK);
+			unit_name:					string(STR_CARGO_NAME_MILK);
+			type_abbreviation:			string(STR_CARGO_ABBREV_MILK);
+			weight:						1.1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_REFRIGERATED, CC_EXPRESS, CC_LIQUID);
+			cargo_label:				"MILK";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1.0;
+			units_of_cargo:				TTD_STR_LITERS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_MILK);
+			penalty_lowerbound:			0;
+			single_penalty_length:		16;
+			station_list_colour:		48;
+			cargo_payment_list_colour:	48;
+			price_factor:				131;
+			capacity_multiplier:		1;		
+		}
+	}	
+	
+	// Pipe in 0x0E Copper Ore
+	item (FEAT_CARGOS, cargo_pipe, 0x0E) {
+		property {
+			number:						0x0E;
+			sprite:						4304;
+			type_name:					string(STR_CARGO_NAME_PIPE);
+			unit_name:					string(STR_CARGO_NAME_PIPE);
+			type_abbreviation:			string(STR_CARGO_ABBREV_PIPE);
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_PIECE_GOODS);
+			cargo_label:				"PIPE";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1.0;
+			units_of_cargo:				TTD_STR_LITERS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_PIPE);
+			penalty_lowerbound:			30;
+			single_penalty_length:		42;
+			station_list_colour:		48;
+			cargo_payment_list_colour:	48;
+			price_factor:				144;
+			capacity_multiplier:		1;		
+		}
+	}
+	
+	// Machinery in 0x0F Water
+	item (FEAT_CARGOS, cargo_machinery, 0x0F) {
+		property {
+			number:						0x0F;
+			sprite:						4202;
+			type_name:					string(STR_CARGO_NAME_MACHINERY);
+			unit_name:					string(STR_CARGO_NAME_MACHINERY);
+			type_abbreviation:			string(STR_CARGO_ABBREV_MACHINERY);
+			weight:						0.65;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_EXPRESS, CC_PIECE_GOODS);
+			cargo_label:				"ENSP";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1.0;
+			units_of_cargo:				TTD_STR_CRATES;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_MACHINERY);
+			penalty_lowerbound:			2;
+			single_penalty_length:		32;
+			station_list_colour:		48;
+			cargo_payment_list_colour:	48;
+			price_factor:				152;
+			capacity_multiplier:		1;		
+		}
+	}
+	
+	// Fertilizer in 0x10 Rubber
+	item (FEAT_CARGOS, cargo_fertilizer, 0x10) {
+		property {
+			number:						0x10;
+			sprite:						4322;
+			type_name:					string(STR_CARGO_NAME_FERTILIZER);
+			unit_name:					string(STR_CARGO_NAME_FERTILIZER);
+			type_abbreviation:			string(STR_CARGO_ABBREV_FERTILIZER);
+			weight:						1;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_PIECE_GOODS, CC_BULK, CC_COVERED);
+			cargo_label:				"FERT";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		1.0;
+			units_of_cargo:				TTD_STR_TONS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_FERTILIZER);
+			penalty_lowerbound:			22;
+			single_penalty_length:		44;
+			station_list_colour:		48;
+			cargo_payment_list_colour:	48;
+			price_factor:				123;
+			capacity_multiplier:		1;		
+		}
+	}
+	
+	// Petroleum in 0x11 Sugar
+	item (FEAT_CARGOS, cargo_petroleum, 0x11) {
+		property {
+			number:						0x11;
+			sprite:						4320;
+			type_name:					string(STR_CARGO_NAME_PETROLEUM);
+			unit_name:					string(STR_CARGO_NAME_PETROLEUM);
+			type_abbreviation:			string(STR_CARGO_ABBREV_PETROLEUM);
+			weight:						0.9;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_LIQUID);
+			cargo_label:				"PETR";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_LITERS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_PETROLEUM);
+			penalty_lowerbound:			18;
+			single_penalty_length:		255;
+			station_list_colour:		171;
+			cargo_payment_list_colour:	171;
+			price_factor:				138;
+			capacity_multiplier:		1;		
+		}
+	}
+	
+	// Fuel in 0x12 Toys
+	item (FEAT_CARGOS, cargo_fuel, 0x12) {
+		property {
+			number:						0x12;
+			sprite:						4323;
+			type_name:					string(STR_CARGO_NAME_FUEL);
+			unit_name:					string(STR_CARGO_NAME_FUEL);
+			type_abbreviation:			string(STR_CARGO_ABBREV_FUEL);
+			weight:						0.8;
+			is_freight:					1;
+			cargo_classes:				bitmask(CC_LIQUID);
+			cargo_label:				"FUEL";
+			town_growth_effect:			TOWNGROWTH_NONE;
+			town_growth_multiplier:		0;
+			units_of_cargo:				TTD_STR_LITERS;
+			items_of_cargo:				string(STR_CARGO_QUANTITY_FUEL);
+			penalty_lowerbound:			32;
+			single_penalty_length:		44;
+			station_list_colour:		171;
+			cargo_payment_list_colour:	171;
+			price_factor:				120;
+			capacity_multiplier:		1;		
+		}
+	}
+}
 
 /* *** End Cargos *** */
 

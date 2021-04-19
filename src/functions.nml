@@ -15,7 +15,7 @@ if (climate == CLIMATE_TEMPERATE) {
 } else if (climate == CLIMATE_ARCTIC) {
 	selected_economy = 1;
 } else if (climate == CLIMATE_TROPIC) {
-	selected_economy = 1;
+	selected_economy = 3;
 } else if (climate == CLIMATE_TOYLAND) {
 	selected_economy = 1;
 }
