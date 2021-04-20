@@ -119,107 +119,108 @@ switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_prospected, extra_callba
 switch (FEAT_INDUSTRIES, SELF, switch_power_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_power_plant_allow_prospected;}
 
-/* Power Plant industry */
-item (FEAT_INDUSTRIES, industry_power_plant, 2) {
-	property {
-		substitute:				INDUSTRYTYPE_POWER_PLANT;
-		life_type:				IND_LIFE_TYPE_PROCESSING;
-		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types: [ 
-				accept_cargo("COAL", produce_cargo("PASS",0.25)),
-				accept_cargo("OIL_", produce_cargo("PASS",0.25)), 
-				accept_cargo("WSTE", produce_cargo("PASS",0.25)),
-				accept_cargo("NUKF", produce_cargo("NUKW",0.5), produce_cargo("PASS",0.5)),
-			];
-		name:					string(STR_NAME_POWER_PLANT);
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
-		fund_cost_multiplier:	27;
-		layouts:				[
-			industry_layout_power_plant_1,
-			industry_layout_power_plant_2,
-			industry_layout_power_plant_4,
-			industry_layout_power_plant_5,
-			];
-		map_colour:				208;
-		conflicting_ind_types:	[industry_coal_mine, industry_farm];
+/* Temperate industry */
+if (selected_economy == 1) {
+	item (FEAT_INDUSTRIES, industry_power_plant, 2) {
+		property {
+			substitute:				INDUSTRYTYPE_POWER_PLANT;
+			life_type:				IND_LIFE_TYPE_PROCESSING;
+			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
+			cargo_types: [ 
+					accept_cargo("COAL", produce_cargo("PASS",0.25)),
+					accept_cargo("OIL_", produce_cargo("PASS",0.25)), 
+					accept_cargo("WSTE", produce_cargo("PASS",0.25)),
+					accept_cargo("NUKF", produce_cargo("NUKW",0.5), produce_cargo("PASS",0.5)),
+				];
+			name:					string(STR_NAME_POWER_PLANT);
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
+			fund_cost_multiplier:	27;
+			layouts:				[
+				industry_layout_power_plant_1,
+				industry_layout_power_plant_2,
+				industry_layout_power_plant_4,
+				industry_layout_power_plant_5,
+				];
+			map_colour:				208;
+			conflicting_ind_types:	[industry_coal_mine, industry_farm];
+		}
+		graphics {
+			location_check:			switch_power_plant_allow_funded;
+			construction_probability:	(current_year >= 1882) ? 3 : 0;
+			extra_text_fund:		string(STR_FUND_AVAILABLE, "1882");
+		}
 	}
-	graphics {
-		location_check:			switch_power_plant_allow_funded;
-		construction_probability:	(current_year >= 1882) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE, "1882");
-	}
-}
 
+	item (FEAT_OBJECTS, object_item_power_plant_1) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_POWER_PLANT);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1900;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_power_plant_1;
+		}
+	}
 
-item (FEAT_OBJECTS, object_item_power_plant_1) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_POWER_PLANT);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1900;
-		num_views:				1;
+	item (FEAT_OBJECTS, object_item_power_plant_2) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_POWER_PLANT);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1900;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_power_plant_2;
+		}
 	}
-	graphics {
-		default:				sprlay_power_plant_1;
-	}
-}
 
-item (FEAT_OBJECTS, object_item_power_plant_2) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_POWER_PLANT);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1900;
-		num_views:				1;
+	item (FEAT_OBJECTS, object_item_power_plant_3) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_POWER_PLANT);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1900;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_power_plant_3;
+		}
 	}
-	graphics {
-		default:				sprlay_power_plant_2;
-	}
-}
 
-item (FEAT_OBJECTS, object_item_power_plant_3) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_POWER_PLANT);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1900;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_power_plant_3;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_power_plant_4) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_POWER_PLANT);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1900;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_power_plant_4;
+	item (FEAT_OBJECTS, object_item_power_plant_4) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					string(STR_NAME_POWER_PLANT);
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1900;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_power_plant_4;
+		}
 	}
 }
 

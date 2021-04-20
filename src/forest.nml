@@ -36,113 +36,115 @@ switch (FEAT_INDUSTRIES, PARENT, switch_forest_location_check_2, STORE_TEMP(town
 switch (FEAT_INDUSTRIES, SELF, switch_forest_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_forest_location_check_2;}
 
-item (FEAT_INDUSTRIES, industry_forest, 11) {
-	property {
-		substitute:				INDUSTRYTYPE_FOREST;
-		life_type:				IND_LIFE_TYPE_ORGANIC;
-		cargo_types:			[produce_cargo("WOOD",13),];
-		name:					TTD_STR_INDUSTRY_NAME_FOREST;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
-		fund_cost_multiplier:	62;
-		conflicting_ind_types:	[industry_sawmill, industry_paper_mill, industry_farm];
+/* Temperate industry */
+if (selected_economy == 1) {
+	item (FEAT_INDUSTRIES, industry_forest, 11) {
+		property {
+			substitute:				INDUSTRYTYPE_FOREST;
+			life_type:				IND_LIFE_TYPE_ORGANIC;
+			cargo_types:			[produce_cargo("WOOD",13),];
+			name:					TTD_STR_INDUSTRY_NAME_FOREST;
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
+			fund_cost_multiplier:	62;
+			conflicting_ind_types:	[industry_sawmill, industry_paper_mill, industry_farm];
+		}
+		graphics {
+			location_check:			switch_forest_allow_funded;
+			construction_probability:	15;
+		}
 	}
-	graphics {
-		location_check:			switch_forest_allow_funded;
-		construction_probability:	15;
+
+	/* Forest objects */
+
+	item (FEAT_OBJECTS, object_item_forest_grow_1) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_FOREST;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_forest_grow_1;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_forest_grow_2) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_FOREST;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_forest_grow_2;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_forest_grow_3) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_FOREST;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_forest_grow_3;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_forest_grown) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_FOREST;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_forest_grown;
+		}
+	}
+
+	item (FEAT_OBJECTS, object_item_forest_cut) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_FOREST;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_forest_cut;
+		}
 	}
 }
-
-/* Forest objects */
-
-item (FEAT_OBJECTS, object_item_forest_grow_1) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_FOREST;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_forest_grow_1;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_forest_grow_2) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_FOREST;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_forest_grow_2;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_forest_grow_3) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_FOREST;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_forest_grow_3;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_forest_grown) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_FOREST;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_forest_grown;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_forest_cut) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_FOREST;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_forest_cut;
-	}
-}
-
 
 /* *** End Forest *** */

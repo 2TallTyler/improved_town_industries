@@ -138,133 +138,136 @@ switch (FEAT_INDUSTRIES, SELF, switch_sawmill_allow_prospected, extra_callback_i
 switch (FEAT_INDUSTRIES, SELF, switch_sawmill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_sawmill_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_sawmill, 6) {
-	property {
-		substitute:				INDUSTRYTYPE_SAWMILL;
-		life_type:				IND_LIFE_TYPE_PROCESSING;
-		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types:			[accept_cargo("WOOD", produce_cargo("WDPR",1), produce_cargo("PASS",0.25)),];
-		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_SAWMILL));
-		fund_cost_multiplier:	20;
-		layouts:				[
-			industry_layout_sawmill_1,
-			industry_layout_sawmill_2,
-			industry_layout_sawmill_3,
-		];
-		conflicting_ind_types:	[industry_forest, industry_farm];
+/* Temperate industry */
+if (selected_economy == 1) {
+	item (FEAT_INDUSTRIES, industry_sawmill, 6) {
+		property {
+			substitute:				INDUSTRYTYPE_SAWMILL;
+			life_type:				IND_LIFE_TYPE_PROCESSING;
+			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
+			cargo_types:			[accept_cargo("WOOD", produce_cargo("WDPR",1), produce_cargo("PASS",0.25)),];
+			name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_SAWMILL));
+			fund_cost_multiplier:	20;
+			layouts:				[
+				industry_layout_sawmill_1,
+				industry_layout_sawmill_2,
+				industry_layout_sawmill_3,
+			];
+			conflicting_ind_types:	[industry_forest, industry_farm];
+		}
+		graphics {
+			location_check:			switch_sawmill_allow_funded;
+			construction_probability:	(current_year >= 1800) ? 9 : 0;
+			extra_text_fund:		string(STR_FUND_AVAILABLE, "1800");
+		}
 	}
-	graphics {
-		location_check:			switch_sawmill_allow_funded;
-		construction_probability:	(current_year >= 1800) ? 9 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE, "1800");
-	}
-}
 
-item (FEAT_OBJECTS, object_item_sawmill_1) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
+	item (FEAT_OBJECTS, object_item_sawmill_1) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_sawmill_1;
+		}
 	}
-	graphics {
-		default:				sprlay_sawmill_1;
-	}
-}
 
-item (FEAT_OBJECTS, object_item_sawmill_2) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
+	item (FEAT_OBJECTS, object_item_sawmill_2) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_sawmill_2;
+		}
 	}
-	graphics {
-		default:				sprlay_sawmill_2;
-	}
-}
 
-item (FEAT_OBJECTS, object_item_sawmill_3) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
+	item (FEAT_OBJECTS, object_item_sawmill_3) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_sawmill_3;
+		}
 	}
-	graphics {
-		default:				sprlay_sawmill_3;
-	}
-}
 
-item (FEAT_OBJECTS, object_item_sawmill_4) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
+	item (FEAT_OBJECTS, object_item_sawmill_4) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_sawmill_4;
+		}
 	}
-	graphics {
-		default:				sprlay_sawmill_4;
-	}
-}
 
-item (FEAT_OBJECTS, object_item_sawmill_5) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
+	item (FEAT_OBJECTS, object_item_sawmill_5) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_sawmill_5;
+		}
 	}
-	graphics {
-		default:				sprlay_sawmill_5;
-	}
-}
-item (FEAT_OBJECTS, object_item_sawmill_6) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE,OBJ_FLAG_ALLOW_BRIDGE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_sawmill_6;
+	item (FEAT_OBJECTS, object_item_sawmill_6) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_SAWMILL;
+			climates_available:		ALL_CLIMATES;
+			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE,OBJ_FLAG_ALLOW_BRIDGE);
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[1,1];
+			introduction_date:		1700;
+			num_views:				1;
+		}
+		graphics {
+			default:				sprlay_sawmill_6;
+		}
 	}
 }
 

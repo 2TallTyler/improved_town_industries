@@ -218,168 +218,171 @@ switch (FEAT_INDUSTRIES, SELF, switch_recycling_center_allow_funded, extra_callb
 
 /* Define industry and objects only if Waste & Recycling chain is active. Check parameter only and rely on error message to catch a lack of compatible house sets. */
 
-if (param_recyclables == 1) {	
-	item (FEAT_INDUSTRIES, industry_recycling_center, 10) {
-		property {
-			substitute:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
-			override:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
-			life_type:				IND_LIFE_TYPE_PROCESSING;
-			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-			cargo_types:			[
-				accept_cargo("WSTE", produce_cargo("RCYC",1), produce_cargo("PASS",0.25)),
-			];
-			name:					string(STR_NAME_RECYCLING_CENTER);
-			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_RECYCLING_CENTER));
-			prob_map_gen:			5;
-			prob_in_game:			3;
-			map_colour:				139;
-			fund_cost_multiplier:	31;
-			layouts:				[
-				industry_layout_recycling_center_1,
-				industry_layout_recycling_center_2,
-				industry_layout_recycling_center_3,
-			];
-			conflicting_ind_types:	[industry_farm];
+/* Temperate industry */
+if (selected_economy == 1) {
+	if (param_recyclables == 1) {	
+		item (FEAT_INDUSTRIES, industry_recycling_center, 10) {
+			property {
+				substitute:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
+				override:				INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
+				life_type:				IND_LIFE_TYPE_PROCESSING;
+				spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
+				cargo_types:			[
+					accept_cargo("WSTE", produce_cargo("RCYC",1), produce_cargo("PASS",0.25)),
+				];
+				name:					string(STR_NAME_RECYCLING_CENTER);
+				nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_RECYCLING_CENTER));
+				prob_map_gen:			5;
+				prob_in_game:			3;
+				map_colour:				139;
+				fund_cost_multiplier:	31;
+				layouts:				[
+					industry_layout_recycling_center_1,
+					industry_layout_recycling_center_2,
+					industry_layout_recycling_center_3,
+				];
+				conflicting_ind_types:	[industry_farm];
+			}
+			graphics {
+				location_check:			switch_recycling_center_allow_funded;
+				colour:					COLOUR_MAUVE;
+				construction_probability:	(current_year >= 1945) ? 6 : 0;
+				extra_text_fund:		string(STR_FUND_AVAILABLE, "1945");
+			}
 		}
-		graphics {
-			location_check:			switch_recycling_center_allow_funded;
-			colour:					COLOUR_MAUVE;
-			construction_probability:	(current_year >= 1945) ? 6 : 0;
-			extra_text_fund:		string(STR_FUND_AVAILABLE, "1945");
-		}
-	}
-	
+		
 
-	item (FEAT_OBJECTS, object_item_recycling_center_1) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_RECYCLING_CENTER);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1945;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_recycling_center_1) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_RECYCLING_CENTER);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1945;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_recycling_center_shed;
+				colour:					COLOUR_MAUVE;
+			}
 		}
-		graphics {
-			default:				sprlay_recycling_center_shed;
-			colour:					COLOUR_MAUVE;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_recycling_center_2) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_RECYCLING_CENTER);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1945;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_recycling_center_2) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_RECYCLING_CENTER);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1945;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_recycling_center_dock;
+				colour:					COLOUR_MAUVE;
+			}
 		}
-		graphics {
-			default:				sprlay_recycling_center_dock;
-			colour:					COLOUR_MAUVE;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_recycling_center_3) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_RECYCLING_CENTER);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1945;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_recycling_center_3) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_RECYCLING_CENTER);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1945;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_recycling_center_silo;
+				colour:					COLOUR_MAUVE;
+			}
 		}
-		graphics {
-			default:				sprlay_recycling_center_silo;
-			colour:					COLOUR_MAUVE;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_recycling_center_4) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_RECYCLING_CENTER);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1945;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_recycling_center_4) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_RECYCLING_CENTER);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1945;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_recycling_center_yard;
+				colour:					COLOUR_MAUVE;
+			}
 		}
-		graphics {
-			default:				sprlay_recycling_center_yard;
-			colour:					COLOUR_MAUVE;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_recycling_center_5) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_RECYCLING_CENTER);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1945;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_recycling_center_5) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_RECYCLING_CENTER);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1945;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_recycling_center_pumps_box;
+				colour:					COLOUR_MAUVE;
+			}
 		}
-		graphics {
-			default:				sprlay_recycling_center_pumps_box;
-			colour:					COLOUR_MAUVE;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_recycling_center_6) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_RECYCLING_CENTER);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1945;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_recycling_center_6) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_RECYCLING_CENTER);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1945;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_recycling_center_pumps_reflector;
+				colour:					COLOUR_MAUVE;
+			}
 		}
-		graphics {
-			default:				sprlay_recycling_center_pumps_reflector;
-			colour:					COLOUR_MAUVE;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_recycling_center_7) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_RECYCLING_CENTER);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1945;
-			num_views:				1;
-		}
-		graphics {
-			default:				sprlay_recycling_center_silos;
-			colour:					COLOUR_MAUVE;
+		item (FEAT_OBJECTS, object_item_recycling_center_7) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_RECYCLING_CENTER);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1945;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_recycling_center_silos;
+				colour:					COLOUR_MAUVE;
+			}
 		}
 	}
 }

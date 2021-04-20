@@ -131,25 +131,28 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_location_check_1, nearby_tile_he
 switch (FEAT_INDUSTRIES, SELF, switch_oil_wells_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_wells_location_check_1;}
 
-item (FEAT_INDUSTRIES, industry_oil_wells, 8) {
-	property {
-		substitute:				INDUSTRYTYPE_OIL_WELLS;
-		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
-		cargo_types:			[
-								produce_cargo("OIL_",12),
-		];
-		name:					TTD_STR_INDUSTRY_NAME_OIL_WELLS;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_WELLS));
-		fund_cost_multiplier:	139;
-		layouts:				[industry_layout_oil_wells_1, industry_layout_oil_wells_2,];
-		map_colour:				152;
-		spec_flags:				0;
-		conflicting_ind_types:	[industry_oil_refinery, industry_farm];
-	}
-	graphics {
-		location_check:			switch_oil_wells_allow_funded;
-		construction_probability:	(current_year >= 1900) ? 15 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE, "1900");
+/* Temperate industry */
+if (selected_economy == 1) {
+	item (FEAT_INDUSTRIES, industry_oil_wells, 8) {
+		property {
+			substitute:				INDUSTRYTYPE_OIL_WELLS;
+			life_type:				IND_LIFE_TYPE_EXTRACTIVE;
+			cargo_types:			[
+									produce_cargo("OIL_",12),
+			];
+			name:					TTD_STR_INDUSTRY_NAME_OIL_WELLS;
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_WELLS));
+			fund_cost_multiplier:	139;
+			layouts:				[industry_layout_oil_wells_1, industry_layout_oil_wells_2,];
+			map_colour:				152;
+			spec_flags:				0;
+			conflicting_ind_types:	[industry_oil_refinery, industry_farm];
+		}
+		graphics {
+			location_check:			switch_oil_wells_allow_funded;
+			construction_probability:	(current_year >= 1900) ? 15 : 0;
+			extra_text_fund:		string(STR_FUND_AVAILABLE, "1900");
+		}
 	}
 }
 

@@ -80,24 +80,27 @@ tilelayout industry_layout_iron_mine {
 	3,0:	ind_tile_iron_mine_30;	3,1:	ind_tile_iron_mine_31;	3,2:	ind_tile_iron_mine_32;	3,3:	ind_tile_iron_mine_33;
 }
 
-item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
-	property {
-		substitute:				INDUSTRYTYPE_IRON_ORE_MINE;
-		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
-		spec_flags:				0;
-		cargo_types:			[
-								produce_cargo("IORE",15),
-								produce_cargo("PASS",8),
-		];
-		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));
-		fund_cost_multiplier:	75;
-		layouts:				[industry_layout_iron_mine,];
-		conflicting_ind_types:	[industry_steel_mill, industry_farm];
-	}
-	graphics {
-		construction_probability:	(current_year >= 1856) ? 15 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE, "1856");
+/* Temperate industry */
+if (selected_economy == 1) {
+	item (FEAT_INDUSTRIES, industry_iron_mine, 3) {
+		property {
+			substitute:				INDUSTRYTYPE_IRON_ORE_MINE;
+			life_type:				IND_LIFE_TYPE_EXTRACTIVE;
+			spec_flags:				0;
+			cargo_types:			[
+									produce_cargo("IORE",15),
+									produce_cargo("PASS",8),
+			];
+			name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));
+			fund_cost_multiplier:	75;
+			layouts:				[industry_layout_iron_mine,];
+			conflicting_ind_types:	[industry_steel_mill, industry_farm];
+		}
+		graphics {
+			construction_probability:	(current_year >= 1856) ? 15 : 0;
+			extra_text_fund:		string(STR_FUND_AVAILABLE, "1856");
+		}
 	}
 }
 
@@ -125,20 +128,23 @@ switch (FEAT_OBJECTS, SELF, switch_object_graphics_iron_mine, relative_pos) {
 	relative_coord(3,3): sprlay_iron_mine_33;
 }
 
-item (FEAT_OBJECTS, object_item_iron_mine) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
-		climates_available:		ALL_CLIMATES;
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[4,4];
-		introduction_date:		1856;
-		num_views:				1;
-	}
-	graphics {
-		default:				switch_object_graphics_iron_mine;
+/* Temperate industry objects */
+if (selected_economy == 1) {
+	item (FEAT_OBJECTS, object_item_iron_mine) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
+			climates_available:		ALL_CLIMATES;
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[4,4];
+			introduction_date:		1856;
+			num_views:				1;
+		}
+		graphics {
+			default:				switch_object_graphics_iron_mine;
+		}
 	}
 }
 

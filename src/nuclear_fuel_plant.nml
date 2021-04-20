@@ -134,139 +134,142 @@ switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_allow_prospected, extra
 switch (FEAT_INDUSTRIES, SELF, switch_nuclear_fuel_plant_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_nuclear_fuel_plant_allow_prospected;}
 
-if (param_nuclear == 1) {
-	item (FEAT_INDUSTRIES, industry_nuclear_fuel_plant, 14) {
-		property {
-			substitute:				INDUSTRYTYPE_PAPER_MILL;
-			life_type:				IND_LIFE_TYPE_PROCESSING;
-			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-			cargo_types:			[
-				accept_cargo("URAN", produce_cargo("NUKF",0.5), produce_cargo("PASS",0.25)),
-				accept_cargo("NUKW", produce_cargo("NUKF",0.75), produce_cargo("PASS",2)),
-			];
-			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_NUCLEAR_FUEL_PLANT));
-			fund_cost_multiplier:	255;
-			map_colour: 			39;
-			layouts: [
-				industry_layout_nuclear_fuel_plant_1,
-			];
-			conflicting_ind_types:	[industry_uranium_mine, industry_power_plant, industry_farm];
+/* Temperate industry */
+if (selected_economy == 1) {
+	if (param_nuclear == 1) {
+		item (FEAT_INDUSTRIES, industry_nuclear_fuel_plant, 14) {
+			property {
+				substitute:				INDUSTRYTYPE_PAPER_MILL;
+				life_type:				IND_LIFE_TYPE_PROCESSING;
+				spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
+				cargo_types:			[
+					accept_cargo("URAN", produce_cargo("NUKF",0.5), produce_cargo("PASS",0.25)),
+					accept_cargo("NUKW", produce_cargo("NUKF",0.75), produce_cargo("PASS",2)),
+				];
+				name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+				nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_NUCLEAR_FUEL_PLANT));
+				fund_cost_multiplier:	255;
+				map_colour: 			39;
+				layouts: [
+					industry_layout_nuclear_fuel_plant_1,
+				];
+				conflicting_ind_types:	[industry_uranium_mine, industry_power_plant, industry_farm];
+			}
+			graphics {
+				location_check:			switch_nuclear_fuel_plant_allow_funded;
+				construction_probability:	(current_year >= 1956) ? 1 : 0;
+				extra_text_fund:			string(STR_FUND_AVAILABLE, "1956");
+			}
 		}
-		graphics {
-			location_check:			switch_nuclear_fuel_plant_allow_funded;
-			construction_probability:	(current_year >= 1956) ? 1 : 0;
-			extra_text_fund:			string(STR_FUND_AVAILABLE, "1956");
-		}
-	}
 
-	/* Objects */
+		/* Objects */
 
-	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_yard) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1956;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_yard) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1956;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_nuclear_fuel_plant_yard;
+			}
 		}
-		graphics {
-			default:				sprlay_nuclear_fuel_plant_yard;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_closed) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1956;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_closed) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1956;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_nuclear_fuel_plant_closed;
+			}
 		}
-		graphics {
-			default:				sprlay_nuclear_fuel_plant_closed;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_open) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1956;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_open) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1956;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_nuclear_fuel_plant_open;
+			}
 		}
-		graphics {
-			default:				sprlay_nuclear_fuel_plant_open;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_stack) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1956;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_stack) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1956;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_nuclear_fuel_plant_stack;
+			}
 		}
-		graphics {
-			default:				sprlay_nuclear_fuel_plant_stack;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_canopy) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1956;
-			num_views:				1;
+		item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_canopy) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1956;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_nuclear_fuel_plant_canopy;
+			}
 		}
-		graphics {
-			default:				sprlay_nuclear_fuel_plant_canopy;
-		}
-	}
 
-	item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_mill) {
-		property {
-			class:					"HSIN";
-			classname:				string(STR_NAME_OBJECT_MENU);
-			name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
-			climates_available:		ALL_CLIMATES;
-			object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-			build_cost_multiplier:	0;
-			remove_cost_multiplier:	0;
-			size:					[1,1];
-			introduction_date:		1956;
-			num_views:				1;
-		}
-		graphics {
-			default:				sprlay_nuclear_fuel_plant_mill;
+		item (FEAT_OBJECTS, object_item_nuclear_fuel_plant_mill) {
+			property {
+				class:					"HSIN";
+				classname:				string(STR_NAME_OBJECT_MENU);
+				name:					string(STR_NAME_NUCLEAR_FUEL_PLANT);
+				climates_available:		ALL_CLIMATES;
+				object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+				build_cost_multiplier:	0;
+				remove_cost_multiplier:	0;
+				size:					[1,1];
+				introduction_date:		1956;
+				num_views:				1;
+			}
+			graphics {
+				default:				sprlay_nuclear_fuel_plant_mill;
+			}
 		}
 	}
 }

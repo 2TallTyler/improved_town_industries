@@ -230,36 +230,39 @@ switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_prospected, extra_callback_i
 switch (FEAT_INDUSTRIES, SELF, switch_factory_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_factory_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_factory, 5) {
-	property {
-		substitute:				INDUSTRYTYPE_TEMPERATE_FACTORY;
-		life_type:				IND_LIFE_TYPE_PROCESSING;
-		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types:			[
-								accept_cargo("STEL", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("WDPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("FOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-		];
-		name:					TTD_STR_INDUSTRY_NAME_FACTORY;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
-		fund_cost_multiplier:	40;
-		layouts:				[
-				industry_layout_factory_2x2, 
-				industry_layout_factory_1x2, 
-				industry_layout_factory_2x1,
-				industry_layout_factory_3x2,
-				industry_layout_factory_C,
-				industry_layout_factory_L,
+/* Temperate industry */
+if (selected_economy == 1) {
+	item (FEAT_INDUSTRIES, industry_factory, 5) {
+		property {
+			substitute:				INDUSTRYTYPE_TEMPERATE_FACTORY;
+			life_type:				IND_LIFE_TYPE_PROCESSING;
+			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
+			cargo_types:			[
+									accept_cargo("STEL", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+									accept_cargo("WDPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+									accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+									accept_cargo("FOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+									accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
 			];
-		conflicting_ind_types:	[industry_farm];
-	}
-	graphics {
-		location_check:			switch_factory_allow_funded;
-		colour:					COLOUR_PALE_GREEN;
-		construction_probability:	(current_year >= 1800) ? 9 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE, "1800");
+			name:					TTD_STR_INDUSTRY_NAME_FACTORY;
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
+			fund_cost_multiplier:	40;
+			layouts:				[
+					industry_layout_factory_2x2, 
+					industry_layout_factory_1x2, 
+					industry_layout_factory_2x1,
+					industry_layout_factory_3x2,
+					industry_layout_factory_C,
+					industry_layout_factory_L,
+				];
+			conflicting_ind_types:	[industry_farm];
+		}
+		graphics {
+			location_check:			switch_factory_allow_funded;
+			colour:					COLOUR_PALE_GREEN;
+			construction_probability:	(current_year >= 1800) ? 9 : 0;
+			extra_text_fund:		string(STR_FUND_AVAILABLE, "1800");
+		}
 	}
 }
 

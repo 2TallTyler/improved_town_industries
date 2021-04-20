@@ -76,26 +76,29 @@ tilelayout industry_layout_uranium_mine {
 	3,0:	ind_tile_uranium_mine_84;	3,1:	ind_tile_uranium_mine_85;	3,2:	ind_tile_uranium_mine_86;	3,3:	ind_tile_uranium_mine_87;
 }
 
-if (param_nuclear == 1) {
-	item (FEAT_INDUSTRIES, industry_uranium_mine, 13) {
-		property {
-			substitute:				INDUSTRYTYPE_GOLD_MINE;
-			life_type:				IND_LIFE_TYPE_EXTRACTIVE;
-			cargo_types:
-				[
-					produce_cargo("URAN",13),
-					accept_cargo("RFPR", produce_cargo("URAN",1), produce_cargo("PASS",0.25)),
-			];
-			name:					string(STR_NAME_URANIUM_MINE);
-			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_URANIUM_MINE));
-			fund_cost_multiplier:	240;
-			layouts:				[industry_layout_uranium_mine,];
-			map_colour:				102;
-			conflicting_ind_types:	[industry_nuclear_fuel_plant, industry_farm];
-		}
-		graphics {
-			construction_probability:	(current_year >= 1956) ? 1 : 0;
-			extra_text_fund:			string(STR_FUND_AVAILABLE, "1956");
+/* Temperate industry */
+if (selected_economy == 1) {
+	if (param_nuclear == 1) {
+		item (FEAT_INDUSTRIES, industry_uranium_mine, 13) {
+			property {
+				substitute:				INDUSTRYTYPE_GOLD_MINE;
+				life_type:				IND_LIFE_TYPE_EXTRACTIVE;
+				cargo_types:
+					[
+						produce_cargo("URAN",13),
+						accept_cargo("RFPR", produce_cargo("URAN",1), produce_cargo("PASS",0.25)),
+				];
+				name:					string(STR_NAME_URANIUM_MINE);
+				nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_URANIUM_MINE));
+				fund_cost_multiplier:	240;
+				layouts:				[industry_layout_uranium_mine,];
+				map_colour:				102;
+				conflicting_ind_types:	[industry_nuclear_fuel_plant, industry_farm];
+			}
+			graphics {
+				construction_probability:	(current_year >= 1956) ? 1 : 0;
+				extra_text_fund:			string(STR_FUND_AVAILABLE, "1956");
+			}
 		}
 	}
 }

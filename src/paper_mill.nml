@@ -193,34 +193,37 @@ switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_prospected, extra_callbac
 switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_paper_mill_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
-	property {
-		substitute:				INDUSTRYTYPE_PAPER_MILL;
-		life_type:				IND_LIFE_TYPE_PROCESSING;
-		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types:			[
-								accept_cargo("WOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-		];
-		name:					TTD_STR_INDUSTRY_NAME_PAPER_MILL;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
-		prob_map_gen:			1;
-		prob_in_game:			1;
-		fund_cost_multiplier:	90;
-		map_colour:				184;
-		layouts:				[
-			industry_layout_paper_mill_1,
-			industry_layout_paper_mill_2,
-			industry_layout_paper_mill_3,
-		];
-		conflicting_ind_types:	[industry_forest, industry_farm];
-	}
-	graphics {
-		location_check:			switch_paper_mill_allow_funded;
-		construction_probability:	(current_year >= 1885) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE, "1885");
-		colour:					COLOUR_DARK_GREEN;
+/* Temperate industry */
+if (selected_economy == 1) {
+	item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
+		property {
+			substitute:				INDUSTRYTYPE_PAPER_MILL;
+			life_type:				IND_LIFE_TYPE_PROCESSING;
+			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
+			cargo_types:			[
+									accept_cargo("WOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+									accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+									accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+			];
+			name:					TTD_STR_INDUSTRY_NAME_PAPER_MILL;
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
+			prob_map_gen:			1;
+			prob_in_game:			1;
+			fund_cost_multiplier:	90;
+			map_colour:				184;
+			layouts:				[
+				industry_layout_paper_mill_1,
+				industry_layout_paper_mill_2,
+				industry_layout_paper_mill_3,
+			];
+			conflicting_ind_types:	[industry_forest, industry_farm];
+		}
+		graphics {
+			location_check:			switch_paper_mill_allow_funded;
+			construction_probability:	(current_year >= 1885) ? 3 : 0;
+			extra_text_fund:		string(STR_FUND_AVAILABLE, "1885");
+			colour:					COLOUR_DARK_GREEN;
+		}
 	}
 }
 
@@ -231,21 +234,24 @@ switch (FEAT_OBJECTS, SELF, switch_object_graphics_paper_mill_9, relative_pos) {
     relative_coord(1, 1): sprlay_paper_mill_9_S;
 }
 
-item (FEAT_OBJECTS, object_item_paper_mill_9) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_PAPER_MILL;
-		climates_available:		ALL_CLIMATES;
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[2,2];
-		introduction_date:		1845;
-		num_views:				1;
-	}
-	graphics {
-		default:				switch_object_graphics_paper_mill_9;
-		colour:					COLOUR_DARK_GREEN;
+/* Temperate industry objects */
+if (selected_economy == 1) {
+	item (FEAT_OBJECTS, object_item_paper_mill_9) {
+		property {
+			class:					"HSIN";
+			classname:				string(STR_NAME_OBJECT_MENU);
+			name:					TTD_STR_INDUSTRY_NAME_PAPER_MILL;
+			climates_available:		ALL_CLIMATES;
+			build_cost_multiplier:	0;
+			remove_cost_multiplier:	0;
+			size:					[2,2];
+			introduction_date:		1845;
+			num_views:				1;
+		}
+		graphics {
+			default:				switch_object_graphics_paper_mill_9;
+			colour:					COLOUR_DARK_GREEN;
+		}
 	}
 }
 

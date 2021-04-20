@@ -214,30 +214,33 @@ switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_prospected, extra_callb
 switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
 	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_refinery_allow_prospected;}
 
-item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
-	property {
-		substitute:				INDUSTRYTYPE_OIL_REFINERY;
-		life_type:				IND_LIFE_TYPE_PROCESSING;
-		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types:			[
-								accept_cargo("OIL_", produce_cargo("RFPR",1), produce_cargo("PASS",0.25)),
-		];
-		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
-		fund_cost_multiplier:	160;
-		layouts:				[
-			industry_layout_oil_refinery_1,
-			industry_layout_oil_refinery_2,
-			industry_layout_oil_refinery_3,
-		];
-		map_colour:				191;
-		conflicting_ind_types:	[industry_oil_wells, industry_farm];
-	}
-	graphics {
-		location_check:			switch_oil_refinery_allow_funded;
-		construction_probability:	(current_year >= 1900) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE, "1900");
-		colour:					COLOUR_YELLOW;
+/* Temperate industry */
+	if (selected_economy == 1) {
+	item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
+		property {
+			substitute:				INDUSTRYTYPE_OIL_REFINERY;
+			life_type:				IND_LIFE_TYPE_PROCESSING;
+			spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
+			cargo_types:			[
+									accept_cargo("OIL_", produce_cargo("RFPR",1), produce_cargo("PASS",0.25)),
+			];
+			name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
+			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
+			fund_cost_multiplier:	160;
+			layouts:				[
+				industry_layout_oil_refinery_1,
+				industry_layout_oil_refinery_2,
+				industry_layout_oil_refinery_3,
+			];
+			map_colour:				191;
+			conflicting_ind_types:	[industry_oil_wells, industry_farm];
+		}
+		graphics {
+			location_check:			switch_oil_refinery_allow_funded;
+			construction_probability:	(current_year >= 1900) ? 3 : 0;
+			extra_text_fund:		string(STR_FUND_AVAILABLE, "1900");
+			colour:					COLOUR_YELLOW;
+		}
 	}
 }
 
