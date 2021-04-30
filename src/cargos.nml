@@ -2,7 +2,9 @@
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, IORE, STEL, WDPR, RFPR, RCYC, WSTE, FOOD, URAN, NUKF, NUKW, CHOC
+	PASS, COAL, MAIL, OIL_, FOOD, 																	// Universal
+	GOOD, WOOD, IORE, STEL, WDPR, RFPR, RCYC, WSTE,URAN, NUKF, NUKW, 								// Temperate
+	CHOC, RUBR, COCO, GRAI, SGCN, SUGR, CORE, COPR, DIAM, MILK, PIPE, ENSP, FERT, PETR, FUEL		// Subtropic
 	}
 
 /* ================ */
@@ -443,7 +445,7 @@ if (selected_economy == 3) {
 			single_penalty_length:		22;
 			station_list_colour:		152;
 			cargo_payment_list_colour:	152;
-			price_factor:				105;
+			price_factor:				25; // FIRS: 105
 			capacity_multiplier:		4;
 		}
 	}
