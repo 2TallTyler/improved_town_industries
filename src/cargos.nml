@@ -508,7 +508,7 @@ if (selected_economy == 3) {
 			type_abbreviation:			string(STR_CARGO_ABBREV_COCOA_BEANS);
 			weight:						1;
 			is_freight:					1;
-			cargo_classes:				bitmask(CC_BULK, CC_COVERED);
+			cargo_classes:				bitmask(CC_PIECE_GOODS, CC_COVERED);
 			cargo_label:				"COCO";
 			town_growth_effect:			TOWNGROWTH_NONE;
 			town_growth_multiplier:		1;
@@ -531,7 +531,7 @@ if (selected_economy == 3) {
 			type_abbreviation:			string(STR_CARGO_ABBREV_ANIMAL_FEED);
 			weight:						1;
 			is_freight:					1;
-			cargo_classes:				bitmask(CC_BULK);
+			cargo_classes:				bitmask(CC_BULK, CC_COVERED);
 			cargo_label:				"GRAI";
 			town_growth_effect:			TOWNGROWTH_NONE;
 			town_growth_multiplier:		1;
