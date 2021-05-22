@@ -1,0 +1,84 @@
+##grflangid 0x07
+
+STR_GRF_NAME:{TITLE}{VERSION}
+STR_GRF_DESC:{ORANGE}Индустрия, вдохновленная ванилью{BLACK}, с новыми цепочками, рабочими на дорогах, предприятиями вблизи городов и реальными датами внедрения уже в 1700 г.{}{}{SILVER}Требуются автомобили NewGRF. Несовместимо с другими отраслевыми наборами.{}{}{ORANGE}Посетите веб-сайт для получения инструкций.{}{}{BLACK}Кодировано 2TallTyler.
+
+STR_WEBSITE: https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
+
+STR_ERROR_GAME_VERSION:{TITLE}требует OpenTTD версии 1.10.0, JGR версии 0.34 или выше.
+STR_ERROR_RCLC_NEEDS_ITL:{TITLE}Цепочка отходов и переработки требует совместимого набора домов (рекомендуется: улучшенная планировка города версии 1.3.0 или выше).
+STR_ERR_INCOMPATIBLE_SET:{YELLOW}{TITLE}{WHITE}несовместим с{YELLOW}{STRING}{WHITE}.
+
+STR_PARAM_NAME_PRIMARY_ONLY: создание только основных отраслей
+STR_PARAM_DESC_PRIMARY_ONLY: отключить автоматическое создание{SILVER}заводов{BLACK}, {SILVER}сталелитейных заводов{BLACK}, {SILVER}бумажных фабрик{BLACK}, {SILVER}нефтеперерабатывающих заводов{BLACK}, {SILVER}электростанций{BLACK}, {SILVER}Атомные топливные станции{BLACK}(если включено) и{SILVER}Центры переработки{BLACK}(если включено). Не влияет на финансируемые отрасли.
+
+STR_PARAM_NAME_ELEVATION_CHECKS: требования к высоте в отрасли
+STR_PARAM_DESC_ELEVATION_CHECKS: Включить проверки высоты:{SILVER}угольные шахты{BLACK}должны быть на отметке 4 или выше, {SILVER}Farm{BLACK}и{SILVER}нефтяные скважины{BLACK}должны быть на высоте 2 или меньше.{}{}{ORANGE }Не включайте{BLACK}с типом ландшафта{ORANGE}Very Flat{BLACK}, поскольку{SILVER}угольная шахта{BLACK}не будет генерировать.
+
+STR_PARAM_NAME_AUTO_FARM_FIELDS: поля построения ферм
+STR_PARAM_DESC_AUTO_FARM_FIELDS: выберите, будут ли{SILVER}Farms{BLACK}создавать поля, как в ванильном OpenTTD.{}{}Плитки полей доступны как декоративные объекты.
+
+STR_PARAM_NAME_OIL_RIGS: включить нефтяные вышки
+STR_PARAM_DESC_OIL_RIGS: выберите, будут ли появляться{SILVER}нефтяные вышки{BLACK}после 1960 года (идентично ванильной индустрии).{}{}{ORANGE}Только умеренный климат.
+
+STR_PARAM_NAME_NUCLEAR: включить цепочку ядерной энергии
+STR_PARAM_DESC_NUCLEAR: Включает{SILVER}урановый рудник{BLACK}и{SILVER}ядерную топливную установку{BLACK}, с 1956.{SILVER}Электростанция{BLACK}принимает ядерное топливо и производит ядерные отходы.
+
+STR_PARAM_NAME_RECYCLABLES: включить цепочку утилизации и переработки отходов
+STR_PARAM_DESC_RECYCLABLES: позволяет{SILVER}Центру переработки{BLACK}сортировать отходы городских зданий на переработанные материалы для транспортировки в промышленность.{}{}{ORANGE}Требуется улучшенная планировка города NewGRF версии 1.3.0 или выше.
+
+STR_PARAM_NAME_INDUSTRY_POP: потребность в населении для вторичных отраслей
+STR_PARAM_DESC_INDUSTRY_POP: минимальная численность населения города, необходимая для вспомогательной промышленности.{}{}Значение по умолчанию 300 оптимизировано для улучшенной планировки города, где города создаются с низкой численностью населения. Если вы используете другой домашний набор, это количество должно быть увеличено как минимум до 1000.{}{}Примечание: до 1850 года требование составляло 1/3 от этого числа.
+
+STR_FUND_AVAILABLE:{BLACK}Представлено:{YELLOW}{STRING}
+
+STR_NAME_OBJECT_MENU: Промышленные плитки
+STR_NAME_OBJECT_MENU_FIELDS: Плитки фермы
+
+STR_TOWN:{STRING}
+STR_STATION:{STRING}{STRING}
+
+STR_NAME_STEEL_MILL: сталелитейный завод
+STR_NAME_IRON_MINE: Железный рудник
+STR_NAME_SAWMILL: Лесопильный завод
+STR_NAME_FOREST: Лес
+STR_NAME_OIL_REFINERY: Нефтеперерабатывающий завод
+STR_NAME_FARM: Ферма
+STR_NAME_POWER_PLANT: Электростанция
+STR_NAME_FACTORY: Завод
+STR_NAME_COAL_MINE: угольная шахта
+STR_NAME_OIL_WELLS: нефтяные скважины
+STR_NAME_PAPER_MILL: Бумажная фабрика
+STR_NAME_RECYCLING_CENTER: Центр переработки
+STR_NAME_URANIUM_MINE: урановый рудник
+STR_NAME_NUCLEAR_FUEL_PLANT: Завод ядерного топлива
+
+STR_NAME_FIELD_1: Поле
+
+STR_CARGO_NAME_CHEMICALS: химические вещества
+STR_CARGO_ABBREV_CHEMICALS:{TINYFONT}CH
+STR_CARGO_QUANTITY_CHEMICALS:{VOLUME}химикатов
+
+STR_CARGO_NAME_LUMBER: пиломатериалы
+STR_CARGO_ABBREV_LUMBER:{TINYFONT}LU
+STR_CARGO_QUANTITY_LUMBER:{WEIGHT}пиломатериалов
+
+STR_CARGO_NAME_RECYCLABLES: переработанные материалы
+STR_CARGO_ABBREV_RECYCLABLES:{TINYFONT}RM
+STR_CARGO_QUANTITY_RECYCLABLES:{WEIGHT}переработанных материалов
+
+STR_CARGO_NAME_WASTE: отходы
+STR_CARGO_ABBREV_WASTE:{TINYFONT}WS
+STR_CARGO_QUANTITY_WASTE:{WEIGHT}отходов
+
+STR_CARGO_NAME_URANIUM: уран
+STR_CARGO_ABBREV_URANIUM:{TINYFONT}UR
+STR_CARGO_QUANTITY_URANIUM:{WEIGHT}урана
+
+STR_CARGO_NAME_NUCLEAR_FUEL: Ядерное топливо
+STR_CARGO_ABBREV_NUCLEAR_FUEL:{TINYFONT}NF
+STR_CARGO_QUANTITY_NUCLEAR_FUEL:{WEIGHT}ядерного топлива
+
+STR_CARGO_NAME_NUCLEAR_WASTE: ядерные отходы
+STR_CARGO_ABBREV_NUCLEAR_WASTE:{TINYFONT}NW
+STR_CARGO_QUANTITY_NUCLEAR_WASTE:{WEIGHT}ядерных отходов
