@@ -1,0 +1,85 @@
+##grflangid 0x3a
+
+STR_GRF_NAME						:{TITLE} {VERSION}
+STR_GRF_DESC						:새로운 산업시설 연계망, 출퇴근하는 근로자, 도시 인근의 산업시설, 1700년에도 생기는 산업시설 등 {ORANGE}원작에 영감을 받은 산업시설{BLACK}입니다.{}{}{SILVER}NewGRF 차량이 필요합니다. 다른 산업시설 세트와 함께 사용할 수 없습니다.{}{}{ORANGE}자세한 정보는 웹사이트를 참고하세요.{}{}{BLACK}코딩: 2TallTyler
+
+STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
+
+STR_ERROR_GAME_VERSION				:{TITLE}을 사용하려면 OpenTTD 1.10.0, JGR 패치 팩 0.34 또는 그 이상의 버전이 필요합니다.
+STR_ERROR_RCLC_NEEDS_ITL			:{TITLE}의 폐기물 & 재활용 체계는 적절한 건물 세트와 함께 사용해야 합니다. (추천: Improved Town Layout 버전 1.3.0 이상)
+STR_ERR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE}은 {YELLOW}{STRING}{WHITE}(와)과 함께 사용할 수 없습니다.
+
+STR_PARAM_NAME_PRIMARY_ONLY			:1차 산업시설만 생성
+STR_PARAM_DESC_PRIMARY_ONLY			:{SILVER}공장{BLACK}, {SILVER}제철소{BLACK}, {SILVER}제지소{BLACK}, {SILVER}정유 공장{BLACK}, {SILVER}발전소{BLACK}, (설정을 켠 경우) {SILVER}핵 연료 발전소{BLACK}, (설정을 켠 경우) {SILVER}재활용 센터{BLACK}의 자동 생성을 끕니다. 투자/설립한 산업시설에는 영향을 미치지 않습니다.
+
+STR_PARAM_NAME_ELEVATION_CHECKS		:산업시설 고도 요구 조건
+STR_PARAM_DESC_ELEVATION_CHECKS		:고도 조건을 활성화: {SILVER}탄광{BLACK}은 높이 4 이상, {SILVER}농장{BLACK}과 {SILVER}유전{BLACK}은 높이 2 이하여야 합니다.{}{}{ORANGE}매우 평탄함{BLACK} 지형에서 사용할 경우 {SILVER}탄광{BLACK}이 지어지지 않으므로 {ORANGE}절대 이 설정을 사용하지 마세요.
+
+STR_PARAM_NAME_AUTO_FARM_FIELDS		:농장이 논밭을 만듦
+STR_PARAM_DESC_AUTO_FARM_FIELDS		:{SILVER}농장{BLACK}에 원래의 농장처럼 논밭이 생기게 하려면 이 설정을 켜세요.{}{}농장 논밭은 꾸미기 오브젝트로도 사용할 수 있습니다.
+
+STR_PARAM_NAME_OIL_RIGS				:유전 사용
+STR_PARAM_DESC_OIL_RIGS				:{SILVER}유전{BLACK}을 (원작 산업시설과 동일하게) 1960년 이후에 나타나게 할지를 선택하세요.{}{}{ORANGE}온대 기후에서만 사용 가능합니다.
+
+STR_PARAM_NAME_NUCLEAR				:핵 연료 체계 사용
+STR_PARAM_DESC_NUCLEAR				:{SILVER}우라늄 광산{BLACK}과 {SILVER}핵 연료 발전소{BLACK}를 1956년부터 사용할 수 있게 합니다. {SILVER}발전소{BLACK}는 핵 연료를 받고 핵 폐기물을 생산하게 됩니다.
+
+STR_PARAM_NAME_RECYCLABLES			:폐기물 & 재활용 체계 사용
+STR_PARAM_DESC_RECYCLABLES			:도시의 건물로부터 나오는 쓰레기를 재활용품으로 만들어 산업시설에 보내기 위해 {SILVER}재활용 센터{BLACK}를 사용합니다.{}{}{ORANGE}Improved Town Layouts NewGRF 버전 1.3.0 이상이 필요합니다.
+
+STR_PARAM_NAME_INDUSTRY_POP         :2차 산업시설에 인구 조건 사용
+STR_PARAM_DESC_INDUSTRY_POP         :2차 산업시설 하나에 필요한 최소 도시 인구 조건을 활성화합니다.{}{}기본값인 300은 도시 인구가 적은 Improved Town Layouts에 최적화된 값입니다. 다른 건물 세트를 사용하는 경우, 이 설정을 최소 1,000 이상으로 맞추세요.{}{}참고: 1850년 이전에는 이 값은 1/3 수준으로 적용됩니다.
+
+STR_FUND_AVAILABLE					:{BLACK}도입: {YELLOW}{STRING}
+
+STR_NAME_OBJECT_MENU				:산업시설 타일
+STR_NAME_OBJECT_MENU_FIELDS			:농장 논밭
+
+STR_TOWN							:{STRING}
+STR_STATION							:{STRING} {STRING}
+
+STR_NAME_STEEL_MILL					:제철소
+STR_NAME_IRON_MINE					:철 광산
+STR_NAME_SAWMILL					:제재소
+STR_NAME_FOREST						:숲
+STR_NAME_OIL_REFINERY				:정유 공장
+STR_NAME_FARM						:농장
+STR_NAME_POWER_PLANT				:발전소
+STR_NAME_FACTORY					:공장
+STR_NAME_COAL_MINE					:탄광
+STR_NAME_OIL_WELLS					:유정
+STR_NAME_PAPER_MILL					:제지소
+STR_NAME_RECYCLING_CENTER			:재활용 센터
+STR_NAME_URANIUM_MINE				:우라늄 광산
+STR_NAME_NUCLEAR_FUEL_PLANT			:핵 연료 발전소
+
+STR_NAME_FIELD_1					:논밭
+
+
+STR_CARGO_NAME_CHEMICALS			:화학물
+STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}화
+STR_CARGO_QUANTITY_CHEMICALS		:화학물 {VOLUME}
+
+STR_CARGO_NAME_LUMBER				:목재
+STR_CARGO_ABBREV_LUMBER				:{TINYFONT}목
+STR_CARGO_QUANTITY_LUMBER			:목재 {WEIGHT}
+
+STR_CARGO_NAME_RECYCLABLES			:재활용품
+STR_CARGO_ABBREV_RECYCLABLES		:{TINYFONT}재
+STR_CARGO_QUANTITY_RECYCLABLES		:재활용품 {WEIGHT}
+
+STR_CARGO_NAME_WASTE				:쓰레기
+STR_CARGO_ABBREV_WASTE				:{TINYFONT}쓰
+STR_CARGO_QUANTITY_WASTE			:쓰레기 {WEIGHT}
+
+STR_CARGO_NAME_URANIUM				:우라늄
+STR_CARGO_ABBREV_URANIUM			:{TINYFONT}우
+STR_CARGO_QUANTITY_URANIUM			:우라늄 {WEIGHT}
+
+STR_CARGO_NAME_NUCLEAR_FUEL			:핵 연료
+STR_CARGO_ABBREV_NUCLEAR_FUEL		:{TINYFONT}핵
+STR_CARGO_QUANTITY_NUCLEAR_FUEL		:핵 연료 {WEIGHT}
+
+STR_CARGO_NAME_NUCLEAR_WASTE		:핵 폐기물
+STR_CARGO_ABBREV_NUCLEAR_WASTE		:{TINYFONT}폐
+STR_CARGO_QUANTITY_NUCLEAR_WASTE	:핵 폐기물 {WEIGHT}
