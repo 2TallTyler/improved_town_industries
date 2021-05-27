@@ -116,6 +116,7 @@ Currently available in:
 - Simplified Chinese (SuperCirno)
 - French (arikover)
 - German (WoelfiVW)
+- Korean (telk5093)
 - Russian (demidovskiy)
 - Swedish (En okänd välgörare)
 
