@@ -1,0 +1,86 @@
+##grflangid 0x15
+# This is the Czech language file
+
+STR_GRF_NAME						:{TITLE} {VERSION}
+STR_GRF_DESC						:{ORANGE}Originální hrou inspirovaný průmysl{BLACK} s novými řetězci, dojíždějícími dělníky, průmyslem poblíž měst a reálnými daty uvedení průmyslu již od roku 1700.{}{}{SILVER}Vyžaduje NewGRF vozidla. Není kompatibilní s ostatními průmyslovými sety.{}{}{ORANGE}Instrukce najdete na webu.{}{}{BLACK}Autorem kódu je 2TallTyler.
+
+STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
+
+STR_ERROR_GAME_VERSION				:{TITLE} vyžaduje OpenTTD verzi 1.10.0, JGR verzi 0.34, nebo vyšší.
+STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Odpadový a recyklační řetězec vyžaduje kompatibilní set domů (doporučený: Improved Town Layouts verze 1.3.0 nebo vyšší).
+STR_ERR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE} je nekompatibilní s {YELLOW}{STRING}{WHITE}.
+
+STR_PARAM_NAME_PRIMARY_ONLY			:Generuj pouze primární průmysl
+STR_PARAM_DESC_PRIMARY_ONLY			:Zakáže automatické generování {SILVER}Továren{BLACK}, {SILVER}Oceláren{BLACK}, {SILVER}Papíren{BLACK}, {SILVER}Rafinérií{BLACK}, {SILVER}Elektráren{BLACK}, {SILVER}Závodů na jaderné palivo{BLACK} (pokud jsou povoleny) a {SILVER}Recyklačních center{BLACK} (pokud jsou povoleny). Nemá vliv na financovaný průmysl.
+
+STR_PARAM_NAME_ELEVATION_CHECKS		:Požadavky na nadmořskou výšku pro průmysl
+STR_PARAM_DESC_ELEVATION_CHECKS		:Povolit kontrolu nadmořské výšky: {SILVER}Uhelný důl{BLACK} musí mít nadm. výšku nejméně 4 a výše, {SILVER}Farma{BLACK} a {SILVER}Ropné vrty{BLACK} musí mít nadm. výšku 2 nebo méně.{}{}{ORANGE}Nepovolujte {BLACK}s {ORANGE}velmi plochým {BLACK}typem krajiny, protože {SILVER}Uhelný důl {BLACK} nebude generován.
+
+STR_PARAM_NAME_AUTO_FARM_FIELDS		:Farmy budují pole
+STR_PARAM_DESC_AUTO_FARM_FIELDS		:Vyberte pokud {SILVER}Farmy {BLACK}budují pole, stejně jako v originálním OpenTTD.{}{}Dlaždice pole jsou dostupné jako dekorativní objekty.
+
+STR_PARAM_NAME_OIL_RIGS				:Povolit Ropné plošiny
+STR_PARAM_DESC_OIL_RIGS				:Povolit, zda se {SILVER}Ropné plošiny{BLACK} objevují po roce 1960 (identicky jako originální průmysl).{}{}{ORANGE}Pouze v Krajině mírného pásma.
+
+STR_PARAM_NAME_NUCLEAR				:Povolit řetězec jaderné energie
+STR_PARAM_DESC_NUCLEAR				:Povolí {SILVER}Důl na uran{BLACK} a {SILVER}Závod na jaderné palivo{BLACK}, od roku 1956. {SILVER}Elektrárna{BLACK} akceptuje Jaderné Palivo a produkuje Jaderný Odpad.
+
+STR_PARAM_NAME_RECYCLABLES			:Povolit Odpadový a recyklační řetězec
+STR_PARAM_DESC_RECYCLABLES			:Povolí {SILVER}Recyklačnímu centru{BLACK} třídit Odpad z městských budov na Recyklát pro transport pro průmysl.{}{}{ORANGE}Vyžaduje Improved Town Layouts NewGRF, verze 1.3.0 nebo vyšší.
+
+STR_PARAM_NAME_INDUSTRY_POP         :Požadavky na populaci měst pro sekundární průmysl
+STR_PARAM_DESC_INDUSTRY_POP         :Je vyžadována určitá minimální populace měst pro sekundární průmysl.{}{}Výchozí hodnota 300 je optimalizována pro Improved Town Layouts, kde se města generují s nižší populací. Pokud používáte jiný set domů, mělo by být zvýšeno minimálně na 1 000.{}{}Poznámka: Před rokem 1850 je požadována 1/3 tohoto čísla.
+
+STR_FUND_AVAILABLE					:{BLACK}Uvedeno: {YELLOW}{STRING}
+
+STR_NAME_OBJECT_MENU				:Dlaždice průmyslu
+STR_NAME_OBJECT_MENU_FIELDS			:Dlaždice farmy
+
+STR_TOWN							:{STRING}
+STR_STATION							:{STRING} {STRING}
+
+STR_NAME_STEEL_MILL					:Ocelárna
+STR_NAME_IRON_MINE					:Důl na železnou rudu
+STR_NAME_SAWMILL					:Pila
+STR_NAME_FOREST						:Les
+STR_NAME_OIL_REFINERY				:Rafinerie
+STR_NAME_FARM						:Farma
+STR_NAME_POWER_PLANT				:Elektrárna
+STR_NAME_FACTORY					:Továrna
+STR_NAME_COAL_MINE					:Uhelný důl
+STR_NAME_OIL_WELLS					:Ropný vrt
+STR_NAME_PAPER_MILL					:Papírna
+STR_NAME_RECYCLING_CENTER			:Recyklační centrum
+STR_NAME_URANIUM_MINE				:Důl na uran
+STR_NAME_NUCLEAR_FUEL_PLANT			:Závod na jaderné palivo
+
+STR_NAME_FIELD_1					:Pole
+
+
+STR_CARGO_NAME_CHEMICALS			:Chemikálie
+STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}CH
+STR_CARGO_QUANTITY_CHEMICALS		:{VOLUME} chemikálií
+
+STR_CARGO_NAME_LUMBER				:Řezivo
+STR_CARGO_ABBREV_LUMBER				:{TINYFONT}RZ
+STR_CARGO_QUANTITY_LUMBER			:{WEIGHT} řeziva
+
+STR_CARGO_NAME_RECYCLABLES			:Recyklát
+STR_CARGO_ABBREV_RECYCLABLES		:{TINYFONT}RC
+STR_CARGO_QUANTITY_RECYCLABLES		:{WEIGHT} recyklátu
+
+STR_CARGO_NAME_WASTE				:Odpad
+STR_CARGO_ABBREV_WASTE				:{TINYFONT}OP
+STR_CARGO_QUANTITY_WASTE			:{WEIGHT} odpadu
+
+STR_CARGO_NAME_URANIUM				:Uran
+STR_CARGO_ABBREV_URANIUM			:{TINYFONT}UR
+STR_CARGO_QUANTITY_URANIUM			:{WEIGHT} uranu
+
+STR_CARGO_NAME_NUCLEAR_FUEL			:Jaderné palivo
+STR_CARGO_ABBREV_NUCLEAR_FUEL		:{TINYFONT}JP
+STR_CARGO_QUANTITY_NUCLEAR_FUEL		:{WEIGHT} jaderného paliva
+
+STR_CARGO_NAME_NUCLEAR_WASTE		:Jaderný odpad
+STR_CARGO_ABBREV_NUCLEAR_WASTE		:{TINYFONT}JO
+STR_CARGO_QUANTITY_NUCLEAR_WASTE	:{WEIGHT} jaderného odpadu

@@ -114,6 +114,7 @@ Currently available in:
 - English
 - Arabic (AviationGamerX)
 - Simplified Chinese (SuperCirno)
+- Czech (adpro)
 - French (arikover)
 - German (WoelfiVW)
 - Korean (telk5093)
