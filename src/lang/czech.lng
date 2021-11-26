@@ -17,13 +17,13 @@ STR_PARAM_NAME_ELEVATION_CHECKS		:Požadavky na nadmořskou výšku pro průmysl
 STR_PARAM_DESC_ELEVATION_CHECKS		:Povolit kontrolu nadmořské výšky: {SILVER}Uhelný důl{BLACK} musí mít nadm. výšku nejméně 4 a výše, {SILVER}Farma{BLACK} a {SILVER}Ropné vrty{BLACK} musí mít nadm. výšku 2 nebo méně.{}{}{ORANGE}Nepovolujte {BLACK}s {ORANGE}velmi plochým {BLACK}typem krajiny, protože {SILVER}Uhelný důl {BLACK} nebude generován.
 
 STR_PARAM_NAME_AUTO_FARM_FIELDS		:Farmy budují pole
-STR_PARAM_DESC_AUTO_FARM_FIELDS		:Vyberte pokud {SILVER}Farmy {BLACK}budují pole, stejně jako v originálním OpenTTD.{}{}Dlaždice pole jsou dostupné jako dekorativní objekty.
+STR_PARAM_DESC_AUTO_FARM_FIELDS		:Vyberte pokud {SILVER}Farmy {BLACK}budují pole, stejně jako v originálním OpenTTD.{}{}Čtverce pole jsou dostupné jako dekorativní objekty.
 
 STR_PARAM_NAME_OIL_RIGS				:Povolit Ropné plošiny
 STR_PARAM_DESC_OIL_RIGS				:Povolit, zda se {SILVER}Ropné plošiny{BLACK} objevují po roce 1960 (identicky jako originální průmysl).{}{}{ORANGE}Pouze v Krajině mírného pásma.
 
 STR_PARAM_NAME_NUCLEAR				:Povolit řetězec jaderné energie
-STR_PARAM_DESC_NUCLEAR				:Povolí {SILVER}Důl na uran{BLACK} a {SILVER}Závod na jaderné palivo{BLACK}, od roku 1956. {SILVER}Elektrárna{BLACK} akceptuje Jaderné Palivo a produkuje Jaderný Odpad.
+STR_PARAM_DESC_NUCLEAR				:Povolí {SILVER}Důl na uran{BLACK} a {SILVER}Závod na jaderné palivo{BLACK} od roku 1956. {SILVER}Elektrárna{BLACK} akceptuje Jaderné Palivo a produkuje Jaderný Odpad.
 
 STR_PARAM_NAME_RECYCLABLES			:Povolit Odpadový a recyklační řetězec
 STR_PARAM_DESC_RECYCLABLES			:Povolí {SILVER}Recyklačnímu centru{BLACK} třídit Odpad z městských budov na Recyklát pro transport pro průmysl.{}{}{ORANGE}Vyžaduje Improved Town Layouts NewGRF, verze 1.3.0 nebo vyšší.
@@ -33,8 +33,8 @@ STR_PARAM_DESC_INDUSTRY_POP         :Je vyžadována určitá minimální popula
 
 STR_FUND_AVAILABLE					:{BLACK}Uvedeno: {YELLOW}{STRING}
 
-STR_NAME_OBJECT_MENU				:Dlaždice průmyslu
-STR_NAME_OBJECT_MENU_FIELDS			:Dlaždice farmy
+STR_NAME_OBJECT_MENU				:Čtverce průmyslu
+STR_NAME_OBJECT_MENU_FIELDS			:Čtverce farmy
 
 STR_TOWN							:{STRING}
 STR_STATION							:{STRING} {STRING}
