@@ -2,7 +2,7 @@
 ##plural 0
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}Testing testing 123!{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}Recommended for use with a growth script like Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
 
 STR_WEBSITE                         :{WEBSITE}
 
@@ -10,16 +10,16 @@ STR_ERROR_GAME_VERSION              :{TITLE} requires OpenTTD version 1.10.0, JG
 STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or better.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
 
-STR_EMPTY                           :
-
-STR_TOWN                            :{STRING}
-STR_STATION                         :{STRING} {STRING}
-
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
 STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}Off{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
 
 STR_NAME_OBJECT_MENU                :Industry Tiles
 STR_NAME_OBJECT_MENU_FIELDS         :Fields
+
+STR_EMPTY                           :
+
+STR_TOWN                            :{STRING}
+STR_STATION                         :{STRING} {STRING}
 
 STR_NAME_STEEL_MILL                 :Steel Mill
 STR_NAME_IRON_MINE                  :Iron Mine
