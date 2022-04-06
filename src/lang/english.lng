@@ -15,8 +15,8 @@ STR_EMPTY                           :
 STR_TOWN                            :{STRING}
 STR_STATION                         :{STRING} {STRING}
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industries spawn in quadrant regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}Off{}{WHITE}If enabled, primary industries spawn only in certain map regions.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}Off{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
 
 STR_NAME_OBJECT_MENU                :Industry Tiles
 STR_NAME_OBJECT_MENU_FIELDS         :Fields
