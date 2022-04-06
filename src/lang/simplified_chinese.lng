@@ -1,85 +1,76 @@
 ##grflangid 0x56
 
-STR_GRF_NAME						:{TITLE} {VERSION}
-STR_GRF_DESC						:{ORANGE}默认风格的行业{BLACK}拥有新的产业链,工人通勤,城镇工业,以及真正的引进日期,可以追溯到1700年.{}{}{SILVER}需要其他NewGRF载具。与其他行业GRF不兼容.{}{}{ORANGE}访问网站以获取更多说明.{}{}{BLACK}Coded by 2TallTyler.
+STR_GRF_NAME                        :{TITLE} {VERSION}
+STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}Recommended for use with a growth script like Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
 
-STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
+STR_WEBSITE                         :{WEBSITE}
 
-STR_ERROR_GAME_VERSION				:{TITLE} 需要OpenTTD版本1.10.0,JGR版本0.34,或更高.
-STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} 回收产业链需要一套兼容的建筑(推荐Improved Town Layouts版本1.3.0或更高).
-STR_ERR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
+STR_ERROR_GAME_VERSION              :{TITLE} 需要OpenTTD版本1.10.0,JGR版本0.34,或更高.
+STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or better.
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
 
-STR_PARAM_NAME_PRIMARY_ONLY			:仅生成一级产业
-STR_PARAM_DESC_PRIMARY_ONLY			:不会自动生成{SILVER}工厂{BLACK},{SILVER}钢铁厂{BLACK},{SILVER}造纸厂{BLACK},{SILVER}炼油厂{BLACK},{SILVER}发电厂{BLACK}, {SILVER}核燃料厂{BLACK}(如果启用该产业链)和{SILVER}回收中心{BLACK}(如果启用该产业链).不影响资助生成行业.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}Off{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
 
-STR_PARAM_NAME_ELEVATION_CHECKS		:行业海拔需求
-STR_PARAM_DESC_ELEVATION_CHECKS		:启用海拔检查:{SILVER}煤矿{BLACK}必须在海拔4或更高的地方,{SILVER}农场{BLACK}和{SILVER}油井{BLACK}必须在海拔2或者更低.{}{}{ORANGE}请勿{BLACK}选择{ORANGE}非常平坦{BLACK}地形,因为{SILVER}煤矿{BLACK}将不会生成.
+STR_NAME_OBJECT_MENU                :行业图块
+STR_NAME_OBJECT_MENU_FIELDS         :农场图块
 
-STR_PARAM_NAME_AUTO_FARM_FIELDS		:农场自动生成田地
-STR_PARAM_DESC_AUTO_FARM_FIELDS		:选择{SILVER}农场{BLACK}是否自动生成田地,就像原版一样.{}{}田地可以仅作为装饰使用.
+STR_EMPTY                           :
 
-STR_PARAM_NAME_OIL_RIGS				:启用石油钻井
-STR_PARAM_DESC_OIL_RIGS				:选择{SILVER}石油钻井{BLACK}是否出现在1960年后(与基础工业一样).{}{}{ORANGE}仅限温带气候.
+STR_TOWN                            :{STRING}
+STR_STATION                         :{STRING} {STRING}
 
-STR_PARAM_NAME_NUCLEAR				:启用核能产业链
-STR_PARAM_DESC_NUCLEAR				:从1956年起开始启用{SILVER}铀矿{BLACK}和{SILVER}核燃料厂{BLACK}. {SILVER}发电厂{BLACK}接收核燃料并产生核废料.
+STR_NAME_STEEL_MILL                 :钢铁厂
+STR_NAME_IRON_MINE                  :铁矿
+STR_NAME_SAWMILL                    :锯木厂
+STR_NAME_FOREST                     :林场
+STR_NAME_OIL_REFINERY               :炼油厂
+STR_NAME_FARM                       :农场
+STR_NAME_FACTORY                    :工厂
+STR_NAME_COAL_MINE                  :煤矿
+STR_NAME_OIL_WELLS                  :油井
+STR_NAME_PAPER_MILL                 :造纸厂
+STR_NAME_RECYCLING_CENTER           :回收中心
+STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
+STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
+STR_NAME_RANCH                      :Ranch
+STR_NAME_BANK                       :Bank
 
-STR_PARAM_NAME_RECYCLABLES			:启用废物回收产业链
-STR_PARAM_DESC_RECYCLABLES			:启用{SILVER}回收中心{BLACK}将城镇建筑生产的废物回收再利用为再生材料，可作为工厂材料运送给工业.{}{}{ORANGE}需要Improved Town Layouts, 版本1.3.0或更高.
-
-STR_PARAM_NAME_INDUSTRY_POP         :二级产业所需城镇人口
-STR_PARAM_DESC_INDUSTRY_POP         :每个二级产业所需的最低城镇人口.{}{}默认值300,针对Improved Town Layouts所优化.如果使用其他建筑脚本,则应增加到至少1000个.{}{}注意:在1850年之前,该需求为该数值的1/3.
-
-STR_FUND_AVAILABLE					:{BLACK}引进于:{YELLOW}{STRING}
-
-STR_NAME_OBJECT_MENU				:行业图块
-STR_NAME_OBJECT_MENU_FIELDS			:农场图块
-
-STR_TOWN							:{STRING}
-STR_STATION							:{STRING} {STRING}
-
-STR_NAME_STEEL_MILL					:钢铁厂
-STR_NAME_IRON_MINE					:铁矿
-STR_NAME_SAWMILL					:锯木厂
-STR_NAME_FOREST						:林场
-STR_NAME_OIL_REFINERY				:炼油厂
-STR_NAME_FARM						:农场
-STR_NAME_POWER_PLANT				:发电厂
-STR_NAME_FACTORY					:工厂
-STR_NAME_COAL_MINE					:煤矿
-STR_NAME_OIL_WELLS					:油井
-STR_NAME_PAPER_MILL					:造纸厂
-STR_NAME_RECYCLING_CENTER			:回收中心
-STR_NAME_URANIUM_MINE				:铀矿
-STR_NAME_NUCLEAR_FUEL_PLANT			:核燃料场
-
-STR_NAME_FIELD_1					:田地
+STR_NAME_FIELD_1                    :田地
 
 
-STR_CARGO_NAME_CHEMICALS			:化学品
-STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}HUA
-STR_CARGO_QUANTITY_CHEMICALS		:{VOLUME}化学品
+STR_CARGO_NAME_CHEMICALS            :化学品
+STR_CARGO_ABBREV_CHEMICALS          :{TINYFONT}HUA
+STR_CARGO_QUANTITY_CHEMICALS        :{VOLUME}化学品
 
-STR_CARGO_NAME_LUMBER				:木料
-STR_CARGO_ABBREV_LUMBER				:{TINYFONT}MU
-STR_CARGO_QUANTITY_LUMBER			:{WEIGHT}木料
+STR_CARGO_NAME_LUMBER               :木料
+STR_CARGO_ABBREV_LUMBER             :{TINYFONT}MU
+STR_CARGO_QUANTITY_LUMBER           :{WEIGHT}木料
 
-STR_CARGO_NAME_RECYCLABLES			:回收材料
-STR_CARGO_ABBREV_RECYCLABLES		:{TINYFONT}HUI
-STR_CARGO_QUANTITY_RECYCLABLES		:{WEIGHT}回收材料
+STR_CARGO_NAME_WASTE                :垃圾
+STR_CARGO_ABBREV_WASTE              :{TINYFONT}LA
+STR_CARGO_QUANTITY_WASTE            :{WEIGHT}垃圾
 
-STR_CARGO_NAME_WASTE				:垃圾
-STR_CARGO_ABBREV_WASTE				:{TINYFONT}LA
-STR_CARGO_QUANTITY_WASTE			:{WEIGHT}垃圾
+STR_CARGO_NAME_BDMT                 :Building Materials
+STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
 
-STR_CARGO_NAME_URANIUM				:铀
-STR_CARGO_ABBREV_URANIUM			:{TINYFONT}YO
-STR_CARGO_QUANTITY_URANIUM			:{WEIGHT}铀
+STR_CARGO_NAME_WDCH                 :Wood Chips
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
 
-STR_CARGO_NAME_NUCLEAR_FUEL			:核燃料
-STR_CARGO_ABBREV_NUCLEAR_FUEL		:{TINYFONT}HR
-STR_CARGO_QUANTITY_NUCLEAR_FUEL		:{WEIGHT}核燃料
+STR_CARGO_NAME_PLAS                 :Plastic
+STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
 
-STR_CARGO_NAME_NUCLEAR_WASTE		:核废料
-STR_CARGO_ABBREV_NUCLEAR_WASTE		:{TINYFONT}HF
-STR_CARGO_QUANTITY_NUCLEAR_WASTE	:{WEIGHT}核废料
+STR_CARGO_NAME_SCMT                 :Scrap Metal
+STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+
+STR_CARGO_NAME_SCPL                 :Scrap Plastic
+STR_CARGO_ABBREV_SCPL               :{TINYFONT}SP
+STR_CARGO_QUANTITY_SCPL             :{WEIGHT} of scrap plastic
+
+STR_CARGO_NAME_SCPR                 :Scrap Paper
+STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
