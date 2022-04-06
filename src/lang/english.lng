@@ -7,6 +7,7 @@ STR_GRF_DESC                        :{ORANGE}Testing testing 123!{}{}{ORANGE}Vis
 STR_WEBSITE                         :https://github.com/2TallTyler/minimalist_industries
 
 STR_ERROR_GAME_VERSION              :{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better.
+STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or better.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
 
 STR_EMPTY                           :
