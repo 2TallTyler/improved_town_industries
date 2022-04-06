@@ -1,10 +1,10 @@
 grf {
-	grfid: "TT24";
+	grfid: "TT\04\01";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
 	url: string(STR_WEBSITE);
-	version: 0;
-	min_compatible_version: 0;
+	version: 23;
+	min_compatible_version: 23;
 
     param 0 {
 		param_primary_quadrants {
