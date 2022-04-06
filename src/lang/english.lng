@@ -1,85 +1,75 @@
 ##grflangid 0x01
+##plural 0
 
-STR_GRF_NAME						:{TITLE} {VERSION}
-STR_GRF_DESC						:{ORANGE}Vanilla-inspired industries{BLACK} with new chains, commuting workers, industry near towns, and real introduction dates as early as 1700.{}{}{SILVER}Requires NewGRF vehicles. Incompatible with other industry sets.{}{}{ORANGE}Visit website for instructions.{}{}{BLACK}Coded by 2TallTyler.
+STR_GRF_NAME                        :{TITLE} {VERSION}
+STR_GRF_DESC                        :{ORANGE}Testing testing 123!{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
 
-STR_WEBSITE							:https://github.com/2TallTyler/improved_town_industries/blob/master/README.md
+STR_WEBSITE                         :https://github.com/2TallTyler/minimalist_industries
 
-STR_ERROR_GAME_VERSION				:{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better.
-STR_ERROR_RCLC_NEEDS_ITL			:{TITLE} Waste & Recycling chain requires a compatible house set (recommended: Improved Town Layouts version 1.3.0 or better).
-STR_ERR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
+STR_ERROR_GAME_VERSION              :{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better.
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
 
-STR_PARAM_NAME_PRIMARY_ONLY			:Generate Primary Industries Only
-STR_PARAM_DESC_PRIMARY_ONLY			:Disable automatic generation of {SILVER}Factories{BLACK}, {SILVER}Steel Mills{BLACK}, {SILVER}Paper Mills{BLACK}, {SILVER}Oil Refineries{BLACK}, {SILVER}Power Plants{BLACK}, {SILVER}Nuclear Fuel Plants{BLACK} (if enabled) and {SILVER}Recycling Centers{BLACK} (if enabled). Does not affect funded industries.
+STR_EMPTY                           :
 
-STR_PARAM_NAME_ELEVATION_CHECKS		:Industry elevation requirements 
-STR_PARAM_DESC_ELEVATION_CHECKS		:Enable elevation checks: {SILVER}Coal Mines{BLACK} must be elevation 4 or higher, {SILVER}Farm{BLACK} and {SILVER}Oil Wells{BLACK} must be elevation 2 or less.{}{}{ORANGE}Do not enable {BLACK}with {ORANGE}Very Flat {BLACK}terrain type, as {SILVER}Coal Mine {BLACK} will not generate.
+STR_TOWN                            :{STRING}
+STR_STATION                         :{STRING} {STRING}
 
-STR_PARAM_NAME_AUTO_FARM_FIELDS		:Farms build fields
-STR_PARAM_DESC_AUTO_FARM_FIELDS		:Choose if {SILVER}Farms {BLACK}construct fields, as in vanilla OpenTTD.{}{}Field tiles are available as decorative objects.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industries spawn in quadrant regions
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}Off{}{WHITE}If enabled, primary industries spawn only in certain map regions.
 
-STR_PARAM_NAME_OIL_RIGS				:Enable Oil Rigs
-STR_PARAM_DESC_OIL_RIGS				:Choose whether {SILVER}Oil Rigs{BLACK} appear after 1960 (identical to vanilla industry).{}{}{ORANGE}Temperate climate only.
+STR_NAME_OBJECT_MENU                :Industry Tiles
+STR_NAME_OBJECT_MENU_FIELDS         :Fields
 
-STR_PARAM_NAME_NUCLEAR				:Enable Nuclear Energy chain
-STR_PARAM_DESC_NUCLEAR				:Enables {SILVER}Uranium Mine{BLACK} and {SILVER}Nuclear Fuel Plant{BLACK}, from 1956. {SILVER}Power Plant{BLACK} accepts Nuclear Fuel and produces Nuclear Waste.
-
-STR_PARAM_NAME_RECYCLABLES			:Enable Waste & Recycling chain
-STR_PARAM_DESC_RECYCLABLES			:Enables {SILVER}Recycling Center{BLACK} to sort Waste from town buildings into Recycled Materials for transport to industries.{}{}{ORANGE}Requires Improved Town Layouts NewGRF, version 1.3.0 or better.
-
-STR_PARAM_NAME_INDUSTRY_POP         :Population requirement for secondary industries
-STR_PARAM_DESC_INDUSTRY_POP         :The minimum town population required per secondary industry.{}{}The default value of 300 is optimized for Improved Town Layouts, where towns generate with low population. If using another house set, this should be increased to at least 1,000.{}{}Note: Before 1850, the requirement is 1/3 of this number.
-
-STR_FUND_AVAILABLE					:{BLACK}Introduced: {YELLOW}{STRING}
-
-STR_NAME_OBJECT_MENU				:Industry Tiles
-STR_NAME_OBJECT_MENU_FIELDS			:Farm Tiles
-
-STR_TOWN							:{STRING}
-STR_STATION							:{STRING} {STRING}
-
-STR_NAME_STEEL_MILL					:Steel Mill
-STR_NAME_IRON_MINE					:Iron Mine
-STR_NAME_SAWMILL					:Sawmill
-STR_NAME_FOREST						:Forest
-STR_NAME_OIL_REFINERY				:Oil Refinery
-STR_NAME_FARM						:Farm
-STR_NAME_POWER_PLANT				:Power Plant
-STR_NAME_FACTORY					:Factory
-STR_NAME_COAL_MINE					:Coal Mine
-STR_NAME_OIL_WELLS					:Oil Wells
-STR_NAME_PAPER_MILL					:Paper Mill
-STR_NAME_RECYCLING_CENTER			:Recycling Center
-STR_NAME_URANIUM_MINE				:Uranium Mine
-STR_NAME_NUCLEAR_FUEL_PLANT			:Nuclear Fuel Plant
+STR_NAME_STEEL_MILL                 :Steel Mill
+STR_NAME_IRON_MINE                  :Iron Mine
+STR_NAME_SAWMILL                    :Sawmill
+STR_NAME_FOREST                     :Forest
+STR_NAME_OIL_REFINERY               :Oil Refinery
+STR_NAME_FARM                       :Farm
+STR_NAME_FACTORY                    :Factory
+STR_NAME_COAL_MINE                  :Coal Mine
+STR_NAME_OIL_WELLS                  :Oil Wells
+STR_NAME_PAPER_MILL                 :Paper Mill
+STR_NAME_RECYCLING_CENTER           :Recycling Center
+STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
+STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
+STR_NAME_RANCH                      :Ranch
+STR_NAME_BANK                       :Bank
 
 STR_NAME_FIELD_1					:Field
 
-
 STR_CARGO_NAME_CHEMICALS			:Chemicals
 STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}CH
-STR_CARGO_QUANTITY_CHEMICALS		:{VOLUME} of chemicals
+STR_CARGO_QUANTITY_CHEMICALS		:{WEIGHT} of chemicals
 
 STR_CARGO_NAME_LUMBER				:Lumber
 STR_CARGO_ABBREV_LUMBER				:{TINYFONT}LU
 STR_CARGO_QUANTITY_LUMBER			:{WEIGHT} of lumber
 
-STR_CARGO_NAME_RECYCLABLES			:Recycled Materials
-STR_CARGO_ABBREV_RECYCLABLES		:{TINYFONT}RM
-STR_CARGO_QUANTITY_RECYCLABLES		:{WEIGHT} of recycled materials
-
 STR_CARGO_NAME_WASTE				:Waste
 STR_CARGO_ABBREV_WASTE				:{TINYFONT}WS
 STR_CARGO_QUANTITY_WASTE			:{WEIGHT} of waste
 
-STR_CARGO_NAME_URANIUM				:Uranium
-STR_CARGO_ABBREV_URANIUM			:{TINYFONT}UR
-STR_CARGO_QUANTITY_URANIUM			:{WEIGHT} of uranium
+STR_CARGO_NAME_BDMT                 :Building Materials
+STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
 
-STR_CARGO_NAME_NUCLEAR_FUEL			:Nuclear Fuel
-STR_CARGO_ABBREV_NUCLEAR_FUEL		:{TINYFONT}NF
-STR_CARGO_QUANTITY_NUCLEAR_FUEL		:{WEIGHT} of nuclear fuel
+STR_CARGO_NAME_WDCH                 :Wood Chips
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
 
-STR_CARGO_NAME_NUCLEAR_WASTE		:Nuclear Waste
-STR_CARGO_ABBREV_NUCLEAR_WASTE		:{TINYFONT}NW
-STR_CARGO_QUANTITY_NUCLEAR_WASTE	:{WEIGHT} of nuclear waste
+STR_CARGO_NAME_PLAS                 :Plastic
+STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
+
+STR_CARGO_NAME_SCMT                 :Scrap Metal
+STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+
+STR_CARGO_NAME_SCPL                 :Scrap Plastic
+STR_CARGO_ABBREV_SCPL               :{TINYFONT}SP
+STR_CARGO_QUANTITY_SCPL             :{WEIGHT} of scrap plastic
+
+STR_CARGO_NAME_SCPR                 :Scrap Paper
+STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper

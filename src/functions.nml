@@ -1,53 +1,183 @@
 
-/* Begin Functions */
+/**
+ * Bypass location check requirements if the industry is being funded or if we're in Scenario Editor.
+ * @return 1 if the industry is being funded or we're in Scenario Editor, else 0 (the industry is being generated during map generation or during a game).
+ */
+switch (FEAT_INDUSTRIES, SELF, IsBeingFunded, (extra_callback_info2 == IND_CREATION_FUND || game_mode == GAMEMODE_EDITOR)) {return;}
 
-/* Shared function for processing industries to check the population required to build and store it in temporary register 1 */
-switch (FEAT_INDUSTRIES, SELF, StoreAdjustedRequiredPopulation, fraction, STORE_TEMP(
-	// Count existing processing industries in town
-	industry_town_count(industry_oil_refinery,-1)		* param_industry_population +
-	industry_town_count(industry_paper_mill,-1) 		* param_industry_population +
-	industry_town_count(industry_steel_mill,-1)			* param_industry_population +
-	industry_town_count(industry_factory,-1)			* param_industry_population +
-	industry_town_count(industry_power_plant,-1)		* param_industry_population +
-	industry_town_count(industry_recycling_center,-1)	* param_industry_population +
-	industry_town_count(industry_sawmill,-1)			* param_industry_population +
-	industry_town_count(industry_nuclear_fuel_plant,-1)	* param_industry_population +
-	(param_industry_population / fraction) // Add population required for this industry, adjusted by fraction parameter for early starts
-	, 1))
-	{return 0;}
-	
-switch (FEAT_INDUSTRIES, SELF, StoreRequiredPopulation, current_year) {
-	0..1850: return StoreAdjustedRequiredPopulation(3); // 1/3 of population required for early games
-	return StoreAdjustedRequiredPopulation(1); // 1/1 population required otherwise
-}
+/**
+ * Check if a secondary industry can be built in this city (because none already exist).
+ * Note: Banks are the exception and are really primary industries anyway.
+ * @return 1 if no secondary industries exist, else 0.
+ */
+switch (FEAT_INDUSTRIES, SELF, CityHasNoSecondaryIndustries, 
+    industry_town_count(industry_building_materials_factory) > 0 ||
+    industry_town_count(industry_factory) > 0 ||
+    industry_town_count(industry_food_processing_plant) > 0 ||
+    industry_town_count(industry_oil_refinery) > 0 ||
+    industry_town_count(industry_paper_mill) > 0 ||
+    industry_town_count(industry_recycling_center) > 0 ||
+    industry_town_count(industry_sawmill) > 0 ||
+    industry_town_count(industry_steel_mill) > 0
+    ) {1: return 0; return 1;}
 
-/* Generate secondary industries in an industrial district */
+/**
+ * Check if there are any industries of a given type within a given distance.
+ * @return 1 if there are no industries of the given type within the required distance, else 0.
+ */
+ switch (FEAT_INDUSTRIES, SELF, NoNearbyCompetitors, industrytype, required_distance, industry_distance(industrytype) > required_distance) {return;}
 
-/* Check the range of other industries */
-/* Note: If an industry doesn't exist within range, the distance is 65535, which evaluates to False */
-switch (FEAT_INDUSTRIES, SELF, switch_industrial_district_2,
-		(industry_distance(industry_oil_refinery, -1) < 15) ||
-		(industry_distance(industry_paper_mill, -1) < 15) ||
-		(industry_distance(industry_steel_mill, -1) < 15) ||
-		(industry_distance(industry_factory, -1) < 15) ||
-		(industry_distance(industry_power_plant, -1) < 15) ||
-		(industry_distance(industry_recycling_center, -1) < 15) ||
-		(industry_distance(industry_sawmill, -1) < 15) ||
-		(industry_distance(industry_nuclear_fuel_plant, -1) < 15)
-	) // 1 if this industry is within 20 tiles of an industry, 0 if out of range
-	{1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+/**
+ * Helper function for IsWithinDistanceToTown()
+ * Note: The sum of the radii is greater than simply the largest radii, but it means larger towns have a greater range for industry placement.
+ * @returns the sum of the town's townzone radii. 
+ */
+switch (FEAT_INDUSTRIES, PARENT, StoreTownRadii,   town_zone_0_radius_square +
+                                                    town_zone_1_radius_square + 
+                                                    town_zone_2_radius_square + 
+                                                    town_zone_3_radius_square + 
+                                                    town_zone_4_radius_square) {return;}
 
-/* Check if another industry exists in town */
-switch (FEAT_INDUSTRIES, SELF, switch_industrial_district_1,
-		(industry_town_count(industry_oil_refinery,-1) > 0) ||
-		(industry_town_count(industry_paper_mill,-1) > 0) ||
-		(industry_town_count(industry_steel_mill,-1) > 0) ||
-		(industry_town_count(industry_factory,-1) > 0) ||
-		(industry_town_count(industry_power_plant,-1) > 0) ||
-		(industry_town_count(industry_recycling_center,-1) > 0) ||
-		(industry_town_count(industry_sawmill,-1) > 0) ||
-		(industry_town_count(industry_nuclear_fuel_plant,-1) > 0)
-	) // 1 if another industry exists in town, 0 if no other industry exists
-		{1: switch_industrial_district_2; CB_RESULT_LOCATION_ALLOW;}
+/**
+ * Checks the distance from an industry to its parent town.
+ * The townzone radii and Euclidean distance are both squared, so we need to sqaure the padding parameter to match.
+ * @param padding Area around the town where industries can spawn.
+ * @return 1 if the industry is within the given distance to the town, else 0.
+ */
+switch (FEAT_INDUSTRIES, SELF, IsWithinDistanceToTown, padding, (town_euclidean_dist(0,0) < ( (padding * padding) + StoreTownRadii()) ) ) {return;}
 
-/* End Functions */
+/**
+ * Check if the industry is near a town - required for secondary industries.
+ * @return 1 if near a town, else 0.
+ */
+ switch (FEAT_INDUSTRIES, SELF, IsNearTown, IsWithinDistanceToTown(15)) {return;}
+
+/**
+ * Get a town's population.
+ * @return the population of the town.
+ */
+switch (FEAT_INDUSTRIES, PARENT, TownPopulation, population) {return;}
+
+/**
+ * Check if a town has a required population.
+ * @param required The required population.
+ * @return 1 if the town's population is over the given requirement, else 0.
+ */
+switch (FEAT_INDUSTRIES, SELF, TownHasPopulation, required, TownPopulation() > required) {return;}
+
+/**
+ * Get the secondary production level of a town, 1/10 the population divided by 8 production ticks per month, multiplied by the percentage of transported passengers.
+ * @return The production per 256 ticks.
+ */
+switch (FEAT_INDUSTRIES, PARENT, GetSecondaryProductionLevel, (TownPopulation() / 10 / 8 * percent_transported_passengers) / 100) {return;}
+
+/** 
+ * Get the primary industry population multiplier based on the population of the town. 
+ * @return The multiplier, in range 1-4.
+ */
+switch (FEAT_INDUSTRIES, PARENT, GetPopMultiplier, min(1 + (population / 1000), 4)) {return;}
+
+/**
+ * Get the primary industry production amount based on town population and percent of transported passengers.
+ * @return The amount to be produced every 256 ticks.
+ */
+switch (FEAT_INDUSTRIES, PARENT, GetPrimaryProduction, (16 * GetPopMultiplier() * percent_transported_passengers) / 100) {return;}
+
+/**
+ * Is the parent town a city?
+ * @return True if it is a city, else false.
+ */
+switch (FEAT_INDUSTRIES, PARENT, IsCity, is_city) {return;}
+
+/**
+ * Is the parent town a town? (as oppposed to a city)
+ * @return True if it is a town, else false.
+ */
+ switch (FEAT_INDUSTRIES, PARENT, IsTown, !is_city) {return;}
+
+/**
+ * Check if an industry is within a range of elevation.
+ * @param min_z elevation (inclusive)
+ * @param max_z elevation (inclusive)
+ * @return 1 if the industry is at or between the specified min and max elevations, else 0
+ */
+switch (FEAT_INDUSTRIES, SELF, IndustryElevationCheck, min_z, max_z, nearby_tile_height(0,0) >= min_z && nearby_tile_height(0,0) <= max_z) {return;}
+
+/**
+ * Calculate the x coordinate of an industry's northernmost tile.
+ * @returns the x coordinate
+ */
+switch (FEAT_INDUSTRIES, SELF, GetTileX, var[0x80, 0, 0xFFFFFFFF] % map_x_edge) {return;}
+
+/**
+ * Calculate the y coordinate of an industry's northernmost tile.
+ * @returns the y coordinate
+ */
+switch (FEAT_INDUSTRIES, SELF, GetTileY, var[0x80, 0, 0xFFFFFFFF] / map_x_edge) {return;}
+
+ /**
+ * Check if an industry is in the North quadrant of the map.
+ * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0.
+ */
+switch (FEAT_INDUSTRIES, SELF, IsInQuadrantN,
+	!param_primary_quadrants || game_mode == GAMEMODE_EDITOR || (GetTileX() < (map_x_edge / 2) && GetTileY() < (map_y_edge / 2))
+) {return;}
+
+/**
+ * Check if an industry is in the East quadrant of the map.
+ * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0.
+ */
+switch (FEAT_INDUSTRIES, SELF, IsInQuadrantE,
+	!param_primary_quadrants || game_mode == GAMEMODE_EDITOR || (GetTileX() < (map_x_edge / 2) && GetTileY() > (map_y_edge / 2))
+) {return;}
+
+/**
+ * Check if an industry is in the South quadrant of the map.
+ * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0.
+ */
+switch (FEAT_INDUSTRIES, SELF, IsInQuadrantS,
+	!param_primary_quadrants || game_mode == GAMEMODE_EDITOR || (GetTileX() > (map_x_edge / 2) && GetTileY() > (map_y_edge / 2))
+) {return;}
+
+/**
+ * Check if an industry is in the West quadrant of the map.
+ * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0.
+ */
+switch (FEAT_INDUSTRIES, SELF, IsInQuadrantW,
+	!param_primary_quadrants || game_mode == GAMEMODE_EDITOR || (GetTileX() > (map_x_edge / 2) && GetTileY() < (map_y_edge / 2))
+) {return;}
+
+/**
+ * Check if an industry is in the Northeast quadrant of the map.
+ * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0. 
+ */
+switch (FEAT_INDUSTRIES, SELF, IsInQuadrantNE,
+    !param_primary_quadrants || game_mode == GAMEMODE_EDITOR || ((GetTileX() * map_y_edge) < (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) < (map_x_edge * map_y_edge))
+) {return;}
+
+/**
+ * Check if an industry is in the Southeast quadrant of the map.
+ * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0. 
+ */
+switch (FEAT_INDUSTRIES, SELF, IsInQuadrantSE,
+    !param_primary_quadrants || game_mode == GAMEMODE_EDITOR || ((GetTileX() * map_y_edge) < (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) > (map_x_edge * map_y_edge))
+) {return;}
+
+/**
+ * Check if an industry is in the Southwest quadrant of the map.
+ * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0. 
+ */
+switch (FEAT_INDUSTRIES, SELF, IsInQuadrantSW,
+    !param_primary_quadrants || game_mode == GAMEMODE_EDITOR || ((GetTileX() * map_y_edge) > (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) > (map_x_edge * map_y_edge))
+) {return;}
+
+/**
+ * Check if an industry is in the Northwest quadrant of the map.
+ * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0. 
+ */
+switch (FEAT_INDUSTRIES, SELF, IsInQuadrantNW,
+    !param_primary_quadrants || game_mode == GAMEMODE_EDITOR || ((GetTileX() * map_y_edge) > (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) < (map_x_edge * map_y_edge))
+) {return;}
+
+/* Empty production block. */
+produce (produce_none, [], [])

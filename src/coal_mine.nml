@@ -43,6 +43,7 @@ spritelayout sprlay_coal_mine_6 {
 	ground		{sprite:2022;}
 }
 
+/* Coal Mine hoist is only animated when coal is being transported */
 switch (FEAT_INDUSTRYTILES, PARENT, switch_coal_mine_animation_2, this_month_transported("COAL") > 0) {1: return CB_RESULT_START_ANIMATION; return CB_RESULT_STOP_ANIMATION;}
 
 switch (FEAT_INDUSTRYTILES, SELF, switch_coal_mine_animation_1, animation_frame) {
@@ -102,139 +103,146 @@ tilelayout industry_layout_coal_mine_3 {
 	0,0:	ind_tile_coal_mine_2;	0,1:	ind_tile_coal_mine_1;	0,2:	ind_tile_coal_mine_3;
 	1,0:	ind_tile_coal_mine_6;	1,1:	ind_tile_coal_mine_4;
 }
-	
 
-/* Coal Mine Industry */
+produce (produce_coal_mine,
+    [],                                        // consume
+    [COAL: LOAD_TEMP(1); PASS: LOAD_TEMP(2);], // produce
+    0                                          // don't run callback again
+)
 
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_location_check_1, nearby_tile_height(0,0) < 4 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; return CB_RESULT_LOCATION_ALLOW;} 
-	// Coal mines must be built at tile height 2 or above.
+/* Calculate Coal and passenger production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_coal_mine, [
+    STORE_TEMP(GetPrimaryProduction(), 1),
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("COAL")) / 100), 2)
+    ]) {produce_coal_mine;}
 
-/* Funded industries have no restrictions */
-switch (FEAT_INDUSTRIES, SELF, switch_coal_mine_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return CB_RESULT_LOCATION_ALLOW; switch_coal_mine_location_check_1;}
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_coal_mine, IsTown() && IsInQuadrantN() && IndustryElevationCheck(4,255)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
-item (FEAT_INDUSTRIES, industry_coal_mine, 1) {
+/* Coal Mine industry */
+item (FEAT_INDUSTRIES, industry_coal_mine, 0) {
 	property {
-		substitute:				INDUSTRYTYPE_COAL_MINE;
-		life_type:				IND_LIFE_TYPE_EXTRACTIVE;
-		cargo_types:			[
-								produce_cargo("COAL",15),
-								produce_cargo("PASS",15),
+		substitute: INDUSTRYTYPE_COAL_MINE;
+		life_type: IND_LIFE_TYPE_EXTRACTIVE;
+        spec_flags:	0;
+		cargo_types: [
+		    produce_cargo("COAL", 0),
+            produce_cargo("PASS", 0),
 		];
-		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_COAL_MINE));
-		fund_cost_multiplier:	85;
-		layouts:				[
+		name: TTD_STR_INDUSTRY_NAME_COAL_MINE;
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_COAL_MINE));
+		fund_cost_multiplier: 85;
+		layouts: [
 			industry_layout_coal_mine,
 			industry_layout_coal_mine_2,
 			industry_layout_coal_mine_3,
 		];
-		conflicting_ind_types:	[industry_steel_mill, industry_power_plant, industry_farm];
 	}
 	graphics {
-		location_check:			switch_coal_mine_allow_funded;
-		construction_probability:	15;
+		location_check: loc_check_coal_mine;
+        construction_probability: 15;
+        produce_256_ticks: switch_produce_coal_mine;
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 	}
 }
 
-
-switch (FEAT_OBJECTS, SELF, switch_object_graphics_coal_mine_5, relative_pos) {
-	relative_coord(0, 0): sprlay_coal_mine_5_N;
-	relative_coord(1, 0): sprlay_coal_mine_5_W;
-}
-
+/* Coal Mine objects  */
 item (FEAT_OBJECTS, object_item_coal_mine_1) {
 	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-		
+		class: "HSIN";
+		classname: string(STR_NAME_OBJECT_MENU);
+		name: TTD_STR_INDUSTRY_NAME_COAL_MINE;
+		climates_available: ALL_CLIMATES;
+		object_flags: bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier: 0;
+		remove_cost_multiplier: 0;
+		size: [1,1];
+		introduction_date: 1700;
+		num_views: 1;
 	}
 	graphics {
-		default:				sprlay_coal_mine_1_a;
+		default: sprlay_coal_mine_1_a;
 	}
 }
 
 item (FEAT_OBJECTS, object_item_coal_mine_2) {
 	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-		
+		class: "HSIN";
+		classname: string(STR_NAME_OBJECT_MENU);
+		name: TTD_STR_INDUSTRY_NAME_COAL_MINE;
+		climates_available: ALL_CLIMATES;
+		object_flags: bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier: 0;
+		remove_cost_multiplier: 0;
+		size: [1,1];
+		introduction_date: 1700;
+		num_views: 1;
 	}
 	graphics {
-		default:				sprlay_coal_mine_2;
+		default: sprlay_coal_mine_2;
 	}
 }
 
 item (FEAT_OBJECTS, object_item_coal_mine_3) {
 	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-		
+		class: "HSIN";
+		classname: string(STR_NAME_OBJECT_MENU);
+		name: TTD_STR_INDUSTRY_NAME_COAL_MINE;
+		climates_available: ALL_CLIMATES;
+		object_flags: bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier: 0;
+		remove_cost_multiplier: 0;
+		size: [1,1];
+		introduction_date: 1700;
+		num_views: 1;
 	}
 	graphics {
-		default:				sprlay_coal_mine_3;
+		default: sprlay_coal_mine_3;
 	}
 }
 
 item (FEAT_OBJECTS, object_item_coal_mine_4) {
 	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-		
+		class: "HSIN";
+		classname: string(STR_NAME_OBJECT_MENU);
+		name: TTD_STR_INDUSTRY_NAME_COAL_MINE;
+		climates_available: ALL_CLIMATES;
+		object_flags: bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier: 0;
+		remove_cost_multiplier: 0;
+		size: [1,1];
+		introduction_date: 1700;
+		num_views: 1;
 	}
 	graphics {
-		default:				sprlay_coal_mine_4;
+		default: sprlay_coal_mine_4;
 	}
+}
+
+/* Select the correct sprite for the 2-tile coal pile */
+switch (FEAT_OBJECTS, SELF, switch_object_graphics_coal_mine_5, relative_pos) {
+	relative_coord(0, 0): sprlay_coal_mine_5_N;
+	relative_coord(1, 0): sprlay_coal_mine_5_W;
 }
 
 item (FEAT_OBJECTS, object_item_coal_mine_5) {
 	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					TTD_STR_INDUSTRY_NAME_COAL_MINE;
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[2,1];
-		introduction_date:		1700;
-		num_views:				1;
-		
+		class: "HSIN";
+		classname: string(STR_NAME_OBJECT_MENU);
+		name: TTD_STR_INDUSTRY_NAME_COAL_MINE;
+		climates_available: ALL_CLIMATES;
+		object_flags: bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier: 0;
+		remove_cost_multiplier: 0;
+		size: [2,1];
+		introduction_date: 1700;
+		num_views: 1;
 	}
 	graphics {
-		default:				switch_object_graphics_coal_mine_5;
+		default: switch_object_graphics_coal_mine_5;
 	}
 }
 

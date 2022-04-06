@@ -97,101 +97,52 @@ tilelayout industry_layout_farm_7 {
 	1,0:	ind_tile_farm_1_N;	1,1:	ind_tile_farm_1_E;	1,2:	ind_tile_farm_2;
 }
 
+produce (produce_farm,
+    [],                                        // consume
+    [GRAI: LOAD_TEMP(1); PASS: LOAD_TEMP(2);], // produce
+    0                                          // don't run callback again
+)
 
-/* Industry construction checks - specific to Farms */
+/* Calculate Grain and passenger production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_farm, [
+    STORE_TEMP(GetPrimaryProduction(), 1),
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("GRAI")) / 100), 2)
+    ]) {produce_farm;}
 
-/* Keep Farms from building too close to other industries (fields would overlap) */
-switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_5, 
-	industry_distance(industry_coal_mine,-1) >= 30 &&
-	industry_distance(industry_factory,-1) >= 30 && 
-	industry_distance(industry_farm,-1) >= 40 && 
-	industry_distance(industry_forest,-1) >= 30 &&
-	industry_distance(industry_iron_mine,-1) >= 30 && 
-	industry_distance(industry_nuclear_fuel_plant,-1) >= 30 &&
-	industry_distance(industry_power_plant,-1) >= 30 &&
-	industry_distance(industry_oil_refinery,-1) >= 30 && 
-	industry_distance(industry_oil_wells,-1) >= 30 && 
-	industry_distance(industry_paper_mill,-1) >= 30 && 
-	industry_distance(industry_recycling_center,-1) >= 30 &&
-	industry_distance(industry_sawmill,-1) >= 30 && 
-	industry_distance(industry_steel_mill,-1) >= 30 && 
-	industry_distance(industry_uranium_mine,-1) >= 30
-	) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
-		
-switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+100) {1: switch_farm_location_check_5; return CB_RESULT_LOCATION_DISALLOW;} // Add 10 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_farm_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_farm_location_check_3;} // Add up the town zone radii and store it in temporary register 0
-switch (FEAT_INDUSTRIES, SELF, switch_farm_location_check_1, nearby_tile_height(0,0) > 2 && param_elevation_checks == 1) {1: return CB_RESULT_LOCATION_DISALLOW; switch_farm_location_check_2;} // Farms must be built at tile height 2 or below.
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_farm, IsTown() && IsInQuadrantSE() && IndustryElevationCheck(0, 4)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
-
-/* Funded industries have no restrictions */
-switch (FEAT_INDUSTRIES, SELF, switch_farm_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return CB_RESULT_LOCATION_ALLOW; switch_farm_location_check_1;}
-
-/*
-*	Parameter selects whether Farms build fields automatically
-*	Uses if/then and otherwise-identical industry blocks, since special flags cannot be assigned to a parameter.
-*/
-
-if(param_auto_farm_fields == 1) { 
-	item (FEAT_INDUSTRIES, industry_farm, 0) {
-		property {
-			substitute:				INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
-			life_type:				IND_LIFE_TYPE_ORGANIC;
-			spec_flags:				bitmask(IND_FLAG_PLANT_FIELDS_WHEN_BUILT, IND_FLAG_PLANT_FIELDS_PERIODICALLY);
-			cargo_types:			[
-									produce_cargo("FOOD",12),
-									accept_cargo("RFPR", produce_cargo("FOOD",1)),
-									accept_cargo("RCYC", produce_cargo("FOOD",1)),
-									accept_cargo("WSTE", produce_cargo("FOOD",0.25)),
-			];
-			name:					TTD_STR_INDUSTRY_NAME_FARM;
-			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
-			fund_cost_multiplier:	70;
-			layouts:				[
-				industry_layout_farm_1,
-				industry_layout_farm_2,
-				industry_layout_farm_3,
-				industry_layout_farm_4,
-				industry_layout_farm_5,
-				industry_layout_farm_6,
-				industry_layout_farm_7,
-			];
-		}
-		graphics {
-			location_check:			switch_farm_allow_funded;
-			construction_probability:	15;
-		}
-	} 
-} else {
-item (FEAT_INDUSTRIES, industry_farm, 0) {
-		property {
-			substitute:				INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
-			life_type:				IND_LIFE_TYPE_ORGANIC;
-			spec_flags:				0; //Farms inherit info from base game farms, so it's necessary to set spec_flags to 0.
-			cargo_types:			[
-									produce_cargo("FOOD",12),
-									accept_cargo("RFPR", produce_cargo("FOOD",1)),
-									accept_cargo("RCYC", produce_cargo("FOOD",1)),
-									accept_cargo("WSTE", produce_cargo("FOOD",0.25)),
-			];
-			name:					TTD_STR_INDUSTRY_NAME_FARM;
-			nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
-			fund_cost_multiplier:	100;
-			layouts:				[
-				industry_layout_farm_1,
-				industry_layout_farm_2,
-				industry_layout_farm_3,
-				industry_layout_farm_4,
-				industry_layout_farm_5,
-				industry_layout_farm_6,
-				industry_layout_farm_7,
-			];
-		}
-		graphics {
-			location_check:			switch_farm_allow_funded;
-			construction_probability:	18;
-		}
-	}
+item (FEAT_INDUSTRIES, industry_farm, 11) {
+    property {
+        substitute: INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
+        life_type: IND_LIFE_TYPE_ORGANIC;
+        spec_flags: bitmask(IND_FLAG_PLANT_FIELDS_WHEN_BUILT, IND_FLAG_PLANT_FIELDS_PERIODICALLY);
+        cargo_types: [
+            produce_cargo("GRAI", 0),
+            produce_cargo("PASS", 0),
+        ];
+        name: TTD_STR_INDUSTRY_NAME_FARM;
+        nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
+        fund_cost_multiplier: 70;
+        layouts: [
+            industry_layout_farm_1,
+            industry_layout_farm_2,
+            industry_layout_farm_3,
+            industry_layout_farm_4,
+            industry_layout_farm_5,
+            industry_layout_farm_6,
+            industry_layout_farm_7,
+        ];
+    }
+    graphics {
+        location_check: loc_check_farm;
+        construction_probability: 15;
+        produce_256_ticks: switch_produce_farm;
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+    }
 }
 
 /* Building objects */

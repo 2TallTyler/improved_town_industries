@@ -1,0 +1,144 @@
+
+/* *** Begin Ranch *** */
+
+spritelayout sprlay_ranch_1_N { // Farmhouse N
+	ground		{sprite:2106;}
+	building	{sprite:2108;}
+}
+
+spritelayout sprlay_ranch_1_E { // Farmhouse W
+	ground		{sprite:2107;}
+	building	{sprite:2109;}
+}
+
+spritelayout sprlay_ranch_2 { // Hay shed
+	ground		{sprite:2110;}
+	building	{sprite:2111;}
+}
+
+spritelayout sprlay_ranch_3 { // Barn
+	ground		{sprite:2112;}
+	building	{sprite:2113;}
+}
+
+spritelayout sprlay_ranch_4 { // Silos
+	ground		{sprite:2116;}
+	building	{sprite:2115;}
+}
+
+spritelayout sprlay_ranch_5 { // Ranchyard
+	ground		{sprite:2116;}
+	building	{sprite:2117;}
+}
+
+spritelayout sprlay_ranch_6 { // Empty tile
+	ground		{sprite:2116;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_ranch_1_N) { // House north
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+graphics {default:		sprlay_ranch_1_N;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_ranch_1_E) { // House east
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+graphics {default:		sprlay_ranch_1_E;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_ranch_2) { // Hay shed
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+graphics {default:		sprlay_ranch_2;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_ranch_3) { // Barn
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+graphics {default:		sprlay_ranch_3;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_ranch_4) { // Silos
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+graphics {default:		sprlay_ranch_4;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_ranch_5) { // Farmyard
+property {substitute:	02; special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+graphics {default:		sprlay_ranch_5;}}
+
+item (FEAT_INDUSTRYTILES, ind_tile_ranch_6) { // empty tile
+property {substitute:	02;}
+graphics {default:		sprlay_ranch_6;}}
+
+tilelayout industry_layout_ranch_1 {
+	0,0:	ind_tile_ranch_4;	0,1:	ind_tile_ranch_3;	0,2:	ind_tile_ranch_2;
+	1,0:	ind_tile_ranch_1_N;	1,1:	ind_tile_ranch_1_E;	1,2:	ind_tile_ranch_6;
+}
+tilelayout industry_layout_ranch_2 {
+	0,0:	ind_tile_ranch_5;	0,1:	ind_tile_ranch_4;	0,2:	ind_tile_ranch_2;
+	1,0:	ind_tile_ranch_3;	1,1:	ind_tile_ranch_1_N;	1,2:	ind_tile_ranch_1_E;
+}
+tilelayout industry_layout_ranch_3 {
+	0,0:	ind_tile_ranch_5;	0,1:	ind_tile_ranch_1_N;	0,2:	ind_tile_ranch_1_E;
+	1,0:	ind_tile_ranch_5;	1,1:	ind_tile_ranch_3;	1,2:	ind_tile_ranch_4;
+}
+tilelayout industry_layout_ranch_4 {
+	0,0:	ind_tile_ranch_1_N;	0,1:	ind_tile_ranch_1_E;	0,2:	ind_tile_ranch_2;
+	1,0:	ind_tile_ranch_3;	1,1:	ind_tile_ranch_6;	1,2:	ind_tile_ranch_5;
+}
+tilelayout industry_layout_ranch_5 {
+	0,0:	ind_tile_ranch_1_N;	0,1:	ind_tile_ranch_1_E;	0,2:	ind_tile_ranch_4;
+	1,0:	ind_tile_ranch_3;	1,1:	ind_tile_ranch_6;	1,2:	ind_tile_ranch_2;
+}
+tilelayout industry_layout_ranch_6 {
+	0,0:	ind_tile_ranch_1_N;	0,1:	ind_tile_ranch_1_E;	0,2:	ind_tile_ranch_5;
+	1,0:	ind_tile_ranch_2;	1,1:	ind_tile_ranch_6;	1,2:	ind_tile_ranch_5;
+}
+tilelayout industry_layout_ranch_7 {
+	0,0:	ind_tile_ranch_3;	0,1:	ind_tile_ranch_6;	0,2:	ind_tile_ranch_5;
+	1,0:	ind_tile_ranch_1_N;	1,1:	ind_tile_ranch_1_E;	1,2:	ind_tile_ranch_2;
+}
+
+produce (produce_ranch,
+    [],                                        // consume
+    [LVST: LOAD_TEMP(1); PASS: LOAD_TEMP(2);], // produce
+    0                                          // don't run callback again
+)
+
+/* Calculate Livestock and passenger production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_ranch, [
+    STORE_TEMP(GetPrimaryProduction(), 1),
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("LVST")) / 100), 2)
+    ]) {produce_ranch;}
+
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_ranch, IsTown() && IsInQuadrantSW()) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+item (FEAT_INDUSTRIES, industry_ranch, 12) {
+    property {
+        substitute: INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
+        life_type: IND_LIFE_TYPE_ORGANIC;
+        spec_flags: 0;
+        cargo_types: [
+            produce_cargo("LVST", 0),
+            produce_cargo("PASS", 0),
+        ];
+        name: string(STR_NAME_RANCH);
+        nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_RANCH));
+        map_colour: 101;
+        fund_cost_multiplier: 70;
+        layouts: [
+            industry_layout_ranch_1,
+            industry_layout_ranch_2,
+            industry_layout_ranch_3,
+            industry_layout_ranch_4,
+            industry_layout_ranch_5,
+            industry_layout_ranch_6,
+            industry_layout_ranch_7,
+        ];
+    }
+    graphics {
+        location_check: loc_check_ranch;
+        construction_probability: 15;
+        produce_256_ticks: switch_produce_ranch;
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+    }
+}
+
+/* *** End Ranch *** */

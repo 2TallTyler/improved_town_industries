@@ -1,0 +1,389 @@
+/* *** Begin Food Processing Plant *** */
+
+spritelayout sprlay_food_processing_plant_shed { // Main building
+	ground		{sprite:2022;}
+	building	{sprite:2190;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_food_processing_plant_dock { // Loading dock
+	ground		{sprite:2022;}
+	building	{sprite:2193;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_food_processing_plant_silo { // Large silo
+	ground		{sprite:1420;}
+	building	{sprite:2196;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_food_processing_plant_yard { // grass and fence
+	ground		{sprite:2022;}
+	building	{sprite:2199;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_food_processing_plant_pumps_box { // Pumps with boxes
+	ground		{sprite:1420;}
+	building	{sprite:2349;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_food_processing_plant_pumps_reflector { // Pumps with reflector
+	ground		{sprite:1420;}
+	building	{sprite:2352;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+spritelayout sprlay_food_processing_plant_silos { // Twin silos
+	ground		{sprite:1420;}
+	building	{sprite:2115;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+spritelayout sprlay_food_processing_plant_office { // Office
+	ground		{sprite:1420;}
+	building	{sprite:2095; yoffset:2; xoffset:2;}
+}
+	
+spritelayout sprlay_food_processing_plant_paved { // Empty paved tilelayout
+	ground		{sprite:1420;}	
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_food_processing_plant_shed) {
+	property {
+		substitute:				11;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_food_processing_plant_shed;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_processing_plant_dock) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_food_processing_plant_dock;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_processing_plant_silo) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_food_processing_plant_silo;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_processing_plant_yard) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_food_processing_plant_yard;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_processing_plant_pumps_box) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_food_processing_plant_pumps_box;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_processing_plant_pumps_reflector) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_food_processing_plant_pumps_reflector;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_processing_plant_twin_silos) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_food_processing_plant_silos;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_processing_plant_office) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_food_processing_plant_office;
+	}
+}
+item (FEAT_INDUSTRYTILES, ind_tile_food_processing_plant_paved) {
+	property {
+		substitute:				02;
+		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: 		[[PASS, 8]];
+	}
+	graphics {
+		default:				sprlay_food_processing_plant_paved;
+	}
+}
+
+tilelayout industry_layout_food_processing_plant_1 {
+	0,0:	ind_tile_food_processing_plant_twin_silos;
+	0,1:	ind_tile_food_processing_plant_twin_silos;
+	0,2:	ind_tile_food_processing_plant_dock;
+	
+	1,0:	ind_tile_food_processing_plant_shed;
+	1,1:	ind_tile_food_processing_plant_shed;
+	1,2:	ind_tile_food_processing_plant_dock;
+
+	2,0:	ind_tile_food_processing_plant_shed;
+	2,1:	ind_tile_food_processing_plant_shed;
+}
+
+tilelayout industry_layout_food_processing_plant_2 {
+	0,0:	ind_tile_food_processing_plant_twin_silos;
+	0,1:	ind_tile_food_processing_plant_shed;
+	0,2:	ind_tile_food_processing_plant_dock;
+	
+	1,0:	ind_tile_food_processing_plant_shed;
+	1,1:	ind_tile_food_processing_plant_shed;
+	1,2:	ind_tile_food_processing_plant_office;
+}
+
+tilelayout industry_layout_food_processing_plant_3 {
+	0,0:	ind_tile_food_processing_plant_twin_silos;
+	0,1:	ind_tile_food_processing_plant_dock;
+	
+	1,0:	ind_tile_food_processing_plant_shed;
+	1,1:	ind_tile_food_processing_plant_dock;
+	
+	2,0:	ind_tile_food_processing_plant_shed;
+	2,1:	ind_tile_food_processing_plant_yard;
+	
+	3,0:	ind_tile_food_processing_plant_shed;
+	3,1:	ind_tile_food_processing_plant_yard;
+}
+
+produce (produce_food_processing_plant,
+    [GRAI: LOAD_TEMP(1); LVST: LOAD_TEMP(1);],           // consume
+    [FOOD: (LOAD_TEMP(1) * 3) / 2; PASS: LOAD_TEMP(2);], // produce
+    0                                                    // don't run callback again
+)
+
+/* If we don't have enough stored, produce as much as we can anyway. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_food_processing_plant_min, [
+    STORE_TEMP(min(incoming_cargo_waiting("LVST"), incoming_cargo_waiting("GRAI")), 1), // Set the production amount to the smallest input stockpile
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("FOOD")) / 100), 2), // Set the passenger production level
+    ]) {produce_food_processing_plant;}
+
+/* Determine the production level and see if we have enough stored to meet it. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_food_processing_plant_2, [
+    STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("FOOD")) / 100), 2), // Set the passenger production level
+    incoming_cargo_waiting("LVST") > LOAD_TEMP(1) && incoming_cargo_waiting("GRAI") > LOAD_TEMP(1), // Check if there's enough input cargo for this production level
+    ]) {
+        1: produce_food_processing_plant;
+        switch_produce_food_processing_plant_min;
+    }
+
+/* If no cargo is waiting, bail out. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_food_processing_plant, incoming_cargo_waiting("LVST") > 0 && incoming_cargo_waiting("GRAI") > 0)
+    {
+        1: switch_produce_food_processing_plant_2;
+        produce_none;
+    }
+
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_food_processing_plant, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_food_processing_plant, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+item (FEAT_INDUSTRIES, industry_food_processing_plant, 7) {
+    property {
+        substitute: INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
+        override: INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
+        life_type: IND_LIFE_TYPE_PROCESSING;
+        spec_flags: 0;
+        cargo_types: [
+            accept_cargo("GRAI"),
+            accept_cargo("LVST"),
+            produce_cargo("FOOD", 0),
+            produce_cargo("PASS", 0),
+        ];
+        name: string(STR_NAME_FOOD_PROCESSING_PLANT);
+        nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOOD_PROCESSING_PLANT));
+        prob_map_gen: 5;
+        prob_in_game: 3;
+        map_colour: 44;
+        fund_cost_multiplier: 31;
+        layouts: [
+            industry_layout_food_processing_plant_1,
+            industry_layout_food_processing_plant_2,
+            industry_layout_food_processing_plant_3,
+        ];
+    }
+    graphics {
+        location_check: loc_check_food_processing_plant;
+        construction_probability: 3;
+        produce_256_ticks: switch_produce_food_processing_plant;
+        colour: COLOUR_MAUVE;
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+    }
+}
+
+
+item (FEAT_OBJECTS, object_item_food_processing_plant_1) {
+    property {
+        class:					"HSIN";
+        classname:				string(STR_NAME_OBJECT_MENU);
+        name:					string(STR_NAME_FOOD_PROCESSING_PLANT);
+        climates_available:		ALL_CLIMATES;
+        object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+        build_cost_multiplier:	0;
+        remove_cost_multiplier:	0;
+        size:					[1,1];
+        introduction_date:		1945;
+        num_views:				1;
+    }
+    graphics {
+        default:				sprlay_food_processing_plant_shed;
+        colour:					COLOUR_MAUVE;
+    }
+}
+
+item (FEAT_OBJECTS, object_item_food_processing_plant_2) {
+    property {
+        class:					"HSIN";
+        classname:				string(STR_NAME_OBJECT_MENU);
+        name:					string(STR_NAME_FOOD_PROCESSING_PLANT);
+        climates_available:		ALL_CLIMATES;
+        object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+        build_cost_multiplier:	0;
+        remove_cost_multiplier:	0;
+        size:					[1,1];
+        introduction_date:		1945;
+        num_views:				1;
+    }
+    graphics {
+        default:				sprlay_food_processing_plant_dock;
+        colour:					COLOUR_MAUVE;
+    }
+}
+
+item (FEAT_OBJECTS, object_item_food_processing_plant_3) {
+    property {
+        class:					"HSIN";
+        classname:				string(STR_NAME_OBJECT_MENU);
+        name:					string(STR_NAME_FOOD_PROCESSING_PLANT);
+        climates_available:		ALL_CLIMATES;
+        object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+        build_cost_multiplier:	0;
+        remove_cost_multiplier:	0;
+        size:					[1,1];
+        introduction_date:		1945;
+        num_views:				1;
+    }
+    graphics {
+        default:				sprlay_food_processing_plant_silo;
+        colour:					COLOUR_MAUVE;
+    }
+}
+
+item (FEAT_OBJECTS, object_item_food_processing_plant_4) {
+    property {
+        class:					"HSIN";
+        classname:				string(STR_NAME_OBJECT_MENU);
+        name:					string(STR_NAME_FOOD_PROCESSING_PLANT);
+        climates_available:		ALL_CLIMATES;
+        object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+        build_cost_multiplier:	0;
+        remove_cost_multiplier:	0;
+        size:					[1,1];
+        introduction_date:		1945;
+        num_views:				1;
+    }
+    graphics {
+        default:				sprlay_food_processing_plant_yard;
+        colour:					COLOUR_MAUVE;
+    }
+}
+
+item (FEAT_OBJECTS, object_item_food_processing_plant_5) {
+    property {
+        class:					"HSIN";
+        classname:				string(STR_NAME_OBJECT_MENU);
+        name:					string(STR_NAME_FOOD_PROCESSING_PLANT);
+        climates_available:		ALL_CLIMATES;
+        object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+        build_cost_multiplier:	0;
+        remove_cost_multiplier:	0;
+        size:					[1,1];
+        introduction_date:		1945;
+        num_views:				1;
+    }
+    graphics {
+        default:				sprlay_food_processing_plant_pumps_box;
+        colour:					COLOUR_MAUVE;
+    }
+}
+
+item (FEAT_OBJECTS, object_item_food_processing_plant_6) {
+    property {
+        class:					"HSIN";
+        classname:				string(STR_NAME_OBJECT_MENU);
+        name:					string(STR_NAME_FOOD_PROCESSING_PLANT);
+        climates_available:		ALL_CLIMATES;
+        object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+        build_cost_multiplier:	0;
+        remove_cost_multiplier:	0;
+        size:					[1,1];
+        introduction_date:		1945;
+        num_views:				1;
+    }
+    graphics {
+        default:				sprlay_food_processing_plant_pumps_reflector;
+        colour:					COLOUR_MAUVE;
+    }
+}
+
+item (FEAT_OBJECTS, object_item_food_processing_plant_7) {
+    property {
+        class:					"HSIN";
+        classname:				string(STR_NAME_OBJECT_MENU);
+        name:					string(STR_NAME_FOOD_PROCESSING_PLANT);
+        climates_available:		ALL_CLIMATES;
+        object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+        build_cost_multiplier:	0;
+        remove_cost_multiplier:	0;
+        size:					[1,1];
+        introduction_date:		1945;
+        num_views:				1;
+    }
+    graphics {
+        default:				sprlay_food_processing_plant_silos;
+        colour:					COLOUR_MAUVE;
+    }
+}
+
+/* *** End Food Processing Plant *** */

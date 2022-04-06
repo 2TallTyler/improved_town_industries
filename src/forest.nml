@@ -26,29 +26,49 @@ spritelayout sprlay_forest_cut {
 	building	{sprite:2076;}
 }
 
+item (FEAT_INDUSTRYTILES, ind_tile_forest_10h) {
+    property {
+        substitute: 16;
+        override: 16;
+        accepted_cargos: [[PASS, 8]];
+    }
+}
 
-/* Location checks - specific to forest */ 
-switch (FEAT_INDUSTRIES, SELF, switch_forest_location_check_3, town_euclidean_dist(0,0) >= LOAD_TEMP(0)+400) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;} // Add 20 to the town zone radii and check if the distance to the town sign is larger than that radius. The town zone radii and distance check use the square of the distance, thus 64 = 8 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_forest_location_check_2, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_forest_location_check_3;} // Add up the town zone radii and store it in temporary register 0
+produce (produce_forest,
+    [],                                        // consume
+    [WOOD: LOAD_TEMP(1); PASS: LOAD_TEMP(2);], // produce
+    0                                          // don't run callback again
+)
 
+/* Calculate Wood and passenger production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_forest, [
+    STORE_TEMP(GetPrimaryProduction(), 1),
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("WOOD")) / 100), 2)
+    ]) {produce_forest;}
 
-/* Funded industries have no restrictions */
-switch (FEAT_INDUSTRIES, SELF, switch_forest_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return CB_RESULT_LOCATION_ALLOW; switch_forest_location_check_2;}
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_forest, IsTown() && (IsInQuadrantNE() || IsInQuadrantNW())) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
-item (FEAT_INDUSTRIES, industry_forest, 11) {
+item (FEAT_INDUSTRIES, industry_forest, 3) {
 	property {
-		substitute:				INDUSTRYTYPE_FOREST;
-		life_type:				IND_LIFE_TYPE_ORGANIC;
-		cargo_types:			[produce_cargo("WOOD",13),];
-		name:					TTD_STR_INDUSTRY_NAME_FOREST;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
-		fund_cost_multiplier:	62;
-		conflicting_ind_types:	[industry_sawmill, industry_paper_mill, industry_farm];
+		substitute: INDUSTRYTYPE_FOREST;
+		life_type: IND_LIFE_TYPE_ORGANIC;
+		cargo_types: [
+            produce_cargo("WOOD", 0),
+            produce_cargo("PASS", 0),
+        ];
+		name: TTD_STR_INDUSTRY_NAME_FOREST;
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
+		fund_cost_multiplier: 62;
 	}
 	graphics {
-		location_check:			switch_forest_allow_funded;
-		construction_probability:	15;
+		location_check: loc_check_forest;
+        construction_probability: 15;
+        produce_256_ticks: switch_produce_forest;
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 	}
 }
 
