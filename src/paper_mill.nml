@@ -163,64 +163,70 @@ tilelayout industry_layout_paper_mill_3 {
 3,0:	ind_tile_paper_mill_logs_1;		3,1:	ind_tile_paper_mill_9_W;		3,2:	ind_tile_paper_mill_9_S;
 }
 
-/* Industry Construction Switches - Read from bottom to top */
+produce (produce_paper_mill,
+    [WDCH: LOAD_TEMP(1); RFPR: LOAD_TEMP(1);],           // consume
+    [PAPR: (LOAD_TEMP(1) * 3) / 2; PASS: LOAD_TEMP(2);], // produce
+    0                                                    // don't run callback again
+)
 
-/* Don't allow the same industry within 100 tiles - secondary industries only */
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_distance_competitor, industry_distance(industry_paper_mill, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
+/* If we don't have enough stored, produce as much as we can anyway. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_min, [
+    STORE_TEMP(min(incoming_cargo_waiting("RFPR"), incoming_cargo_waiting("WDCH")), 1), // Set the production amount to the smallest input stockpile
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("PAPR")) / 100), 2), // Set the passenger production level
+    ]) {produce_paper_mill;}
 
-/* Population Check - secondary industries only */
-switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_population_check_1, [StoreRequiredPopulation(), population >= LOAD_TEMP(1)]) 
-	{1: switch_paper_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+/* Determine the production level and see if we have enough stored to meet it. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_2, [
+    STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("PAPR")) / 100), 2), // Set the passenger production level
+    incoming_cargo_waiting("RFPR") > LOAD_TEMP(1) && incoming_cargo_waiting("WDCH") > LOAD_TEMP(1), // Check if there's enough input cargo for this production level
+    ]) {
+        1: produce_paper_mill;
+        switch_produce_paper_mill_min;
+    }
 
-/* Town Distance Check - secondary industries only */
+/* If no cargo is waiting, bail out. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill, incoming_cargo_waiting("RFPR") > 0 && incoming_cargo_waiting("WDCH") > 0)
+    {
+        1: switch_produce_paper_mill_2;
+        produce_none;
+    }
 
-/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_paper_mill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
-	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_paper_mill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_paper_mill_town_distance_check_2;} 
-	// Add up the town zone radii and store it in temporary register 0
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_paper_mill, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_paper_mill, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
-
-/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_generate_primary_only, param_primary_only)
-	{1: return CB_RESULT_LOCATION_DISALLOW; switch_paper_mill_town_distance_check_1;}
-
-/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
-	{1: switch_paper_mill_town_distance_check_1; switch_paper_mill_generate_primary_only;}
-
-/* Funded industries have no restrictions */
-switch (FEAT_INDUSTRIES, SELF, switch_paper_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return CB_RESULT_LOCATION_ALLOW; switch_paper_mill_allow_prospected;}
-
-item (FEAT_INDUSTRIES, industry_paper_mill, 7) {
+item (FEAT_INDUSTRIES, industry_paper_mill, 10) {
 	property {
-		substitute:				INDUSTRYTYPE_PAPER_MILL;
-		life_type:				IND_LIFE_TYPE_PROCESSING;
-		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types:			[
-								accept_cargo("WOOD", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("RFPR", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
-								accept_cargo("RCYC", produce_cargo("GOOD",1), produce_cargo("PASS",0.25)),
+		substitute: INDUSTRYTYPE_PAPER_MILL;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		spec_flags: 0;
+		cargo_types:[
+			accept_cargo("WDCH"),
+            accept_cargo("RFPR"),
+            produce_cargo("PAPR", 0),
+            produce_cargo("PASS", 0),
 		];
-		name:					TTD_STR_INDUSTRY_NAME_PAPER_MILL;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
-		prob_map_gen:			1;
-		prob_in_game:			1;
-		fund_cost_multiplier:	90;
-		map_colour:				184;
-		layouts:				[
+		name: TTD_STR_INDUSTRY_NAME_PAPER_MILL;
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
+		prob_map_gen: 1;
+		prob_in_game: 1;
+		fund_cost_multiplier: 90;
+		map_colour: 184;
+		layouts: [
 			industry_layout_paper_mill_1,
 			industry_layout_paper_mill_2,
 			industry_layout_paper_mill_3,
 		];
-		conflicting_ind_types:	[industry_forest, industry_farm];
 	}
 	graphics {
-		location_check:			switch_paper_mill_allow_funded;
-		construction_probability:	(current_year >= 1885) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE, "1885");
-		colour:					COLOUR_DARK_GREEN;
+		location_check: loc_check_paper_mill;
+        construction_probability: 3;
+        produce_256_ticks: switch_produce_paper_mill;
+		colour: COLOUR_DARK_GREEN;
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 	}
 }
 

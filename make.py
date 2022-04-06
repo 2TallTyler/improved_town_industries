@@ -9,7 +9,7 @@ newgrf_name = "improved_town_industries"
 header_stuff = ["header", "cargos", "functions"]
 
 # Files to place in alphabetical order below
-unordered_stuff = ["coal_mine", "farm", "forest", "iron_mine", "nuclear_fuel_plant", "factory", "oil_refinery", "oil_rig", "oil_wells", "paper_mill", "power_plant", "recycling_center", "sawmill", "steel_mill", "uranium_mine"]
+unordered_stuff = ["coal_mine", "iron_mine", "steel_mill", "forest", "sawmill", "building_materials_factory", "factory", "food_processing_plant", "oil_wells", "oil_refinery", "paper_mill", "farm", "ranch", "recycling_center", "bank"]
 
 # Do you want to copy the completed NewGRF to your OpenTTD folder? (True/False)
 copy_bool = True

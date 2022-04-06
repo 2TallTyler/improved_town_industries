@@ -29,120 +29,125 @@ spritelayout sprlay_steel_mill_2_W {
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_N) {
 	property {
 		substitute:				02;
+        accepted_cargos:        [[PASS, 8]];
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
-		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {default:			sprlay_steel_mill_1_N;}
 }
+
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_E) {
 	property {
 		substitute:				02;
+        accepted_cargos:        [[PASS, 8]];
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
-		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {default:			sprlay_steel_mill_1_E;}
 }
+
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_W) {
 	property {
 		substitute:				02;
+        accepted_cargos:        [[PASS, 8]];
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
-		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {default:			sprlay_steel_mill_1_W;}
 }
+
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_1_S) {
 	property {
 		substitute:				02;
+        accepted_cargos:        [[PASS, 8]];
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
-		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {default:			sprlay_steel_mill_1_S;}
 }
 
-
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_N) {
 	property {
 		substitute:				02;
+        accepted_cargos:        [[PASS, 8]];
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
-		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {default:			sprlay_steel_mill_2_N;}
 }
+
 item (FEAT_INDUSTRYTILES, ind_tile_steel_mill_2_W) {
 	property {
 		substitute:				02;
+        accepted_cargos:        [[PASS, 8]];
 		special_flags:			bitmask(INDTILE_FLAG_ACCEPT_ALL);
-		accepted_cargos: 		[[PASS, 8]];
 	}
 	graphics {default:			sprlay_steel_mill_2_W;}
 }
 
 tilelayout industry_layout_steel_mill_1 {
-0,0: ind_tile_steel_mill_2_N;	0,1: ind_tile_steel_mill_2_N;	0,2: ind_tile_steel_mill_2_N;	0,3: ind_tile_steel_mill_2_N;	
-1,0: ind_tile_steel_mill_2_W;	1,1: ind_tile_steel_mill_2_W;	1,2: ind_tile_steel_mill_2_W;	1,3: ind_tile_steel_mill_2_W;
-	
-2,0: ind_tile_steel_mill_2_N;	2,1: ind_tile_steel_mill_2_N;	2,2: ind_tile_steel_mill_1_N;	2,3: ind_tile_steel_mill_1_E;
-3,0: ind_tile_steel_mill_2_W;	3,1: ind_tile_steel_mill_2_W;	3,2: ind_tile_steel_mill_1_W;	3,3: ind_tile_steel_mill_1_S;
+    0,0: ind_tile_steel_mill_2_N;	0,1: ind_tile_steel_mill_2_N;	0,2: ind_tile_steel_mill_2_N;	0,3: ind_tile_steel_mill_2_N;
+    1,0: ind_tile_steel_mill_2_W;	1,1: ind_tile_steel_mill_2_W;	1,2: ind_tile_steel_mill_2_W;	1,3: ind_tile_steel_mill_2_W;
 
-4,0: ind_tile_steel_mill_1_N;	4,1: ind_tile_steel_mill_1_E;	4,2: ind_tile_steel_mill_1_N;	4,3: ind_tile_steel_mill_1_E;
-5,0: ind_tile_steel_mill_1_W;	5,1: ind_tile_steel_mill_1_S;	5,2: ind_tile_steel_mill_1_W;	5,3: ind_tile_steel_mill_1_S;
+    2,0: ind_tile_steel_mill_2_N;	2,1: ind_tile_steel_mill_2_N;	2,2: ind_tile_steel_mill_1_N;	2,3: ind_tile_steel_mill_1_E;
+    3,0: ind_tile_steel_mill_2_W;	3,1: ind_tile_steel_mill_2_W;	3,2: ind_tile_steel_mill_1_W;	3,3: ind_tile_steel_mill_1_S;
 
+    4,0: ind_tile_steel_mill_1_N;	4,1: ind_tile_steel_mill_1_E;	4,2: ind_tile_steel_mill_1_N;	4,3: ind_tile_steel_mill_1_E;
+    5,0: ind_tile_steel_mill_1_W;	5,1: ind_tile_steel_mill_1_S;	5,2: ind_tile_steel_mill_1_W;	5,3: ind_tile_steel_mill_1_S;
 }
 
-/* Industry Construction Switches - Read from bottom to top */
+produce (produce_steel_mill,
+    [COAL: LOAD_TEMP(1); IORE: LOAD_TEMP(1);],           // consume
+    [STEL: (LOAD_TEMP(1) * 3) / 2; PASS: LOAD_TEMP(2);], // produce
+    0                                                    // don't run callback again
+)
 
-/* Don't allow the same industry within 100 tiles - secondary industries only */
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_distance_competitor, industry_distance(industry_steel_mill, -1) > 100 ) {1: switch_industrial_district_1; CB_RESULT_LOCATION_DISALLOW;}
+/* If we don't have enough stored, produce as much as we can anyway. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_steel_mill_min, [
+    STORE_TEMP(min(incoming_cargo_waiting("IORE"), incoming_cargo_waiting("COAL")), 1), // Set the production amount to the smallest input stockpile
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("STEL")) / 100), 2), // Set the passenger production level
+    ]) {produce_steel_mill;}
 
-/* Population Check - secondary industries only */
+/* Determine the production level and see if we have enough stored to meet it. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_steel_mill_2, [
+    STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("STEL")) / 100), 2), // Set the passenger production level
+    incoming_cargo_waiting("IORE") > LOAD_TEMP(1) && incoming_cargo_waiting("COAL") > LOAD_TEMP(1), // Check if there's enough input cargo for this production level
+    ]) {
+        1: produce_steel_mill;
+        switch_produce_steel_mill_min;
+    }
 
-switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_population_check_1, // Check if there's enough population in the town to support the new industry in additon to whatever industries already exist (300 population per industry)
-	[StoreRequiredPopulation(), population >= LOAD_TEMP(1)]) 
-		{1: switch_steel_mill_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+/* If no cargo is waiting, bail out. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_steel_mill, incoming_cargo_waiting("IORE") > 0 && incoming_cargo_waiting("COAL") > 0)
+    {
+        1: switch_produce_steel_mill_2;
+        produce_none;
+    }
 
-/* Town Distance Check - secondary industries only */
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_steel_mill, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_steel_mill, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
-/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_steel_mill_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} 
-	// Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_steel_mill_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_steel_mill_town_distance_check_2;} 
-	// Add up the town zone radii and store it in temporary register 0
-
-
-/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_generate_primary_only, param_primary_only)
-	{1: return CB_RESULT_LOCATION_DISALLOW; switch_steel_mill_town_distance_check_1;}
-
-/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
-	{1: switch_steel_mill_town_distance_check_1; switch_steel_mill_generate_primary_only;}
-
-/* Funded industries have no restrictions */
-switch (FEAT_INDUSTRIES, SELF, switch_steel_mill_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return CB_RESULT_LOCATION_ALLOW; switch_steel_mill_allow_prospected;}
-
-item (FEAT_INDUSTRIES, industry_steel_mill, 4) {
+item (FEAT_INDUSTRIES, industry_steel_mill, 2) {
 	property {
-		substitute:				INDUSTRYTYPE_STEEL_MILL;
-		override:				INDUSTRYTYPE_STEEL_MILL;
-		life_type:				IND_LIFE_TYPE_PROCESSING;
-		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types:			[
-								accept_cargo("IORE", produce_cargo("STEL",1), produce_cargo("PASS",0.25)),
-								accept_cargo("COAL", produce_cargo("STEL",1), produce_cargo("PASS",0.25)),
-								accept_cargo("RCYC", produce_cargo("STEL",1), produce_cargo("PASS",0.25)),
+		substitute: INDUSTRYTYPE_STEEL_MILL;
+		override: INDUSTRYTYPE_STEEL_MILL;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		cargo_types: [
+            accept_cargo("IORE"),
+		    accept_cargo("COAL"),
+            produce_cargo("STEL", 0),
+            produce_cargo("PASS", 0),
 		];
-		name:					TTD_STR_INDUSTRY_NAME_STEEL_MILL;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_STEEL_MILL));
-		fund_cost_multiplier:	80;
-		layouts:				[industry_layout_steel_mill_1,];
-		map_colour:				10;
-		conflicting_ind_types:	[industry_iron_mine, industry_coal_mine, industry_farm];
+		name: TTD_STR_INDUSTRY_NAME_STEEL_MILL;
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_STEEL_MILL));
+		fund_cost_multiplier: 80;
+		layouts: [industry_layout_steel_mill_1,];
+		map_colour: 10;
 	}
 	graphics {
-		location_check:			switch_steel_mill_allow_funded;
-		construction_probability:	(current_year >= 1856) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE, "1856");
+		location_check: loc_check_steel_mill;
+        construction_probability: 3;
+        produce_256_ticks: switch_produce_steel_mill;
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 	}
 }
 

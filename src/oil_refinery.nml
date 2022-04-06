@@ -183,61 +183,68 @@ tilelayout industry_layout_oil_refinery_3 {
 5,0:	ind_tile_oil_refinery_2;	5,1:	ind_tile_oil_refinery_2;						5,3:	ind_tile_oil_refinery_9;	5,4:	ind_tile_oil_refinery_3;	5,5:	ind_tile_oil_refinery_7;
 }
 
-/* Industry Construction Switches - Read from bottom to top */
+produce (produce_oil_refinery,
+    [OIL_: LOAD_TEMP(1);],                                                 // consume
+    [RFPR: LOAD_TEMP(1) / 2; PLAS: LOAD_TEMP(1) / 2; PASS: LOAD_TEMP(2);], // produce
+    0                                                                      // don't run callback again
+)
 
-/* Generated oil refineries must be within 15 tiles of water. Does not apply to industries prospected in the Scenario Editor by building "Many random industries" */
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_water, water_distance > 15 && game_mode != GAMEMODE_EDITOR) {1: CB_RESULT_LOCATION_DISALLOW; switch_industrial_district_1;}
+/* If we don't have enough stored, produce as much as we can anyway. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery_min, [
+    STORE_TEMP(incoming_cargo_waiting("OIL_"), 1), // Set the production amount to the current input stockpile
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("RFPR")) / 100), 2), // Set the passenger production level
+    ]) {produce_oil_refinery;}
 
-/* Don't allow the same industry within 100 tiles - secondary industries only */
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_distance_competitor, industry_distance(industry_oil_refinery, -1) > 100 ) {1: switch_oil_refinery_distance_water; CB_RESULT_LOCATION_DISALLOW;}
+/* Determine the production level and see if we have enough stored to meet it. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery_2, [
+    STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("RFPR")) / 100), 2), // Set the passenger production level
+    incoming_cargo_waiting("OIL_") > LOAD_TEMP(1), // Check if there's enough OIL_ for this production level
+    ]) {
+        1: produce_oil_refinery;
+        switch_produce_oil_refinery_min;
+    }
 
-/* Population Check - secondary industries only */
-switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_population_check_1, [StoreRequiredPopulation(), population >= LOAD_TEMP(1)]) 
-	{1: switch_oil_refinery_distance_competitor; CB_RESULT_LOCATION_DISALLOW;}
+/* If no cargo is waiting, bail out. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery, incoming_cargo_waiting("OIL_") > 0)
+    {
+        1: switch_produce_oil_refinery_2;
+        produce_none;
+    }
 
-/* Town Distance Check - secondary industries only */
-
-/* Ensure processing industries are near towns. Distance measurement is to town sign, so this adds the town zone radii to scale the distance requirement to the town size */
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_town_distance_check_2, town_euclidean_dist(0,0) <= LOAD_TEMP(0)+225) {1: switch_oil_refinery_population_check_1; return CB_RESULT_LOCATION_DISALLOW;} // Add 15 to the town zone radii and check if the distance to the town sign is smaller than that radius. The town zone radii and distance check use the square of the distance, thus 225 = 15 tiles. 
-switch (FEAT_INDUSTRIES, PARENT, switch_oil_refinery_town_distance_check_1, STORE_TEMP(town_zone_0_radius_square + town_zone_1_radius_square + town_zone_2_radius_square + town_zone_3_radius_square + town_zone_4_radius_square, 0)) {switch_oil_refinery_town_distance_check_2;} // Add up the town zone radii and store it in temporary register 0
-
-
-/* If "Generate primary only" parameter enabled, disallow random generation of secondary industries */
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_generate_primary_only, param_primary_only)
-	{1: return CB_RESULT_LOCATION_DISALLOW; switch_oil_refinery_town_distance_check_1;}
-
-/* Prospected industries aren't restricted by industry totals, but must meet other requirements */
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_prospected, extra_callback_info2 == IND_CREATION_PROSPECT || game_mode == GAMEMODE_EDITOR)
-	{1: switch_oil_refinery_town_distance_check_1; switch_oil_refinery_generate_primary_only;}
-
-/* Funded industries have no restrictions */
-switch (FEAT_INDUSTRIES, SELF, switch_oil_refinery_allow_funded, extra_callback_info2 == IND_CREATION_FUND) 
-	{1: return CB_RESULT_LOCATION_ALLOW; switch_oil_refinery_allow_prospected;}
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_oil_refinery, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_oil_refinery, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 	property {
-		substitute:				INDUSTRYTYPE_OIL_REFINERY;
-		life_type:				IND_LIFE_TYPE_PROCESSING;
-		spec_flags:				(param_primary_only == 1) ? bitmask(IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION) : 0;
-		cargo_types:			[
-								accept_cargo("OIL_", produce_cargo("RFPR",1), produce_cargo("PASS",0.25)),
+		substitute: INDUSTRYTYPE_OIL_REFINERY;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		spec_flags: 0;
+		cargo_types: [
+			accept_cargo("OIL_"),
+            produce_cargo("RFPR", 0),
+            produce_cargo("PLAS", 0),
+            produce_cargo("PASS", 0),
 		];
-		name:					TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
-		nearby_station_name:	string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
-		fund_cost_multiplier:	160;
-		layouts:				[
+		name: TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
+		fund_cost_multiplier: 160;
+		layouts: [
 			industry_layout_oil_refinery_1,
 			industry_layout_oil_refinery_2,
 			industry_layout_oil_refinery_3,
 		];
-		map_colour:				191;
-		conflicting_ind_types:	[industry_oil_wells, industry_farm];
+		map_colour: 191;
 	}
 	graphics {
-		location_check:			switch_oil_refinery_allow_funded;
-		construction_probability:	(current_year >= 1900) ? 3 : 0;
-		extra_text_fund:		string(STR_FUND_AVAILABLE, "1900");
-		colour:					COLOUR_YELLOW;
+		location_check: loc_check_oil_refinery;
+        construction_probability: 3;
+        produce_256_ticks: switch_produce_oil_refinery;
+        colour: COLOUR_YELLOW;
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 	}
 }
 

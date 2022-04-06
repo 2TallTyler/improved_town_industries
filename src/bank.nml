@@ -1,0 +1,47 @@
+
+produce (produce_bank,
+    [],                                        // consume
+    [VALU: LOAD_TEMP(1); PASS: LOAD_TEMP(2);], // produce
+    0                                          // don't run callback again
+)
+
+/* Calculate Valuables and passenger production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_bank, [
+    STORE_TEMP(GetPrimaryProduction(), 1),
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("VALU")) / 100), 2)
+    ]) {produce_bank;}
+
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_bank, IsCity()) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+/* Hide waiting VALU cargo subtype display */
+switch (FEAT_INDUSTRIES, SELF, switch_bank_cargo_subtype_display, getbits(extra_callback_info2, 0, 8)) {
+    0: return 0x3800 + string(STR_EMPTY);
+    return CB_RESULT_NO_TEXT;
+    }
+
+/* Bank industry */
+item (FEAT_INDUSTRIES, industry_bank, 14) {
+	property {
+		substitute: INDUSTRYTYPE_TEMPERATE_BANK;
+		life_type: IND_LIFE_TYPE_BLACK_HOLE;
+        spec_flags:	bitmask(IND_FLAG_ONLY_IN_TOWNS);
+		cargo_types: [
+		    accept_cargo("VALU"),
+            produce_cargo("VALU", 0),
+            produce_cargo("PASS", 0),
+		];
+		name: TTD_STR_INDUSTRY_NAME_BANK;
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_BANK));
+	}
+	graphics {
+		location_check: loc_check_bank;
+        construction_probability: 15;
+        produce_256_ticks: switch_produce_bank;
+        cargo_subtype_display: switch_bank_cargo_subtype_display;
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+	}
+}
