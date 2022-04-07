@@ -68,10 +68,6 @@ STR_CARGO_NAME_SCMT                 :Scrap Metal
 STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
 STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
 
-STR_CARGO_NAME_SCPL                 :Scrap Plastic
-STR_CARGO_ABBREV_SCPL               :{TINYFONT}SP
-STR_CARGO_QUANTITY_SCPL             :{WEIGHT} of scrap plastic
-
 STR_CARGO_NAME_SCPR                 :Scrap Paper
 STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
 STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
