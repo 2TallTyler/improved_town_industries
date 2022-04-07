@@ -185,9 +185,9 @@ item (FEAT_CARGOS, cargo_wood, 7) {
 	property {
 		number:						7;
 		sprite:						4304;
-		type_name:					TTD_STR_CARGO_PLURAL_WOOD;
-		unit_name:					TTD_STR_CARGO_SINGULAR_WOOD;
-		type_abbreviation:			TTD_STR_ABBREV_WOOD;
+		type_name:					string(STR_CARGO_NAME_LOGS);
+		unit_name:					string(STR_CARGO_NAME_LOGS);
+		type_abbreviation:			string(STR_CARGO_ABBREV_LOGS);
 		weight:						1;
 		is_freight:					1;
 		cargo_classes:				bitmask(CC_PIECE_GOODS);
@@ -195,7 +195,7 @@ item (FEAT_CARGOS, cargo_wood, 7) {
 		town_growth_effect:			TOWNGROWTH_NONE;
 		town_growth_multiplier:		0;
 		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_WOOD;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_LOGS);
 		penalty_lowerbound:			24;
 		single_penalty_length:		255;
 		station_list_colour:		85;

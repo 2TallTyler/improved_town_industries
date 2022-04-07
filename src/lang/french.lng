@@ -74,3 +74,7 @@ STR_CARGO_QUANTITY_SCPL             :{WEIGHT} of scrap plastic
 STR_CARGO_NAME_SCPR                 :Scrap Paper
 STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
 STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
+
+STR_CARGO_NAME_LOGS                 :Logs
+STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
