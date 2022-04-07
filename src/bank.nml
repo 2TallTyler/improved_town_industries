@@ -1,4 +1,20 @@
 
+item (FEAT_INDUSTRYTILES, ind_tile_bank_59) {
+    property {
+        substitute: 59;
+        override: 59;
+        accepted_cargos: [[PASS, 8],[VALU, 8]];
+    }
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_bank_60) {
+    property {
+        substitute: 60;
+        override: 60;
+        accepted_cargos: [[PASS, 8],[VALU, 8]];
+    }
+}
+
 produce (produce_bank,
     [],                                        // consume
     [VALU: LOAD_TEMP(1); PASS: LOAD_TEMP(2);], // produce
