@@ -35,9 +35,9 @@ item (FEAT_INDUSTRYTILES, ind_tile_forest_10h) {
 }
 
 produce (produce_forest,
-    [],                                        // consume
-    [WOOD: LOAD_TEMP(1); PASS: LOAD_TEMP(2);], // produce
-    0                                          // don't run callback again
+    [],                                                                // consume
+    [WOOD: LOAD_TEMP(1); WDCH: LOAD_TEMP(1) / 4; PASS: LOAD_TEMP(2);], // produce
+    0                                                                  // don't run callback again
 )
 
 /* Calculate Wood and passenger production */
@@ -55,6 +55,7 @@ item (FEAT_INDUSTRIES, industry_forest, 3) {
 		life_type: IND_LIFE_TYPE_ORGANIC;
 		cargo_types: [
             produce_cargo("WOOD", 0),
+            produce_cargo("WDCH", 0),
             produce_cargo("PASS", 0),
         ];
 		name: TTD_STR_INDUSTRY_NAME_FOREST;
