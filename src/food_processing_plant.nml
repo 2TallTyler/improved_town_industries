@@ -244,7 +244,7 @@ item (FEAT_INDUSTRIES, industry_food_processing_plant, 7) {
         location_check: loc_check_food_processing_plant;
         construction_probability: 3;
         produce_256_ticks: switch_produce_food_processing_plant;
-        colour: COLOUR_MAUVE;
+        colour: COLOUR_RED;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
@@ -268,7 +268,7 @@ item (FEAT_OBJECTS, object_item_food_processing_plant_1) {
     }
     graphics {
         default:				sprlay_food_processing_plant_shed;
-        colour:					COLOUR_MAUVE;
+        colour:					COLOUR_RED;
     }
 }
 
@@ -287,7 +287,7 @@ item (FEAT_OBJECTS, object_item_food_processing_plant_2) {
     }
     graphics {
         default:				sprlay_food_processing_plant_dock;
-        colour:					COLOUR_MAUVE;
+        colour:					COLOUR_RED;
     }
 }
 
@@ -306,7 +306,7 @@ item (FEAT_OBJECTS, object_item_food_processing_plant_3) {
     }
     graphics {
         default:				sprlay_food_processing_plant_silo;
-        colour:					COLOUR_MAUVE;
+        colour:					COLOUR_RED;
     }
 }
 
@@ -325,7 +325,7 @@ item (FEAT_OBJECTS, object_item_food_processing_plant_4) {
     }
     graphics {
         default:				sprlay_food_processing_plant_yard;
-        colour:					COLOUR_MAUVE;
+        colour:					COLOUR_RED;
     }
 }
 
@@ -344,7 +344,7 @@ item (FEAT_OBJECTS, object_item_food_processing_plant_5) {
     }
     graphics {
         default:				sprlay_food_processing_plant_pumps_box;
-        colour:					COLOUR_MAUVE;
+        colour:					COLOUR_RED;
     }
 }
 
@@ -363,7 +363,7 @@ item (FEAT_OBJECTS, object_item_food_processing_plant_6) {
     }
     graphics {
         default:				sprlay_food_processing_plant_pumps_reflector;
-        colour:					COLOUR_MAUVE;
+        colour:					COLOUR_RED;
     }
 }
 
@@ -382,7 +382,7 @@ item (FEAT_OBJECTS, object_item_food_processing_plant_7) {
     }
     graphics {
         default:				sprlay_food_processing_plant_silos;
-        colour:					COLOUR_MAUVE;
+        colour:					COLOUR_RED;
     }
 }
 

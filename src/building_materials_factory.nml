@@ -258,7 +258,7 @@ item (FEAT_INDUSTRIES, industry_building_materials_factory, 5) {
 		location_check: loc_check_building_materials_factory;
         construction_probability: 3;
         produce_256_ticks: switch_produce_building_materials_factory;
-        colour: COLOUR_PALE_GREEN;
+        colour: COLOUR_CREAM;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
@@ -287,7 +287,7 @@ item (FEAT_OBJECTS, object_item_building_materials_factory_1) {
 	}
 	graphics {
 		default:				switch_object_graphics_building_materials_factory_1;
-		colour:					COLOUR_PALE_GREEN;
+		colour:					COLOUR_CREAM;
 	}
 }
 
