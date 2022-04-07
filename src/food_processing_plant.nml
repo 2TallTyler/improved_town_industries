@@ -233,7 +233,7 @@ item (FEAT_INDUSTRIES, industry_food_processing_plant, 7) {
         prob_map_gen: 5;
         prob_in_game: 3;
         map_colour: 44;
-        fund_cost_multiplier: 31;
+        fund_cost_multiplier: 255;
         layouts: [
             industry_layout_food_processing_plant_1,
             industry_layout_food_processing_plant_2,

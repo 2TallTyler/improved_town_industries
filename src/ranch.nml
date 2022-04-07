@@ -119,7 +119,7 @@ item (FEAT_INDUSTRIES, industry_ranch, 12) {
         name: string(STR_NAME_RANCH);
         nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_RANCH));
         map_colour: 101;
-        fund_cost_multiplier: 70;
+        fund_cost_multiplier: 255;
         layouts: [
             industry_layout_ranch_1,
             industry_layout_ranch_2,

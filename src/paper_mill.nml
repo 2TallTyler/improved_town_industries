@@ -210,7 +210,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 10) {
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
 		prob_map_gen: 1;
 		prob_in_game: 1;
-		fund_cost_multiplier: 90;
+		fund_cost_multiplier: 255;
 		map_colour: 184;
 		layouts: [
 			industry_layout_paper_mill_1,
