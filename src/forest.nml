@@ -43,7 +43,7 @@ produce (produce_forest,
 /* Calculate Wood and passenger production */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_forest, [
     STORE_TEMP(GetPrimaryProduction(), 1),
-    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("WOOD")) / 100), 2)
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * max(transported_last_month_pct("WOOD"), transported_last_month_pct("WDCH"))) / 100), 2)
     ]) {produce_forest;}
 
 /* Location check */
