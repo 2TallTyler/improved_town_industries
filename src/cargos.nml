@@ -59,7 +59,7 @@ item (FEAT_CARGOS, cargo_coal, 1) {
 item (FEAT_CARGOS, cargo_waste, 2) {
     property {
         number:						2;
-        sprite:						4309;
+        sprite:						4319;
         type_name:					string(STR_CARGO_NAME_WASTE);
         unit_name:					string(STR_CARGO_NAME_WASTE);
         type_abbreviation:			string(STR_CARGO_ABBREV_WASTE);
@@ -258,7 +258,7 @@ item (FEAT_CARGOS, cargo_steel, 9) {
 item (FEAT_CARGOS, cargo_paper, 10) {
 	property {
 		number:						10;
-		sprite:						4306;
+		sprite:						4313;
 		type_name:					TTD_STR_CARGO_PLURAL_PAPER;
 		unit_name:					TTD_STR_CARGO_SINGULAR_PAPER;
 		type_abbreviation:			TTD_STR_ABBREV_PAPER;
@@ -282,7 +282,7 @@ item (FEAT_CARGOS, cargo_paper, 10) {
 item (FEAT_CARGOS, cargo_plastic, 11) {
 	property {
 		number:						11;
-		sprite:						4302;
+		sprite:						4320;
 		type_name:					string(STR_CARGO_NAME_PLAS);
 		unit_name:					string(STR_CARGO_NAME_PLAS);
 		type_abbreviation:			string(STR_CARGO_ABBREV_PLAS);
@@ -331,7 +331,7 @@ item (FEAT_CARGOS, cargo_food, 12) {
 item (FEAT_CARGOS, cargo_building_materials, 13) {
 	property {
 		number:						13;
-		sprite:						4302;
+		sprite:						4299;
 		type_name:					string(STR_CARGO_NAME_BDMT);
 		unit_name:					string(STR_CARGO_NAME_BDMT);
 		type_abbreviation:			string(STR_CARGO_ABBREV_BDMT);
@@ -355,7 +355,7 @@ item (FEAT_CARGOS, cargo_building_materials, 13) {
 item (FEAT_CARGOS, cargo_valuables, 14) {
 	property {
 		number:						14;
-		sprite:						4302;
+		sprite:						4310;
 		type_name:				    TTD_STR_CARGO_PLURAL_VALUABLES;
 		unit_name:					TTD_STR_CARGO_SINGULAR_VALUABLES;
 		type_abbreviation:			TTD_STR_ABBREV_VALUABLES;
@@ -379,7 +379,7 @@ item (FEAT_CARGOS, cargo_valuables, 14) {
 item (FEAT_CARGOS, cargo_livestock, 15) {
 	property {
 		number:						15;
-		sprite:						4302;
+		sprite:						4301;
 		type_name:				    TTD_STR_CARGO_PLURAL_LIVESTOCK;
 		unit_name:					TTD_STR_CARGO_SINGULAR_LIVESTOCK;
 		type_abbreviation:			TTD_STR_ABBREV_LIVESTOCK;
@@ -403,7 +403,7 @@ item (FEAT_CARGOS, cargo_livestock, 15) {
 item (FEAT_CARGOS, cargo_wood_chips, 16) {
 	property {
 		number:						16;
-		sprite:						4302;
+		sprite:						4309;
 		type_name:					string(STR_CARGO_NAME_WDCH);
 		unit_name:					string(STR_CARGO_NAME_WDCH);
 		type_abbreviation:			string(STR_CARGO_ABBREV_WDCH);
@@ -427,7 +427,7 @@ item (FEAT_CARGOS, cargo_wood_chips, 16) {
 item (FEAT_CARGOS, cargo_scrap_metal, 17) {
 	property {
 		number:						17;
-		sprite:						4302;
+		sprite:						4305;
 		type_name:					string(STR_CARGO_NAME_SCMT);
 		unit_name:					string(STR_CARGO_NAME_SCMT);
 		type_abbreviation:			string(STR_CARGO_ABBREV_SCMT);
@@ -451,7 +451,7 @@ item (FEAT_CARGOS, cargo_scrap_metal, 17) {
 item (FEAT_CARGOS, cargo_scrap_plastic, 18) {
 	property {
 		number:						18;
-		sprite:						4302;
+		sprite:						4322;
 		type_name:					string(STR_CARGO_NAME_SCPL);
 		unit_name:					string(STR_CARGO_NAME_SCPL);
 		type_abbreviation:			string(STR_CARGO_ABBREV_SCPL);
@@ -475,7 +475,7 @@ item (FEAT_CARGOS, cargo_scrap_plastic, 18) {
 item (FEAT_CARGOS, cargo_scrap_paper, 19) {
 	property {
 		number:						19;
-		sprite:						4302;
+		sprite:						4313;
 		type_name:					string(STR_CARGO_NAME_SCPR);
 		unit_name:					string(STR_CARGO_NAME_SCPR);
 		type_abbreviation:			string(STR_CARGO_ABBREV_SCPR);
@@ -499,7 +499,7 @@ item (FEAT_CARGOS, cargo_scrap_paper, 19) {
 item (FEAT_CARGOS, cargo_grain, 20) {
 	property {
 		number:						20;
-		sprite:						4302;
+		sprite:						4303;
 		type_name:				    TTD_STR_CARGO_PLURAL_GRAIN;
 		unit_name:					TTD_STR_CARGO_SINGULAR_GRAIN;
 		type_abbreviation:			TTD_STR_ABBREV_GRAIN;
