@@ -64,32 +64,28 @@ property {substitute:	02;}
 graphics {default:		sprlay_ranch_6;}}
 
 tilelayout industry_layout_ranch_1 {
-	0,0:	ind_tile_ranch_4;	0,1:	ind_tile_ranch_3;	0,2:	ind_tile_ranch_2;
-	1,0:	ind_tile_ranch_1_N;	1,1:	ind_tile_ranch_1_E;	1,2:	ind_tile_ranch_6;
+	0,0:	ind_tile_ranch_1_N;	0,1:	ind_tile_ranch_1_E;	0,2:	ind_tile_ranch_4;
+	1,0:	ind_tile_ranch_5;	1,1:	ind_tile_ranch_6;	1,2:	ind_tile_ranch_5;
+    2,0:	ind_tile_ranch_5;	2,1:	ind_tile_ranch_6;	2,2:	ind_tile_ranch_5;
+    3,0:	ind_tile_ranch_3;	3,1:	ind_tile_ranch_6;	3,2:	ind_tile_ranch_5;
 }
 tilelayout industry_layout_ranch_2 {
-	0,0:	ind_tile_ranch_5;	0,1:	ind_tile_ranch_4;	0,2:	ind_tile_ranch_2;
-	1,0:	ind_tile_ranch_3;	1,1:	ind_tile_ranch_1_N;	1,2:	ind_tile_ranch_1_E;
+	0,0:	ind_tile_ranch_1_N;	0,1:	ind_tile_ranch_1_E;	0,2:	ind_tile_ranch_2;
+	1,0:	ind_tile_ranch_3;	1,1:	ind_tile_ranch_6;	1,2:	ind_tile_ranch_6;
+    2,0:	ind_tile_ranch_5;	2,1:	ind_tile_ranch_5;	2,2:	ind_tile_ranch_5;
+    3,0:	ind_tile_ranch_5;	3,1:	ind_tile_ranch_5;	3,2:	ind_tile_ranch_5;
 }
 tilelayout industry_layout_ranch_3 {
-	0,0:	ind_tile_ranch_5;	0,1:	ind_tile_ranch_1_N;	0,2:	ind_tile_ranch_1_E;
-	1,0:	ind_tile_ranch_5;	1,1:	ind_tile_ranch_3;	1,2:	ind_tile_ranch_4;
+	0,0:	ind_tile_ranch_5;	0,1:	ind_tile_ranch_5;	0,2:	ind_tile_ranch_5;
+	1,0:	ind_tile_ranch_5;	1,1:	ind_tile_ranch_5;	1,2:	ind_tile_ranch_5;
+    2,0:	ind_tile_ranch_3;	2,1:	ind_tile_ranch_4;	2,2:	ind_tile_ranch_6;
+    3,0:	ind_tile_ranch_1_N;	3,1:	ind_tile_ranch_1_E;	3,2:	ind_tile_ranch_2;
 }
 tilelayout industry_layout_ranch_4 {
-	0,0:	ind_tile_ranch_1_N;	0,1:	ind_tile_ranch_1_E;	0,2:	ind_tile_ranch_2;
-	1,0:	ind_tile_ranch_3;	1,1:	ind_tile_ranch_6;	1,2:	ind_tile_ranch_5;
-}
-tilelayout industry_layout_ranch_5 {
-	0,0:	ind_tile_ranch_1_N;	0,1:	ind_tile_ranch_1_E;	0,2:	ind_tile_ranch_4;
-	1,0:	ind_tile_ranch_3;	1,1:	ind_tile_ranch_6;	1,2:	ind_tile_ranch_2;
-}
-tilelayout industry_layout_ranch_6 {
-	0,0:	ind_tile_ranch_1_N;	0,1:	ind_tile_ranch_1_E;	0,2:	ind_tile_ranch_5;
-	1,0:	ind_tile_ranch_2;	1,1:	ind_tile_ranch_6;	1,2:	ind_tile_ranch_5;
-}
-tilelayout industry_layout_ranch_7 {
-	0,0:	ind_tile_ranch_3;	0,1:	ind_tile_ranch_6;	0,2:	ind_tile_ranch_5;
-	1,0:	ind_tile_ranch_1_N;	1,1:	ind_tile_ranch_1_E;	1,2:	ind_tile_ranch_2;
+	0,0:	ind_tile_ranch_5;	0,1:	ind_tile_ranch_5;	0,2:	ind_tile_ranch_5;
+	1,0:	ind_tile_ranch_5;	1,1:	ind_tile_ranch_4;	1,2:	ind_tile_ranch_5;
+    2,0:	ind_tile_ranch_5;	2,1:	ind_tile_ranch_1_N;	2,2:	ind_tile_ranch_1_E;
+    3,0:	ind_tile_ranch_5;	3,1:	ind_tile_ranch_3;	3,2:	ind_tile_ranch_6;
 }
 
 produce (produce_ranch,
@@ -125,9 +121,6 @@ item (FEAT_INDUSTRIES, industry_ranch, 12) {
             industry_layout_ranch_2,
             industry_layout_ranch_3,
             industry_layout_ranch_4,
-            industry_layout_ranch_5,
-            industry_layout_ranch_6,
-            industry_layout_ranch_7,
         ];
     }
     graphics {
