@@ -1,0 +1,200 @@
+
+/* *** Begin Incinerator *** */
+
+spritelayout sprlay_incinerator_1 { // Powerhouse
+	ground		{sprite:1420;}
+	building	{sprite:2050;}
+}
+
+spritelayout sprlay_incinerator_2 { // Power terminals
+	ground		{sprite:1420;}
+	building	{sprite:2053;}
+}
+
+spritelayout sprlay_incinerator_3 { // Transformers
+	ground		{sprite:1420;}
+	building	{sprite:2054; yoffset:2;}
+}
+
+spritelayout sprlay_incinerator_4 { // Cooling tower
+	ground		{sprite:3981;}
+	building	{sprite:2047;}
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, switch_incinerator_cooling_tower_availability, current_year >= 1918) {1: CB_RESULT_LOCATION_ALLOW; CB_RESULT_LOCATION_DISALLOW;}
+
+item (FEAT_INDUSTRYTILES, ind_tile_incinerator_4) { // Cooling tower
+    property {
+        substitute:			07;
+        accepted_cargos: 	[[PASS, 8]];
+        special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        land_shape_flags:	bitmask(LSF_ONLY_ON_FLAT_LAND);
+        }
+    graphics {
+        default: sprlay_incinerator_4;
+        tile_check:	switch_incinerator_cooling_tower_availability;
+    }
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_incinerator_1) { // Powerhouse
+    property {
+        substitute:	08;
+        accepted_cargos: 	[[PASS, 8]];
+        special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+    graphics {
+        default: sprlay_incinerator_1;
+    }
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_incinerator_2) { // Power terminals
+    property {
+        substitute:	09;
+        accepted_cargos: 	[[PASS, 8]];
+        special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+    graphics {
+        default: sprlay_incinerator_2;
+    }
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_incinerator_3) { // Transformers
+    property {
+        substitute:	10;
+        accepted_cargos: 	[[PASS, 8]];
+        special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+    graphics {
+        default: sprlay_incinerator_3;
+    }
+}
+
+
+tilelayout industry_layout_incinerator_1 {
+    0,0:	ind_tile_incinerator_1;	0,1:	ind_tile_incinerator_1;
+    1,0:	ind_tile_incinerator_2;	1,1:	ind_tile_incinerator_2;
+    2,0:	ind_tile_incinerator_3;	2,1:	ind_tile_incinerator_3;
+}
+
+tilelayout industry_layout_incinerator_2 {
+    0,0:	ind_tile_incinerator_1;
+    1,0:	ind_tile_incinerator_1;	1,1:	ind_tile_incinerator_3;
+    2,0:	ind_tile_incinerator_2;	2,1:	ind_tile_incinerator_3;
+}
+
+tilelayout industry_layout_incinerator_4 {
+    0,0:	ind_tile_incinerator_4;		0,1:	ind_tile_incinerator_1;
+    1,0:	ind_tile_incinerator_3;		1,1:	ind_tile_incinerator_1;
+    2,0:	ind_tile_incinerator_3;		2,1:	ind_tile_incinerator_2;
+}
+
+tilelayout industry_layout_incinerator_5 {
+    0,0:	ind_tile_incinerator_4;	/*0,1:	clear;	*/					0,2:	ind_tile_incinerator_4;
+    /*1,0:	clear;	*/				/*1,1:	clear;	*/					/*1,2:	clear;*/
+    2,0:	ind_tile_incinerator_1;	2,1:	ind_tile_incinerator_3;		2,2:	ind_tile_incinerator_1;
+    3,0:	ind_tile_incinerator_2;	3,1:	ind_tile_incinerator_2;		3,2:	ind_tile_incinerator_2;
+    4,0:	ind_tile_incinerator_1;	4,1:	ind_tile_incinerator_3;		4,2:	ind_tile_incinerator_1;
+    /*5,0:	clear;	*/				/*5,1:	clear;*/					/*5,2:	clear;*/
+    6,0:	ind_tile_incinerator_4;	/*6,1:	clear;*/					6,2:	ind_tile_incinerator_4;
+}
+
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_incinerator, IsCity() && IsNearTown() && NoNearbyCompetitors(industry_incinerator, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+/* Incinerator industry */
+item (FEAT_INDUSTRIES, industry_incinerator, 15) {
+	property {
+		substitute: INDUSTRYTYPE_POWER_PLANT;
+		life_type: IND_LIFE_TYPE_BLACK_HOLE;
+		spec_flags: 0;
+		cargo_types: [
+			accept_cargo("WSTE"),
+		];
+		name: string(STR_NAME_INCINERATOR);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_INCINERATOR));
+		fund_cost_multiplier: 27;
+		layouts: [
+			industry_layout_incinerator_1,
+			industry_layout_incinerator_2,
+			industry_layout_incinerator_4,
+			industry_layout_incinerator_5,
+			];
+		map_colour: 208;
+	}
+	graphics {
+		location_check: loc_check_incinerator;
+        construction_probability: 3;
+	}
+}
+
+
+item (FEAT_OBJECTS, object_item_incinerator_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_INCINERATOR);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_incinerator_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_incinerator_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_INCINERATOR);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_incinerator_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_incinerator_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_INCINERATOR);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_incinerator_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_incinerator_4) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_INCINERATOR);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1900;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_incinerator_4;
+	}
+}
+
+/* *** End Incinerator *** */
