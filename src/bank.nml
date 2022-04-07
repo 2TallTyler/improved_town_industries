@@ -28,7 +28,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_bank, [
     ]) {produce_bank;}
 
 /* Location check */
-switch (FEAT_INDUSTRIES, SELF, loc_check_bank, IsCity()) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, loc_check_bank, IsCity() && BankIsFacingRoad()) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 /* Hide waiting VALU cargo subtype display */
 switch (FEAT_INDUSTRIES, SELF, switch_bank_cargo_subtype_display, getbits(extra_callback_info2, 0, 8)) {

@@ -6,6 +6,12 @@
 switch (FEAT_INDUSTRIES, SELF, IsBeingFunded, (extra_callback_info2 == IND_CREATION_FUND || game_mode == GAMEMODE_EDITOR)) {return;}
 
 /**
+ * Check if a bank is facing a road.
+ * @return 1 if there are road tiles in front of the two bank tiles, else 0.
+ */
+switch (FEAT_INDUSTRIES, SELF, BankIsFacingRoad, (nearby_tile_class(0,1) == TILE_CLASS_ROAD) && nearby_tile_class(1,1) == TILE_CLASS_ROAD) {return;}
+
+/**
  * Check if a secondary industry can be built in this city (because none already exist).
  * Note: Banks are the exception and are really primary industries anyway.
  * @return 1 if no secondary industries exist, else 0.
