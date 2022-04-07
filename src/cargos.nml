@@ -2,522 +2,522 @@
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, WSTE, OIL_, WDPR, GOOD, RFPR, WOOD, IORE, STEL, PAPR, PLAS, FOOD, BDMT, VALU, LVST, WDCH, SCMT, SCPL, SCPR, GRAI
+    PASS, COAL, WSTE, OIL_, WDPR, GOOD, RFPR, WOOD, IORE, STEL, PAPR, PLAS, FOOD, BDMT, VALU, LVST, WDCH, SCMT, SCPL, SCPR, GRAI
 }
 
 // Original ID
 item (FEAT_CARGOS, cargo_passengers, 0) {
-	property {
-		number:						0;
-		sprite:						4297;
-		type_name:					TTD_STR_CARGO_PLURAL_PASSENGERS;
-		unit_name:					TTD_STR_CARGO_SINGULAR_PASSENGER;
-		type_abbreviation:			TTD_STR_ABBREV_PASSENGERS;
-		weight:						0.0625;
-		is_freight:					0;
-		cargo_classes:				bitmask(CC_PASSENGERS);
-		cargo_label:				"PASS";
-		town_growth_effect:			TOWNGROWTH_PASSENGERS;
-		town_growth_multiplier:		1.0;
-		units_of_cargo:				TTD_STR_PASSENGERS;
-		items_of_cargo:				TTD_STR_QUANTITY_PASSENGERS;
-		penalty_lowerbound:			0;
-		single_penalty_length:		22;
-		station_list_colour:		152;
-		cargo_payment_list_colour:	152;
-		price_factor:				105;
-		capacity_multiplier:		4;
-	}
+    property {
+        number:                     0;
+        sprite:                     4297;
+        type_name:                  TTD_STR_CARGO_PLURAL_PASSENGERS;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_PASSENGER;
+        type_abbreviation:          TTD_STR_ABBREV_PASSENGERS;
+        weight:                     0.0625;
+        is_freight:                 0;
+        cargo_classes:              bitmask(CC_PASSENGERS);
+        cargo_label:                "PASS";
+        town_growth_effect:         TOWNGROWTH_PASSENGERS;
+        town_growth_multiplier:     1.0;
+        units_of_cargo:             TTD_STR_PASSENGERS;
+        items_of_cargo:             TTD_STR_QUANTITY_PASSENGERS;
+        penalty_lowerbound:         0;
+        single_penalty_length:      22;
+        station_list_colour:        152;
+        cargo_payment_list_colour:  152;
+        price_factor:               105;
+        capacity_multiplier:        4;
+    }
 }
 
 // Original ID
 item (FEAT_CARGOS, cargo_coal, 1) {
-	property {
-		number:						1;
-		sprite:						4298;
-		type_name:					TTD_STR_CARGO_PLURAL_COAL;
-		unit_name:					TTD_STR_CARGO_SINGULAR_COAL;
-		type_abbreviation:			TTD_STR_ABBREV_COAL;
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_BULK);
-		cargo_label:				"COAL";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_COAL;
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		6;
-		cargo_payment_list_colour:	6;
-		price_factor:				60;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     1;
+        sprite:                     4298;
+        type_name:                  TTD_STR_CARGO_PLURAL_COAL;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_COAL;
+        type_abbreviation:          TTD_STR_ABBREV_COAL;
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_BULK);
+        cargo_label:                "COAL";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             TTD_STR_QUANTITY_COAL;
+        penalty_lowerbound:         30;
+        single_penalty_length:      255;
+        station_list_colour:        6;
+        cargo_payment_list_colour:  6;
+        price_factor:               60;
+        capacity_multiplier:        1;
+    }
 }
 
 // Waste in Mail ID for town house production
 item (FEAT_CARGOS, cargo_waste, 2) {
     property {
-        number:						2;
-        sprite:						4319;
-        type_name:					string(STR_CARGO_NAME_WASTE);
-        unit_name:					string(STR_CARGO_NAME_WASTE);
-        type_abbreviation:			string(STR_CARGO_ABBREV_WASTE);
-        weight:						1.0;
-        is_freight:					1;
-        cargo_classes:				bitmask(CC_BULK, CC_PIECE_GOODS, CC_COVERED);
-        cargo_label:				"WSTE";
-        town_growth_effect:			TOWNGROWTH_NONE;
-        town_growth_multiplier:		0;
-        units_of_cargo:				TTD_STR_TONS;
-        items_of_cargo:				string(STR_CARGO_QUANTITY_WASTE);
-        penalty_lowerbound:			30;
-        single_penalty_length:		255;
-        station_list_colour:		95;
-        cargo_payment_list_colour:	95;
-        price_factor:				117;
-        capacity_multiplier:		1;
+        number:                     2;
+        sprite:                     4319;
+        type_name:                  string(STR_CARGO_NAME_WASTE);
+        unit_name:                  string(STR_CARGO_NAME_WASTE);
+        type_abbreviation:          string(STR_CARGO_ABBREV_WASTE);
+        weight:                     1.0;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_BULK, CC_PIECE_GOODS, CC_COVERED);
+        cargo_label:                "WSTE";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_WASTE);
+        penalty_lowerbound:         30;
+        single_penalty_length:      255;
+        station_list_colour:        95;
+        cargo_payment_list_colour:  95;
+        price_factor:               117;
+        capacity_multiplier:        1;
     }
 }
 
 // Original ID
 item (FEAT_CARGOS, cargo_oil, 3) {
-	property {
-		number:						3;
-		sprite:						4300;
-		type_name:					TTD_STR_CARGO_PLURAL_OIL;
-		unit_name:					TTD_STR_CARGO_SINGULAR_OIL;
-		type_abbreviation:			TTD_STR_ABBREV_OIL;
-		weight:						0.9;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_LIQUID);
-		cargo_label:				"OIL_";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_LITERS;
-		items_of_cargo:				TTD_STR_QUANTITY_OIL;
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		191;
-		cargo_payment_list_colour:	191;
-		price_factor:				72;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     3;
+        sprite:                     4300;
+        type_name:                  TTD_STR_CARGO_PLURAL_OIL;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_OIL;
+        type_abbreviation:          TTD_STR_ABBREV_OIL;
+        weight:                     0.9;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_LIQUID);
+        cargo_label:                "OIL_";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_LITERS;
+        items_of_cargo:             TTD_STR_QUANTITY_OIL;
+        penalty_lowerbound:         30;
+        single_penalty_length:      255;
+        station_list_colour:        191;
+        cargo_payment_list_colour:  191;
+        price_factor:               72;
+        capacity_multiplier:        1;
+    }
 }
 
 // Uses Livestock ID
 item (FEAT_CARGOS, cargo_lumber, 4) {
-	property {
-		number:						4;
-		sprite:						4307;
-		type_name:					string(STR_CARGO_NAME_LUMBER);
-		unit_name:					string(STR_CARGO_NAME_LUMBER);
-		type_abbreviation:			string(STR_CARGO_ABBREV_LUMBER);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS);
-		cargo_label:				"WDPR";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		1.0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_LUMBER);
-		penalty_lowerbound:			18;
-		single_penalty_length:		255;
-		station_list_colour:		58;
-		cargo_payment_list_colour:	58;
-		price_factor:				93;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     4;
+        sprite:                     4307;
+        type_name:                  string(STR_CARGO_NAME_LUMBER);
+        unit_name:                  string(STR_CARGO_NAME_LUMBER);
+        type_abbreviation:          string(STR_CARGO_ABBREV_LUMBER);
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_label:                "WDPR";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     1.0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_LUMBER);
+        penalty_lowerbound:         18;
+        single_penalty_length:      255;
+        station_list_colour:        58;
+        cargo_payment_list_colour:  58;
+        price_factor:               93;
+        capacity_multiplier:        1;
+    }
 }
 
 // Original ID
 item (FEAT_CARGOS, cargo_goods, 5) {
-	property {
-		number:						5;
-		sprite:						4302;
-		type_name:					TTD_STR_CARGO_PLURAL_GOODS;
-		unit_name:					TTD_STR_CARGO_SINGULAR_GOODS;
-		type_abbreviation:			TTD_STR_ABBREV_GOODS;
-		weight:						0.5;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_EXPRESS);
-		cargo_label:				"GOOD";
-		town_growth_effect:			TOWNGROWTH_WATER;
-		town_growth_multiplier:		1.0;
-		units_of_cargo:				TTD_STR_CRATES;
-		items_of_cargo:				TTD_STR_QUANTITY_GOODS;
-		penalty_lowerbound:			10;
-		single_penalty_length:		64;
-		station_list_colour:		187;
-		cargo_payment_list_colour:	187;
-		price_factor:				148;
-		capacity_multiplier:		2;
-	}
+    property {
+        number:                     5;
+        sprite:                     4302;
+        type_name:                  TTD_STR_CARGO_PLURAL_GOODS;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_GOODS;
+        type_abbreviation:          TTD_STR_ABBREV_GOODS;
+        weight:                     0.5;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_EXPRESS);
+        cargo_label:                "GOOD";
+        town_growth_effect:         TOWNGROWTH_WATER;
+        town_growth_multiplier:     1.0;
+        units_of_cargo:             TTD_STR_CRATES;
+        items_of_cargo:             TTD_STR_QUANTITY_GOODS;
+        penalty_lowerbound:         10;
+        single_penalty_length:      64;
+        station_list_colour:        187;
+        cargo_payment_list_colour:  187;
+        price_factor:               148;
+        capacity_multiplier:        2;
+    }
 }
 
 // Uses Grain ID
 item (FEAT_CARGOS, cargo_chemicals, 6) {
-	property {
-		number:						6;
-		sprite:						4314;
-		type_name:					string(STR_CARGO_NAME_CHEMICALS);
-		unit_name:					string(STR_CARGO_NAME_CHEMICALS);
-		type_abbreviation:			string(STR_CARGO_ABBREV_CHEMICALS);
-		weight:						1.2;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_LIQUID, CC_POWDERIZED);
-		cargo_label:				"RFPR";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		1.0;
-		units_of_cargo:				TTD_STR_LITERS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_CHEMICALS);
-		penalty_lowerbound:			20;
-		single_penalty_length:		255;
-		station_list_colour:		51;
-		cargo_payment_list_colour:	51;
-		price_factor:				126;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     6;
+        sprite:                     4314;
+        type_name:                  string(STR_CARGO_NAME_CHEMICALS);
+        unit_name:                  string(STR_CARGO_NAME_CHEMICALS);
+        type_abbreviation:          string(STR_CARGO_ABBREV_CHEMICALS);
+        weight:                     1.2;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_LIQUID, CC_POWDERIZED);
+        cargo_label:                "RFPR";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     1.0;
+        units_of_cargo:             TTD_STR_LITERS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_CHEMICALS);
+        penalty_lowerbound:         20;
+        single_penalty_length:      255;
+        station_list_colour:        51;
+        cargo_payment_list_colour:  51;
+        price_factor:               126;
+        capacity_multiplier:        1;
+    }
 }
 
 // Original ID
 item (FEAT_CARGOS, cargo_wood, 7) {
-	property {
-		number:						7;
-		sprite:						4304;
-		type_name:					string(STR_CARGO_NAME_LOGS);
-		unit_name:					string(STR_CARGO_NAME_LOGS);
-		type_abbreviation:			string(STR_CARGO_ABBREV_LOGS);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS);
-		cargo_label:				"WOOD";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_LOGS);
-		penalty_lowerbound:			24;
-		single_penalty_length:		255;
-		station_list_colour:		85;
-		cargo_payment_list_colour:	85;
-		price_factor:				80;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     7;
+        sprite:                     4304;
+        type_name:                  string(STR_CARGO_NAME_LOGS);
+        unit_name:                  string(STR_CARGO_NAME_LOGS);
+        type_abbreviation:          string(STR_CARGO_ABBREV_LOGS);
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_label:                "WOOD";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_LOGS);
+        penalty_lowerbound:         24;
+        single_penalty_length:      255;
+        station_list_colour:        85;
+        cargo_payment_list_colour:  85;
+        price_factor:               80;
+        capacity_multiplier:        1;
+    }
 }
 
 // Original ID
 item (FEAT_CARGOS, cargo_iore, 8) {
-	property {
-		number:						8;
-		sprite:						4305;
-		type_name:					TTD_STR_CARGO_PLURAL_IRON_ORE;
-		unit_name:					TTD_STR_CARGO_SINGULAR_IRON_ORE;
-		type_abbreviation:			TTD_STR_ABBREV_IRON_ORE;
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_BULK);
-		cargo_label:				"IORE";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_IRON_ORE;
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		126;
-		cargo_payment_list_colour:	126;
-		price_factor:				67;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     8;
+        sprite:                     4305;
+        type_name:                  TTD_STR_CARGO_PLURAL_IRON_ORE;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_IRON_ORE;
+        type_abbreviation:          TTD_STR_ABBREV_IRON_ORE;
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_BULK);
+        cargo_label:                "IORE";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             TTD_STR_QUANTITY_IRON_ORE;
+        penalty_lowerbound:         30;
+        single_penalty_length:      255;
+        station_list_colour:        126;
+        cargo_payment_list_colour:  126;
+        price_factor:               67;
+        capacity_multiplier:        1;
+    }
 }
 
 // Original ID
 item (FEAT_CARGOS, cargo_steel, 9) {
-	property {
-		number:						9;
-		sprite:						4306;
-		type_name:					TTD_STR_CARGO_PLURAL_STEEL;
-		unit_name:					TTD_STR_CARGO_SINGULAR_STEEL;
-		type_abbreviation:			TTD_STR_ABBREV_STEEL;
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS);
-		cargo_label:				"STEL";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_STEEL;
-		penalty_lowerbound:			14;
-		single_penalty_length:		255;
-		station_list_colour:		10;
-		cargo_payment_list_colour:	10;
-		price_factor:				130;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     9;
+        sprite:                     4306;
+        type_name:                  TTD_STR_CARGO_PLURAL_STEEL;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_STEEL;
+        type_abbreviation:          TTD_STR_ABBREV_STEEL;
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_label:                "STEL";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             TTD_STR_QUANTITY_STEEL;
+        penalty_lowerbound:         14;
+        single_penalty_length:      255;
+        station_list_colour:        10;
+        cargo_payment_list_colour:  10;
+        price_factor:               130;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_paper, 10) {
-	property {
-		number:						10;
-		sprite:						4313;
-		type_name:					TTD_STR_CARGO_PLURAL_PAPER;
-		unit_name:					TTD_STR_CARGO_SINGULAR_PAPER;
-		type_abbreviation:			TTD_STR_ABBREV_PAPER;
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS);
-		cargo_label:				"PAPR";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_PAPER;
-		penalty_lowerbound:			12;
-		single_penalty_length:		60;
-		station_list_colour:		15;
-		cargo_payment_list_colour:	15;
-		price_factor:				144;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     10;
+        sprite:                     4313;
+        type_name:                  TTD_STR_CARGO_PLURAL_PAPER;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_PAPER;
+        type_abbreviation:          TTD_STR_ABBREV_PAPER;
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_label:                "PAPR";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             TTD_STR_QUANTITY_PAPER;
+        penalty_lowerbound:         12;
+        single_penalty_length:      60;
+        station_list_colour:        15;
+        cargo_payment_list_colour:  15;
+        price_factor:               144;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_plastic, 11) {
-	property {
-		number:						11;
-		sprite:						4320;
-		type_name:					string(STR_CARGO_NAME_PLAS);
-		unit_name:					string(STR_CARGO_NAME_PLAS);
-		type_abbreviation:			string(STR_CARGO_ABBREV_PLAS);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_BULK, CC_COVERED);
-		cargo_label:				"PLAS";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_PLAS);
-		penalty_lowerbound:			12;
-		single_penalty_length:		36;
-		station_list_colour:		130;
-		cargo_payment_list_colour:	130;
-		price_factor:				141;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     11;
+        sprite:                     4320;
+        type_name:                  string(STR_CARGO_NAME_PLAS);
+        unit_name:                  string(STR_CARGO_NAME_PLAS);
+        type_abbreviation:          string(STR_CARGO_ABBREV_PLAS);
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_BULK, CC_COVERED);
+        cargo_label:                "PLAS";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_PLAS);
+        penalty_lowerbound:         12;
+        single_penalty_length:      36;
+        station_list_colour:        130;
+        cargo_payment_list_colour:  130;
+        price_factor:               141;
+        capacity_multiplier:        1;
+    }
 }
 
 // Original ID, required for compatibility with older NewGRF house sets which hard-code cargo acceptance to cargo IDs rather than "FOOD"
 item (FEAT_CARGOS, cargo_food, 12) {
-	property {
-		number:						12;
-		sprite:						4312;
-		type_name:					TTD_STR_CARGO_PLURAL_FOOD;
-		unit_name:					TTD_STR_CARGO_SINGULAR_FOOD;
-		type_abbreviation:			TTD_STR_ABBREV_FOOD;
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_REFRIGERATED, CC_EXPRESS);
-		cargo_label:				"FOOD";
-		town_growth_effect:			TOWNGROWTH_FOOD;
-		town_growth_multiplier:		1.0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_FOOD;
-		penalty_lowerbound:			0;
-		single_penalty_length:		24;
-		station_list_colour:		48;
-		cargo_payment_list_colour:	48;
-		price_factor:				158;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     12;
+        sprite:                     4312;
+        type_name:                  TTD_STR_CARGO_PLURAL_FOOD;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_FOOD;
+        type_abbreviation:          TTD_STR_ABBREV_FOOD;
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_REFRIGERATED, CC_EXPRESS);
+        cargo_label:                "FOOD";
+        town_growth_effect:         TOWNGROWTH_FOOD;
+        town_growth_multiplier:     1.0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             TTD_STR_QUANTITY_FOOD;
+        penalty_lowerbound:         0;
+        single_penalty_length:      24;
+        station_list_colour:        48;
+        cargo_payment_list_colour:  48;
+        price_factor:               158;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_building_materials, 13) {
-	property {
-		number:						13;
-		sprite:						4299;
-		type_name:					string(STR_CARGO_NAME_BDMT);
-		unit_name:					string(STR_CARGO_NAME_BDMT);
-		type_abbreviation:			string(STR_CARGO_ABBREV_BDMT);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_BULK);
-		cargo_label:				"BDMT";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_BDMT);
-		penalty_lowerbound:			12;
-		single_penalty_length:		255;
-		station_list_colour:		39;
-		cargo_payment_list_colour:	39;
-		price_factor:				135;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     13;
+        sprite:                     4299;
+        type_name:                  string(STR_CARGO_NAME_BDMT);
+        unit_name:                  string(STR_CARGO_NAME_BDMT);
+        type_abbreviation:          string(STR_CARGO_ABBREV_BDMT);
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_BULK);
+        cargo_label:                "BDMT";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_BDMT);
+        penalty_lowerbound:         12;
+        single_penalty_length:      255;
+        station_list_colour:        39;
+        cargo_payment_list_colour:  39;
+        price_factor:               135;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_valuables, 14) {
-	property {
-		number:						14;
-		sprite:						4310;
-		type_name:				    TTD_STR_CARGO_PLURAL_VALUABLES;
-		unit_name:					TTD_STR_CARGO_SINGULAR_VALUABLES;
-		type_abbreviation:			TTD_STR_ABBREV_VALUABLES;
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_ARMOURED);
-		cargo_label:				"VALU";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_BAGS;
-		items_of_cargo:				TTD_STR_QUANTITY_VALUABLES;
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		150;
-		cargo_payment_list_colour:	150;
-		price_factor:				162;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     14;
+        sprite:                     4310;
+        type_name:                  TTD_STR_CARGO_PLURAL_VALUABLES;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_VALUABLES;
+        type_abbreviation:          TTD_STR_ABBREV_VALUABLES;
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_ARMOURED);
+        cargo_label:                "VALU";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_BAGS;
+        items_of_cargo:             TTD_STR_QUANTITY_VALUABLES;
+        penalty_lowerbound:         30;
+        single_penalty_length:      255;
+        station_list_colour:        150;
+        cargo_payment_list_colour:  150;
+        price_factor:               162;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_livestock, 15) {
-	property {
-		number:						15;
-		sprite:						4301;
-		type_name:				    TTD_STR_CARGO_PLURAL_LIVESTOCK;
-		unit_name:					TTD_STR_CARGO_SINGULAR_LIVESTOCK;
-		type_abbreviation:			TTD_STR_ABBREV_LIVESTOCK;
-		weight:						0.1875;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS);
-		cargo_label:				"LVST";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_ITEMS;
-		items_of_cargo:				TTD_STR_QUANTITY_LIVESTOCK;
-		penalty_lowerbound:			0;
-		single_penalty_length:		15;
-		station_list_colour:		101;
-		cargo_payment_list_colour:	101;
-		price_factor:				122;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     15;
+        sprite:                     4301;
+        type_name:                  TTD_STR_CARGO_PLURAL_LIVESTOCK;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_LIVESTOCK;
+        type_abbreviation:          TTD_STR_ABBREV_LIVESTOCK;
+        weight:                     0.1875;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_label:                "LVST";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_ITEMS;
+        items_of_cargo:             TTD_STR_QUANTITY_LIVESTOCK;
+        penalty_lowerbound:         0;
+        single_penalty_length:      15;
+        station_list_colour:        101;
+        cargo_payment_list_colour:  101;
+        price_factor:               122;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_wood_chips, 16) {
-	property {
-		number:						16;
-		sprite:						4309;
-		type_name:					string(STR_CARGO_NAME_WDCH);
-		unit_name:					string(STR_CARGO_NAME_WDCH);
-		type_abbreviation:			string(STR_CARGO_ABBREV_WDCH);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_BULK);
-		cargo_label:				"WDCH";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_WDCH);
-		penalty_lowerbound:			30;
-		single_penalty_length:		255;
-		station_list_colour:		108;
-		cargo_payment_list_colour:	108;
-		price_factor:				113;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     16;
+        sprite:                     4309;
+        type_name:                  string(STR_CARGO_NAME_WDCH);
+        unit_name:                  string(STR_CARGO_NAME_WDCH);
+        type_abbreviation:          string(STR_CARGO_ABBREV_WDCH);
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_BULK);
+        cargo_label:                "WDCH";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_WDCH);
+        penalty_lowerbound:         30;
+        single_penalty_length:      255;
+        station_list_colour:        108;
+        cargo_payment_list_colour:  108;
+        price_factor:               113;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_scrap_metal, 17) {
-	property {
-		number:						17;
-		sprite:						4305;
-		type_name:					string(STR_CARGO_NAME_SCMT);
-		unit_name:					string(STR_CARGO_NAME_SCMT);
-		type_abbreviation:			string(STR_CARGO_ABBREV_SCMT);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_BULK, CC_NON_POURABLE);
-		cargo_label:				"SCMT";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_SCMT);
-		penalty_lowerbound:			36;
-		single_penalty_length:		255;
-		station_list_colour:		63;
-		cargo_payment_list_colour:	63;
-		price_factor:				107;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     17;
+        sprite:                     4305;
+        type_name:                  string(STR_CARGO_NAME_SCMT);
+        unit_name:                  string(STR_CARGO_NAME_SCMT);
+        type_abbreviation:          string(STR_CARGO_ABBREV_SCMT);
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_BULK, CC_NON_POURABLE);
+        cargo_label:                "SCMT";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_SCMT);
+        penalty_lowerbound:         36;
+        single_penalty_length:      255;
+        station_list_colour:        63;
+        cargo_payment_list_colour:  63;
+        price_factor:               107;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_scrap_plastic, 18) {
-	property {
-		number:						18;
-		sprite:						4322;
-		type_name:					string(STR_CARGO_NAME_SCPL);
-		unit_name:					string(STR_CARGO_NAME_SCPL);
-		type_abbreviation:			string(STR_CARGO_ABBREV_SCPL);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_BULK, CC_NON_POURABLE);
-		cargo_label:				"SCPL";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_SCPL);
-		penalty_lowerbound:			36;
-		single_penalty_length:		255;
-		station_list_colour:		133;
-		cargo_payment_list_colour:	133;
-		price_factor:				46;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     18;
+        sprite:                     4322;
+        type_name:                  string(STR_CARGO_NAME_SCPL);
+        unit_name:                  string(STR_CARGO_NAME_SCPL);
+        type_abbreviation:          string(STR_CARGO_ABBREV_SCPL);
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_BULK, CC_NON_POURABLE);
+        cargo_label:                "SCPL";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_SCPL);
+        penalty_lowerbound:         36;
+        single_penalty_length:      255;
+        station_list_colour:        133;
+        cargo_payment_list_colour:  133;
+        price_factor:               46;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_scrap_paper, 19) {
-	property {
-		number:						19;
-		sprite:						4313;
-		type_name:					string(STR_CARGO_NAME_SCPR);
-		unit_name:					string(STR_CARGO_NAME_SCPR);
-		type_abbreviation:			string(STR_CARGO_ABBREV_SCPR);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_PIECE_GOODS);
-		cargo_label:				"SCPR";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_SCPR);
-		penalty_lowerbound:			36;
-		single_penalty_length:		255;
-		station_list_colour:		12;
-		cargo_payment_list_colour:	12;
-		price_factor:				55;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     19;
+        sprite:                     4313;
+        type_name:                  string(STR_CARGO_NAME_SCPR);
+        unit_name:                  string(STR_CARGO_NAME_SCPR);
+        type_abbreviation:          string(STR_CARGO_ABBREV_SCPR);
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_label:                "SCPR";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_SCPR);
+        penalty_lowerbound:         36;
+        single_penalty_length:      255;
+        station_list_colour:        12;
+        cargo_payment_list_colour:  12;
+        price_factor:               55;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_grain, 20) {
-	property {
-		number:						20;
-		sprite:						4303;
-		type_name:				    TTD_STR_CARGO_PLURAL_GRAIN;
-		unit_name:					TTD_STR_CARGO_SINGULAR_GRAIN;
-		type_abbreviation:			TTD_STR_ABBREV_GRAIN;
-		weight:						0.1875;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_BULK, CC_COVERED);
-		cargo_label:				"GRAI";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_GRAIN;
-		penalty_lowerbound:			4;
-		single_penalty_length:		40;
-		station_list_colour:		65;
-		cargo_payment_list_colour:	65;
-		price_factor:				114;
-		capacity_multiplier:		1;
-	}
+    property {
+        number:                     20;
+        sprite:                     4303;
+        type_name:                  TTD_STR_CARGO_PLURAL_GRAIN;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_GRAIN;
+        type_abbreviation:          TTD_STR_ABBREV_GRAIN;
+        weight:                     0.1875;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_BULK, CC_COVERED);
+        cargo_label:                "GRAI";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             TTD_STR_QUANTITY_GRAIN;
+        penalty_lowerbound:         4;
+        single_penalty_length:      40;
+        station_list_colour:        65;
+        cargo_payment_list_colour:  65;
+        price_factor:               114;
+        capacity_multiplier:        1;
+    }
 }
 
 /* *** End Cargos *** */
