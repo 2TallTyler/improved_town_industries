@@ -60,7 +60,7 @@ item (FEAT_INDUSTRIES, industry_forest, 3) {
         ];
 		name: TTD_STR_INDUSTRY_NAME_FOREST;
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
-		fund_cost_multiplier: 62;
+		fund_cost_multiplier: 255;
 	}
 	graphics {
 		location_check: loc_check_forest;

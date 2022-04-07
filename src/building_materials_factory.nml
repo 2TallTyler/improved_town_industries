@@ -244,7 +244,7 @@ item (FEAT_INDUSTRIES, industry_building_materials_factory, 5) {
 		name: string(STR_NAME_BUILDING_MATERIALS_FACTORY);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_BUILDING_MATERIALS_FACTORY));
         map_colour: 39;
-		fund_cost_multiplier: 40;
+		fund_cost_multiplier: 255;
 		layouts: [
 		    industry_layout_building_materials_factory_2x2,
 		    industry_layout_building_materials_factory_1x2,

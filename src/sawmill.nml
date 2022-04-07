@@ -152,7 +152,7 @@ item (FEAT_INDUSTRIES, industry_sawmill, 4) {
 		name: TTD_STR_INDUSTRY_NAME_SAWMILL;
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_SAWMILL));
 		map_colour: 111;
-        fund_cost_multiplier: 20;
+        fund_cost_multiplier: 255;
 		layouts: [
 			industry_layout_sawmill_1,
 			industry_layout_sawmill_2,
