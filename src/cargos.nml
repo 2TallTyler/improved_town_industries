@@ -2,7 +2,7 @@
 /* *** Begin Cargos *** */
 
 cargotable {
-    PASS, COAL, WSTE, OIL_, WDPR, GOOD, RFPR, WOOD, IORE, STEL, PAPR, PLAS, FOOD, BDMT, VALU, LVST, WDCH, SCMT, SCPL, SCPR, GRAI
+    PASS, COAL, WSTE, OIL_, WDPR, GOOD, RFPR, WOOD, IORE, STEL, PAPR, PLAS, FOOD, BDMT, VALU, LVST, WDCH, SCMT, SCPR, GRAI
 }
 
 // Original ID
@@ -448,31 +448,7 @@ item (FEAT_CARGOS, cargo_scrap_metal, 17) {
     }
 }
 
-item (FEAT_CARGOS, cargo_scrap_plastic, 18) {
-    property {
-        number:                     18;
-        sprite:                     4322;
-        type_name:                  string(STR_CARGO_NAME_SCPL);
-        unit_name:                  string(STR_CARGO_NAME_SCPL);
-        type_abbreviation:          string(STR_CARGO_ABBREV_SCPL);
-        weight:                     1;
-        is_freight:                 1;
-        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_BULK, CC_NON_POURABLE);
-        cargo_label:                "SCPL";
-        town_growth_effect:         TOWNGROWTH_NONE;
-        town_growth_multiplier:     0;
-        units_of_cargo:             TTD_STR_TONS;
-        items_of_cargo:             string(STR_CARGO_QUANTITY_SCPL);
-        penalty_lowerbound:         36;
-        single_penalty_length:      255;
-        station_list_colour:        133;
-        cargo_payment_list_colour:  133;
-        price_factor:               46;
-        capacity_multiplier:        1;
-    }
-}
-
-item (FEAT_CARGOS, cargo_scrap_paper, 19) {
+item (FEAT_CARGOS, cargo_scrap_paper, 18) {
     property {
         number:                     19;
         sprite:                     4313;
@@ -496,7 +472,7 @@ item (FEAT_CARGOS, cargo_scrap_paper, 19) {
     }
 }
 
-item (FEAT_CARGOS, cargo_grain, 20) {
+item (FEAT_CARGOS, cargo_grain, 19) {
     property {
         number:                     20;
         sprite:                     4303;

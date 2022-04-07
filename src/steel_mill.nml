@@ -91,30 +91,45 @@ tilelayout industry_layout_steel_mill_1 {
     5,0: ind_tile_steel_mill_1_W;	5,1: ind_tile_steel_mill_1_S;	5,2: ind_tile_steel_mill_1_W;	5,3: ind_tile_steel_mill_1_S;
 }
 
+/*
+ * Register 1: Total production amount
+ * Register 2: Passenger production
+ * Register 3: Amount of scrap to consume
+ * Register 4: Amount of normal input to consume
+ */
+
 produce (produce_steel_mill,
-    [COAL: LOAD_TEMP(1); IORE: LOAD_TEMP(1);],           // consume
-    [STEL: (LOAD_TEMP(1) * 3) / 2; PASS: LOAD_TEMP(2);], // produce
-    0                                                    // don't run callback again
+    [SCMT: LOAD_TEMP(3); COAL: LOAD_TEMP(4); IORE: LOAD_TEMP(4);], // consume
+    [STEL: LOAD_TEMP(1); PASS: LOAD_TEMP(2);],                     // produce
+    0                                                              // don't run callback again
 )
 
 /* If we don't have enough stored, produce as much as we can anyway. */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_steel_mill_min, [
-    STORE_TEMP(min(incoming_cargo_waiting("IORE"), incoming_cargo_waiting("COAL")), 1), // Set the production amount to the smallest input stockpile
-    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("STEL")) / 100), 2), // Set the passenger production level
+    STORE_TEMP(min(incoming_cargo_waiting("IORE"), incoming_cargo_waiting("COAL")), 4),
+    STORE_TEMP(LOAD_TEMP(3) + LOAD_TEMP(4), 1),
     ]) {produce_steel_mill;}
 
 /* Determine the production level and see if we have enough stored to meet it. */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_steel_mill_2, [
-    STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
-    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("STEL")) / 100), 2), // Set the passenger production level
-    incoming_cargo_waiting("IORE") > LOAD_TEMP(1) && incoming_cargo_waiting("COAL") > LOAD_TEMP(1), // Check if there's enough input cargo for this production level
+    /* Set the passenger production amount. */
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("STEL")) / 100), 2),
+
+    /* Get the target production amount */
+    STORE_TEMP(GetSecondaryProductionLevel(), 1),
+    /* How much of the production can be met with scrap? */
+    STORE_TEMP(min(LOAD_TEMP(1), incoming_cargo_waiting("SCMT")), 3),
+    /* Make up the rest in normal input. */
+    STORE_TEMP(LOAD_TEMP(1) - LOAD_TEMP(3), 4),
+    /* Check if there's enough input cargo for this production level. */
+    min(incoming_cargo_waiting("IORE"), incoming_cargo_waiting("COAL")) > LOAD_TEMP(4),
     ]) {
         1: produce_steel_mill;
         switch_produce_steel_mill_min;
     }
 
 /* If no cargo is waiting, bail out. */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_steel_mill, incoming_cargo_waiting("IORE") > 0 && incoming_cargo_waiting("COAL") > 0)
+switch (FEAT_INDUSTRIES, SELF, switch_produce_steel_mill, incoming_cargo_waiting("SCMT") > 0 || min(incoming_cargo_waiting("IORE"), incoming_cargo_waiting("COAL")) > 0)
     {
         1: switch_produce_steel_mill_2;
         produce_none;
@@ -131,6 +146,7 @@ item (FEAT_INDUSTRIES, industry_steel_mill, 2) {
 		cargo_types: [
             accept_cargo("IORE"),
 		    accept_cargo("COAL"),
+            accept_cargo("SCMT"),
             produce_cargo("STEL", 0),
             produce_cargo("PASS", 0),
 		];

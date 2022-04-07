@@ -105,7 +105,7 @@ tilelayout industry_layout_recycling_center_1 {
 
 produce (produce_recycling_center,
     [WSTE: LOAD_TEMP(1);],                                                                        // consume
-    [SCMT: LOAD_TEMP(1) / 3; SCPL: LOAD_TEMP(1) / 3; SCPR: LOAD_TEMP(1) /3; PASS: LOAD_TEMP(2);], // produce
+    [SCMT: LOAD_TEMP(1) / 3; PLAS: LOAD_TEMP(1) / 3; SCPR: LOAD_TEMP(1) /3; PASS: LOAD_TEMP(2);], // produce
     0                                                                                             // don't run callback again
 )
 
@@ -143,8 +143,8 @@ item (FEAT_INDUSTRIES, industry_recycling_center, 13) {
         cargo_types: [
             accept_cargo("WSTE"),
             produce_cargo("SCMT", 0),
-            produce_cargo("SCPL", 0),
             produce_cargo("SCPR", 0),
+            produce_cargo("PLAS", 0),
             produce_cargo("PASS", 0),
         ];
         name: string(STR_NAME_RECYCLING_CENTER);
