@@ -200,9 +200,9 @@ tilelayout industry_layout_building_materials_factory_L {
 }
 
 produce (produce_building_materials_factory,
-    [WDPR: LOAD_TEMP(1); STEL: LOAD_TEMP(1);],           // consume
-    [STEL: (LOAD_TEMP(1) * 3) / 2; PASS: LOAD_TEMP(2);], // produce
-    0                                                    // don't run callback again
+    [WDPR: LOAD_TEMP(1); STEL: LOAD_TEMP(1);],     // consume
+    [BDMT: LOAD_TEMP(1) * 2; PASS: LOAD_TEMP(2);], // produce
+    0                                              // don't run callback again
 )
 
 /* If we don't have enough stored, produce as much as we can anyway. */
@@ -240,6 +240,7 @@ item (FEAT_INDUSTRIES, industry_building_materials_factory, 5) {
 		    accept_cargo("STEL"),
             accept_cargo("WDPR"),
             produce_cargo("BDMT", 0),
+            produce_cargo("PASS", 0),
 		];
 		name: string(STR_NAME_BUILDING_MATERIALS_FACTORY);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_BUILDING_MATERIALS_FACTORY));
