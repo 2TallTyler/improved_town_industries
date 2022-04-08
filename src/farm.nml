@@ -110,7 +110,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_farm, [
     ]) {produce_farm;}
 
 /* Location check */
-switch (FEAT_INDUSTRIES, SELF, loc_check_farm, IsTown() && IsInQuadrantSE() && IndustryElevationCheck(0, 4)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, loc_check_farm, IsTown() && IsInQuadrantSE() && IndustryElevationCheck(0, 4) && NoNearbyCompetitors(industry_farm, 30)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 item (FEAT_INDUSTRIES, industry_farm, 11) {
     property {
