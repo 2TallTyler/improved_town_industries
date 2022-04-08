@@ -208,13 +208,13 @@ produce (produce_building_materials_factory,
 /* If we don't have enough stored, produce as much as we can anyway. */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_building_materials_factory_min, [
     STORE_TEMP(min(incoming_cargo_waiting("STEL"), incoming_cargo_waiting("WDPR")), 1), // Set the production amount to the smallest input stockpile
-    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("STEL")) / 100), 2), // Set the passenger production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("BDMT")) / 100), 2), // Set the passenger production level
     ]) {produce_building_materials_factory;}
 
 /* Determine the production level and see if we have enough stored to meet it. */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_building_materials_factory_2, [
     STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
-    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("STEL")) / 100), 2), // Set the passenger production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("BDMT")) / 100), 2), // Set the passenger production level
     incoming_cargo_waiting("STEL") > LOAD_TEMP(1) && incoming_cargo_waiting("WDPR") > LOAD_TEMP(1), // Check if there's enough Steel and Lumber for this production level
     ]) {
         1: produce_building_materials_factory;
