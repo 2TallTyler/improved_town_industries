@@ -11,7 +11,7 @@ STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or 
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}Off{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
 
 STR_NAME_OBJECT_MENU                :Industry Tiles
 STR_NAME_OBJECT_MENU_FIELDS         :Fields

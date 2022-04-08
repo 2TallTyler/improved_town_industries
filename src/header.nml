@@ -11,7 +11,7 @@ grf {
 			type: bool;
 			name: string(STR_PARAM_PRIMARY_QUADRANTS_NAME);
 			desc: string(STR_PARAM_PRIMARY_QUADRANTS_DESC);
-			def_value: 0;
+			def_value: 1;
 		}
 	}
 }
