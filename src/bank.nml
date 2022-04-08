@@ -23,7 +23,7 @@ produce (produce_bank,
 
 /* Calculate Valuables and passenger production */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_bank, [
-    STORE_TEMP(GetPrimaryProduction(), 1),
+    STORE_TEMP(GetPrimaryProduction() / 4, 1),
     STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("VALU")) / 100), 2)
     ]) {produce_bank;}
 
