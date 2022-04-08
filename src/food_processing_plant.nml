@@ -185,9 +185,9 @@ tilelayout industry_layout_food_processing_plant_3 {
 }
 
 produce (produce_food_processing_plant,
-    [GRAI: LOAD_TEMP(1); LVST: LOAD_TEMP(1);],           // consume
-    [FOOD: (LOAD_TEMP(1) * 3) / 2; PASS: LOAD_TEMP(2);], // produce
-    0                                                    // don't run callback again
+    [GRAI: LOAD_TEMP(1); LVST: LOAD_TEMP(1);],     // consume
+    [FOOD: LOAD_TEMP(1) * 2; PASS: LOAD_TEMP(2);], // produce
+    0                                              // don't run callback again
 )
 
 /* If we don't have enough stored, produce as much as we can anyway. */
