@@ -230,8 +230,8 @@ item (FEAT_INDUSTRIES, industry_food_processing_plant, 7) {
         ];
         name: string(STR_NAME_FOOD_PROCESSING_PLANT);
         nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOOD_PROCESSING_PLANT));
-        prob_map_gen: 5;
-        prob_in_game: 3;
+        prob_map_gen: 1;
+        prob_in_game: 0;
         map_colour: 44;
         fund_cost_multiplier: 255;
         layouts: [
@@ -242,7 +242,6 @@ item (FEAT_INDUSTRIES, industry_food_processing_plant, 7) {
     }
     graphics {
         location_check: loc_check_food_processing_plant;
-        construction_probability: 3;
         produce_256_ticks: switch_produce_food_processing_plant;
         colour: COLOUR_RED;
         /* Don't allow any production changes */

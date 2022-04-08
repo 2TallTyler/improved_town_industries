@@ -244,6 +244,8 @@ item (FEAT_INDUSTRIES, industry_building_materials_factory, 5) {
 		];
 		name: string(STR_NAME_BUILDING_MATERIALS_FACTORY);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_BUILDING_MATERIALS_FACTORY));
+        prob_map_gen: 1;
+        prob_in_game: 0;
         map_colour: 39;
 		fund_cost_multiplier: 255;
 		layouts: [
@@ -257,7 +259,6 @@ item (FEAT_INDUSTRIES, industry_building_materials_factory, 5) {
 	}
 	graphics {
 		location_check: loc_check_building_materials_factory;
-        construction_probability: 3;
         produce_256_ticks: switch_produce_building_materials_factory;
         colour: COLOUR_CREAM;
         /* Don't allow any production changes */

@@ -225,7 +225,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 10) {
 		name: TTD_STR_INDUSTRY_NAME_PAPER_MILL;
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
 		prob_map_gen: 1;
-		prob_in_game: 1;
+		prob_in_game: 0;
 		fund_cost_multiplier: 255;
 		map_colour: 184;
 		layouts: [
@@ -236,7 +236,6 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 10) {
 	}
 	graphics {
 		location_check: loc_check_paper_mill;
-        construction_probability: 3;
         produce_256_ticks: switch_produce_paper_mill;
 		colour: COLOUR_DARK_GREEN;
         /* Don't allow any production changes */

@@ -245,6 +245,8 @@ item (FEAT_INDUSTRIES, industry_factory, 6) {
 		];
 		name: string(STR_NAME_FACTORY);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FACTORY));
+        prob_map_gen: 1;
+        prob_in_game: 0;
 		fund_cost_multiplier: 255;
 		layouts: [
 		    industry_layout_factory_2x2,
@@ -257,7 +259,6 @@ item (FEAT_INDUSTRIES, industry_factory, 6) {
 	}
 	graphics {
 		location_check: loc_check_factory;
-        construction_probability: 3;
         produce_256_ticks: switch_produce_factory;
         colour: COLOUR_PURPLE;
         /* Don't allow any production changes */

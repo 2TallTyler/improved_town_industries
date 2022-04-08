@@ -107,13 +107,14 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 1) {
 		];
         name: TTD_STR_INDUSTRY_NAME_IRON_ORE_MINE;
         nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_IRON_MINE));
+        prob_map_gen: 2; // Account for difficulty of finding suitable locatiom
+        prob_in_game: 0;
         map_colour: 126;
         fund_cost_multiplier: 255;
         layouts: [industry_layout_iron_mine,];
     }
     graphics {
 		location_check: loc_check_iron_mine;
-        construction_probability: 15;
         produce_256_ticks: switch_produce_iron_mine;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

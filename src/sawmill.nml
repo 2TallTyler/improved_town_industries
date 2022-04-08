@@ -151,6 +151,8 @@ item (FEAT_INDUSTRIES, industry_sawmill, 4) {
         ];
 		name: TTD_STR_INDUSTRY_NAME_SAWMILL;
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_SAWMILL));
+        prob_map_gen: 1;
+        prob_in_game: 0;
 		map_colour: 111;
         fund_cost_multiplier: 255;
 		layouts: [
@@ -161,7 +163,6 @@ item (FEAT_INDUSTRIES, industry_sawmill, 4) {
 	}
 	graphics {
 		location_check: loc_check_sawmill;
-        construction_probability: 3;
         produce_256_ticks: switch_produce_sawmill;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

@@ -60,11 +60,12 @@ item (FEAT_INDUSTRIES, industry_forest, 3) {
         ];
 		name: TTD_STR_INDUSTRY_NAME_FOREST;
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
+        prob_map_gen: 2; // Account for difficulty of finding suitable locatiom
+        prob_in_game: 0;
 		fund_cost_multiplier: 255;
 	}
 	graphics {
 		location_check: loc_check_forest;
-        construction_probability: 15;
         produce_256_ticks: switch_produce_forest;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

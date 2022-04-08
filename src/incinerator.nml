@@ -109,6 +109,8 @@ item (FEAT_INDUSTRIES, industry_incinerator, 15) {
 		];
 		name: string(STR_NAME_INCINERATOR);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_INCINERATOR));
+        prob_map_gen: 1;
+        prob_in_game: 0;
 		fund_cost_multiplier: 255;
 		layouts: [
 			industry_layout_incinerator_1,
@@ -120,7 +122,6 @@ item (FEAT_INDUSTRIES, industry_incinerator, 15) {
 	}
 	graphics {
 		location_check: loc_check_incinerator;
-        construction_probability: 3;
 	}
 }
 

@@ -123,6 +123,8 @@ item (FEAT_INDUSTRIES, industry_farm, 11) {
         ];
         name: TTD_STR_INDUSTRY_NAME_FARM;
         nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
+        prob_map_gen: 1;
+        prob_in_game: 0;
         fund_cost_multiplier: 255;
         layouts: [
             industry_layout_farm_1,
@@ -136,7 +138,6 @@ item (FEAT_INDUSTRIES, industry_farm, 11) {
     }
     graphics {
         location_check: loc_check_farm;
-        construction_probability: 15;
         produce_256_ticks: switch_produce_farm;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

@@ -228,6 +228,8 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 		];
 		name: TTD_STR_INDUSTRY_NAME_OIL_REFINERY;
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
+        prob_map_gen: 1;
+        prob_in_game: 0;
 		fund_cost_multiplier: 255;
 		layouts: [
 			industry_layout_oil_refinery_1,
@@ -238,7 +240,6 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 	}
 	graphics {
 		location_check: loc_check_oil_refinery;
-        construction_probability: 3;
         produce_256_ticks: switch_produce_oil_refinery;
         colour: COLOUR_YELLOW;
         /* Don't allow any production changes */
