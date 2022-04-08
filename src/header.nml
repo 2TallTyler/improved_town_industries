@@ -144,8 +144,6 @@ if (grf_future_status("AZ\20\77")) { error(FATAL, string(STR_ERROR_INCOMPATIBLE_
 
 if (grf_future_status("GGQT")) { error(FATAL, string(STR_ERROR_INCOMPATIBLE_SET, "One Tile Industry Set"));}
 
-if (grf_future_status("TT\04\01")) { error(FATAL, string(STR_ERROR_INCOMPATIBLE_SET, "Improved Town Industries"));}
-
 if (grf_future_status("TT20")) { error(FATAL, string(STR_ERROR_INCOMPATIBLE_SET, "Industries of the Caribbean"));}
 
 if (grf_future_status("TT21")) { error(FATAL, string(STR_ERROR_INCOMPATIBLE_SET, "Lumberjack Industries"));}
