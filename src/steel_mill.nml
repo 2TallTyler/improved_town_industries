@@ -99,9 +99,9 @@ tilelayout industry_layout_steel_mill_1 {
  */
 
 produce (produce_steel_mill,
-    [SCMT: LOAD_TEMP(3); COAL: LOAD_TEMP(4); IORE: LOAD_TEMP(4);], // consume
-    [STEL: LOAD_TEMP(1); PASS: LOAD_TEMP(2);],                     // produce
-    0                                                              // don't run callback again
+    [SCMT: LOAD_TEMP(3); COAL: LOAD_TEMP(4); IORE: LOAD_TEMP(4);],  // consume
+    [STEL: LOAD_TEMP(3) + (LOAD_TEMP(4) * 2); PASS: LOAD_TEMP(2);], // produce
+    0                                                               // don't run callback again
 )
 
 /* If we don't have enough stored, produce as much as we can anyway. */

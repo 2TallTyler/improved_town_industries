@@ -171,9 +171,9 @@ tilelayout industry_layout_paper_mill_3 {
  */
 
 produce (produce_paper_mill,
-    [SCPR: LOAD_TEMP(3); RFPR: LOAD_TEMP(4); WDCH: LOAD_TEMP(4);], // consume
-    [PAPR: LOAD_TEMP(1); PASS: LOAD_TEMP(2);],                     // produce
-    0                                                              // don't run callback again
+    [SCPR: LOAD_TEMP(3); RFPR: LOAD_TEMP(4); WDCH: LOAD_TEMP(4);],  // consume
+    [PAPR: LOAD_TEMP(3) + (LOAD_TEMP(4) * 2); PASS: LOAD_TEMP(2);], // produce
+    0                                                               // don't run callback again
 )
 
 /* If we don't have enough stored, produce as much as we can anyway. */
