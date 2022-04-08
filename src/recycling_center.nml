@@ -149,6 +149,8 @@ item (FEAT_INDUSTRIES, industry_recycling_center, 13) {
         ];
         name: string(STR_NAME_RECYCLING_CENTER);
         nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_RECYCLING_CENTER));
+        prob_map_gen: 1;
+        prob_in_game: 0;
         fund_cost_multiplier: 255;
         map_colour: 95;
         layouts: [
@@ -157,7 +159,6 @@ item (FEAT_INDUSTRIES, industry_recycling_center, 13) {
     }
     graphics {
         location_check: loc_check_recycling_center;
-        construction_probability: 3;
         produce_256_ticks: switch_produce_recycling_center;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

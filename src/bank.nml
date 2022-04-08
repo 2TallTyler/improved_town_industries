@@ -49,11 +49,12 @@ item (FEAT_INDUSTRIES, industry_bank, 14) {
 		];
 		name: TTD_STR_INDUSTRY_NAME_BANK;
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_BANK));
+        prob_map_gen: 2; // Account for difficulty of finding suitable locatiom
+        prob_in_game: 0;
         fund_cost_multiplier: 255;
 	}
 	graphics {
 		location_check: loc_check_bank;
-        construction_probability: 15;
         produce_256_ticks: switch_produce_bank;
         cargo_subtype_display: switch_bank_cargo_subtype_display;
         /* Don't allow any production changes */
