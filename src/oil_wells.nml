@@ -156,7 +156,8 @@ item (FEAT_INDUSTRIES, industry_oil_wells, 8) {
 		spec_flags: 0;
 	}
 	graphics {
-		location_check: loc_check_oil_wells;
+		extra_text_industry: StringGetPrimaryHelptext();
+        location_check: loc_check_oil_wells;
         produce_256_ticks: switch_produce_oil_wells;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

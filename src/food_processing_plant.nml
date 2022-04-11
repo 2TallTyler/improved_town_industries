@@ -241,6 +241,7 @@ item (FEAT_INDUSTRIES, industry_food_processing_plant, 7) {
         ];
     }
     graphics {
+        extra_text_industry: StringGetSecondaryHelptext();
         location_check: loc_check_food_processing_plant;
         produce_256_ticks: switch_produce_food_processing_plant;
         colour: COLOUR_RED;

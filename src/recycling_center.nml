@@ -158,6 +158,7 @@ item (FEAT_INDUSTRIES, industry_recycling_center, 13) {
         ];
     }
     graphics {
+        extra_text_industry: StringGetSecondaryHelptext();
         location_check: loc_check_recycling_center;
         produce_256_ticks: switch_produce_recycling_center;
         /* Don't allow any production changes */

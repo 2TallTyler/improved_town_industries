@@ -54,7 +54,8 @@ item (FEAT_INDUSTRIES, industry_bank, 14) {
         fund_cost_multiplier: 255;
 	}
 	graphics {
-		location_check: loc_check_bank;
+		extra_text_industry: StringGetPrimaryHelptext();
+        location_check: loc_check_bank;
         produce_256_ticks: switch_produce_bank;
         cargo_subtype_display: switch_bank_cargo_subtype_display;
         /* Don't allow any production changes */

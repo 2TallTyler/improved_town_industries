@@ -65,7 +65,8 @@ item (FEAT_INDUSTRIES, industry_forest, 3) {
 		fund_cost_multiplier: 255;
 	}
 	graphics {
-		location_check: loc_check_forest;
+		extra_text_industry: StringGetPrimaryHelptext();
+        location_check: loc_check_forest;
         produce_256_ticks: switch_produce_forest;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

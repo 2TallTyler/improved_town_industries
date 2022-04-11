@@ -162,7 +162,8 @@ item (FEAT_INDUSTRIES, industry_sawmill, 4) {
 		];
 	}
 	graphics {
-		location_check: loc_check_sawmill;
+		extra_text_industry: StringGetSecondaryHelptext();
+        location_check: loc_check_sawmill;
         produce_256_ticks: switch_produce_sawmill;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production
