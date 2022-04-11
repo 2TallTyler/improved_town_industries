@@ -258,7 +258,8 @@ item (FEAT_INDUSTRIES, industry_factory, 6) {
 		];
 	}
 	graphics {
-		location_check: loc_check_factory;
+		extra_text_industry: StringGetSecondaryHelptext();
+        location_check: loc_check_factory;
         produce_256_ticks: switch_produce_factory;
         colour: COLOUR_PURPLE;
         /* Don't allow any production changes */

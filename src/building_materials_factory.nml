@@ -258,7 +258,8 @@ item (FEAT_INDUSTRIES, industry_building_materials_factory, 5) {
 		];
 	}
 	graphics {
-		location_check: loc_check_building_materials_factory;
+		extra_text_industry: StringGetSecondaryHelptext();
+        location_check: loc_check_building_materials_factory;
         produce_256_ticks: switch_produce_building_materials_factory;
         colour: COLOUR_CREAM;
         /* Don't allow any production changes */

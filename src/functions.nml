@@ -99,6 +99,47 @@ switch (FEAT_INDUSTRIES, PARENT, GetPopMultiplier, min(1 + (population / 1000), 
 switch (FEAT_INDUSTRIES, SELF, GetPrimaryProduction, (16 * GetPopMultiplier() * GetAdjustedProductionEfficiency()) / 100) {return;}
 
 /**
+ * Choose the proper string for the next population goal for primary industry towns.
+ * @return The string ID for the chosen population goal helptext.
+ */
+switch (FEAT_INDUSTRIES, SELF, StringNextPrimaryProductionGoal, GetPopMultiplier()) {
+    1: return string(STR_PRIMARY_GOAL_1000);
+    2: return string(STR_PRIMARY_GOAL_2000);
+    3: return string(STR_PRIMARY_GOAL_3000);
+    4: return string(STR_PRIMARY_GOAL_4000);
+    return string(STR_PRIMARY_GOAL_MAX);
+}
+
+/**
+ * Choose the correct string for the helptext about transporting more passengers in town.
+ * @return The string ID for the correct helptext, either telling passengers to transport more, or to keep up the good work.
+ */
+switch (FEAT_INDUSTRIES, SELF, StringIncreaseProductionEfficiency, GetAdjustedProductionEfficiency()) {
+    0..99: return string(STR_PRIMARY_INCREASE_EFFICIENCY);
+    return string(STR_PRIMARY_MAX_EFFICIENCY);
+}
+
+/**
+ * Build text stack for primary industry helptext.
+ * @return The helptext string with substrings and values from the text stack.
+ */
+switch (FEAT_INDUSTRIES, SELF, StringGetPrimaryHelptext, [
+    STORE_TEMP(StringNextPrimaryProductionGoal() + 0xD000, 257),   // list the next population goal (or say we've reached it)
+    STORE_TEMP(GetAdjustedProductionEfficiency(), 258),   // current production efficiency
+    STORE_TEMP(StringIncreaseProductionEfficiency() + 0xD000, 259) // helptext to increase efficiency by transporting more passengers, if <100%, else an empty string
+]) {return string(STR_PRIMARY_HELPTEXT);}
+
+/**
+ * Build text stack for secondary industry helptext.
+ * @return The helptext string with substrings and values from the text stack.
+ */
+switch (FEAT_INDUSTRIES, SELF, StringGetSecondaryHelptext, [
+    STORE_TEMP(TownPopulation() / 10, 257),   // list the next population goal (or say we've reached it)
+    STORE_TEMP(GetAdjustedProductionEfficiency(), 258),   // current production efficiency
+    STORE_TEMP(StringIncreaseProductionEfficiency() + 0xD000, 259) // helptext to increase efficiency by transporting more passengers, if <100%, else an empty string
+]) {return string(STR_SECONDARY_HELPTEXT);}
+
+/**
  * Is the parent town a city?
  * @return True if it is a city, else false.
  */

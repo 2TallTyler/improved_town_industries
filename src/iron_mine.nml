@@ -114,7 +114,8 @@ item (FEAT_INDUSTRIES, industry_iron_mine, 1) {
         layouts: [industry_layout_iron_mine,];
     }
     graphics {
-		location_check: loc_check_iron_mine;
+		extra_text_industry: StringGetPrimaryHelptext();
+        location_check: loc_check_iron_mine;
         produce_256_ticks: switch_produce_iron_mine;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

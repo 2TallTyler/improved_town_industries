@@ -159,7 +159,8 @@ item (FEAT_INDUSTRIES, industry_steel_mill, 2) {
 		map_colour: 10;
 	}
 	graphics {
-		location_check: loc_check_steel_mill;
+		extra_text_industry: StringGetSecondaryHelptext();
+        location_check: loc_check_steel_mill;
         produce_256_ticks: switch_produce_steel_mill;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

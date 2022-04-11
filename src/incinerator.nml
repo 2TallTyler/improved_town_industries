@@ -121,7 +121,8 @@ item (FEAT_INDUSTRIES, industry_incinerator, 15) {
 		map_colour: 208;
 	}
 	graphics {
-		location_check: loc_check_incinerator;
+		extra_text_industry: string(STR_INCINERATOR_HELPTEXT);
+        location_check: loc_check_incinerator;
 	}
 }
 

@@ -239,7 +239,8 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 		map_colour: 191;
 	}
 	graphics {
-		location_check: loc_check_oil_refinery;
+		extra_text_industry: StringGetSecondaryHelptext();
+        location_check: loc_check_oil_refinery;
         produce_256_ticks: switch_produce_oil_refinery;
         colour: COLOUR_YELLOW;
         /* Don't allow any production changes */

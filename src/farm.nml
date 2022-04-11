@@ -137,6 +137,7 @@ item (FEAT_INDUSTRIES, industry_farm, 11) {
         ];
     }
     graphics {
+        extra_text_industry: StringGetPrimaryHelptext();
         location_check: loc_check_farm;
         produce_256_ticks: switch_produce_farm;
         /* Don't allow any production changes */
