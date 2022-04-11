@@ -88,9 +88,9 @@ switch (FEAT_INDUSTRIES, SELF, GetSecondaryProductionLevel, (TownPopulation() / 
 
 /** 
  * Get the primary industry population multiplier based on the population of the town. 
- * @return The multiplier, in range 1-4.
+ * @return The multiplier, in range 1-5.
  */
-switch (FEAT_INDUSTRIES, PARENT, GetPopMultiplier, min(1 + (population / 1000), 4)) {return;}
+switch (FEAT_INDUSTRIES, PARENT, GetPopMultiplier, min(1 + (population / 1000), 5)) {return;}
 
 /**
  * Get the primary industry production amount based on town population and percent of transported passengers.
