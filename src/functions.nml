@@ -72,10 +72,19 @@ switch (FEAT_INDUSTRIES, PARENT, TownPopulation, population) {return;}
 switch (FEAT_INDUSTRIES, SELF, TownHasPopulation, required, TownPopulation() > required) {return;}
 
 /**
+ * Get the adjusted production efficiency, where transporting 75% of possible passengers gives 100% production efficiency.
+ * @return The adjusted efficiency, from 0..100.
+ */
+switch (FEAT_INDUSTRIES, PARENT, GetAdjustedProductionEfficiency, percent_transported_passengers) {
+    0: return 0;
+    return min(percent_transported_passengers + 25, 100);
+}
+
+/**
  * Get the secondary production level of a town, 1/10 the population divided by 8 production ticks per month, multiplied by the percentage of transported passengers.
  * @return The production per 256 ticks.
  */
-switch (FEAT_INDUSTRIES, PARENT, GetSecondaryProductionLevel, (TownPopulation() / 10 / 8 * percent_transported_passengers) / 100) {return;}
+switch (FEAT_INDUSTRIES, SELF, GetSecondaryProductionLevel, (TownPopulation() / 10 / 8 * GetAdjustedProductionEfficiency()) / 100) {return;}
 
 /** 
  * Get the primary industry population multiplier based on the population of the town. 
@@ -87,7 +96,7 @@ switch (FEAT_INDUSTRIES, PARENT, GetPopMultiplier, min(1 + (population / 1000), 
  * Get the primary industry production amount based on town population and percent of transported passengers.
  * @return The amount to be produced every 256 ticks.
  */
-switch (FEAT_INDUSTRIES, PARENT, GetPrimaryProduction, (16 * GetPopMultiplier() * percent_transported_passengers) / 100) {return;}
+switch (FEAT_INDUSTRIES, SELF, GetPrimaryProduction, (16 * GetPopMultiplier() * GetAdjustedProductionEfficiency()) / 100) {return;}
 
 /**
  * Is the parent town a city?
