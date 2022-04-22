@@ -22,7 +22,7 @@ STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}To {WHITE}increase efficiency{BLACK}
 STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}To keep {WHITE}maximum efficiency{BLACK}, keep transporting passengers in this town.
 STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}Production efficiency: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
 
-STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Consumes 1 unit of each input cargo per 10 population. Current maximum {YELLOW}{UNSIGNED_WORD}{BLACK}/month.{}{}Production efficiency: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Consumes 1 unit of each input cargo per 5 population. Current maximum {YELLOW}{UNSIGNED_WORD}{BLACK}/month.{}{}Production efficiency: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
 
 STR_INCINERATOR_HELPTEXT            :Consumes Waste but has no other effect.
 
