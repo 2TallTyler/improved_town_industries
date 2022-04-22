@@ -81,10 +81,10 @@ switch (FEAT_INDUSTRIES, PARENT, GetAdjustedProductionEfficiency, percent_transp
 }
 
 /**
- * Get the secondary production level of a town, 1/10 the population divided by 8 production ticks per month, multiplied by the percentage of transported passengers.
+ * Get the secondary production level of a town, 1/5 the population divided by 8 production ticks per month, multiplied by the percentage of transported passengers.
  * @return The production per 256 ticks.
  */
-switch (FEAT_INDUSTRIES, SELF, GetSecondaryProductionLevel, (TownPopulation() / 10 / 8 * GetAdjustedProductionEfficiency()) / 100) {return;}
+switch (FEAT_INDUSTRIES, SELF, GetSecondaryProductionLevel, (TownPopulation() / 5 / 8 * GetAdjustedProductionEfficiency()) / 100) {return;}
 
 /** 
  * Get the primary industry population multiplier based on the population of the town. 
@@ -134,7 +134,7 @@ switch (FEAT_INDUSTRIES, SELF, StringGetPrimaryHelptext, [
  * @return The helptext string with substrings and values from the text stack.
  */
 switch (FEAT_INDUSTRIES, SELF, StringGetSecondaryHelptext, [
-    STORE_TEMP(TownPopulation() / 10, 257),   // list the next population goal (or say we've reached it)
+    STORE_TEMP(TownPopulation() / 5, 257),   // list the next population goal (or say we've reached it)
     STORE_TEMP(GetAdjustedProductionEfficiency(), 258),   // current production efficiency
     STORE_TEMP(StringIncreaseProductionEfficiency() + 0xD000, 259) // helptext to increase efficiency by transporting more passengers, if <100%, else an empty string
 ]) {return string(STR_SECONDARY_HELPTEXT);}
