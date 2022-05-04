@@ -13,10 +13,10 @@ STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
 STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
 
-STR_PRIMARY_GOAL_1000               :{BLACK}To {WHITE}double {BLACK} maximum production, grow town to 1,000 population.
-STR_PRIMARY_GOAL_2000               :{BLACK}To {WHITE}double {BLACK} maximum production, grow town to 2,000 population.
-STR_PRIMARY_GOAL_3000               :{BLACK}To {WHITE}double {BLACK} maximum production, grow town to 3,000 population.
-STR_PRIMARY_GOAL_4000               :{BLACK}To {WHITE}double {BLACK} maximum production, grow town to 4,000 population.
+STR_PRIMARY_GOAL_1000               :{BLACK}To {WHITE}increase maximum production {BLACK}, grow town to 1,000 population.
+STR_PRIMARY_GOAL_2000               :{BLACK}To {WHITE}increase maximum production {BLACK}, grow town to 2,000 population.
+STR_PRIMARY_GOAL_3000               :{BLACK}To {WHITE}increase maximum production {BLACK}, grow town to 3,000 population.
+STR_PRIMARY_GOAL_4000               :{BLACK}To {WHITE}increase maximum production {BLACK}, grow town to 4,000 population.
 STR_PRIMARY_GOAL_MAX                :{WHITE}Maximum production {BLACK}reached.
 STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}To {WHITE}increase efficiency{BLACK}, transport more passengers in this town.
 STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}To keep {WHITE}maximum efficiency{BLACK}, keep transporting passengers in this town.
