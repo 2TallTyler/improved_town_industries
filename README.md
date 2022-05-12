@@ -1,129 +1,90 @@
-# Improved Town Industries
+# Improved Town Industries 2
 
-![Trucks drop off Waste at a recycling center while passenger trains bring employees to work](/docs/recycling_center.PNG)
+In most OpenTTD economies, towns have no relation to industrial production lines and are often seen as merely an impediment to rail infrastructure.
 
-## Overview
+Improved Town Industries 2 makes town service integral to industrial production, and when used with a growth script like [Renewed Village Growth](https://github.com/F1rrel/RenewedVillageGrowth), makes for a challenging yet satisfying game loop.
 
-- Simple cargos accepted by multiple industries, designed for asymmetric Cargodist
-- Processing industries spawn near towns
-- Most industries accept and create passengers as workers
-- Industries have realistic invention dates for gameplay as early as 1700
-- When used with Improved Town Layouts or another compatible house set, adds Waste & Recycling chain
-- Includes object tiles for visually expanding industries
-- Designed for Temperate climate only
-- Uses only base game sprites, so visually compatible with any base graphics set including original TTD, OpenGFX, aBase, zBase, and NightGFX
-- Incompatible with other industry sets
-- Requires OpenTTD version 1.10.0, JGR version 0.34, or better
-- Requires NewGRF vehicles which support additional cargos
+(Jump to [Design Notes](#design-notes))
 
-## Cargo chain
-![Improved Town Industries cargo chain](/docs/industry_chart.PNG)
+## Cargos and Industries
 
-## Features
+![cargo_flowchart](docs/ITI2_diagram.png)
 
-### Expanded industry and cargo chains
+## Production Mechanics
 
-- Added cargos to Temperate industries and added some industries and behaviors from Sub-arctic and Sub-tropical
-- Cargos are generic and have multiple destinations, designed for asymmetric Cargodist gameplay
-  - For example, the Oil Refinery processes Oil into Chemicals, which can be delivered to the Farm as fertilizer, the Factory as plastics, or the Paper Mill as the industrial chemicals used to break down wood pulp.
-- The additional cargos require NewGRF vehicles which support additional cargos
-- Food can be delivered directly to towns when a NewGRF house set accepts Food (recommended: Improved Town Layouts) or converted to Goods by the Factory
+In Improved Town Industries 2, industry production requires Passengers to be transported in the town which “owns” the industry (the one named in the industry name, e.g. “Flefingbridge Oil Wells”), however those passengers don’t have to travel to or from the industry itself.
 
-### Processing industries spawn near towns
+There are two metrics which determine the production level of the industry: Town Population and percent of Passengers transported.
 
-- Processing industries only build near towns and require 300 population per industry
-- Primary industries (Coal Mine, Oil Wells, Farm, etc.) far outnumber processing industries (Factory, Steel Mill, etc.)
-- Funded industries can be built without any restrictions
+### Town Population
 
-### Industries accept passengers
+![primary](docs/primary.png)
 
-- Mines have an automatic production level for passengers
-- Secondary industries produce 1 passenger per 4 units of cargo delivered
-- Many industries accept passengers. This has no effect on cargo production.
+Primary industries increase their maximum production for each thousand population, up to 4,000 population and about 640 production per month.
 
-### Towns generate Waste 
-**(requires Improved Town Layouts)**
-- Improved Town Layouts houses produce Waste, which can be transported to the Farm to be fed to the pigs (returns 1/4 ton of Food per ton of Waste) or to the Recycling Center (from 1945) for conversion to Recycled Materials.
-- Recycled Materials are accepted at:
-  - Steel Mill (scrap metal)
-  - Paper Mill (paper and cardboard)
-  - Factory (plastics)
-  - Farm (organic waste/compost)
-- These industries turn Recycled Materials into their usual production (Steel, Goods, or Food), at a 1:1 rate, giving you more secondary products to transport
+Secondary industries consume one unit of input cargo per every five population, with no limit.
 
-### Industries are invented at realistic dates in history
+### Percent of Passengers transported
 
-- Always: Farm, Coal Mine, Forest
-- 1800: Factory, Sawmill
-- 1856: Iron Mine and Steel Mill
-- 1882: Power Plant
-- 1885: Paper Mill
-- 1900: Oil Wells and Oil Refinery
-- 1945: Recycling Center
-- 1956: Uranium Mine, Nuclear Fuel Plant
-- 1960: Oil Rig
+![secondary](docs/secondary.png)
 
-### Expand your industries with eyecandy objects
+The maximum production determined by the population is multiplied by a Production Efficiency percentage, from 0% to 100%. The maximum efficiency is reached when 75% of the possible passengers produced in a month are carried (including by houses not served by any stations). Testing has shown this to be an achievable goal which still requires careful service planning and optimization.
 
-- Nearly all tiles included as objects for expanding industrial areas
+These two goals together encourage players to both serve a town well, and encourage it to expand by supplying growth cargos.
 
-## Compatibility
-- Not compatible with industry replacement sets which add new cargos (FIRS, ECS vectors, XIS, OpenGFX+ Industries, etc.)
-  - Attempting to load any of these NewGRFs in addition to Improved Town Industries will create an error which disables ITI
-  - Please let me know of any industry incompatibilities which I've missed in my error message list
-- Compatible with some small industry sets which use existing cargos (Beach as Industry, Housing as Industry, etc.)
-- NewGRF vehicle sets are **required** to transport new and modified cargos. If you want to keep base game trains, OpenGFX+ Trains keeps the vanilla graphics while adding compatibility for NewGRF cargos.
+## Town Growth
 
-## Parameters
- 
-- Generate Primary Industries Only
-  - Disable automatic generation of Factories, Steel Mills, Paper Mills, Oil Refineries, Power Plants, and Recycling Centers (if enabled)
-  - Does not affect funded industries
-  - See the [industry tech tree](./docs/industry_tech_tree.md) for gameplay info
+ITI 2 is designed to be used with the [Renewed Village Growth](https://github.com/F1rrel/RenewedVillageGrowth) script, which adds cargo delivery requirements for towns to grow:
+* 0+: Passengers
+* 1,000+: Food
+* 2,000+: Building Materials
+* 3,000+: Goods
+* 4,000+: Valuables (only possible in cities)
 
-- Industry elevation requirements
-  - Enable elevation checks for industries. Sea level is level 0.
-    - Coal Mines must be elevation 4 or higher
-	- Farm and Oil Wells must be elevation 2 or less
-  - Do not enable with Very Flat terrain type, as Coal Mine will not generate
-  
-- Farms build fields
-  - Choose if Farms construct fields, as in vanilla OpenTTD
-  - Field tiles are available as decorative objects, to construct your own fields
+## Industry Regions
 
-- Enable Oil Rigs
-  - Choose whether Oil Rigs appear after 1960 (identical to vanilla industry).
+Primary industries only generate outside non-cities and are further grouped by region (this can be disabled in NewGRF parameters):
+* N: Coal Mine
+* NE: Forest
+* SE: Farm
+* S: Oil Wells
+* SW: Ranch
+* W: Iron Mine
+* NW: Forest
 
-- Enable Nuclear Energy chain
-  - Enables Uranium Mine and Nuclear Fuel Plant, from 1956. Power Plant accepts Nuclear Fuel and produces Nuclear Waste.
+Additionally, many primary industries have elevation requirements for varied, interesting gameplay.
 
-- Enable Waste & Recycling chain
-  - Enables Recycling Center to sort Waste from town buildings into Recycled Materials for transport to industries
-  - See section above in README
-  - **Requires Improved Town Layouts version 1.3.0 or better**
+Secondary industries and Banks only generate in cities.
 
-## Code Reference
-All code is commented and is organized into several .nml files (one for each industry) which are combined by a simple Python script into a merged .nml file for compiling into the .grf. All of these files are in /src/.
+## Additional Features
 
-All cargos are defined in cargos.nml. Incompatible NewGRFs are listed in header.nml.
+* Includes industry tile objects for visual expansion and decoration.
+* Houses produce Waste, which reuses the Mail cargo ID for compatibility with all house sets.
 
-If you have any questions, please feel free to contact me and I will do my best to help.
+## Limitations
+
+* This industry set is designed for Temperate climate only, since it doesn't include snow sprites and Forest sprites are always snow-covered in Sub-Arctic climate.
+* Some aircraft sets are hardcoded to carry cargo ID 2, not "MAIL", so they carry Waste.
 
 ## Translations
-Currently available in:
-- English
-- Arabic (AviationGamerX)
-- Simplified Chinese (SuperCirno)
-- Czech (adpro)
-- French (arikover)
-- German (WoelfiVW)
-- Korean (telk5093)
-- Russian (demidovskiy)
-- Swedish (En okänd välgörare)
+
+* English
+
+Partial translations:
+
+* Arabic (AviationGamerX)
+* Simplified Chinese (SuperCirno)
+* Czech (adpro)
+* French (arikover)
+* German (WoelfiVW)
+* Korean (telk5093)
+* Russian (demidovskiy)
+* Swedish (En okänd välgörare)
 
 Please feel free to translate into your language and submit a Pull Request.
 
-## Limitations / Not in Scope
+## Design Notes
 
-- Since all sprites come from the base graphics set, there are no snow sprites. 
-- I don't plan to add compatibility for other climates in this set, but the code is GPL-licensed if you would like to make your own industry set with new graphics.
+In my previous economy/industry NewGRFs `Industries of the Caribbean` and `Lumberjack Industries` I’ve used the Passengers produced by houses as Workers, required for industrial production and limited (in Lumberjack, at least) by a town growth script. This required players to build commuter lines to serve their factories and made for a more holistic approach to building a transportation company.
+
+However, this method had its drawbacks, primarily in the unrealistic passenger network design; in fact a true “network” was ill-advised since CargoDist has no concept of how many workers are required by each factory. The best network was a simple collector network from nearby towns to funnel workers to busy factories. Additionally, workers did not return home from the factories.
