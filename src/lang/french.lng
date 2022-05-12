@@ -1,16 +1,29 @@
 ##grflangid 0x03
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}Recommended for use with a growth script like Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}Industries inspirées du jeu de base, mais nécessitant des villes en croissance et bien desservies. {BLACK}L'utilisation d'un script de croissance comme Renewed Village Growth est recommandée.{}{}{ORANGE}Visitez le site pour plus d'informations{NBSP}!{}{}{BLACK}Créé par 2TallTyler.
 
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} requiert OpenTTD 1.10.0, JGR 0.34, ou des versions ultérieures
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or better.
+STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requiert ITL Houses version 2.1 ou ultérieure.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} est incompatible avec {YELLOW}{STRING}{WHITE}.
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :Bassins d'industries primaires
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Par défaut{NBSP}: {ORANGE}Activé{}{WHITE}Quand ce paramètre est activé, les industries primaires n'apparaissent qu'à certains endroits de la carte.
+
+STR_PRIMARY_GOAL_1000               :{BLACK}Pour {WHITE}augmenter la production maximale {BLACK}, la ville doit atteindre 1.000 habitants.
+STR_PRIMARY_GOAL_2000               :{BLACK}Pour {WHITE}augmenter la production maximale {BLACK}, la ville doit atteindre 2.000 habitants.
+STR_PRIMARY_GOAL_3000               :{BLACK}Pour {WHITE}augmenter la production maximale {BLACK}, la ville doit atteindre 3.000 habitants.
+STR_PRIMARY_GOAL_4000               :{BLACK}Pour {WHITE}augmenter la production maximale {BLACK}, la ville doit atteindre 4.000 habitants.
+STR_PRIMARY_GOAL_MAX                :{WHITE}Production maximale {BLACK}atteinte.
+STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}Pour {WHITE}augmenter le rendement{BLACK}, transporter plus de passagers dans cette ville.
+STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}Pour maintenir {WHITE}le rendement maximal{BLACK}, maintenir le transport de passagers dans cette ville.
+STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}Rendement de production{NBSP}: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Consomme 1 unité de chaque intrant par 5 habitants. Maximum actuel {YELLOW}{UNSIGNED_WORD}{BLACK}/mois.{}{}Rendement de production{NBSP}: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_INCINERATOR_HELPTEXT            :Consomme des déchets, sans autre effet.
 
 STR_NAME_OBJECT_MENU                :Industries
 STR_NAME_OBJECT_MENU_FIELDS         :Fermes
@@ -31,11 +44,11 @@ STR_NAME_COAL_MINE                  :Mine de Charbon
 STR_NAME_OIL_WELLS                  :Puits de Pétrole
 STR_NAME_PAPER_MILL                 :Usine Papetière
 STR_NAME_RECYCLING_CENTER           :Centre de Tri
-STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
-STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
+STR_NAME_BUILDING_MATERIALS_FACTORY :Usine de Matériaux de Construction
+STR_NAME_FOOD_PROCESSING_PLANT      :Usine alimentaire
 STR_NAME_RANCH                      :Ranch
-STR_NAME_BANK                       :Bank
-STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_BANK                       :Banque
+STR_NAME_INCINERATOR                :Incinérateur
 
 STR_NAME_FIELD_1                    :Champ
 
@@ -52,26 +65,26 @@ STR_CARGO_NAME_WASTE                :Déchets
 STR_CARGO_ABBREV_WASTE              :{TINYFONT}DC
 STR_CARGO_QUANTITY_WASTE            :{WEIGHT} de déchets
 
-STR_CARGO_NAME_BDMT                 :Building Materials
-STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
+STR_CARGO_NAME_BDMT                 :Matériaux de Construction
+STR_CARGO_ABBREV_BDMT               :{TINYFONT}MC
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} de matériaux de construction
 
-STR_CARGO_NAME_WDCH                 :Wood Chips
-STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
-STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
+STR_CARGO_NAME_WDCH                 :Copeaux de Bois
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}CB
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} de copeaux de bois
 
-STR_CARGO_NAME_PLAS                 :Plastic
+STR_CARGO_NAME_PLAS                 :Plastique
 STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
-STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} de plastique
 
-STR_CARGO_NAME_SCMT                 :Scrap Metal
-STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
-STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+STR_CARGO_NAME_SCMT                 :Ferraille
+STR_CARGO_ABBREV_SCMT               :{TINYFONT}FL
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} de ferraille
 
-STR_CARGO_NAME_SCPR                 :Scrap Paper
-STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
-STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
+STR_CARGO_NAME_SCPR                 :Vieux Papiers
+STR_CARGO_ABBREV_SCPR               :{TINYFONT}VP
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} de vieux papiers
 
-STR_CARGO_NAME_LOGS                 :Logs
-STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
+STR_CARGO_NAME_LOGS                 :Rondins
+STR_CARGO_ABBREV_LOGS               :{TINYFONT}RD
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} de rondins
