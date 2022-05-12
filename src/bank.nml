@@ -50,7 +50,7 @@ item (FEAT_INDUSTRIES, industry_bank, 14) {
 		name: TTD_STR_INDUSTRY_NAME_BANK;
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_BANK));
         prob_map_gen: 2; // Account for difficulty of finding suitable locatiom
-        prob_in_game: 0;
+        prob_in_game: 1;
         fund_cost_multiplier: 255;
 	}
 	graphics {
