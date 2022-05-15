@@ -1,16 +1,16 @@
 ##grflangid 0x3a
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}Recommended for use with a growth script like Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}원작에서 영감을 받아 수송과 도시 성장이 필요하도록 만들어진 산업 시설 세트입니다. {BLACK}Renewed Village Growth 등과 같은 도시 성장 스크립트와 함께 사용하는 것을 추천합니다.{}{}{ORANGE}자세한 정보는 웹 사이트를 참고하세요!{}{}{BLACK}제작: 2TallTyler.
 
 STR_WEBSITE                         :{WEBSITE}
 
-STR_ERROR_GAME_VERSION              :{TITLE}을 사용하려면 OpenTTD 1.10.0, JGR 패치 팩 0.34 또는 그 이상의 버전이 필요합니다.
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or better.
-STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE}은 {YELLOW}{STRING}{WHITE}(와)과 함께 사용할 수 없습니다.
+STR_ERROR_GAME_VERSION              :{TITLE}를 사용하려면 OpenTTD 1.10.0, JGR 패치 팩 0.34 또는 그 이상의 버전이 필요합니다.
+STR_ERROR_RCLC_NEEDS_ITL            :{TITLE}는 ITL Houses 2.1 또는 그 이상의 버전이 필요합니다.
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE}는 {YELLOW}{STRING}{WHITE}(와)과 함께 사용할 수 없습니다.
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :1차 산업 시설 지역 사용
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}기본값: {ORANGE}켜기{}{WHITE}이 설정을 켜면, 1차 산업 시설이 지도의 특정 영역에서만 생성됩니다.
 
 STR_NAME_OBJECT_MENU                :산업시설 타일
 STR_NAME_OBJECT_MENU_FIELDS         :농장 논밭
@@ -31,11 +31,11 @@ STR_NAME_COAL_MINE                  :탄광
 STR_NAME_OIL_WELLS                  :유정
 STR_NAME_PAPER_MILL                 :제지소
 STR_NAME_RECYCLING_CENTER           :재활용 센터
-STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
-STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
-STR_NAME_RANCH                      :Ranch
-STR_NAME_BANK                       :Bank
-STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_BUILDING_MATERIALS_FACTORY :건설 자재 공장
+STR_NAME_FOOD_PROCESSING_PLANT      :식품 처리 공장
+STR_NAME_RANCH                      :목장
+STR_NAME_BANK                       :은행
+STR_NAME_INCINERATOR                :소각로
 
 STR_NAME_FIELD_1                    :논밭
 
@@ -51,26 +51,26 @@ STR_CARGO_NAME_WASTE                :쓰레기
 STR_CARGO_ABBREV_WASTE              :{TINYFONT}쓰
 STR_CARGO_QUANTITY_WASTE            :쓰레기 {WEIGHT}
 
-STR_CARGO_NAME_BDMT                 :Building Materials
-STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
+STR_CARGO_NAME_BDMT                 :건설 자재
+STR_CARGO_ABBREV_BDMT               :{TINYFONT}건
+STR_CARGO_QUANTITY_BDMT             :건설 자재 {WEIGHT}
 
-STR_CARGO_NAME_WDCH                 :Wood Chips
-STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
-STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
+STR_CARGO_NAME_WDCH                 :톱밥
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}톱
+STR_CARGO_QUANTITY_WDCH             :톱밥 {WEIGHT}
 
-STR_CARGO_NAME_PLAS                 :Plastic
-STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
-STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
+STR_CARGO_NAME_PLAS                 :플라스틱
+STR_CARGO_ABBREV_PLAS               :{TINYFONT}플
+STR_CARGO_QUANTITY_PLAS             :플라스틱 {WEIGHT}
 
-STR_CARGO_NAME_SCMT                 :Scrap Metal
-STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
-STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+STR_CARGO_NAME_SCMT                 :고철
+STR_CARGO_ABBREV_SCMT               :{TINYFONT}고
+STR_CARGO_QUANTITY_SCMT             :고철 {WEIGHT}
 
-STR_CARGO_NAME_SCPR                 :Scrap Paper
-STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
-STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
+STR_CARGO_NAME_SCPR                 :휴지
+STR_CARGO_ABBREV_SCPR               :{TINYFONT}휴
+STR_CARGO_QUANTITY_SCPR             :휴지 {WEIGHT}
 
-STR_CARGO_NAME_LOGS                 :Logs
-STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
+STR_CARGO_NAME_LOGS                 :통나무
+STR_CARGO_ABBREV_LOGS               :{TINYFONT}통
+STR_CARGO_QUANTITY_LOGS             :통나무 {WEIGHT}
