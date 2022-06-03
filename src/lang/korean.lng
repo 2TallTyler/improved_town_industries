@@ -1,4 +1,5 @@
 ##grflangid 0x3a
+##plural 11
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
 STR_GRF_DESC                        :{ORANGE}원작에서 영감을 받아 수송과 도시 성장이 필요하도록 만들어진 산업 시설 세트입니다. {BLACK}Renewed Village Growth 등과 같은 도시 성장 스크립트와 함께 사용하는 것을 추천합니다.{}{}{ORANGE}자세한 정보는 웹 사이트를 참고하세요!{}{}{BLACK}제작: 2TallTyler.
@@ -11,6 +12,19 @@ STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE}는 {YELLOW}{STRING}{
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :1차 산업 시설 지역 사용
 STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}기본값: {ORANGE}켜기{}{WHITE}이 설정을 켜면, 1차 산업 시설이 지도의 특정 영역에서만 생성됩니다.
+
+STR_PRIMARY_GOAL_1000               :{BLACK}생산량을 {WHITE}최대로 증가{BLACK}시키려면, 도시를 인구 1,000명 이상으로 성장시키세요.
+STR_PRIMARY_GOAL_2000               :{BLACK}생산량을 {WHITE}최대로 증가{BLACK}시키려면, 도시를 인구 2,000명 이상으로 성장시키세요.
+STR_PRIMARY_GOAL_3000               :{BLACK}생산량을 {WHITE}최대로 증가{BLACK}시키려면, 도시를 인구 3,000명 이상으로 성장시키세요.
+STR_PRIMARY_GOAL_4000               :{BLACK}생산량을 {WHITE}최대로 증가{BLACK}시키려면, 도시를 인구 4,000명 이상으로 성장시키세요.
+STR_PRIMARY_GOAL_MAX                :{WHITE}최대 생산량에 도달{BLACK}했습니다.
+STR_PRIMARY_INCREASE_EFFICIENCY     :{WHITE}생산량 효율을 더 증가{BLACK}시키려면, 이 도시에 더 많은 승객을 수송하세요.
+STR_PRIMARY_MAX_EFFICIENCY          :{WHITE}생산량 효율을 유지{BLACK}하려면, 이 도시에 계속 승객을 수송하세요.
+STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}생산 효율: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}인구 5명당 수송되는 각 화물 1개 단위가 소비됩니다. 현재 최대: {YELLOW}{UNSIGNED_WORD}{BLACK}/월.{}{}생산 효율: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_INCINERATOR_HELPTEXT            :쓰레기를 소비하지만 다른 효과는 없습니다.
 
 STR_NAME_OBJECT_MENU                :산업시설 타일
 STR_NAME_OBJECT_MENU_FIELDS         :농장 논밭
