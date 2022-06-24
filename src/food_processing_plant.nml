@@ -214,7 +214,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_food_processing_plant, incoming_ca
     }
 
 /* Location check */
-switch (FEAT_INDUSTRIES, SELF, loc_check_food_processing_plant, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_food_processing_plant, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, loc_check_food_processing_plant, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_food_processing_plant, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_LOC_ERROR_SECONDARY);}
 
 item (FEAT_INDUSTRIES, industry_food_processing_plant, 7) {
     property {

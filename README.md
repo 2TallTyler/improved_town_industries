@@ -32,6 +32,12 @@ The maximum production determined by the population is multiplied by a Productio
 
 These two goals together encourage players to both serve a town well, and encourage it to expand by supplying growth cargos.
 
+## Industry Placement Rules
+
+* Primary industries spawn only near towns (as opposed to cities), and are generated in "regions" if enabled in NewGRF parameters. They can be funded outside their set region, but must still be near a town (not a city) and may also have elevation requirements. Farms cannot be within 30 tiles of another Farm, to prevent field overlap.
+
+* Secondary industries can only appear in cities, within about 15 tiles of the furthest house from the center. With the exception of Banks and Incinerators, only one secondary industry may appear in each city — to avoid cheesing the production mechanic with one big production city. Banks replace houses and must be facing a road in a city, and Incinerators must be at least 100 tiles from other Incinerators. These rules all apply even when funding an industry.
+
 ## Town Growth
 
 ITI 2 is designed to be used with the [Renewed Village Growth](https://github.com/F1rrel/RenewedVillageGrowth) script, which adds cargo delivery requirements for towns to grow:

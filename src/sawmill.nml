@@ -137,7 +137,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill, incoming_cargo_waiting("W
     }
 
 /* Location check */
-switch (FEAT_INDUSTRIES, SELF, loc_check_sawmill, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_sawmill, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, loc_check_sawmill, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_sawmill, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_LOC_ERROR_SECONDARY);}
 
 item (FEAT_INDUSTRIES, industry_sawmill, 4) {
 	property {

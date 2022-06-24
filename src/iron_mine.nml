@@ -93,7 +93,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_iron_mine, [
     ]) {produce_iron_mine;}
 
 /* Location check */
-switch (FEAT_INDUSTRIES, SELF, loc_check_iron_mine, IsTown() && IsInQuadrantW() && IndustryElevationCheck(4,255)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, loc_check_iron_mine, IsTown() && IsInQuadrantW() && IndustryElevationCheck(4,255)) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_LOC_ERROR_PRIMARY);}
 
 /* Iron Mine industry */
 item (FEAT_INDUSTRIES, industry_iron_mine, 1) {
