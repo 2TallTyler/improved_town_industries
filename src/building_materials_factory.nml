@@ -229,7 +229,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_building_materials_factory, incomi
     }
 
 /* Location check */
-switch (FEAT_INDUSTRIES, SELF, loc_check_building_materials_factory, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_building_materials_factory, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, loc_check_building_materials_factory, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_building_materials_factory, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_LOC_ERROR_SECONDARY);}
 
 item (FEAT_INDUSTRIES, industry_building_materials_factory, 5) {
 	property {

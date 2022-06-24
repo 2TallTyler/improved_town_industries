@@ -208,7 +208,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill, incoming_cargo_waiting
     }
 
 /* Location check */
-switch (FEAT_INDUSTRIES, SELF, loc_check_paper_mill, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_paper_mill, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, loc_check_paper_mill, IsCity() && IsNearTown() && CityHasNoSecondaryIndustries() && NoNearbyCompetitors(industry_paper_mill, 100)) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_LOC_ERROR_SECONDARY);}
 
 item (FEAT_INDUSTRIES, industry_paper_mill, 10) {
 	property {

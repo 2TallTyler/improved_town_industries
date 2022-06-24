@@ -133,7 +133,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_wells, [
     ]) {produce_oil_wells;}
 
 /* Location check */
-switch (FEAT_INDUSTRIES, SELF, loc_check_oil_wells, IsTown() && IsInQuadrantS() && IndustryElevationCheck(0, 4)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, loc_check_oil_wells, IsTown() && IsInQuadrantS() && IndustryElevationCheck(0, 4)) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_LOC_ERROR_PRIMARY);}
 
 item (FEAT_INDUSTRIES, industry_oil_wells, 8) {
 	property {

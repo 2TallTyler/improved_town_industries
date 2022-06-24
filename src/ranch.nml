@@ -101,7 +101,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_ranch, [
     ]) {produce_ranch;}
 
 /* Location check */
-switch (FEAT_INDUSTRIES, SELF, loc_check_ranch, IsTown() && IsInQuadrantSW()) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+switch (FEAT_INDUSTRIES, SELF, loc_check_ranch, IsTown() && IsInQuadrantSW()) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_LOC_ERROR_PRIMARY);}
 
 item (FEAT_INDUSTRIES, industry_ranch, 12) {
     property {
