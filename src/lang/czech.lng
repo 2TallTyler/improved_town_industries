@@ -34,9 +34,9 @@ STR_NAME_PAPER_MILL                 :Papírna
 STR_NAME_RECYCLING_CENTER           :Recyklační centrum
 STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
 STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
-STR_NAME_RANCH                      :Ranch
-STR_NAME_BANK                       :Bank
-STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_RANCH                      :Ranč
+STR_NAME_BANK                       :Banka
+STR_NAME_INCINERATOR                :Spalovna
 
 STR_NAME_FIELD_1                    :Pole
 
