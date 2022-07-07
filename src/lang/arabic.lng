@@ -1,19 +1,19 @@
-##grflangid 0x014
+##grflangid 0x14
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}Recommended for use with a growth script like Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}الصناعات كالصنعات الفانيليا التي تتطلب خدمة وتنمية المدن  {BLACK}Renewed Village Growth يستحب استخدامه مع نص للنمو مثل {}{}{ORANGE}زر الموقع لمعلوات اكثر{}{}{BLACK} 2TallTyler صنع 
 
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE}.يتطلب "أوبن تي تي دي" الإصدار 1.10.0 أو إصدار "جاي جي ار" 0.34 أو أفضل
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or better.
+STR_ERROR_RCLC_NEEDS_ITL            :{TITLE}  اصدار 2.1 او اكثر ITL Houses يتطلب 
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} غير متوافق مع {YELLOW}{STRING}{WHITE}.
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :مناطق الصناعة الأولية
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE} :القيمة الافتراضية {ORANGE}On{}{WHITE}.في حالة التمكين ، تظهر الصناعات الأولية في أجزاء معينة فقط من الخريطة
 
-STR_NAME_OBJECT_MENU                :Industry Tiles
-STR_NAME_OBJECT_MENU_FIELDS         :Fields
+STR_NAME_OBJECT_MENU                :مربعات الصناعة
+STR_NAME_OBJECT_MENU_FIELDS         :مجالات
 
 STR_EMPTY                           :
 
@@ -31,11 +31,11 @@ STR_NAME_COAL_MINE                  :منجم فحم
 STR_NAME_OIL_WELLS                  :ابار النفط
 STR_NAME_PAPER_MILL                 :مصنع ورق
 STR_NAME_RECYCLING_CENTER           :مركز إعادة التدوير
-STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
-STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
-STR_NAME_RANCH                      :Ranch
-STR_NAME_BANK                       :Bank
-STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_BUILDING_MATERIALS_FACTORY :مصنع مواد البناء
+STR_NAME_FOOD_PROCESSING_PLANT      :مصنع تجهيز الأغذية
+STR_NAME_RANCH                      :مزرعة مواشي
+STR_NAME_BANK                       :بنك
+STR_NAME_INCINERATOR                :محرقة
 
 STR_NAME_FIELD_1                    :حقل
 
@@ -50,28 +50,28 @@ STR_CARGO_QUANTITY_LUMBER           :{WEIGHT} من الخشب المنشور
 
 STR_CARGO_NAME_WASTE                :النفايات
 STR_CARGO_ABBREV_WASTE              :{TINYFONT}WS
-STR_CARGO_QUANTITY_WASTE            :{WEIGHT} من Waste
+STR_CARGO_QUANTITY_WASTE            :{WEIGHT} من النفيات
 
-STR_CARGO_NAME_BDMT                 :Building Materials
+STR_CARGO_NAME_BDMT                 :مواد البناء
 STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} من مواد البناء
 
-STR_CARGO_NAME_WDCH                 :Wood Chips
+STR_CARGO_NAME_WDCH                 :رقائق الخشب
 STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
-STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} من رقائق الخشب
 
-STR_CARGO_NAME_PLAS                 :Plastic
+STR_CARGO_NAME_PLAS                 :بلاستيك
 STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
-STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} من البلاستيك
 
-STR_CARGO_NAME_SCMT                 :Scrap Metal
+STR_CARGO_NAME_SCMT                 :خردة معدنية
 STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
-STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} من الخردة المعدنية
 
-STR_CARGO_NAME_SCPR                 :Scrap Paper
+STR_CARGO_NAME_SCPR                 :خردة ورقية
 STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
-STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} من الخردة الورقية
 
-STR_CARGO_NAME_LOGS                 :Logs
+STR_CARGO_NAME_LOGS                 :حطب
 STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} من الحطب

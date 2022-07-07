@@ -75,12 +75,12 @@ Secondary industries and Banks only generate in cities.
 ## Translations
 
 * English
+* Arabic (AviationGamerX)
 * French (arikover)
 * Korean (telk5093)
 
 Partial translations:
 
-* Arabic (AviationGamerX)
 * Simplified Chinese (SuperCirno)
 * Czech (adpro)
 * German (WoelfiVW)
