@@ -1,32 +1,32 @@
 ##grflangid 0x56
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}脚本: 建议与村庄生长脚本一同使用,例如:Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}真实工业发展,绑定村庄人口与工业关系. {BLACK}自行添加脚本: 建议与村庄生长脚本一同使用,例如:Renewed Village Growth.{}{}{ORANGE}访问主页查看更多{}{}{BLACK}Created by 2TallTyler.
 
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} 需要OpenTTD版本1.10.0,JGR版本0.34,或更高.
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or better 需要包含GRF ITL Houses version 2.1 或更高版本.
-STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
+STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} 需要包含GRF ITL Houses version 2.1 或更高版本.
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} 与 {YELLOW}{STRING}{WHITE} 不兼容.
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :原料产业设置
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}默认值: {ORANGE}开{}{WHITE}若开启,原料产业会在区域内刷新.
 
-STR_PRIMARY_GOAL_1000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要所属村庄村庄达到 1,000 人口.
-STR_PRIMARY_GOAL_2000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要所属村庄村庄达到 2,000 人口.
-STR_PRIMARY_GOAL_3000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要所属村庄村庄达到 3,000 人口.
-STR_PRIMARY_GOAL_4000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要所属村庄村庄达到 4,000 人口.
+STR_PRIMARY_GOAL_1000               :{BLACK}达到 {WHITE}提升产能 {BLACK}, 需要所属村庄村庄达到 1,000 人口.
+STR_PRIMARY_GOAL_2000               :{BLACK}达到 {WHITE}提升产能 {BLACK}, 需要所属村庄村庄达到 2,000 人口.
+STR_PRIMARY_GOAL_3000               :{BLACK}达到 {WHITE}提升产能 {BLACK}, 需要所属村庄村庄达到 3,000 人口.
+STR_PRIMARY_GOAL_4000               :{BLACK}达到 {WHITE}提升产能 {BLACK}, 需要所属村庄村庄达到 4,000 人口.
 STR_PRIMARY_GOAL_MAX                :{WHITE}已达到最大产能.
 STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}为 {WHITE}提高效率 {BLACK}, 需要运送更多的旅客去所属村庄.
 STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}保持 {WHITE}最大效率 {BLACK}, 保持运送的旅客
 STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}生产效率: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
 
-STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}{BLACK}每 {WHITE}5 {BLACK}个人口消费{WHITE} 1 {BLACK}个输入货品. 当前最大值 {YELLOW}{UNSIGNED_WORD}{BLACK}/月.{}{}生产效率: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}{BLACK}每 {WHITE} 1 {BLACK}个输入货品 被{WHITE}5 {BLACK}个人口消费. {WHITE}当前最大值 {YELLOW}{UNSIGNED_WORD}{BLACK}/月.{}{}生产效率: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
 
-STR_INCINERATOR_HELPTEXT            :消耗垃圾,但是没有其他产出.
+STR_INCINERATOR_HELPTEXT            :焚烧垃圾,但是没有其他产出.
 
-STR_LOC_ERROR_PRIMARY               :初级产业不能在城市附近建设 或 必须处于合适的高度.
-STR_LOC_ERROR_SECONDARY             :二级产业必须靠近其他没有二级产业的城市
+STR_LOC_ERROR_PRIMARY               :原料产业不能在城市附近建设 或 必须处于合适的高度.
+STR_LOC_ERROR_SECONDARY             :加工工厂必须靠近其他没有加工工厂的城市
 
 STR_NAME_OBJECT_MENU                :行业图块
 STR_NAME_OBJECT_MENU_FIELDS         :农场图块
