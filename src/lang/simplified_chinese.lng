@@ -12,20 +12,20 @@ STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
 STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
 
-STR_PRIMARY_GOAL_1000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要村庄达到 1,000 人口.
-STR_PRIMARY_GOAL_2000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要村庄达到 2,000 人口.
-STR_PRIMARY_GOAL_3000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要村庄达到 3,000 人口.
-STR_PRIMARY_GOAL_4000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要村庄达到 4,000 人口.
+STR_PRIMARY_GOAL_1000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要所属村庄村庄达到 1,000 人口.
+STR_PRIMARY_GOAL_2000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要所属村庄村庄达到 2,000 人口.
+STR_PRIMARY_GOAL_3000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要所属村庄村庄达到 3,000 人口.
+STR_PRIMARY_GOAL_4000               :{BLACK}达到 {WHITE}最大产能 {BLACK}, 需要所属村庄村庄达到 4,000 人口.
 STR_PRIMARY_GOAL_MAX                :{WHITE}已达到最大产能.
-STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}为 {WHITE}提高效率 {BLACK}, 需要运送更多的旅客.
+STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}为 {WHITE}提高效率 {BLACK}, 需要运送更多的旅客去所属村庄.
 STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}保持 {WHITE}最大效率 {BLACK}, 保持运送的旅客
 STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}生产效率: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
 
-STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}{BLACK}每 {WHITE}5 {BLACK}个人口消费{WHITE}1{BLACK}个输入货品. 当前最大值 {YELLOW}{UNSIGNED_WORD}{BLACK}/月.{}{}生产效率: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}{BLACK}每 {WHITE}5 {BLACK}个人口消费{WHITE} 1 {BLACK}个输入货品. 当前最大值 {YELLOW}{UNSIGNED_WORD}{BLACK}/月.{}{}生产效率: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
 
-STR_INCINERATOR_HELPTEXT            :消耗垃圾,但是没有其他影响.
+STR_INCINERATOR_HELPTEXT            :消耗垃圾,但是没有其他产出.
 
-STR_LOC_ERROR_PRIMARY               :初级产物不能在城市附近建设 或 必须处于合适的高度.
+STR_LOC_ERROR_PRIMARY               :初级产业不能在城市附近建设 或 必须处于合适的高度.
 STR_LOC_ERROR_SECONDARY             :二级产业必须靠近其他没有二级产业的城市
 
 STR_NAME_OBJECT_MENU                :行业图块
@@ -70,24 +70,24 @@ STR_CARGO_QUANTITY_WASTE            :{WEIGHT}垃圾
 
 STR_CARGO_NAME_BDMT                 :建材
 STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of 建材
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT}建材
 
 STR_CARGO_NAME_WDCH                 :木屑
 STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
-STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of 木屑
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT}木屑
 
 STR_CARGO_NAME_PLAS                 :塑料
 STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
-STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of 塑料
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT}塑料
 
 STR_CARGO_NAME_SCMT                 :废金属
 STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
-STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of 废金属
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT}废金属
 
 STR_CARGO_NAME_SCPR                 :废纸
 STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
-STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of 废纸
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT}废纸
 
 STR_CARGO_NAME_LOGS                 :原木
 STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of 原木
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT}原木
