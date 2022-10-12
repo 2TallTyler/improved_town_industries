@@ -31,11 +31,11 @@ STR_NAME_COAL_MINE                  :煤矿
 STR_NAME_OIL_WELLS                  :油井
 STR_NAME_PAPER_MILL                 :造纸厂
 STR_NAME_RECYCLING_CENTER           :回收中心
-STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
-STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
-STR_NAME_RANCH                      :Ranch
-STR_NAME_BANK                       :Bank
-STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_BUILDING_MATERIALS_FACTORY :建材厂
+STR_NAME_FOOD_PROCESSING_PLANT      :食品加工厂
+STR_NAME_RANCH                      :牧场
+STR_NAME_BANK                       :银行
+STR_NAME_INCINERATOR                :垃圾焚烧厂
 
 STR_NAME_FIELD_1                    :田地
 
@@ -52,26 +52,26 @@ STR_CARGO_NAME_WASTE                :垃圾
 STR_CARGO_ABBREV_WASTE              :{TINYFONT}LA
 STR_CARGO_QUANTITY_WASTE            :{WEIGHT}垃圾
 
-STR_CARGO_NAME_BDMT                 :Building Materials
+STR_CARGO_NAME_BDMT                 :建材
 STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of 建材
 
-STR_CARGO_NAME_WDCH                 :Wood Chips
+STR_CARGO_NAME_WDCH                 :木屑
 STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
-STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of 木屑
 
-STR_CARGO_NAME_PLAS                 :Plastic
+STR_CARGO_NAME_PLAS                 :塑料
 STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
-STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of 塑料
 
-STR_CARGO_NAME_SCMT                 :Scrap Metal
+STR_CARGO_NAME_SCMT                 :废金属
 STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
-STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of 废金属
 
-STR_CARGO_NAME_SCPR                 :Scrap Paper
+STR_CARGO_NAME_SCPR                 :废纸
 STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
-STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of 废纸
 
-STR_CARGO_NAME_LOGS                 :Logs
+STR_CARGO_NAME_LOGS                 :原木
 STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of 原木
