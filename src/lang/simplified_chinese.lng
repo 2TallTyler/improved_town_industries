@@ -1,16 +1,32 @@
 ##grflangid 0x56
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}Recommended for use with a growth script like Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}真实工业发展,绑定村庄人口与工业关系. {BLACK}自行添加脚本: 建议与村庄生长脚本一同使用,例如:Renewed Village Growth.{}{}{ORANGE}访问主页查看更多{}{}{BLACK}Created by 2TallTyler.
 
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} 需要OpenTTD版本1.10.0,JGR版本0.34,或更高.
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or better.
-STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
+STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} 需要包含GRF ITL Houses version 2.1 或更高版本.
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} 与 {YELLOW}{STRING}{WHITE} 不兼容.
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :原料产业设置
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}默认值: {ORANGE}开{}{WHITE}若开启,原料产业会在区域内刷新.
+
+STR_PRIMARY_GOAL_1000               :{BLACK}达到 {WHITE}提升产能 {BLACK}, 需要所属村庄村庄达到 1,000 人口.
+STR_PRIMARY_GOAL_2000               :{BLACK}达到 {WHITE}提升产能 {BLACK}, 需要所属村庄村庄达到 2,000 人口.
+STR_PRIMARY_GOAL_3000               :{BLACK}达到 {WHITE}提升产能 {BLACK}, 需要所属村庄村庄达到 3,000 人口.
+STR_PRIMARY_GOAL_4000               :{BLACK}达到 {WHITE}提升产能 {BLACK}, 需要所属村庄村庄达到 4,000 人口.
+STR_PRIMARY_GOAL_MAX                :{WHITE}已达到最大产能.
+STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}为 {WHITE}提高效率 {BLACK}, 需要运送更多的旅客去所属村庄.
+STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}保持 {WHITE}最大效率 {BLACK}, 保持运送的旅客
+STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}生产效率: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}{BLACK}每 {WHITE} 1 {BLACK}个输入货品 被{WHITE}5 {BLACK}个人口消费. {WHITE}当前最大值 {YELLOW}{UNSIGNED_WORD}{BLACK}/月.{}{}生产效率: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_INCINERATOR_HELPTEXT            :焚烧垃圾,但是没有其他产出.
+
+STR_LOC_ERROR_PRIMARY               :原料产业不能在城市附近建设 或 必须处于合适的高度.
+STR_LOC_ERROR_SECONDARY             :加工工厂必须靠近其他没有加工工厂的城市
 
 STR_NAME_OBJECT_MENU                :行业图块
 STR_NAME_OBJECT_MENU_FIELDS         :农场图块
@@ -31,11 +47,11 @@ STR_NAME_COAL_MINE                  :煤矿
 STR_NAME_OIL_WELLS                  :油井
 STR_NAME_PAPER_MILL                 :造纸厂
 STR_NAME_RECYCLING_CENTER           :回收中心
-STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
-STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
-STR_NAME_RANCH                      :Ranch
-STR_NAME_BANK                       :Bank
-STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_BUILDING_MATERIALS_FACTORY :建材厂
+STR_NAME_FOOD_PROCESSING_PLANT      :食品加工厂
+STR_NAME_RANCH                      :牧场
+STR_NAME_BANK                       :银行
+STR_NAME_INCINERATOR                :垃圾焚烧厂
 
 STR_NAME_FIELD_1                    :田地
 
@@ -52,26 +68,26 @@ STR_CARGO_NAME_WASTE                :垃圾
 STR_CARGO_ABBREV_WASTE              :{TINYFONT}LA
 STR_CARGO_QUANTITY_WASTE            :{WEIGHT}垃圾
 
-STR_CARGO_NAME_BDMT                 :Building Materials
+STR_CARGO_NAME_BDMT                 :建材
 STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT}建材
 
-STR_CARGO_NAME_WDCH                 :Wood Chips
+STR_CARGO_NAME_WDCH                 :木屑
 STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
-STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT}木屑
 
-STR_CARGO_NAME_PLAS                 :Plastic
+STR_CARGO_NAME_PLAS                 :塑料
 STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
-STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT}塑料
 
-STR_CARGO_NAME_SCMT                 :Scrap Metal
+STR_CARGO_NAME_SCMT                 :废金属
 STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
-STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT}废金属
 
-STR_CARGO_NAME_SCPR                 :Scrap Paper
+STR_CARGO_NAME_SCPR                 :废纸
 STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
-STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT}废纸
 
-STR_CARGO_NAME_LOGS                 :Logs
+STR_CARGO_NAME_LOGS                 :原木
 STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT}原木
