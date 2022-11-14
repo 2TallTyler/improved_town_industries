@@ -92,9 +92,9 @@ Please feel free to translate into your language and submit a Pull Request.
 You need Python 3 installed and nml with its dependecies.
 
 #### Windows environment setup
-Not written yet.
+Follow [official installation guide](https://www.tt-wiki.net/wiki/NMLTutorial/Installation#Windows) for installation of NML on OpenTTD Wiki.
 
-#### MacOS enviroment setup (with pipenv)
+#### MacOS environment setup (with pipenv)
 
 *Note:* This guide uses `pipenv`, because `poetry` way has problem with nml installation after `ply` installation. `pipenv` way runs smooth.
 
