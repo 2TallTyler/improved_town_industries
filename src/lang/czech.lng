@@ -2,19 +2,35 @@
 # This is the Czech language file
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}Recommended for use with a growth script like Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}Originální hrou inspirovaný průmysl, který vyžaduje obsluhování rostoucích měst. {BLACK}Doporučeno pro použití se skriptem pro růst jako Renewed Village Growth.{}{}{ORANGE}Navštivte web pro víc informací!{}{}{BLACK}Vytvořeno 2TallTylerem.
 
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} vyžaduje OpenTTD verzi 1.10.0, JGR verzi 0.34, nebo vyšší.
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or better.
+STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} vyžaduje ITL Houses verze 2.1 nebo vyšší.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} je nekompatibilní s {YELLOW}{STRING}{WHITE}.
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :Regiony primárního průmyslu
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Výchozí hodnota: {ORANGE}Zapnuto{}{WHITE}Pokud je zapnuto, primární průmysl se objevuje jen určitých částech mapy.
 
-STR_NAME_OBJECT_MENU                :Čtverce průmyslu
-STR_NAME_OBJECT_MENU_FIELDS         :Čtverce farmy
+STR_PRIMARY_GOAL_1000               :{BLACK}Chcete-li {WHITE}zvýšit maximální produkci{BLACK}, rozšiřte město na populaci 1,000.
+STR_PRIMARY_GOAL_2000               :{BLACK}Chcete-li {WHITE}zvýšit maximální produkc {BLACK}, rozšiřte město na populaci 2,000.
+STR_PRIMARY_GOAL_3000               :{BLACK}Chcete-li {WHITE}zvýšit maximální produkci{BLACK}, rozšiřte město na populaci 3,000.
+STR_PRIMARY_GOAL_4000               :{BLACK}Chcete-li {WHITE}zvýšit maximální produkci{BLACK}, rozšiřte město na populaci 4,000.
+STR_PRIMARY_GOAL_MAX                :{WHITE}Maximální produkce {BLACK}dosažena.
+STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}Chcete-li {WHITE}zvýšit efektivitu{BLACK}, přepravte v tomto městě více cestujících.
+STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}K udržení {WHITE}maximální efektivity{BLACK}, udržujte přepravu cestujících v tomto městě.
+STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}Efektivita produkce: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Spotřebuje 1 jednotku každého vstupního nákladu na 5 obyvatel. Aktuální maximum {YELLOW}{UNSIGNED_WORD}{BLACK}/měsíc.{}{}Efektivita produkce: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_INCINERATOR_HELPTEXT            :Spotřebovává Odpad, ale nemá žádný jiný efekt.
+
+STR_LOC_ERROR_PRIMARY               :Primární průmysl nelze financovat v blízkosti měst a musí být ve vhodné nadmořské výšce.
+STR_LOC_ERROR_SECONDARY             :Sekundární průmysl musí být v blízkosti města bez dalšího sekundárního průmyslu.
+
+STR_NAME_OBJECT_MENU                :Dlaždice průmyslu
+STR_NAME_OBJECT_MENU_FIELDS         :Dlaždice farmy
 
 STR_EMPTY                           :
 
@@ -32,11 +48,11 @@ STR_NAME_COAL_MINE                  :Uhelný důl
 STR_NAME_OIL_WELLS                  :Ropný vrt
 STR_NAME_PAPER_MILL                 :Papírna
 STR_NAME_RECYCLING_CENTER           :Recyklační centrum
-STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
-STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
-STR_NAME_RANCH                      :Ranch
-STR_NAME_BANK                       :Bank
-STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_BUILDING_MATERIALS_FACTORY :Továrna na stavební materiály
+STR_NAME_FOOD_PROCESSING_PLANT      :Potravinářský závod
+STR_NAME_RANCH                      :Ranč
+STR_NAME_BANK                       :Banka
+STR_NAME_INCINERATOR                :Spalovna
 
 STR_NAME_FIELD_1                    :Pole
 
@@ -52,26 +68,26 @@ STR_CARGO_NAME_WASTE                :Odpad
 STR_CARGO_ABBREV_WASTE              :{TINYFONT}OP
 STR_CARGO_QUANTITY_WASTE            :{WEIGHT} odpadu
 
-STR_CARGO_NAME_BDMT                 :Building Materials
-STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
+STR_CARGO_NAME_BDMT                 :Stavební materiály
+STR_CARGO_ABBREV_BDMT               :{TINYFONT}SM
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} stavebních materiálů
 
-STR_CARGO_NAME_WDCH                 :Wood Chips
-STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
-STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
+STR_CARGO_NAME_WDCH                 :Lesní štěpka
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}LS
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} lesní štěpky
 
-STR_CARGO_NAME_PLAS                 :Plastic
+STR_CARGO_NAME_PLAS                 :Plast
 STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
-STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} plastů
 
-STR_CARGO_NAME_SCMT                 :Scrap Metal
-STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
-STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+STR_CARGO_NAME_SCMT                 :Šrot
+STR_CARGO_ABBREV_SCMT               :{TINYFONT}ZS
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} šrotu
 
-STR_CARGO_NAME_SCPR                 :Scrap Paper
-STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
-STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
+STR_CARGO_NAME_SCPR                 :Papírový odpad
+STR_CARGO_ABBREV_SCPR               :{TINYFONT}PO
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} papírového odpadu
 
-STR_CARGO_NAME_LOGS                 :Logs
-STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
+STR_CARGO_NAME_LOGS                 :Surové kmeny
+STR_CARGO_ABBREV_LOGS               :{TINYFONT}SK
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} surových kmenů
