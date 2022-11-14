@@ -88,6 +88,41 @@ Partial translations:
 
 Please feel free to translate into your language and submit a Pull Request.
 
+### How to contribute to translations
+You need Python 3 installed and nml with its dependecies.
+
+#### Windows environment setup
+Not written yet.
+
+#### MacOS enviroment setup (with pipenv)
+
+*Note:* This guide uses `pipenv`, because `poetry` way has problem with nml installation after `ply` installation. `pipenv` way runs smooth.
+
+Clone this repo (http way) and go to repo directory:
+```
+$ git clone https://github.com/2TallTyler/improved_town_industries.git
+$ cd improved_town_industries
+```
+Create python virtual environment:
+```
+$ pipenv shell
+```
+Install nml requirement first according to [NML tutorial](https://www.tt-wiki.net/wiki/NMLTutorial/Installation#Installing_NML) - `ply` will be sufficient:
+```
+$ pipenv install ply
+```
+Install nml itself:
+```
+$ pipenv install nml
+```
+Now, you can add new language file into `src/lang` according to [OpenTTD Wiki page](https://wiki.openttd.org/en/Archive/Source/OpenTTDDevBlackBook/Format%20of%20langfiles).
+
+For newgrf compilation to test your language file run `make.py`:
+```
+$ python make.py
+```
+Now you have GRF file in your newgrf folder. Run game and test it.
+
 ## Design Notes
 
 In my previous economy/industry NewGRFs `Industries of the Caribbean` and `Lumberjack Industries` I’ve used the Passengers produced by houses as Workers, required for industrial production and limited (in Lumberjack, at least) by a town growth script. This required players to build commuter lines to serve their factories and made for a more holistic approach to building a transportation company.
