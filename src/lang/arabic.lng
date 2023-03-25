@@ -6,7 +6,6 @@ STR_GRF_DESC                        :{ORANGE}الصناعات كالصنعات �
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE}.يتطلب "أوبن تي تي دي" الإصدار 1.10.0 أو إصدار "جاي جي ار" 0.34 أو أفضل
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE}  اصدار 2.1 او اكثر ITL Houses يتطلب 
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} غير متوافق مع {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :مناطق الصناعة الأولية

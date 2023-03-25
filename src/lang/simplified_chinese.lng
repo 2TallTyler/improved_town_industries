@@ -6,7 +6,6 @@ STR_GRF_DESC                        :{ORANGE}真实工业发展，绑定村庄�
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} 需要OpenTTD版本1.10.0，JGR版本0.34，或更高。
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} 需要包含GRF ITL Houses version 2.1 或更高版本。
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} 与 {YELLOW}{STRING}{WHITE} 不兼容。
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :原料产业设置

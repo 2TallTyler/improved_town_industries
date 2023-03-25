@@ -7,7 +7,6 @@ STR_GRF_DESC                        :{ORANGE}Originální hrou inspirovaný prů
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} vyžaduje OpenTTD verzi 1.10.0, JGR verzi 0.34, nebo vyšší.
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} vyžaduje ITL Houses verze 2.1 nebo vyšší.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} je nekompatibilní s {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Regiony primárního průmyslu

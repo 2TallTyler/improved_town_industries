@@ -7,7 +7,6 @@ STR_GRF_DESC                        :{ORANGE}원작에서 영감을 받아 수�
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE}를 사용하려면 OpenTTD 1.10.0, JGR 패치 팩 0.34 또는 그 이상의 버전이 필요합니다.
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE}는 ITL Houses 2.1 또는 그 이상의 버전이 필요합니다.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE}는 {YELLOW}{STRING}{WHITE}(와)과 함께 사용할 수 없습니다.
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :1차 산업 시설 지역 사용

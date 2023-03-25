@@ -6,7 +6,6 @@ STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which r
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} Braucht OpenTTD-Version 1.10.0, JGR-Version 0.34, oder neuer.
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} Die Abfall- & Recycling-Kette braucht ein kompatibles Gebäude-Set (Empfehlenswert: Improved Town Layouts Version 1.3.0 oder neuer).
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} ist nicht kompatibel mit {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions

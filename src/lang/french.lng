@@ -6,7 +6,6 @@ STR_GRF_DESC                        :{ORANGE}Industries inspirées du jeu de bas
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} requiert OpenTTD 1.10.0, JGR 0.34, ou des versions ultérieures
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requiert ITL Houses version 2.1 ou ultérieure.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} est incompatible avec {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Bassins d'industries primaires

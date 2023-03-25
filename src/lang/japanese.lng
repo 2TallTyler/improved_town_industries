@@ -6,7 +6,6 @@ STR_GRF_DESC                        :{ORANGE}街の供給と成長を必要と�
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE}はOpenTTDバージョン1.10.0以降か、JGRバージョン0.34以降が必要です。
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE}はITL Housesバージョン2.1以降が必要です。
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE}は{YELLOW}{STRING}{WHITE}と両立できません。
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :一次産業地域

@@ -6,7 +6,6 @@ STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which r
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} kräver OpenTTD version 1.10.0, JGR version 0.34, eller högre.
-STR_ERROR_RCLC_NEEDS_ITL            :{TITLE} requires ITL Houses version 2.1 or better.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} är inkompatibel med {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
