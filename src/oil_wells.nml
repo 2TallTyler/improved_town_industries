@@ -101,6 +101,7 @@ property {
 	animation_triggers:		bitmask(ANIM_TRIGGER_INDTILE_TILE_LOOP);
 	special_flags:			bitmask(INDTILE_FLAG_RANDOM_ANIMATION);
 	land_shape_flags:		bitmask(LSF_ONLY_ON_FLAT_LAND);
+    accepted_cargos:        [[PASS, 8]];
 }
 graphics {
 	anim_control: oil_wells_tile_1_random_anim_trigger_switch;
