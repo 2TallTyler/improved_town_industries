@@ -1,0 +1,92 @@
+##grflangid 0x39
+
+STR_GRF_NAME                        :{TITLE} {VERSION}
+STR_GRF_DESC                        :{ORANGE}街の供給と成長を必要とするバニラ風産業。{BLACK}Renewed Village Growthのような街成長ゲームスクリプトがおすすめです。.{}{}{ORANGE}詳細は、ウェブサイトを参照ください。{}{}{BLACK}2TallTylerによって制作されました。
+
+STR_WEBSITE                         :{WEBSITE}
+
+STR_ERROR_GAME_VERSION              :{TITLE}はOpenTTDバージョン1.10.0以降か、JGRバージョン0.34以降が必要です。
+STR_ERROR_RCLC_NEEDS_ITL            :{TITLE}はITL Housesバージョン2.1以降が必要です。
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE}は{YELLOW}{STRING}{WHITE}と両立できません。
+
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :一次産業地域
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}既定値：{ORANGE}有効{}{WHITE}有効にしますと、一次産業は特定の地域のみに新設されます。
+
+STR_PRIMARY_GOAL_1000               :{WHITE}生産量上限を増やす{BLACK}には、街に1,000人以上の人口が必要です。
+STR_PRIMARY_GOAL_2000               :{WHITE}生産量上限を増やす{BLACK}には、街に2,000人以上の人口が必要です。
+STR_PRIMARY_GOAL_3000               :{WHITE}生産量上限を増やす{BLACK}には、街に3,000人以上の人口が必要です。
+STR_PRIMARY_GOAL_4000               :{WHITE}生産量上限を増やす{BLACK}には、街に4,000人以上の人口が必要です。
+STR_PRIMARY_GOAL_MAX                :{WHITE}最大生産量{BLACK}が達成されました。
+STR_PRIMARY_INCREASE_EFFICIENCY     :{WHITE}効率を上げる{BLACK}には、街の旅客輸送量の増加が必要です。
+STR_PRIMARY_MAX_EFFICIENCY          :{WHITE}最大効率を保つ{BLACK}には、街の旅客輸送量の維持が必要です。
+STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}産業効率：{SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}人口5人ごとに物資1単位を消費します。現在の上限：{YELLOW}{UNSIGNED_WORD}{BLACK}/月。{}{}生産効率：{SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_INCINERATOR_HELPTEXT            :ゴミを消費します。
+
+STR_LOC_ERROR_PRIMARY               :一次産業は都市の近くに新設できません。また、適切な海抜が必要です。
+STR_LOC_ERROR_SECONDARY             :二次産業は、二次産業のない都市の近くにしか新設できません。
+
+STR_NAME_OBJECT_MENU                :産業タイル
+STR_NAME_OBJECT_MENU_FIELDS         :畑
+
+STR_EMPTY                           :
+
+STR_TOWN                            :{STRING}
+STR_STATION                         :{STRING}{STRING}
+
+STR_NAME_STEEL_MILL                 :製鉄所
+STR_NAME_IRON_MINE                  :鉄鉱山
+STR_NAME_SAWMILL                    :製材所
+STR_NAME_FOREST                     :森林
+STR_NAME_OIL_REFINERY               :石油精製所
+STR_NAME_FARM                       :農場
+STR_NAME_FACTORY                    :工場
+STR_NAME_COAL_MINE                  :炭鉱
+STR_NAME_OIL_WELLS                  :油田
+STR_NAME_PAPER_MILL                 :製紙工場
+STR_NAME_RECYCLING_CENTER           :リサイクル工場
+STR_NAME_BUILDING_MATERIALS_FACTORY :建材工場
+STR_NAME_FOOD_PROCESSING_PLANT      :食品加工場
+STR_NAME_RANCH                      :牧場
+STR_NAME_BANK                       :銀行
+STR_NAME_INCINERATOR                :焼却炉
+
+STR_NAME_FIELD_1                    :畑
+
+STR_CARGO_NAME_CHEMICALS            :薬品
+STR_CARGO_ABBREV_CHEMICALS          :{TINYFONT}薬
+STR_CARGO_QUANTITY_CHEMICALS        :薬品{WEIGHT}
+
+STR_CARGO_NAME_LUMBER               :材木
+STR_CARGO_ABBREV_LUMBER             :{TINYFONT}材
+STR_CARGO_QUANTITY_LUMBER           :材木{WEIGHT}
+
+STR_CARGO_NAME_WASTE                :ゴミ
+STR_CARGO_ABBREV_WASTE              :{TINYFONT}廃
+STR_CARGO_QUANTITY_WASTE            :ゴミ{WEIGHT}
+
+STR_CARGO_NAME_BDMT                 :建材
+STR_CARGO_ABBREV_BDMT               :{TINYFONT}建
+STR_CARGO_QUANTITY_BDMT             :建材{WEIGHT}
+
+STR_CARGO_NAME_WDCH                 :木片
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}片
+STR_CARGO_QUANTITY_WDCH             :木片{WEIGHT}
+
+STR_CARGO_NAME_PLAS                 :プラスチック
+STR_CARGO_ABBREV_PLAS               :{TINYFONT}プ
+STR_CARGO_QUANTITY_PLAS             :プラスチック{WEIGHT}
+
+STR_CARGO_NAME_SCMT                 :金属くず
+STR_CARGO_ABBREV_SCMT               :{TINYFONT}屑
+STR_CARGO_QUANTITY_SCMT             :金属くず{WEIGHT}
+
+STR_CARGO_NAME_SCPR                 :古紙
+STR_CARGO_ABBREV_SCPR               :{TINYFONT}古
+STR_CARGO_QUANTITY_SCPR             :古紙{WEIGHT}
+
+STR_CARGO_NAME_LOGS                 :丸太
+STR_CARGO_ABBREV_LOGS               :{TINYFONT}丸
+STR_CARGO_QUANTITY_LOGS             :丸太{WEIGHT}

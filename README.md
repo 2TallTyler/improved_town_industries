@@ -79,6 +79,7 @@ Secondary industries and Banks only generate in cities.
 * Simplified Chinese (SuperCirno, chengdd1987, and BinglunGe)
 * Czech (adpro)
 * French (arikover)
+* Japanese (fmang)
 * Korean (telk5093)
 
 Partial translations:
