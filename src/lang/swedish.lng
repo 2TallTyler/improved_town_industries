@@ -1,15 +1,15 @@
 ##grflangid 0x2e
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}Recommended for use with a growth script like Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}Vanilla-inspererade industrier some kräver betjäning och tillväxt i städer. {BLACK}Rekommenderas för användning med ett tillväxtskript som till exempel Renewed Village Growth. {}{}{ORANGE}Besök hemsidan för mer information!{}{}{BLACK}Skapad av 2TallTyler.
 
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} kräver OpenTTD version 1.10.0, JGR version 0.34, eller högre.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} är inkompatibel med {YELLOW}{STRING}{WHITE}.
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primära industriområden
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Förvalt värde: {ORANGE}På{}{WHITE}Om aktiverad, vissa industrier dyker endast upp i vissa delar av kartan.
 
 STR_NAME_OBJECT_MENU                :Industriruta
 STR_NAME_OBJECT_MENU_FIELDS         :Fältruta
@@ -30,11 +30,11 @@ STR_NAME_COAL_MINE                  :Kolgruva
 STR_NAME_OIL_WELLS                  :Oljekälla
 STR_NAME_PAPER_MILL                 :Pappersbruk
 STR_NAME_RECYCLING_CENTER           :Återvinningscentral
-STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
-STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
+STR_NAME_BUILDING_MATERIALS_FACTORY :Byggnadsmaterialsfabrik
+STR_NAME_FOOD_PROCESSING_PLANT      :Livsmedelsanläggning
 STR_NAME_RANCH                      :Ranch
 STR_NAME_BANK                       :Bank
-STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_INCINERATOR                :Förbränningsanläggning
 
 STR_NAME_FIELD_1                    :Fält
 
@@ -52,24 +52,24 @@ STR_CARGO_QUANTITY_WASTE            :{WEIGHT} av avfall
 
 STR_CARGO_NAME_BDMT                 :Building Materials
 STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} av byggnadsmaterial
 
 STR_CARGO_NAME_WDCH                 :Wood Chips
 STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
-STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} av träflis
 
 STR_CARGO_NAME_PLAS                 :Plastic
 STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
-STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} av plast
 
 STR_CARGO_NAME_SCMT                 :Scrap Metal
 STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
-STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} av metallskrot
 
 STR_CARGO_NAME_SCPR                 :Scrap Paper
 STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
-STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} av avfallspapper
 
 STR_CARGO_NAME_LOGS                 :Logs
 STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} av trädstockar
