@@ -85,7 +85,7 @@ Secondary industries and Banks only generate in cities.
 Partial translations:
 * German (WoelfiVW)
 * Russian (demidovskiy)
-* Swedish (En okänd välgörare)
+* Swedish (En okänd välgörare and Shump)
 
 Please feel free to translate into your language and submit a Pull Request.
 
