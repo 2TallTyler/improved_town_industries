@@ -11,11 +11,8 @@ header_stuff = ["header", "cargos", "functions"]
 # Files to place in alphabetical order below
 unordered_stuff = ["coal_mine", "iron_mine", "steel_mill", "forest", "sawmill", "building_materials_factory", "factory", "food_processing_plant", "oil_wells", "oil_refinery", "paper_mill", "farm", "ranch", "recycling_center", "bank", "incinerator"]
 
-# Do you want to copy the completed NewGRF to your OpenTTD folder? (True/False)
+# Do you want to copy the completed NewGRF to your OpenTTD folder? (If in the typical location at "~/Documents/OpenTTD/newgrf")
 copy_bool = True
-
-# What is the path of your OpenTTD folder?
-openttd_path = "C:/Users/tyler/Documents/OpenTTD/newgrf"
 
 #################################
 # NO NEED TO CHANGE STUFF BELOW #
@@ -26,6 +23,10 @@ openttd_path = "C:/Users/tyler/Documents/OpenTTD/newgrf"
 import codecs
 import subprocess
 import shutil
+import os
+
+# Get the path of a typical OpenTTD installation
+openttd_path = os.path.expanduser("~/Documents/OpenTTD/newgrf")
 
 # Create an empty list where all the NML code will be placed
 sections = []
@@ -58,7 +59,7 @@ processed_nml_file.close()
 print("#### nmlc ####")
 
 # Run 
-nmlc = subprocess.run(["nmlc", "-c", "-t", "src\custom_tags.txt", "-l", "src\lang", "--grf", grf_name, merged_nml_path], stdout = subprocess.PIPE, stderr = subprocess.PIPE, text=True)
+nmlc = subprocess.run(["nmlc", "-c", "-t", f"src{os.path.sep}custom_tags.txt", "-l", f"src{os.path.sep}lang", "--grf", grf_name, merged_nml_path], stdout = subprocess.PIPE, stderr = subprocess.PIPE, text=True)
 print(nmlc.stdout)
 print(nmlc.stderr)
 
