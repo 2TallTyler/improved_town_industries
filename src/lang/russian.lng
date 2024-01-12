@@ -1,75 +1,91 @@
 ##grflangid 0x07
 
-STR_GRF_NAME                        :{TITLE}{VERSION}
-STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}Recommended for use with a growth script like Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_NAME                        :{TITLE} {VERSION}
+STR_GRF_DESC                        :{ORANGE}Предприятия, требующие обслуживания и развития городов. {BLACK}Рекомендуется использовать со сценарием роста, таким как Renewed Village Growth.{}{}{ORANGE}Посетите веб-сайт для получения дополнительной информации!{}{}{BLACK}Разработано 2TallTyler.
 
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE}требует OpenTTD версии 1.10.0, JGR версии 0.34 или выше.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE}несовместим с{YELLOW}{STRING}{WHITE}.
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :Регионы предприятий
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}По умолчанию: {ORANGE}вкл{}{WHITE}Если эта опция включена, производства появляются только в определенных частях карты.
 
-STR_NAME_OBJECT_MENU                : Промышленные плитки
-STR_NAME_OBJECT_MENU_FIELDS         : Плитки фермы
+STR_PRIMARY_GOAL_1000               :{BLACK}Чтобы {WHITE}увеличить производство {BLACK}, доведите население города до 1,000 человек.
+STR_PRIMARY_GOAL_2000               :{BLACK}Чтобы {WHITE}увеличить производство {BLACK}, доведите население города до 2,000 человек.
+STR_PRIMARY_GOAL_3000               :{BLACK}Чтобы {WHITE}увеличить производство {BLACK}, доведите население города до 3,000 человек.
+STR_PRIMARY_GOAL_4000               :{BLACK}Чтобы {WHITE}увеличить производство {BLACK}, доведите население города до 4,000 человек.
+STR_PRIMARY_GOAL_MAX                :{WHITE}Максимальное производство!
+STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}Чтобы {WHITE}повысить эффективность{BLACK}, перевозите больше пассажиров в этом городе.
+STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}Чтобы сохранить {WHITE}максимальную эффективность{BLACK}, продолжайте перевозить пассажиров в этом городе.
+STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}Эффективность производства: {SKIP}{YELLOW}{UNSIGNED_WORD} % {SKIP}{BLACK}{}{}{STRING}
+
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Потребляет 1 единицу каждого входящего груза на 5 жителей. Текущий максимум {YELLOW}{UNSIGNED_WORD}{BLACK}/месяц.{}{}Эффективность производства: {SKIP}{YELLOW}{UNSIGNED_WORD} % {SKIP}{BLACK}{}{STRING}
+
+STR_INCINERATOR_HELPTEXT            :Потребляет отходы, но не имеет другого эффекта.
+
+STR_LOC_ERROR_PRIMARY               :Первичные производства не могут финансироваться вблизи городов и должны располагаться на подходящей высоте.
+STR_LOC_ERROR_SECONDARY             :Вторичные производства должны находиться рядом с городом, где нет других вторичных производств.
+
+STR_NAME_OBJECT_MENU                :Объекты производства
+STR_NAME_OBJECT_MENU_FIELDS         :Поля
 
 STR_EMPTY                           :
 
 STR_TOWN                            :{STRING}
-STR_STATION                         :{STRING}{STRING}
+STR_STATION                         :{STRING} {STRING}
 
-STR_NAME_STEEL_MILL                 : сталелитейный завод
-STR_NAME_IRON_MINE                  : Железный рудник
-STR_NAME_SAWMILL                    : Лесопильный завод
-STR_NAME_FOREST                     : Лес
-STR_NAME_OIL_REFINERY               : Нефтеперерабатывающий завод
-STR_NAME_FARM                       : Ферма
-STR_NAME_FACTORY                    : Завод
-STR_NAME_COAL_MINE                  : угольная шахта
-STR_NAME_OIL_WELLS                  : нефтяные скважины
-STR_NAME_PAPER_MILL                 : Бумажная фабрика
-STR_NAME_RECYCLING_CENTER           : Центр переработки
-STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
-STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
-STR_NAME_RANCH                      :Ranch
-STR_NAME_BANK                       :Bank
-STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_STEEL_MILL                 :Сталелитейный завод
+STR_NAME_IRON_MINE                  :Шахта железной руды
+STR_NAME_SAWMILL                    :Лесопилка
+STR_NAME_FOREST                     :Лес
+STR_NAME_OIL_REFINERY               :Нефтезавод
+STR_NAME_FARM                       :Ферма
+STR_NAME_FACTORY                    :Завод
+STR_NAME_COAL_MINE                  :Угольная шахта
+STR_NAME_OIL_WELLS                  :Нефтяная скважина
+STR_NAME_PAPER_MILL                 :Бумажная фабрика
+STR_NAME_RECYCLING_CENTER           :Центр переработки
+STR_NAME_BUILDING_MATERIALS_FACTORY :Завод стройматериалов
+STR_NAME_FOOD_PROCESSING_PLANT      :Продуктовый завод
+STR_NAME_RANCH                      :Ранчо
+STR_NAME_BANK                       :Банк
+STR_NAME_INCINERATOR                :Мусоросжигательный завод
 
-STR_NAME_FIELD_1                    : Поле
+STR_NAME_FIELD_1					:Поле
 
-STR_CARGO_NAME_CHEMICALS            : химические вещества
-STR_CARGO_ABBREV_CHEMICALS          :{TINYFONT}CH
-STR_CARGO_QUANTITY_CHEMICALS        :{VOLUME}химикатов
+STR_CARGO_NAME_CHEMICALS			:Химикаты
+STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT} химикаты
+STR_CARGO_QUANTITY_CHEMICALS		:{WEIGHT} химикатов
 
-STR_CARGO_NAME_LUMBER               : пиломатериалы
-STR_CARGO_ABBREV_LUMBER             :{TINYFONT}LU
-STR_CARGO_QUANTITY_LUMBER           :{WEIGHT}пиломатериалов
+STR_CARGO_NAME_LUMBER				:Пиломатериалы
+STR_CARGO_ABBREV_LUMBER				:{TINYFONT} пиломатериалы
+STR_CARGO_QUANTITY_LUMBER			:{WEIGHT} пиломатериалов
 
-STR_CARGO_NAME_WASTE                : отходы
-STR_CARGO_ABBREV_WASTE              :{TINYFONT}WS
-STR_CARGO_QUANTITY_WASTE            :{WEIGHT}отходов
+STR_CARGO_NAME_WASTE				:Отходы
+STR_CARGO_ABBREV_WASTE				:{TINYFONT} отходы
+STR_CARGO_QUANTITY_WASTE			:{WEIGHT} отходов
 
-STR_CARGO_NAME_BDMT                 :Building Materials
-STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
+STR_CARGO_NAME_BDMT                 :Стройматериалы
+STR_CARGO_ABBREV_BDMT               :{TINYFONT} стройматериалы
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} стройматериалов
 
-STR_CARGO_NAME_WDCH                 :Wood Chips
-STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
-STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
+STR_CARGO_NAME_WDCH                 :Щепки
+STR_CARGO_ABBREV_WDCH               :{TINYFONT} щепки
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} щепок
 
-STR_CARGO_NAME_PLAS                 :Plastic
-STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
-STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
+STR_CARGO_NAME_PLAS                 :Пластик
+STR_CARGO_ABBREV_PLAS               :{TINYFONT} пластик
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} пластика
 
-STR_CARGO_NAME_SCMT                 :Scrap Metal
-STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
-STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+STR_CARGO_NAME_SCMT                 :Металлолом
+STR_CARGO_ABBREV_SCMT               :{TINYFONT} металлолом
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} металлолома
 
-STR_CARGO_NAME_SCPR                 :Scrap Paper
-STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
-STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
+STR_CARGO_NAME_SCPR                 :Макулатура
+STR_CARGO_ABBREV_SCPR               :{TINYFONT} макулатура
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} макулатуры
 
-STR_CARGO_NAME_LOGS                 :Logs
-STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
+STR_CARGO_NAME_LOGS                 :Журналы
+STR_CARGO_ABBREV_LOGS               :{TINYFONT} журналы
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} журналов
