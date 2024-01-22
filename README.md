@@ -82,10 +82,10 @@ Secondary industries and Banks only generate in cities.
 * Japanese (fmang)
 * Korean (telk5093)
 * Russian (demidovskiy and Shkarlatov)
+* Swedish (En okänd välgörare and Shump)
 
 Partial translations:
 * German (WoelfiVW)
-* Swedish (En okänd välgörare and Shump)
 
 Please feel free to translate into your language and submit a Pull Request.
 
