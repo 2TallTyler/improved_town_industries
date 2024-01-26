@@ -1,15 +1,15 @@
 ##grflangid 0x02
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}Vanilla-inspired industries which require serving and growing towns. {BLACK}Recommended for use with a growth script like Renewed Village Growth.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}An die Standard-Industrien angelehnter Grafiksatz, welche das Bedienen und Wachsen von Städten voraussetzt. {BLACK}Der Einsatz eines Spieleskripts für Städtewachstum wie "Renewed Village Growth" wird empfohlen.{}{}{ORANGE}Besuche die Weltnetzseite für weitere Hinweise!{}{}{BLACK}Erstellt von 2TallTyler.
 
 STR_WEBSITE                         :{WEBSITE}
 
 STR_ERROR_GAME_VERSION              :{TITLE} Braucht OpenTTD-Version 1.10.0, JGR-Version 0.34, oder neuer.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} ist nicht kompatibel mit {YELLOW}{STRING}{WHITE}.
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :Gebiete für den ersten Sektor
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Standardwert: {ORANGE}An{}{WHITE}Falls aktiv, entstehen Gebäude des ersten Sektors nur in bestimmten Gebieten der Karte.
 
 STR_NAME_OBJECT_MENU                :Industrieobjekte
 STR_NAME_OBJECT_MENU_FIELDS         :Ackerflächen
@@ -29,12 +29,12 @@ STR_NAME_FACTORY                    :Fabrik
 STR_NAME_COAL_MINE                  :Kohlemine
 STR_NAME_OIL_WELLS                  :Ölquelle
 STR_NAME_PAPER_MILL                 :Papiermühle
-STR_NAME_RECYCLING_CENTER           :Recyclinghof
-STR_NAME_BUILDING_MATERIALS_FACTORY :Building Materials Factory
-STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
-STR_NAME_RANCH                      :Ranch
+STR_NAME_RECYCLING_CENTER           :Wertstoffhof
+STR_NAME_BUILDING_MATERIALS_FACTORY :Baustofffabrik
+STR_NAME_FOOD_PROCESSING_PLANT      :Nahrungsmittelfabrik
+STR_NAME_RANCH                      :Viehzucht
 STR_NAME_BANK                       :Bank
-STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_INCINERATOR                :Müllverbrennungsanlage
 
 STR_NAME_FIELD_1                    :Feld
 
@@ -48,29 +48,29 @@ STR_CARGO_ABBREV_LUMBER             :{TINYFONT}SH
 STR_CARGO_QUANTITY_LUMBER           :{WEIGHT} Schnittholz
 
 STR_CARGO_NAME_WASTE                :Müll
-STR_CARGO_ABBREV_WASTE              :{TINYFONT}NM
+STR_CARGO_ABBREV_WASTE              :{TINYFONT}Mü
 STR_CARGO_QUANTITY_WASTE            :{WEIGHT} Müll
 
-STR_CARGO_NAME_BDMT                 :Building Materials
-STR_CARGO_ABBREV_BDMT               :{TINYFONT}BL
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} of building materials
+STR_CARGO_NAME_BDMT                 :Baumaterialien
+STR_CARGO_ABBREV_BDMT               :{TINYFONT}BM
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} Baumaterialien
 
-STR_CARGO_NAME_WDCH                 :Wood Chips
-STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
-STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
+STR_CARGO_NAME_WDCH                 :Hackschnitzel
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}HS
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} Hackschnitzel
 
-STR_CARGO_NAME_PLAS                 :Plastic
+STR_CARGO_NAME_PLAS                 :Plastik
 STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
-STR_CARGO_QUANTITY_PLAS             :{WEIGHT} of plastic
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} Plastik
 
-STR_CARGO_NAME_SCMT                 :Scrap Metal
-STR_CARGO_ABBREV_SCMT               :{TINYFONT}SM
-STR_CARGO_QUANTITY_SCMT             :{WEIGHT} of scrap metal
+STR_CARGO_NAME_SCMT                 :Altmetall
+STR_CARGO_ABBREV_SCMT               :{TINYFONT}AM
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} Altmetall
 
-STR_CARGO_NAME_SCPR                 :Scrap Paper
-STR_CARGO_ABBREV_SCPR               :{TINYFONT}SR
-STR_CARGO_QUANTITY_SCPR             :{WEIGHT} of scrap paper
+STR_CARGO_NAME_SCPR                 :Altpapier
+STR_CARGO_ABBREV_SCPR               :{TINYFONT}AP
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} Altpapier
 
-STR_CARGO_NAME_LOGS                 :Logs
-STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
+STR_CARGO_NAME_LOGS                 :Baumstämme
+STR_CARGO_ABBREV_LOGS               :{TINYFONT}BS
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} Baumstämme
