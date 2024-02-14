@@ -1,0 +1,92 @@
+##grflangid 0x02
+
+STR_GRF_NAME                        :{TITLE} {VERSION}
+STR_GRF_DESC                        :{ORANGE}An die Standard-Industrien angelehnter Grafiksatz, welche das Bedienen und Wachsen von Städten voraussetzt. {BLACK}Der Einsatz eines Spieleskripts für    Städtewachstum wie "Renewed Village Growth" wird empfohlen.{}{}{ORANGE}Besuche die Weltnetzseite für weitere Hinweise!{}{}{BLACK}Erstellt von 2TallTyler.
+
+STR_WEBSITE                         :{WEBSITE}
+
+STR_ERROR_GAME_VERSION              :{TITLE} Braucht OpenTTD-Version 1.10.0, JGR-Version 0.34, oder neuer.
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} ist nicht kompatibel mit {YELLOW}{STRING}{WHITE}.
+
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :Gebiete für den ersten Sektor
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Standardwert: {ORANGE}An{}{WHITE}Falls aktiv, entstehen Betriebe des ersten Sektors nur in bestimmten Gebieten der Karte.
+
+STR_PRIMARY_GOAL_1000               :{BLACK}Um {WHITE}die Fertigungsgrenze zu erhöhen {BLACK}, erreiche 1000 Einwohner.
+STR_PRIMARY_GOAL_2000               :{BLACK}Um {WHITE}die Fertigungsgrenze zu erhöhen {BLACK}, erreiche 2000 Einwohner.
+STR_PRIMARY_GOAL_3000               :{BLACK}Um {WHITE}die Fertigungsgrenze zu erhöhen {BLACK}, erreiche 3000 Einwohner.
+STR_PRIMARY_GOAL_4000               :{BLACK}Um {WHITE}die Fertigungsgrenze zu erhöhen {BLACK}, erreiche 4000 Einwohner.
+STR_PRIMARY_GOAL_MAX                :{WHITE}Maximale Produktion {BLACK}erreicht.
+STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}Um {WHITE}den Wirkungsgrad steigern{BLACK}, befördere mehr Fahrgäste in dieser Stadt.
+STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}To keep {WHITE}maximum efficiency{BLACK}, befördere weiterhin Fahrgäste in dieser Stadt.
+STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}Production efficiency: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Consumes 1 unit of each input cargo per 5 population. Current maximum {YELLOW}{UNSIGNED_WORD}{BLACK}/month.{}{}Production efficiency: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_INCINERATOR_HELPTEXT            :Vernichtet Müll, hat sonst keinen Nutzen.
+
+STR_LOC_ERROR_PRIMARY               :Primary industries cannot be funded near cities and must be at a suitable elevation.
+STR_LOC_ERROR_SECONDARY             :Secondary industries must be near a city with no other secondary industries.
+
+STR_NAME_OBJECT_MENU                :Industrieobjekte
+STR_NAME_OBJECT_MENU_FIELDS         :Ackerflächen
+
+STR_EMPTY                           :
+
+STR_TOWN                            :{STRING}
+STR_STATION                         :{STRING} {STRING}
+
+STR_NAME_STEEL_MILL                 :Stahlwerk
+STR_NAME_IRON_MINE                  :Eisenmine
+STR_NAME_SAWMILL                    :Sägewerk
+STR_NAME_FOREST                     :Wald
+STR_NAME_OIL_REFINERY               :Ölraffinerie
+STR_NAME_FARM                       :Bauernhof
+STR_NAME_FACTORY                    :Fabrik
+STR_NAME_COAL_MINE                  :Kohlemine
+STR_NAME_OIL_WELLS                  :Ölquelle
+STR_NAME_PAPER_MILL                 :Papiermühle
+STR_NAME_RECYCLING_CENTER           :Wertstoffhof
+STR_NAME_BUILDING_MATERIALS_FACTORY :Baustofffabrik
+STR_NAME_FOOD_PROCESSING_PLANT      :Nahrungsmittelfabrik
+STR_NAME_RANCH                      :Viehzucht
+STR_NAME_BANK                       :Bank
+STR_NAME_INCINERATOR                :Müllverbrennungsanlage
+
+STR_NAME_FIELD_1                    :Feld
+
+
+STR_CARGO_NAME_CHEMICALS            :Chemikalien
+STR_CARGO_ABBREV_CHEMICALS          :{TINYFONT}CH
+STR_CARGO_QUANTITY_CHEMICALS        :{VOLUME} Chemikalien
+
+STR_CARGO_NAME_LUMBER               :Schnittholz
+STR_CARGO_ABBREV_LUMBER             :{TINYFONT}SH
+STR_CARGO_QUANTITY_LUMBER           :{WEIGHT} Schnittholz
+
+STR_CARGO_NAME_WASTE                :Müll
+STR_CARGO_ABBREV_WASTE              :{TINYFONT}Mü
+STR_CARGO_QUANTITY_WASTE            :{WEIGHT} Müll
+
+STR_CARGO_NAME_BDMT                 :Baumaterialien
+STR_CARGO_ABBREV_BDMT               :{TINYFONT}BM
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} Baumaterialien
+
+STR_CARGO_NAME_WDCH                 :Hackschnitzel
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}HS
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} Hackschnitzel
+
+STR_CARGO_NAME_PLAS                 :Plastik
+STR_CARGO_ABBREV_PLAS               :{TINYFONT}PL
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} Plastik
+
+STR_CARGO_NAME_SCMT                 :Altmetall
+STR_CARGO_ABBREV_SCMT               :{TINYFONT}AM
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} Altmetall
+
+STR_CARGO_NAME_SCPR                 :Altpapier
+STR_CARGO_ABBREV_SCPR               :{TINYFONT}AP
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} Altpapier
+
+STR_CARGO_NAME_LOGS                 :Baumstämme
+STR_CARGO_ABBREV_LOGS               :{TINYFONT}BS
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} Baumstämme
