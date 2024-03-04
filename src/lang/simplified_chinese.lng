@@ -1,12 +1,12 @@
 ##grflangid 0x56
 
-STR_GRF_NAME                        :ITL 改进城镇工业 {VERSION}
-STR_GRF_DESC                        :{ORANGE}由原版发展逻辑启发的的真实工业 GRF，绑定城镇人口与工业关系。{BLACK}建议与城镇发展脚本一同使用，如 Renewed Village Growth。{}{}{ORANGE}更多信息请访问项目网站！{}{}{BLACK}由 2TallTyler 制作。
+STR_GRF_NAME                        :ITI 改进城镇工业 {VERSION}
+STR_GRF_DESC                        :{ORANGE}{TITLE} 改进城镇工业是由原版发展逻辑启发的的真实工业 GRF，绑定城镇人口与工业关系。{BLACK}建议与城镇发展脚本一同使用，如 Renewed Village Growth。{}{}{ORANGE}更多信息请访问项目网站！{}{}{BLACK}由 2TallTyler 制作。
 
 STR_WEBSITE                         :{WEBSITE}
 
-STR_ERROR_GAME_VERSION              :改进城镇工业需要 OpenTTD 1.10.0、JGRPP 0.34 或更高版本以工作。
-STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}改进城镇工业{WHITE}与 {YELLOW}{STRING}{WHITE} 不兼容。
+STR_ERROR_GAME_VERSION              :ITI 改进城镇工业需要 OpenTTD 1.10.0、JGRPP 0.34 或更高版本以工作。
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}ITI 改进城镇工业{WHITE}与 {YELLOW}{STRING}{WHITE} 不兼容。
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :原料产业设置
 STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}默认值：{ORANGE}开{}{WHITE}若开启，一种原料产业只会在地图的部分地区生成。
