@@ -3,8 +3,8 @@ grf {
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
 	url: string(STR_WEBSITE);
-	version: 30;
-	min_compatible_version: 23;
+	version: 32;
+	min_compatible_version: 32;
 
     param 0 {
 		param_primary_quadrants {
@@ -22,8 +22,8 @@ disable_item(FEAT_INDUSTRIES);
 /* Disable base game cargos */
 disable_item(FEAT_CARGOS);
 
-/* Create an error if OpenTTD version is before 1.10.0 (required for increased cargo types at industries) */
-if (version_openttd(1,10,0,28004) > openttd_version) {
+/* Create an error if OpenTTD version is before 14.0 (required for town_production_effect property) */
+if (version_openttd(14,0) > openttd_version) {
 	error(FATAL, string(STR_ERROR_GAME_VERSION));
 }
 
