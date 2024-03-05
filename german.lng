@@ -11,21 +11,21 @@ STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} ist nicht kompatibel
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Gebiete für den ersten Sektor
 STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Standardwert: {ORANGE}An{}{WHITE}Falls aktiv, entstehen Betriebe des ersten Sektors nur in bestimmten Gebieten der Karte.
 
-STR_PRIMARY_GOAL_1000               :{BLACK}Um {WHITE}die Fertigungsgrenze zu erhöhen {BLACK}, erreiche 1000 Einwohner.
-STR_PRIMARY_GOAL_2000               :{BLACK}Um {WHITE}die Fertigungsgrenze zu erhöhen {BLACK}, erreiche 2000 Einwohner.
-STR_PRIMARY_GOAL_3000               :{BLACK}Um {WHITE}die Fertigungsgrenze zu erhöhen {BLACK}, erreiche 3000 Einwohner.
-STR_PRIMARY_GOAL_4000               :{BLACK}Um {WHITE}die Fertigungsgrenze zu erhöhen {BLACK}, erreiche 4000 Einwohner.
-STR_PRIMARY_GOAL_MAX                :{WHITE}Maximale Produktion {BLACK}erreicht.
-STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}Um {WHITE}den Wirkungsgrad steigern{BLACK}, befördere mehr Fahrgäste in dieser Stadt.
-STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}To keep {WHITE}maximum efficiency{BLACK}, befördere weiterhin Fahrgäste in dieser Stadt.
-STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}Production efficiency: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+STR_PRIMARY_GOAL_1000               :{BLACK}Um die {WHITE}Produktionsgrenze{WHITE} zu erhöhen {BLACK}, erreiche 1000 Einwohner.
+STR_PRIMARY_GOAL_2000               :{BLACK}Um die {WHITE}Produktionsgrenze{WHITE} zu erhöhen {BLACK}, erreiche 2000 Einwohner.
+STR_PRIMARY_GOAL_3000               :{BLACK}Um die {WHITE}Produktionsgrenze{WHITE} zu erhöhen {BLACK}, erreiche 3000 Einwohner.
+STR_PRIMARY_GOAL_4000               :{BLACK}Um die {WHITE}Produktionsgrenze{WHITE} zu erhöhen {BLACK}, erreiche 4000 Einwohner.
+STR_PRIMARY_GOAL_MAX                :{WHITE}Höchstmögliche Auslastung {BLACK}erreicht.
+STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}Um den {WHITE}Wirkungsgrad zu steigern{BLACK}, befördere mehr Fahrgäste in dieser Stadt.
+STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}Um {WHITE}die höchstmögliche Auslastung zu erhalten{BLACK}, befördere weiterhin Fahrgäste in dieser Stadt.
+STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}Auslastung: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
 
-STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Consumes 1 unit of each input cargo per 5 population. Current maximum {YELLOW}{UNSIGNED_WORD}{BLACK}/month.{}{}Production efficiency: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Verbraucht einen Rohstoff für jeden 5. Einwohner. Aktueller Höchstwert {YELLOW}{UNSIGNED_WORD}{BLACK}/Monat.{}{}Fertigungsauslastung: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
 
 STR_INCINERATOR_HELPTEXT            :Vernichtet Müll, hat sonst keinen Nutzen.
 
-STR_LOC_ERROR_PRIMARY               :Primary industries cannot be funded near cities and must be at a suitable elevation.
-STR_LOC_ERROR_SECONDARY             :Secondary industries must be near a city with no other secondary industries.
+STR_LOC_ERROR_PRIMARY               :Rohstoffbetriebe können nicht in der Nähe von Großstädten begründet werden und brauchen eine passende Höhenlage.
+STR_LOC_ERROR_SECONDARY             :Fabriken müssen in der Nähe einer Großstadt ohne eine andere Industrieanlage gebaut werden. 
 
 STR_NAME_OBJECT_MENU                :Industrieobjekte
 STR_NAME_OBJECT_MENU_FIELDS         :Ackerflächen
