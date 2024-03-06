@@ -1,0 +1,91 @@
+##grflangid 0x0c
+
+STR_GRF_NAME                        :ITI 改進城鎮工業 {VERSION}
+STR_GRF_DESC                        :{ORANGE}{TITLE} 改進城鎮工業是由原版發展邏輯啟發的的真實工業 GRF，綁定城鎮人口與工業關係。{BLACK}建議與城鎮發展腳本一同使用，如 Renewed Village Growth。{}{}{ORANGE}更多信息請訪問項目網站！{}{}{BLACK}由 2TallTyler 製作。
+
+STR_WEBSITE                         :{WEBSITE}
+
+STR_ERROR_GAME_VERSION              :ITI 改進城鎮工業需要 OpenTTD 1.10.0、JGRPP 0.34 或更高版本以工作。
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}ITI 改進城鎮工業{WHITE}與 {YELLOW}{STRING}{WHITE} 不兼容。
+
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :原料產業設置
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}默認值：{ORANGE}開{}{WHITE}若開啟，一種原料產業只會在地圖的部分地區生成。
+
+STR_PRIMARY_GOAL_1000               :{BLACK}工業需要所屬城鎮達到 1000 人口以{WHITE}提升產能{BLACK}。
+STR_PRIMARY_GOAL_2000               :{BLACK}工業需要所屬城鎮達到 2000 人口以{WHITE}提升產能{BLACK}。
+STR_PRIMARY_GOAL_3000               :{BLACK}工業需要所屬城鎮達到 3000 人口以{WHITE}提升產能{BLACK}。
+STR_PRIMARY_GOAL_4000               :{BLACK}工業需要所屬城鎮達到 4000 人口以{WHITE}提升產能{BLACK}。
+STR_PRIMARY_GOAL_MAX                :{BLACK}已達到{WHITE}最大產能{BLACK}。
+STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}請運送更多的旅客去所屬城鎮以{WHITE}提升產能{BLACK}。
+STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}請持續運送旅客去所屬城鎮以{WHITE}維持產能{BLACK}。
+STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}生產效率：{SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}{BLACK}每 {WHITE}5{BLACK} 個人口將消耗 {WHITE}1{BLACK} 單位輸入貨物。{WHITE}當前最大值為 {YELLOW}{UNSIGNED_WORD}{BLACK}/月。{}{}生產效率：{SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_INCINERATOR_HELPTEXT            :焚燒垃圾，但是沒有其他產出。
+
+STR_LOC_ERROR_PRIMARY               :原料產業不能在城市附近建設或必須處於合適的高度。
+STR_LOC_ERROR_SECONDARY             :加工工廠必須靠近其他沒有加工工廠的城市。
+
+STR_NAME_OBJECT_MENU                :工業建築
+STR_NAME_OBJECT_MENU_FIELDS         :農場建築
+
+STR_EMPTY                           :
+
+STR_TOWN                            :{STRING}
+STR_STATION                         :{STRING} {STRING}
+
+STR_NAME_STEEL_MILL                 :鋼鐵廠
+STR_NAME_IRON_MINE                  :鐵礦
+STR_NAME_SAWMILL                    :鋸木廠
+STR_NAME_FOREST                     :林場
+STR_NAME_OIL_REFINERY               :煉油廠
+STR_NAME_FARM                       :農場
+STR_NAME_FACTORY                    :工廠
+STR_NAME_COAL_MINE                  :煤礦
+STR_NAME_OIL_WELLS                  :油井
+STR_NAME_PAPER_MILL                 :造紙廠
+STR_NAME_RECYCLING_CENTER           :回收中心
+STR_NAME_BUILDING_MATERIALS_FACTORY :建材廠
+STR_NAME_FOOD_PROCESSING_PLANT      :食品加工廠
+STR_NAME_RANCH                      :牧場
+STR_NAME_BANK                       :銀行
+STR_NAME_INCINERATOR                :垃圾焚燒廠
+
+STR_NAME_FIELD_1					:田地
+
+STR_CARGO_NAME_CHEMICALS            :化學品
+STR_CARGO_ABBREV_CHEMICALS          :{TINYFONT}化
+STR_CARGO_QUANTITY_CHEMICALS        :{VOLUME}化學品
+
+STR_CARGO_NAME_LUMBER               :木料
+STR_CARGO_ABBREV_LUMBER             :{TINYFONT}木
+STR_CARGO_QUANTITY_LUMBER           :{WEIGHT}木料
+
+STR_CARGO_NAME_WASTE                :廢料
+STR_CARGO_ABBREV_WASTE              :{TINYFONT}廢
+STR_CARGO_QUANTITY_WASTE            :{WEIGHT}廢料
+
+STR_CARGO_NAME_BDMT                 :建材
+STR_CARGO_ABBREV_BDMT               :{TINYFONT}建
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT}建材
+
+STR_CARGO_NAME_WDCH                 :木屑
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}木
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT}木屑
+
+STR_CARGO_NAME_PLAS                 :塑料
+STR_CARGO_ABBREV_PLAS               :{TINYFONT}塑
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT}塑料
+
+STR_CARGO_NAME_SCMT                 :廢金屬
+STR_CARGO_ABBREV_SCMT               :{TINYFONT}金
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT}廢金屬
+
+STR_CARGO_NAME_SCPR                 :廢紙
+STR_CARGO_ABBREV_SCPR               :{TINYFONT}紙
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT}廢紙
+
+STR_CARGO_NAME_LOGS                 :原木
+STR_CARGO_ABBREV_LOGS               :{TINYFONT}樹
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT}原木
