@@ -1,7 +1,7 @@
 ##grflangid 0x02
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}An die Standard-Industrien angelehnter Grafiksatz, welche das Bedienen und Wachsen von Städten voraussetzt. {BLACK}Der Einsatz eines Spieleskripts für    Städtewachstum wie "Renewed Village Growth" wird empfohlen.{}{}{ORANGE}Besuche die Weltnetzseite für weitere Hinweise!{}{}{BLACK}Erstellt von 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}An die Standard-Industrien angelehnter Grafiksatz, welche das Bedienen und Wachsen von Städten voraussetzt. {BLACK}Der Einsatz eines Spieleskripts für Städtewachstum wie "Renewed Village Growth" wird empfohlen.{}{}{ORANGE}Besuche die Weltnetzseite für weitere Hinweise!{}{}{BLACK}Erstellt von 2TallTyler.
 
 STR_WEBSITE                         :{WEBSITE}
 
