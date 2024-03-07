@@ -5,7 +5,7 @@ STR_GRF_DESC                        :{ORANGE}{TITLE} 改进城镇工业是由原
 
 STR_WEBSITE                         :{WEBSITE}
 
-STR_ERROR_GAME_VERSION              :ITI 改进城镇工业需要 OpenTTD 1.10.0、JGRPP 0.34 或更高版本以工作。
+STR_ERROR_GAME_VERSION              :ITI 改进城镇工业需要 OpenTTD 14.0、JGRPP 0.85 或更高版本以工作。
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}ITI 改进城镇工业{WHITE}与 {YELLOW}{STRING}{WHITE} 不兼容。
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :原料产业设置
