@@ -5,7 +5,7 @@ STR_GRF_DESC                        :{ORANGE}Vanilla-inspererade industrier some
 
 STR_WEBSITE                         :{WEBSITE}
 
-STR_ERROR_GAME_VERSION              :{TITLE} kräver OpenTTD version 1.10.0, JGR version 0.34, eller högre.
+STR_ERROR_GAME_VERSION              :{TITLE} kräver OpenTTD version 14.0, JGR version 0.85, eller högre.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} är inkompatibel med {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primära industriområden

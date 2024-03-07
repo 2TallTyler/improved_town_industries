@@ -5,7 +5,7 @@ STR_GRF_DESC                        :{ORANGE}An die Standard-Industrien angelehn
 
 STR_WEBSITE                         :{WEBSITE}
 
-STR_ERROR_GAME_VERSION              :{TITLE} Braucht OpenTTD-Version 1.10.0, JGR-Version 0.34, oder neuer.
+STR_ERROR_GAME_VERSION              :{TITLE} Braucht OpenTTD-Version 14.0, JGR-Version 0.85, oder neuer.
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} ist nicht kompatibel mit {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Gebiete für den ersten Sektor
