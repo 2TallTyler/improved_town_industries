@@ -5,7 +5,7 @@ STR_GRF_DESC                        :{ORANGE}{TITLE} 改進城鎮工業是由原
 
 STR_WEBSITE                         :{WEBSITE}
 
-STR_ERROR_GAME_VERSION              :ITI 改進城鎮工業需要 OpenTTD 14.0、JGRPP 0.85 或更高版本以工作。
+STR_ERROR_GAME_VERSION              :ITI 改進城鎮工業需要 OpenTTD 14.0、JGRPP 0.58 或更高版本以工作。
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}ITI 改進城鎮工業{WHITE}與 {YELLOW}{STRING}{WHITE} 不兼容。
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :原料產業設置
