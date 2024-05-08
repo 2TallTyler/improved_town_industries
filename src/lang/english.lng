@@ -24,6 +24,8 @@ STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}Production efficien
 STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Consumes 1 unit of each input cargo per 5 population. Current maximum {YELLOW}{UNSIGNED_WORD}{BLACK}/month.{}{}Production efficiency: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
 
 STR_INCINERATOR_HELPTEXT            :Consumes Waste but has no other effect.
+STR_NAME_HARDWARE_STORE_MATS		:Bulding materials tile
+STR_HARDWARE_STORE_HELPTEXT			:Consumes Building Materials but has no other effect.
 
 STR_LOC_ERROR_PRIMARY               :Primary industries cannot be funded near cities and must be at a suitable elevation.
 STR_LOC_ERROR_SECONDARY             :Secondary industries must be near a city with no other secondary industries.
@@ -52,6 +54,7 @@ STR_NAME_FOOD_PROCESSING_PLANT      :Food Processing Plant
 STR_NAME_RANCH                      :Ranch
 STR_NAME_BANK                       :Bank
 STR_NAME_INCINERATOR                :Incinerator
+STR_NAME_HARDWARE_STORE             :Hardware Store
 
 STR_NAME_FIELD_1					:Field
 
