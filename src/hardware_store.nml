@@ -44,8 +44,9 @@ tilelayout industry_layout_hardware_store_2 { // Mirrorred
 
 
 /* Location check */
-//IsCity() && IsNearTown() &&
+
 switch (FEAT_INDUSTRIES, SELF, loc_check_hardware_store, NoNearbyCompetitors(industry_hardware_store, 10) && IsWithinDistanceToTown(10)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
 
 /* Hardware store industry */
 item (FEAT_INDUSTRIES, industry_hardware_store, 17) {
@@ -58,7 +59,7 @@ item (FEAT_INDUSTRIES, industry_hardware_store, 17) {
 		];
 		name: string(STR_NAME_HARDWARE_STORE);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_HARDWARE_STORE));
-        prob_map_gen: 1;
+        prob_map_gen: param_hardware_store;
         prob_in_game: 0;
 		fund_cost_multiplier: 100;
 		layouts: [			

@@ -14,6 +14,16 @@ grf {
 			def_value: 1;
 		}
 	}
+	
+	param 1 {
+		param_hardware_store{
+		type:bool;
+		name: string(STR_PARAM_HARDWARE_STORE_NAME);
+		desc: string(STR_PARAM_HARDWARE_STORE_DESC);
+		def_value: 1;
+		}	
+	
+	}
 }
 
 /* Disable base game industries */
