@@ -11,8 +11,8 @@ STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
 STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
-STR_PARAM_HARDWARE_STORE_NAME		:Allow hardware store to spawn
-STR_PARAM_HARDWARE_STORE_DESC		:This option regulates if hardware store - a consumer of building materials cargo - is allowed to spawn. Toggle to off if you're using Improved Town Layouts NewGRF, since it adds its own consumer of that cargo type. Default - allowed
+STR_PARAM_HARDWARE_STORE_NAME		:Spawn Hardware Stores
+STR_PARAM_HARDWARE_STORE_DESC		::{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, Hardware Stores spawn in towns to receive Building Materials.
 
 
 STR_PRIMARY_GOAL_1000               :{BLACK}To {WHITE}increase maximum production {BLACK}, grow town to 1,000 population.
