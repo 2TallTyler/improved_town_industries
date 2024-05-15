@@ -38,6 +38,8 @@ These two goals together encourage players to both serve a town well, and encour
 
 * Secondary industries can only appear in cities, within about 15 tiles of the furthest house from the center. With the exception of Banks and Incinerators, only one secondary industry may appear in each city — to avoid cheesing the production mechanic with one big production city. Banks replace houses and must be facing a road in a city, and Incinerators must be at least 100 tiles from other Incinerators. These rules all apply even when funding an industry.
 
+* The Hardware Store industry accepts Building Materials and can be funded by the player, in case the house set does not accept this cargo.
+
 ## Town Growth
 
 ITI 2 is designed to be used with the [Renewed Village Growth](https://github.com/F1rrel/RenewedVillageGrowth) script, which adds cargo delivery requirements for towns to grow:
@@ -86,6 +88,10 @@ Secondary industries and Banks only generate in cities.
 * Swedish (En okänd välgörare and Shump)
 
 Please feel free to translate into your language and submit a Pull Request.
+
+## Additional Credits
+
+* Overjay: Hardware store concept and coding
 
 ## Design Notes
 
