@@ -2,13 +2,19 @@
 /* *** Begin Hardware Store *** */
 
 spritelayout sprlay_hardware_store_1 { // Main building
-	ground		{sprite:2149;}
-	building	{sprite:1475;}
+	ground		{sprite:1420;}
+	building	{sprite:2190;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
 }
 
 spritelayout sprlay_hardware_store_2 { // Building materials tile
-	ground		{sprite:2149;}
-	building	{sprite:2149;}
+	ground		{sprite:1420;}
+	building	{sprite:2199;}
+}
+
+spritelayout sprlay_hardware_store_3 { // Concrete tile
+	ground		{sprite:1420;}	
 }
 
 item (FEAT_INDUSTRYTILES, ind_tile_hardware_store_1) { // Main building
@@ -31,17 +37,15 @@ item (FEAT_INDUSTRYTILES, ind_tile_hardware_store_2) { // Building materials til
     }
 }
 
-tilelayout industry_layout_hardware_store_1 { // 2 by 1 tile area
+tilelayout industry_layout_hardware_store_1 { // 2x1 Tile area
     0,0:	ind_tile_hardware_store_1;
     1,0:	ind_tile_hardware_store_2;    
 }
 
-tilelayout industry_layout_hardware_store_2 { // Mirrorred
+tilelayout industry_layout_hardware_store_2 { // 2x1 Mirrorred
     0,0:	ind_tile_hardware_store_2;
     1,0:	ind_tile_hardware_store_1;    
 }
-
-
 
 /* Location check */
 
@@ -71,6 +75,7 @@ item (FEAT_INDUSTRIES, industry_hardware_store, 17) {
 	graphics {
 		extra_text_industry: string(STR_HARDWARE_STORE_HELPTEXT);
         location_check: loc_check_hardware_store;
+		colour: COLOUR_PALE_GREEN;
 	}
 }
 
@@ -90,27 +95,12 @@ item (FEAT_OBJECTS, object_item_hardware_store_1) {
 	}
 	graphics {
 		default:				sprlay_hardware_store_1;
-	}
-}
-
-item (FEAT_OBJECTS, object_item_hardware_store_2) {
-	property {
-		class:					"HSIN";
-		classname:				string(STR_NAME_OBJECT_MENU);
-		name:					string(STR_NAME_HARDWARE_STORE_MATS);
-		climates_available:		ALL_CLIMATES;
-		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
-		build_cost_multiplier:	0;
-		remove_cost_multiplier:	0;
-		size:					[1,1];
-		introduction_date:		1700;
-		num_views:				1;
-	}
-	graphics {
-		default:				sprlay_hardware_store_2;
+		colour: COLOUR_PALE_GREEN;
 	}
 }
 
 
 
-/* *** End Incinerator *** */
+
+
+/* *** End Hardware Store *** */
