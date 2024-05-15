@@ -1,0 +1,105 @@
+
+/* *** Begin Hardware Store *** */
+
+spritelayout sprlay_hardware_store_1 { // Main building
+	ground		{sprite:1420;}
+	building	{sprite:2190;
+				recolour_mode: RECOLOUR_REMAP;
+				palette: PALETTE_USE_DEFAULT;}
+}
+
+spritelayout sprlay_hardware_store_2 { // Building materials tile
+	ground		{sprite:1420;}
+	building	{sprite:2199;}
+}
+
+spritelayout sprlay_hardware_store_3 { // Concrete tile
+	ground		{sprite:1420;}	
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_hardware_store_1) { // Main building
+    property {
+        substitute:	08;
+        accepted_cargos: 	[[PASS, 8]];
+        special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+    graphics {
+        default: sprlay_hardware_store_1;
+    }
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_hardware_store_2) { // Building materials tile
+    property {
+        substitute:	09;
+        accepted_cargos: 	[[PASS, 8]];
+        special_flags:		bitmask(INDTILE_FLAG_ACCEPT_ALL);}
+    graphics {
+        default: sprlay_hardware_store_2;
+    }
+}
+
+tilelayout industry_layout_hardware_store_1 { // 2x1 Tile area
+    0,0:	ind_tile_hardware_store_1;
+    1,0:	ind_tile_hardware_store_2;    
+}
+
+tilelayout industry_layout_hardware_store_2 { // 2x1 Mirrorred
+    0,0:	ind_tile_hardware_store_2;
+    1,0:	ind_tile_hardware_store_1;    
+}
+
+/* Location check */
+
+switch (FEAT_INDUSTRIES, SELF, loc_check_hardware_store, NoNearbyCompetitors(industry_hardware_store, 10) && IsWithinDistanceToTown(10)) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+
+/* Hardware store industry */
+item (FEAT_INDUSTRIES, industry_hardware_store, 17) {
+	property {
+		substitute: INDUSTRYTYPE_POWER_PLANT;
+		life_type: IND_LIFE_TYPE_BLACK_HOLE;
+		spec_flags: 0;
+		cargo_types: [
+			accept_cargo("BDMT"),
+		];
+		name: string(STR_NAME_HARDWARE_STORE);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_HARDWARE_STORE));
+        prob_map_gen: param_hardware_store;
+        prob_in_game: 0;
+		fund_cost_multiplier: 100;
+		layouts: [			
+			industry_layout_hardware_store_1,
+			industry_layout_hardware_store_2,
+			];
+		map_colour: 39;
+	}
+	graphics {
+		extra_text_industry: string(STR_HARDWARE_STORE_HELPTEXT);
+        location_check: loc_check_hardware_store;
+		colour: COLOUR_PALE_GREEN;
+	}
+}
+
+
+item (FEAT_OBJECTS, object_item_hardware_store_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					string(STR_NAME_HARDWARE_STORE);
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_hardware_store_1;
+		colour: COLOUR_PALE_GREEN;
+	}
+}
+
+
+
+
+/* *** End Hardware Store *** */
