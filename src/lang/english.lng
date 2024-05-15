@@ -11,7 +11,7 @@ STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industry regions
 STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, primary industries spawn only in certain parts of the map.
-STR_PARAM_HARDWARE_STORE_NAME		:Allow hardware store to spawn
+STR_PARAM_HARDWARE_STORE_NAME		:Spawn Hardware Stores
 STR_PARAM_HARDWARE_STORE_DESC		::{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, Hardware Stores spawn in towns to receive Building Materials.
 
 
