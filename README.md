@@ -65,12 +65,11 @@ Secondary industries and Banks only generate in cities.
 ## Additional Features
 
 * Includes industry tile objects for visual expansion and decoration.
-* Houses produce Waste, which reuses the Mail cargo ID for compatibility with all house sets.
+* Houses produce Waste instead of Mail.
 
 ## Limitations
 
 * This industry set is designed for Temperate climate only, since it doesn't include snow sprites and Forest sprites are always snow-covered in Sub-Arctic climate.
-* Some aircraft sets are hardcoded to carry cargo ID 2, not "MAIL", so they carry Waste.
 
 ## Translations
 
