@@ -2,7 +2,7 @@
 /* *** Begin Forest *** */
 
 spritelayout sprlay_forest_temp_pine1_growing{
-	ground	{sprite:3943;}
+	ground	{sprite:3962;}
 	//top corner
 	building	{
 	sprite: (construction_state==0 ? 1660 : construction_state==1 ? 1661 : construction_state==2 ? 1662 : 1663);
@@ -38,7 +38,7 @@ spritelayout sprlay_forest_temp_pine1_growing{
 }
 
 spritelayout sprlay_forest_temp_pine2_growing{
-	ground	{sprite:3943;}
+	ground	{sprite:3962;}
 	//top corner
 	building	{
 	sprite: (construction_state==0 ? 1611 : construction_state==1 ? 1612 : construction_state==2 ? 1613 : 1614);
@@ -74,7 +74,7 @@ spritelayout sprlay_forest_temp_pine2_growing{
 }
 
 spritelayout sprlay_forest_temp_brdlfs_growing{
-	ground		{sprite: 3943;} 
+	ground		{sprite: 3962;} 
 	// top corner
 	building	{
 	sprite:(construction_state==0 ? 1590 : construction_state==1 ? 1591 : construction_state==2 ? 1592 : 1593);
@@ -111,7 +111,7 @@ spritelayout sprlay_forest_temp_brdlfs_growing{
 }
 
 spritelayout sprlay_forest_temp_mixed_growing{
-	ground		{sprite: 3943;}
+	ground		{sprite: 3962;}
 	// top corner
 	building	{
 	sprite:(construction_state==0 ? 1590 : construction_state==1 ? 1591 : construction_state==2 ? 1592 : 1593);
