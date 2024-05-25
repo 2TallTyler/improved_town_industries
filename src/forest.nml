@@ -1,332 +1,332 @@
 
 /* *** Begin Forest *** */
 
-spritelayout sprlay_forest_temp_pine1_growing{
+spritelayout sprlay_forest_temp_pine1_growing {
 	ground	{sprite:3962;}
 	//top corner
 	building	{
-	sprite: (construction_state==0 ? 1660 : construction_state==1 ? 1661 : construction_state==2 ? 1662 : 1663);
-	xoffset: 0;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite: (construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		xoffset: 0;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//bottom corner
 	building {
-	sprite:(construction_state==0 ? 1653 : construction_state==1 ? 1654 : construction_state==2 ? 1655 : 1656);
-	xoffset: 8;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1653 : construction_state == 1 ? 1654 : construction_state == 2 ? 1655 : 1656);
+		xoffset: 8;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 	// left corner
 	building {
-	sprite:(construction_state==0 ? 1660 : construction_state==1 ? 1661 : construction_state==2 ? 1662 : 1663);
-	xoffset: 8;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		xoffset: 8;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//right corner
 	building {
-	sprite:(construction_state==0 ? 1660 : construction_state==1 ? 1661 : construction_state==2 ? 1662 : 1663);
-	xoffset: 0;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		xoffset: 0;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 }
 
-spritelayout sprlay_forest_temp_pine2_growing{
+spritelayout sprlay_forest_temp_pine2_growing {
 	ground	{sprite:3962;}
 	//top corner
 	building	{
-	sprite: (construction_state==0 ? 1611 : construction_state==1 ? 1612 : construction_state==2 ? 1613 : 1614);
-	xoffset: 0;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite: (construction_state == 0 ? 1611 : construction_state == 1 ? 1612 : construction_state == 2 ? 1613 : 1614);
+		xoffset: 0;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//bottom corner
 	building {
-	sprite: (construction_state==0 ? 1660 : construction_state==1 ? 1661 : construction_state==2 ? 1662 : 1663);
-	xoffset: 8;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite: (construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		xoffset: 8;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 	// left corner
 	building {
-	sprite:(construction_state==0 ? 1660 : construction_state==1 ? 1661 : construction_state==2 ? 1662 : 1663);
-	xoffset: 8;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		xoffset: 8;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//right corner
 	building {
-	sprite:(construction_state==0 ? 1660 : construction_state==1 ? 1661 : construction_state==2 ? 1662 : 1663);
-	xoffset: 0;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		xoffset: 0;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 }
 
-spritelayout sprlay_forest_temp_brdlfs_growing{
+spritelayout sprlay_forest_temp_brdlfs_growing {
 	ground		{sprite: 3962;} 
 	// top corner
 	building	{
-	sprite:(construction_state==0 ? 1590 : construction_state==1 ? 1591 : construction_state==2 ? 1592 : 1593);
-	xoffset: 0;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1590 : construction_state == 1 ? 1591 : construction_state == 2 ? 1592 : 1593);
+		xoffset: 0;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//bottom corner
 	building {
-	sprite:(construction_state==0 ? 1611 : construction_state==1 ? 1612 : construction_state==2 ? 1613 : 1614);
-	xoffset: 8;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1611 : construction_state == 1 ? 1612 : construction_state == 2 ? 1613 : 1614);
+		xoffset: 8;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 	// left corner
 	building {
-	sprite:(construction_state==0 ? 1590 : construction_state==1 ? 1591 : construction_state==2 ? 1592 : 1593);
-	xoffset: 8;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1590 : construction_state == 1 ? 1591 : construction_state == 2 ? 1592 : 1593);
+		xoffset: 8;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//right corner
 	building {
-	sprite:(construction_state==0 ? 1590 : construction_state==1 ? 1591 : construction_state==2 ? 1592 : 1593);
-	xoffset: 0;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1590 : construction_state == 1 ? 1591 : construction_state == 2 ? 1592 : 1593);
+		xoffset: 0;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
-
 }
 
-spritelayout sprlay_forest_temp_mixed_growing{
+spritelayout sprlay_forest_temp_mixed_growing {
 	ground		{sprite: 3962;}
 	// top corner
 	building	{
-	sprite:(construction_state==0 ? 1590 : construction_state==1 ? 1591 : construction_state==2 ? 1592 : 1593);
-	xoffset: 0;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1590 : construction_state == 1 ? 1591 : construction_state == 2 ? 1592 : 1593);
+		xoffset: 0;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//bottom corner
 	building {
-	sprite:(construction_state==0 ? 1590 : construction_state==1 ? 1591 : construction_state==2 ? 1592 : 1593);
-	xoffset: 8;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1590 : construction_state == 1 ? 1591 : construction_state == 2 ? 1592 : 1593);
+		xoffset: 8;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 	// left corner
 	building {
-	sprite:(construction_state==0 ? 1660 : construction_state==1 ? 1661 : construction_state==2 ? 1662 : 1663);
-	xoffset: 8;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		xoffset: 8;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//right corner
 	building {
-	sprite:(construction_state==0 ? 1660 : construction_state==1 ? 1661 : construction_state==2 ? 1662 : 1663);
-	xoffset: 0;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite:(construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		xoffset: 0;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 }
 
-spritelayout sprlay_forest_brownground{
+spritelayout sprlay_forest_brownground {
 		ground		{sprite: 2022;} 
 	}
 	
-spritelayout sprlay_forest_logginghouse{
+spritelayout sprlay_forest_logginghouse {
 		ground		{sprite: 2022;} 
 		building	{sprite: 2063;}
 	}	
 
-spritelayout sprlay_forest_snowy_pine1_growing{
+spritelayout sprlay_forest_snowy_pine1_growing {
 	ground	{sprite: (terrain_type == TILETYPE_SNOW ? 4531 : 3962);}
 	//top corner 1765
 	building	{
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1765 : construction_state==1 ? 1766 : construction_state==2 ? 1767 : 1768) : (construction_state==0 ? 1709 : construction_state==1 ? 1710 : construction_state==2 ? 1711 : 1712));
-	xoffset: 0;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1765 : construction_state == 1 ? 1766 : construction_state == 2 ? 1767 : 1768) : (construction_state == 0 ? 1709 : construction_state == 1 ? 1710 : construction_state == 2 ? 1711 : 1712));
+		xoffset: 0;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//bottom corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1800 : construction_state==1 ? 1801 : construction_state==2 ? 1802 : 1803) : (construction_state==0 ? 1744 : construction_state==1 ? 1745 : construction_state==2 ? 1746 : 1747));
-	xoffset: 8;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1800 : construction_state == 1 ? 1801 : construction_state == 2 ? 1802 : 1803) : (construction_state == 0 ? 1744 : construction_state == 1 ? 1745 : construction_state == 2 ? 1746 : 1747));
+		xoffset: 8;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 	// left corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1765 : construction_state==1 ? 1766 : construction_state==2 ? 1767 : 1768) : (construction_state==0 ? 1709 : construction_state==1 ? 1710 : construction_state==2 ? 1711 : 1712));
-	xoffset: 8;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1765 : construction_state == 1 ? 1766 : construction_state == 2 ? 1767 : 1768) : (construction_state == 0 ? 1709 : construction_state == 1 ? 1710 : construction_state == 2 ? 1711 : 1712));
+		xoffset: 8;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//right corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1765 : construction_state==1 ? 1766 : construction_state==2 ? 1767 : 1768) : (construction_state==0 ? 1709 : construction_state==1 ? 1710 : construction_state==2 ? 1711 : 1712));
-	xoffset: 0;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1765 : construction_state == 1 ? 1766 : construction_state == 2 ? 1767 : 1768) : (construction_state == 0 ? 1709 : construction_state == 1 ? 1710 : construction_state == 2 ? 1711 : 1712));
+		xoffset: 0;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 }
 
-spritelayout sprlay_forest_snowy_pine2_growing{
+spritelayout sprlay_forest_snowy_pine2_growing {
 	ground	{sprite: (terrain_type == TILETYPE_SNOW ? 4531 : 3962);}
 	//top corner 
 	building	{
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1786 : construction_state==1 ? 1787 : construction_state==2 ? 1788 : 1789) : (construction_state==0 ? 1730 : construction_state==1 ? 1731 : construction_state==2 ? 1732 : 1733));
-	xoffset: 0;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type  ==  TILETYPE_SNOW ? (construction_state == 0 ? 1786 : construction_state == 1 ? 1787 : construction_state == 2 ? 1788 : 1789) : (construction_state == 0 ? 1730 : construction_state == 1 ? 1731 : construction_state == 2 ? 1732 : 1733));
+		xoffset: 0;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//bottom corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1765 : construction_state==1 ? 1766 : construction_state==2 ? 1767 : 1768) : (construction_state==0 ? 1709 : construction_state==1 ? 1710 : construction_state==2 ? 1711 : 1712));
-	xoffset: 8;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1765 : construction_state == 1 ? 1766 : construction_state == 2 ? 1767 : 1768) : (construction_state == 0 ? 1709 : construction_state == 1 ? 1710 : construction_state == 2 ? 1711 : 1712));
+		xoffset: 8;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 	// left corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1765 : construction_state==1 ? 1766 : construction_state==2 ? 1767 : 1768) : (construction_state==0 ? 1709 : construction_state==1 ? 1710 : construction_state==2 ? 1711 : 1712));
-	xoffset: 8;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1765 : construction_state == 1 ? 1766 : construction_state == 2 ? 1767 : 1768) : (construction_state == 0 ? 1709 : construction_state == 1 ? 1710 : construction_state == 2 ? 1711 : 1712));
+		xoffset: 8;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//right corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1765 : construction_state==1 ? 1766 : construction_state==2 ? 1767 : 1768) : (construction_state==0 ? 1709 : construction_state==1 ? 1710 : construction_state==2 ? 1711 : 1712));
-	xoffset: 0;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1765 : construction_state == 1 ? 1766 : construction_state == 2 ? 1767 : 1768) : (construction_state == 0 ? 1709 : construction_state == 1 ? 1710 : construction_state == 2 ? 1711 : 1712));
+		xoffset: 0;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 }
 
-spritelayout sprlay_forest_snowy_brdlfs_growing{
+spritelayout sprlay_forest_snowy_brdlfs_growing {
 	ground	{sprite: (terrain_type == TILETYPE_SNOW ? 4531 : 3962);}
 	//top corner 
 	building	{
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1772 : construction_state==1 ? 1773 : construction_state==2 ? 1774 : 1775) : (construction_state==0 ? 1716 : construction_state==1 ? 1717 : construction_state==2 ? 1718 : 1719));
-	xoffset: 0;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1772 : construction_state == 1 ? 1773 : construction_state == 2 ? 1774 : 1775) : (construction_state == 0 ? 1716 : construction_state == 1 ? 1717 : construction_state == 2 ? 1718 : 1719));
+		xoffset: 0;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//bottom corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1786 : construction_state==1 ? 1787 : construction_state==2 ? 1788 : 1789) : (construction_state==0 ? 1730 : construction_state==1 ? 1731 : construction_state==2 ? 1732 : 1733));
-	xoffset: 8;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1786 : construction_state == 1 ? 1787 : construction_state == 2 ? 1788 : 1789) : (construction_state == 0 ? 1730 : construction_state == 1 ? 1731 : construction_state == 2 ? 1732 : 1733));
+		xoffset: 8;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 	// left corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1772 : construction_state==1 ? 1773 : construction_state==2 ? 1774 : 1775) : (construction_state==0 ? 1716 : construction_state==1 ? 1717 : construction_state==2 ? 1718 : 1719));
-	xoffset: 8;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1772 : construction_state == 1 ? 1773 : construction_state == 2 ? 1774 : 1775) : (construction_state == 0 ? 1716 : construction_state == 1 ? 1717 : construction_state == 2 ? 1718 : 1719));
+		xoffset: 8;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//right corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1772 : construction_state==1 ? 1773 : construction_state==2 ? 1774 : 1775) : (construction_state==0 ? 1716 : construction_state==1 ? 1717 : construction_state==2 ? 1718 : 1719));
-	xoffset: 0;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1772 : construction_state == 1 ? 1773 : construction_state == 2 ? 1774 : 1775) : (construction_state == 0 ? 1716 : construction_state == 1 ? 1717 : construction_state == 2 ? 1718 : 1719));
+		xoffset: 0;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 }
 
-spritelayout sprlay_forest_snowy_mixed_growing{
+spritelayout sprlay_forest_snowy_mixed_growing {
 	ground	{sprite: (terrain_type == TILETYPE_SNOW ? 4531 : 3962);}
 	//top corner 
 	building	{
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1772 : construction_state==1 ? 1773 : construction_state==2 ? 1774 : 1775) : (construction_state==0 ? 1716 : construction_state==1 ? 1717 : construction_state==2 ? 1718 : 1719));
-	xoffset: 0;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type  ==  TILETYPE_SNOW ? (construction_state == 0 ? 1772 : construction_state == 1 ? 1773 : construction_state == 2 ? 1774 : 1775) : (construction_state == 0 ? 1716 : construction_state == 1 ? 1717 : construction_state == 2 ? 1718 : 1719));
+		xoffset: 0;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//bottom corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1772 : construction_state==1 ? 1773 : construction_state==2 ? 1774 : 1775) : (construction_state==0 ? 1716 : construction_state==1 ? 1717 : construction_state==2 ? 1718 : 1719));
-	xoffset: 8;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1772 : construction_state == 1 ? 1773 : construction_state == 2 ? 1774 : 1775) : (construction_state == 0 ? 1716 : construction_state == 1 ? 1717 : construction_state == 2 ? 1718 : 1719));
+		xoffset: 8;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 	// left corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1765 : construction_state==1 ? 1766 : construction_state==2 ? 1767 : 1768) : (construction_state==0 ? 1709 : construction_state==1 ? 1710 : construction_state==2 ? 1711 : 1712));
-	xoffset: 8;
-	yoffset: 0;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1765 : construction_state == 1 ? 1766 : construction_state == 2 ? 1767 : 1768) : (construction_state == 0 ? 1709 : construction_state == 1 ? 1710 : construction_state == 2 ? 1711 : 1712));
+		xoffset: 8;
+		yoffset: 0;
+		xextent: 8;
+		yextent: 8;
 	}
 	//right corner
 	building {
-	sprite: (terrain_type == TILETYPE_SNOW ? (construction_state==0 ? 1765 : construction_state==1 ? 1766 : construction_state==2 ? 1767 : 1768) : (construction_state==0 ? 1709 : construction_state==1 ? 1710 : construction_state==2 ? 1711 : 1712));
-	xoffset: 0;
-	yoffset: 8;
-	xextent: 8;
-	yextent: 8;
+		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1765 : construction_state == 1 ? 1766 : construction_state == 2 ? 1767 : 1768) : (construction_state == 0 ? 1709 : construction_state == 1 ? 1710 : construction_state == 2 ? 1711 : 1712));
+		xoffset: 0;
+		yoffset: 8;
+		xextent: 8;
+		yextent: 8;
 	}
 }
 
 /* TEMPERATE and ARCTIC graphics switches */
 
-switch (FEAT_INDUSTRYTILES, SELF, switch_forest_pine1_selector, climate == CLIMATE_ARCTIC){
+switch (FEAT_INDUSTRYTILES, SELF, switch_forest_pine1_selector, climate == CLIMATE_ARCTIC) {
 	1: return sprlay_forest_snowy_pine1_growing;
 	0: return sprlay_forest_temp_pine1_growing;
-	}
+}
 	
-switch (FEAT_INDUSTRYTILES, SELF, switch_forest_pine2_selector, climate == CLIMATE_ARCTIC){
+switch (FEAT_INDUSTRYTILES, SELF, switch_forest_pine2_selector, climate == CLIMATE_ARCTIC) {
 	1: return sprlay_forest_snowy_pine2_growing;
 	0: return sprlay_forest_temp_pine2_growing;
-	}
-switch (FEAT_INDUSTRYTILES, SELF, switch_forest_brdlfs_selector, climate == CLIMATE_ARCTIC){
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, switch_forest_brdlfs_selector, climate == CLIMATE_ARCTIC) {
 	1: return sprlay_forest_snowy_brdlfs_growing;
 	0: return sprlay_forest_temp_brdlfs_growing;
-	}
+}
 	
-switch (FEAT_INDUSTRYTILES, SELF, switch_forest_mixed_selector, climate == CLIMATE_ARCTIC){
+switch (FEAT_INDUSTRYTILES, SELF, switch_forest_mixed_selector, climate == CLIMATE_ARCTIC) {
 	1: return sprlay_forest_snowy_mixed_growing;
 	0: return sprlay_forest_temp_mixed_growing;
-	}	
+}	
 
 item (FEAT_INDUSTRYTILES, ind_tile_forest_mixed) {
     property {
         substitute: 16;
-        //override: 16;
+        override: 16;
         accepted_cargos: [[PASS, 8]];
     }
-	graphics{
+	graphics {
 		default: switch_forest_mixed_selector;
 	}
 }
@@ -334,10 +334,10 @@ item (FEAT_INDUSTRYTILES, ind_tile_forest_mixed) {
 item (FEAT_INDUSTRYTILES, ind_tile_forest_pine1) {
     property {
         substitute: 16;
-        //override: 16;
+        override: 16;
         accepted_cargos: [[PASS, 8]];
     }
-	graphics{
+	graphics {
 		default: switch_forest_pine1_selector;
 	}
 }
@@ -345,10 +345,10 @@ item (FEAT_INDUSTRYTILES, ind_tile_forest_pine1) {
 item (FEAT_INDUSTRYTILES, ind_tile_forest_pine2) {
     property {
         substitute: 16;
-        //override: 16;
+        override: 16;
         accepted_cargos: [[PASS, 8]];
     }
-	graphics{
+	graphics {
 		default: switch_forest_pine2_selector;
 	}
 }
@@ -356,10 +356,10 @@ item (FEAT_INDUSTRYTILES, ind_tile_forest_pine2) {
 item (FEAT_INDUSTRYTILES, ind_tile_forest_brdlfs) {
     property {
         substitute: 16;
-        //override: 16;
+        override: 16;
         accepted_cargos: [[PASS, 8]];
     }
-	graphics{
+	graphics {
 		default: switch_forest_brdlfs_selector;
 	}
 }
@@ -367,10 +367,10 @@ item (FEAT_INDUSTRYTILES, ind_tile_forest_brdlfs) {
 item (FEAT_INDUSTRYTILES, ind_tile_forest_brownground) {
     property {
         substitute: 16;
-        //override: 16;
+        override: 16;
         accepted_cargos: [[PASS, 8]];
     }
-	graphics{
+	graphics {
 		default: sprlay_forest_brownground;
 	}
 }
@@ -378,10 +378,10 @@ item (FEAT_INDUSTRYTILES, ind_tile_forest_brownground) {
 item (FEAT_INDUSTRYTILES, ind_tile_forest_logginghouse) {
     property {
         substitute: 16;
-        //override: 16;
+        override: 16;
         accepted_cargos: [[PASS, 8]];
     }
-	graphics{
+	graphics {
 		default: sprlay_forest_logginghouse;
 	}
 }
@@ -469,13 +469,12 @@ item (FEAT_INDUSTRIES, industry_forest, 3) {
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
         prob_map_gen: 2; // Account for difficulty of finding suitable locatiom
         prob_in_game: 0;
-		fund_cost_multiplier: 255;
-		
+		fund_cost_multiplier: 255;		
 	}
 	graphics {
 		extra_text_industry: StringGetPrimaryHelptext();
         location_check: loc_check_forest;
-        produce_256_ticks: switch_produce_forest;			
+        produce_256_ticks: switch_produce_forest;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
