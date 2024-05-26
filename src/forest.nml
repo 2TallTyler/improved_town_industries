@@ -302,7 +302,17 @@ spritelayout sprlay_forest_brownground {
 spritelayout sprlay_forest_logginghouse {
 		ground		{sprite: 2022;} 
 		building	{sprite: 2063;}
-	}	
+	}
+
+spritelayout sprlay_forest_brownlogs {
+		ground		{sprite: 2022;} 
+		building	{sprite: 2071;}
+	}
+	
+spritelayout sprlay_forest_blacklogs {
+		ground		{sprite: 2022;} 
+		building	{sprite: 2070;}
+	}
 
 /* TEMPERATE and ARCTIC graphics switches */
 
@@ -392,6 +402,28 @@ item (FEAT_INDUSTRYTILES, ind_tile_forest_logginghouse) {
 	}
 }
 
+item (FEAT_INDUSTRYTILES, ind_tile_forest_brownlogs) {
+    property {
+        substitute: 16;
+        override: 16;
+        accepted_cargos: [[PASS, 8]];
+    }
+	graphics {
+		default: sprlay_forest_brownlogs;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_forest_blacklogs) {
+    property {
+        substitute: 16;
+        override: 16;
+        accepted_cargos: [[PASS, 8]];
+    }
+	graphics {
+		default: sprlay_forest_blacklogs;
+	}
+}
+
 tilelayout industry_layout_forest_layout_1 {
 	0, 0: ind_tile_forest_tile4;
 	1, 0: ind_tile_forest_tile4;
@@ -417,33 +449,41 @@ tilelayout industry_layout_forest_layout_1 {
 	1, 4: ind_tile_forest_tile4;
 	2, 4: ind_tile_forest_logginghouse;
 	3, 4: ind_tile_forest_brownground;
+	
+	4, 4: ind_tile_forest_brownground;
+	4, 3: ind_tile_forest_brownlogs;
+	4, 2: ind_tile_forest_blacklogs;	
 }
 
 tilelayout industry_layout_forest_layout_2 {
-	0, 0: ind_tile_forest_tile4;
 	0, 1: ind_tile_forest_tile4;
-	0, 2: ind_tile_forest_tile1;
-	0, 3: ind_tile_forest_tile4;
+	0, 2: ind_tile_forest_tile4;
+	0, 3: ind_tile_forest_tile1;
+	0, 4: ind_tile_forest_tile4;
 	
-	1, 0: ind_tile_forest_tile1;
-	1, 1: ind_tile_forest_tile4;
-	1, 2: ind_tile_forest_tile3;
-	1, 3: ind_tile_forest_tile1;
+	1, 1: ind_tile_forest_tile1;
+	1, 2: ind_tile_forest_tile4;
+	1, 3: ind_tile_forest_tile3;
+	1, 4: ind_tile_forest_tile1;
 	
-	2, 0: ind_tile_forest_tile4;
-	2, 1: ind_tile_forest_tile2;
-	2, 2: ind_tile_forest_tile3;
-	2, 3: ind_tile_forest_tile4;
+	2, 1: ind_tile_forest_tile4;
+	2, 2: ind_tile_forest_tile2;
+	2, 3: ind_tile_forest_tile3;
+	2, 4: ind_tile_forest_tile4;
 	
-	3, 0: ind_tile_forest_tile1;
-	3, 1: ind_tile_forest_tile4;
-	3, 2: ind_tile_forest_tile2;
-	3, 3: ind_tile_forest_tile4;
+	3, 1: ind_tile_forest_tile1;
+	3, 2: ind_tile_forest_tile4;
+	3, 3: ind_tile_forest_tile2;
+	3, 4: ind_tile_forest_tile4;
+	
+	4, 1: ind_tile_forest_brownground;
+	4, 2: ind_tile_forest_logginghouse;
+	4, 3: ind_tile_forest_tile4;
+	4, 4: ind_tile_forest_tile3;
 	
 	4, 0: ind_tile_forest_brownground;
-	4, 1: ind_tile_forest_logginghouse;
-	4, 2: ind_tile_forest_tile4;
-	4, 3: ind_tile_forest_tile3;
+	3, 0: ind_tile_forest_brownlogs;
+	2, 0: ind_tile_forest_blacklogs;	
 }
 
 produce (produce_forest,
