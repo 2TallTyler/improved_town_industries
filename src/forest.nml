@@ -1,11 +1,13 @@
 
 /* *** Begin Forest *** */
 
-spritelayout sprlay_forest_temp_pine1_growing {
+/* TEMPERATE tiles */
+
+spritelayout sprlay_forest_temp_tile1 {
 	ground	{sprite:3962;}
 	//top corner
 	building	{
-		sprite: (construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		sprite: (construction_state == 0 ? 1688 : construction_state == 1 ? 1689 : construction_state == 2 ? 1690 : 1691);
 		xoffset: 0;
 		yoffset: 0;
 		xextent: 8;
@@ -21,7 +23,7 @@ spritelayout sprlay_forest_temp_pine1_growing {
 	}
 	// left corner
 	building {
-		sprite:(construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		sprite: (construction_state == 0 ? 1688 : construction_state == 1 ? 1689 : construction_state == 2 ? 1690 : 1691);
 		xoffset: 8;
 		yoffset: 0;
 		xextent: 8;
@@ -29,7 +31,7 @@ spritelayout sprlay_forest_temp_pine1_growing {
 	}
 	//right corner
 	building {
-		sprite:(construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		sprite: (construction_state == 0 ? 1688 : construction_state == 1 ? 1689 : construction_state == 2 ? 1690 : 1691);
 		xoffset: 0;
 		yoffset: 8;
 		xextent: 8;
@@ -37,7 +39,7 @@ spritelayout sprlay_forest_temp_pine1_growing {
 	}
 }
 
-spritelayout sprlay_forest_temp_pine2_growing {
+spritelayout sprlay_forest_temp_tile2 {
 	ground	{sprite:3962;}
 	//top corner
 	building	{
@@ -49,7 +51,7 @@ spritelayout sprlay_forest_temp_pine2_growing {
 	}
 	//bottom corner
 	building {
-		sprite: (construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		sprite: (construction_state == 0 ? 1688 : construction_state == 1 ? 1689 : construction_state == 2 ? 1690 : 1691);
 		xoffset: 8;
 		yoffset: 8;
 		xextent: 8;
@@ -57,7 +59,7 @@ spritelayout sprlay_forest_temp_pine2_growing {
 	}
 	// left corner
 	building {
-		sprite:(construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		sprite: (construction_state == 0 ? 1688 : construction_state == 1 ? 1689 : construction_state == 2 ? 1690 : 1691);
 		xoffset: 8;
 		yoffset: 0;
 		xextent: 8;
@@ -65,7 +67,7 @@ spritelayout sprlay_forest_temp_pine2_growing {
 	}
 	//right corner
 	building {
-		sprite:(construction_state == 0 ? 1660 : construction_state == 1 ? 1661 : construction_state == 2 ? 1662 : 1663);
+		sprite: (construction_state == 0 ? 1688 : construction_state == 1 ? 1689 : construction_state == 2 ? 1690 : 1691);
 		xoffset: 0;
 		yoffset: 8;
 		xextent: 8;
@@ -73,7 +75,7 @@ spritelayout sprlay_forest_temp_pine2_growing {
 	}
 }
 
-spritelayout sprlay_forest_temp_brdlfs_growing {
+spritelayout sprlay_forest_temp_tile3 {
 	ground		{sprite: 3962;} 
 	// top corner
 	building	{
@@ -109,7 +111,7 @@ spritelayout sprlay_forest_temp_brdlfs_growing {
 	}
 }
 
-spritelayout sprlay_forest_temp_mixed_growing {
+spritelayout sprlay_forest_temp_tile4 {
 	ground		{sprite: 3962;}
 	// top corner
 	building	{
@@ -145,18 +147,11 @@ spritelayout sprlay_forest_temp_mixed_growing {
 	}
 }
 
-spritelayout sprlay_forest_brownground {
-		ground		{sprite: 2022;} 
-	}
-	
-spritelayout sprlay_forest_logginghouse {
-		ground		{sprite: 2022;} 
-		building	{sprite: 2063;}
-	}	
+/* ARCTIC tiles */
 
-spritelayout sprlay_forest_snowy_pine1_growing {
+spritelayout sprlay_forest_snowy_tile1 {
 	ground	{sprite: (terrain_type == TILETYPE_SNOW ? 4531 : 3962);}
-	//top corner 1765
+	//top corner
 	building	{
 		sprite: (terrain_type == TILETYPE_SNOW ? (construction_state == 0 ? 1765 : construction_state == 1 ? 1766 : construction_state == 2 ? 1767 : 1768) : (construction_state == 0 ? 1709 : construction_state == 1 ? 1710 : construction_state == 2 ? 1711 : 1712));
 		xoffset: 0;
@@ -190,7 +185,7 @@ spritelayout sprlay_forest_snowy_pine1_growing {
 	}
 }
 
-spritelayout sprlay_forest_snowy_pine2_growing {
+spritelayout sprlay_forest_snowy_tile2 {
 	ground	{sprite: (terrain_type == TILETYPE_SNOW ? 4531 : 3962);}
 	//top corner 
 	building	{
@@ -226,7 +221,7 @@ spritelayout sprlay_forest_snowy_pine2_growing {
 	}
 }
 
-spritelayout sprlay_forest_snowy_brdlfs_growing {
+spritelayout sprlay_forest_snowy_tile3 {
 	ground	{sprite: (terrain_type == TILETYPE_SNOW ? 4531 : 3962);}
 	//top corner 
 	building	{
@@ -262,7 +257,7 @@ spritelayout sprlay_forest_snowy_brdlfs_growing {
 	}
 }
 
-spritelayout sprlay_forest_snowy_mixed_growing {
+spritelayout sprlay_forest_snowy_tile4 {
 	ground	{sprite: (terrain_type == TILETYPE_SNOW ? 4531 : 3962);}
 	//top corner 
 	building	{
@@ -298,69 +293,80 @@ spritelayout sprlay_forest_snowy_mixed_growing {
 	}
 }
 
+/* Logging house and brown ground tiles */
+
+spritelayout sprlay_forest_brownground {
+		ground		{sprite: 2022;} 
+	}
+	
+spritelayout sprlay_forest_logginghouse {
+		ground		{sprite: 2022;} 
+		building	{sprite: 2063;}
+	}	
+
 /* TEMPERATE and ARCTIC graphics switches */
 
-switch (FEAT_INDUSTRYTILES, SELF, switch_forest_pine1_selector, climate == CLIMATE_ARCTIC) {
-	1: return sprlay_forest_snowy_pine1_growing;
-	0: return sprlay_forest_temp_pine1_growing;
+switch (FEAT_INDUSTRYTILES, SELF, switch_forest_tile1_selector, climate == CLIMATE_ARCTIC) {
+	1: return sprlay_forest_snowy_tile1;
+	0: return sprlay_forest_temp_tile1;
 }
 	
-switch (FEAT_INDUSTRYTILES, SELF, switch_forest_pine2_selector, climate == CLIMATE_ARCTIC) {
-	1: return sprlay_forest_snowy_pine2_growing;
-	0: return sprlay_forest_temp_pine2_growing;
+switch (FEAT_INDUSTRYTILES, SELF, switch_forest_tile2_selector, climate == CLIMATE_ARCTIC) {
+	1: return sprlay_forest_snowy_tile2;
+	0: return sprlay_forest_temp_tile2;
 }
 
-switch (FEAT_INDUSTRYTILES, SELF, switch_forest_brdlfs_selector, climate == CLIMATE_ARCTIC) {
-	1: return sprlay_forest_snowy_brdlfs_growing;
-	0: return sprlay_forest_temp_brdlfs_growing;
+switch (FEAT_INDUSTRYTILES, SELF, switch_forest_tile3_selector, climate == CLIMATE_ARCTIC) {
+	1: return sprlay_forest_snowy_tile3;
+	0: return sprlay_forest_temp_tile3;
 }
 	
-switch (FEAT_INDUSTRYTILES, SELF, switch_forest_mixed_selector, climate == CLIMATE_ARCTIC) {
-	1: return sprlay_forest_snowy_mixed_growing;
-	0: return sprlay_forest_temp_mixed_growing;
+switch (FEAT_INDUSTRYTILES, SELF, switch_forest_tile4_selector, climate == CLIMATE_ARCTIC) {
+	1: return sprlay_forest_snowy_tile4;
+	0: return sprlay_forest_temp_tile4;
 }	
 
-item (FEAT_INDUSTRYTILES, ind_tile_forest_mixed) {
+item (FEAT_INDUSTRYTILES, ind_tile_forest_tile1) {
     property {
         substitute: 16;
         override: 16;
         accepted_cargos: [[PASS, 8]];
     }
 	graphics {
-		default: switch_forest_mixed_selector;
+		default: switch_forest_tile1_selector;
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_forest_pine1) {
+item (FEAT_INDUSTRYTILES, ind_tile_forest_tile2) {
     property {
         substitute: 16;
         override: 16;
         accepted_cargos: [[PASS, 8]];
     }
 	graphics {
-		default: switch_forest_pine1_selector;
+		default: switch_forest_tile2_selector;
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_forest_pine2) {
+item (FEAT_INDUSTRYTILES, ind_tile_forest_tile3) {
     property {
         substitute: 16;
         override: 16;
         accepted_cargos: [[PASS, 8]];
     }
 	graphics {
-		default: switch_forest_pine2_selector;
+		default: switch_forest_tile3_selector;
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_forest_brdlfs) {
+item (FEAT_INDUSTRYTILES, ind_tile_forest_tile4) {
     property {
         substitute: 16;
         override: 16;
         accepted_cargos: [[PASS, 8]];
     }
 	graphics {
-		default: switch_forest_brdlfs_selector;
+		default: switch_forest_tile4_selector;
 	}
 }
 
@@ -387,57 +393,57 @@ item (FEAT_INDUSTRYTILES, ind_tile_forest_logginghouse) {
 }
 
 tilelayout industry_layout_forest_layout_1 {
-	0, 0: ind_tile_forest_mixed;
-	1, 0: ind_tile_forest_mixed;
-	2, 0: ind_tile_forest_pine1;
-	3, 0: ind_tile_forest_mixed;
+	0, 0: ind_tile_forest_tile4;
+	1, 0: ind_tile_forest_tile4;
+	2, 0: ind_tile_forest_tile1;
+	3, 0: ind_tile_forest_tile4;
 	
-	0, 1: ind_tile_forest_pine2;
-	1, 1: ind_tile_forest_mixed;
-	2, 1: ind_tile_forest_brdlfs;
-	3, 1: ind_tile_forest_pine1;
+	0, 1: ind_tile_forest_tile2;
+	1, 1: ind_tile_forest_tile4;
+	2, 1: ind_tile_forest_tile3;
+	3, 1: ind_tile_forest_tile1;
 	
-	0, 2: ind_tile_forest_mixed;
-	1, 2: ind_tile_forest_pine1;
-	2, 2: ind_tile_forest_brdlfs;
-	3, 2: ind_tile_forest_mixed;
+	0, 2: ind_tile_forest_tile4;
+	1, 2: ind_tile_forest_tile1;
+	2, 2: ind_tile_forest_tile3;
+	3, 2: ind_tile_forest_tile4;
 	
-	0, 3: ind_tile_forest_pine2;
-	1, 3: ind_tile_forest_mixed;
-	2, 3: ind_tile_forest_pine1;
-	3, 3: ind_tile_forest_mixed;
+	0, 3: ind_tile_forest_tile2;
+	1, 3: ind_tile_forest_tile4;
+	2, 3: ind_tile_forest_tile1;
+	3, 3: ind_tile_forest_tile4;
 	
-	0, 4: ind_tile_forest_brdlfs;
-	1, 4: ind_tile_forest_mixed;
+	0, 4: ind_tile_forest_tile3;
+	1, 4: ind_tile_forest_tile4;
 	2, 4: ind_tile_forest_logginghouse;
 	3, 4: ind_tile_forest_brownground;
 }
 
 tilelayout industry_layout_forest_layout_2 {
-	0, 0: ind_tile_forest_mixed;
-	0, 1: ind_tile_forest_mixed;
-	0, 2: ind_tile_forest_pine1;
-	0, 3: ind_tile_forest_mixed;
+	0, 0: ind_tile_forest_tile4;
+	0, 1: ind_tile_forest_tile4;
+	0, 2: ind_tile_forest_tile1;
+	0, 3: ind_tile_forest_tile4;
 	
-	1, 0: ind_tile_forest_pine1;
-	1, 1: ind_tile_forest_mixed;
-	1, 2: ind_tile_forest_brdlfs;
-	1, 3: ind_tile_forest_pine1;
+	1, 0: ind_tile_forest_tile1;
+	1, 1: ind_tile_forest_tile4;
+	1, 2: ind_tile_forest_tile3;
+	1, 3: ind_tile_forest_tile1;
 	
-	2, 0: ind_tile_forest_mixed;
-	2, 1: ind_tile_forest_pine2;
-	2, 2: ind_tile_forest_brdlfs;
-	2, 3: ind_tile_forest_mixed;
+	2, 0: ind_tile_forest_tile4;
+	2, 1: ind_tile_forest_tile2;
+	2, 2: ind_tile_forest_tile3;
+	2, 3: ind_tile_forest_tile4;
 	
-	3, 0: ind_tile_forest_pine1;
-	3, 1: ind_tile_forest_mixed;
-	3, 2: ind_tile_forest_pine2;
-	3, 3: ind_tile_forest_mixed;
+	3, 0: ind_tile_forest_tile1;
+	3, 1: ind_tile_forest_tile4;
+	3, 2: ind_tile_forest_tile2;
+	3, 3: ind_tile_forest_tile4;
 	
 	4, 0: ind_tile_forest_brownground;
 	4, 1: ind_tile_forest_logginghouse;
-	4, 2: ind_tile_forest_mixed;
-	4, 3: ind_tile_forest_brdlfs;
+	4, 2: ind_tile_forest_tile4;
+	4, 3: ind_tile_forest_tile3;
 }
 
 produce (produce_forest,
