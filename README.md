@@ -69,10 +69,6 @@ Secondary industries and Banks only generate in cities.
 * Includes industry tile objects for visual expansion and decoration.
 * Houses produce Waste instead of Mail.
 
-## Limitations
-
-* This industry set is designed for Temperate climate only, since it doesn't include snow sprites and Forest sprites are always snow-covered in Sub-Arctic climate.
-
 ## Translations
 
 * English
@@ -91,7 +87,7 @@ Please feel free to translate into your language and submit a Pull Request.
 
 ## Additional Credits
 
-* Overjay: Hardware store concept and coding
+* Overjay: Hardware store concept and coding, Forest industry remake using tree sprites.
 
 ## Design Notes
 
