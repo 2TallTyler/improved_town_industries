@@ -15,12 +15,17 @@ item (FEAT_INDUSTRYTILES, ind_tile_bank_60) {
     }
 }
 
-/* Consume delivered Valuables immediately. */
+/* Yum yum, shiny rocks. */
 produce (produce_bank_arrival,
-	[VALU: 1;],               // Consume
+	[VALU: LOAD_TEMP(1);],    // Consume
 	[],                       // Produce
-	1                         // Run callback again
+	0                         // Don't run callback again
 )
+
+/* When valuables are delivered, consume them immediately. */
+switch (FEAT_INDUSTRIES, SELF, switch_bank_cargo_arrival, STORE_TEMP(incoming_cargo_waiting("VALU"), 1)) {
+    produce_bank_arrival;
+}
 
 /* Produce cargo. */
 produce (produce_bank,
@@ -65,7 +70,7 @@ item (FEAT_INDUSTRIES, industry_bank, 14) {
 		extra_text_industry: StringGetPrimaryHelptext();
         location_check: loc_check_bank;
         produce_256_ticks: switch_produce_bank;
-        produce_cargo_arrival: produce_bank_arrival;
+        produce_cargo_arrival: switch_bank_cargo_arrival;
         cargo_subtype_display: switch_bank_cargo_subtype_display;
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production
