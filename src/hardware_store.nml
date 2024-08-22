@@ -13,10 +13,6 @@ spritelayout sprlay_hardware_store_2 { // Building materials tile
 	building	{sprite:2199;}
 }
 
-spritelayout sprlay_hardware_store_3 { // Concrete tile
-	ground		{sprite:1420;}	
-}
-
 item (FEAT_INDUSTRYTILES, ind_tile_hardware_store_1) { // Main building
     property {
         substitute:	08;
