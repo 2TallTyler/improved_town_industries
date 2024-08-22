@@ -1,9 +1,11 @@
 
 /**
+ * This function is UNUSED but kept for reference for other NewGRF authors!
+ *
  * Bypass location check requirements if the industry is being funded or if we're in Scenario Editor.
  * @return 1 if the industry is being funded or we're in Scenario Editor, else 0 (the industry is being generated during map generation or during a game).
  */
-switch (FEAT_INDUSTRIES, SELF, IsBeingFunded, (extra_callback_info2 == IND_CREATION_FUND || game_mode == GAMEMODE_EDITOR)) {return;}
+// switch (FEAT_INDUSTRIES, SELF, IsBeingFunded, (extra_callback_info2 == IND_CREATION_FUND || game_mode == GAMEMODE_EDITOR)) {return;}
 
 /**
  * Check if a bank is facing a road.
@@ -65,11 +67,13 @@ switch (FEAT_INDUSTRIES, SELF, IsWithinDistanceToTown, padding, (town_euclidean_
 switch (FEAT_INDUSTRIES, PARENT, TownPopulation, population) {return;}
 
 /**
+ * This function is UNUSED but kept for reference for other NewGRF authors!
+ *
  * Check if a town has a required population.
  * @param required The required population.
  * @return 1 if the town's population is over the given requirement, else 0.
  */
-switch (FEAT_INDUSTRIES, SELF, TownHasPopulation, required, TownPopulation() > required) {return;}
+// switch (FEAT_INDUSTRIES, SELF, TownHasPopulation, required, TownPopulation() > required) {return;}
 
 /**
  * Get the adjusted production efficiency, where transporting 75% of possible passengers gives 100% production efficiency.
@@ -180,12 +184,17 @@ switch (FEAT_INDUSTRIES, SELF, IsInQuadrantN,
 ) {return;}
 
 /**
+ * This function is UNUSED but kept for reference for other NewGRF authors!
+ *
  * Check if an industry is in the East quadrant of the map.
  * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0.
  */
+
+/*
 switch (FEAT_INDUSTRIES, SELF, IsInQuadrantE,
 	!param_primary_quadrants || game_mode == GAMEMODE_EDITOR || (GetTileX() < (map_x_edge / 2) && GetTileY() > (map_y_edge / 2))
 ) {return;}
+*/
 
 /**
  * Check if an industry is in the South quadrant of the map.
