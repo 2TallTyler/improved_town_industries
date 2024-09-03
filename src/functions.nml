@@ -38,7 +38,7 @@ switch (FEAT_INDUSTRIES, SELF, CityHasNoSecondaryIndustries,
 /**
  * Helper function for IsWithinDistanceToTown()
  * Note: The sum of the radii is greater than simply the largest radii, but it means larger towns have a greater range for industry placement.
- * @returns the sum of the town's townzone radii. 
+ * @return the sum of the town's townzone radii.
  */
 switch (FEAT_INDUSTRIES, PARENT, StoreTownRadii,   town_zone_0_radius_square +
                                                     town_zone_1_radius_square + 
@@ -128,9 +128,9 @@ switch (FEAT_INDUSTRIES, SELF, StringIncreaseProductionEfficiency, GetAdjustedPr
  * @return The helptext string with substrings and values from the text stack.
  */
 switch (FEAT_INDUSTRIES, SELF, StringGetPrimaryHelptext, [
-    STORE_TEMP(StringNextPrimaryProductionGoal() + 0xD000, 257),   // list the next population goal (or say we've reached it)
-    STORE_TEMP(GetAdjustedProductionEfficiency(), 258),   // current production efficiency
-    STORE_TEMP(StringIncreaseProductionEfficiency() + 0xD000, 259) // helptext to increase efficiency by transporting more passengers, if <100%, else an empty string
+    STORE_TEMP(StringNextPrimaryProductionGoal() + 0xD000, 257),   // Store the population goal string.
+    STORE_TEMP(GetAdjustedProductionEfficiency(), 258),            // Store the current production efficiency (a number, not a string).
+    STORE_TEMP(StringIncreaseProductionEfficiency() + 0xD000, 259) // Store the helptext string.
 ]) {return string(STR_PRIMARY_HELPTEXT);}
 
 /**
@@ -138,20 +138,20 @@ switch (FEAT_INDUSTRIES, SELF, StringGetPrimaryHelptext, [
  * @return The helptext string with substrings and values from the text stack.
  */
 switch (FEAT_INDUSTRIES, SELF, StringGetSecondaryHelptext, [
-    STORE_TEMP(TownPopulation() / 5, 257),   // list the next population goal (or say we've reached it)
-    STORE_TEMP(GetAdjustedProductionEfficiency(), 258),   // current production efficiency
-    STORE_TEMP(StringIncreaseProductionEfficiency() + 0xD000, 259) // helptext to increase efficiency by transporting more passengers, if <100%, else an empty string
+    STORE_TEMP(TownPopulation() / 5, 257),                         // Store the current production maximum (a number, not a string).
+    STORE_TEMP(GetAdjustedProductionEfficiency(), 258),            // Store the current production efficiency (a number, not a string).
+    STORE_TEMP(StringIncreaseProductionEfficiency() + 0xD000, 259) // Store the helptext string.
 ]) {return string(STR_SECONDARY_HELPTEXT);}
 
 /**
  * Is the parent town a city?
- * @return True if it is a city, else false.
+ * @return 1 if it is a city, else 0.
  */
 switch (FEAT_INDUSTRIES, PARENT, IsCity, is_city) {return;}
 
 /**
  * Is the parent town a town? (as oppposed to a city)
- * @return True if it is a town, else false.
+ * @return 1 if it is a town, else 0.
  */
  switch (FEAT_INDUSTRIES, PARENT, IsTown, !is_city) {return;}
 
@@ -165,13 +165,13 @@ switch (FEAT_INDUSTRIES, SELF, IndustryElevationCheck, min_z, max_z, (!param_ele
 
 /**
  * Calculate the x coordinate of an industry's northernmost tile.
- * @returns the x coordinate
+ * @return the x coordinate.
  */
 switch (FEAT_INDUSTRIES, SELF, GetTileX, var[0x80, 0, 0xFFFFFFFF] % map_x_edge) {return;}
 
 /**
  * Calculate the y coordinate of an industry's northernmost tile.
- * @returns the y coordinate
+ * @return the y coordinate.
  */
 switch (FEAT_INDUSTRIES, SELF, GetTileY, var[0x80, 0, 0xFFFFFFFF] / map_x_edge) {return;}
 
