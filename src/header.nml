@@ -14,8 +14,17 @@ grf {
 			def_value: 1;
 		}
 	}
-	
+
 	param 1 {
+		param_elevation_requirements {
+		type: bool;
+		name: string(STR_PARAM_ELEVATION_REQUIREMENTS_NAME);
+		desc: string(STR_PARAM_ELEVATION_REQUIREMENTS_DESC);
+		def_value: 1;
+		}
+    }
+
+	param 2 {
 		param_hardware_store {
 		type: bool;
 		name: string(STR_PARAM_HARDWARE_STORE_NAME);

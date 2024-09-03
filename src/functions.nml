@@ -157,11 +157,11 @@ switch (FEAT_INDUSTRIES, PARENT, IsCity, is_city) {return;}
 
 /**
  * Check if an industry is within a range of elevation.
- * @param min_z elevation (inclusive)
- * @param max_z elevation (inclusive)
- * @return 1 if the industry is at or between the specified min and max elevations, else 0
+ * @param min_z Minimum allowed elevation (inclusive).
+ * @param max_z Maximum allowed elevation (inclusive).
+ * @return 1 if the industry is at or between the specified min and max elevations, or if the Elevation Requirements parameter is disabled, else 0.
  */
-switch (FEAT_INDUSTRIES, SELF, IndustryElevationCheck, min_z, max_z, nearby_tile_height(0,0) >= min_z && nearby_tile_height(0,0) <= max_z) {return;}
+switch (FEAT_INDUSTRIES, SELF, IndustryElevationCheck, min_z, max_z, (!param_elevation_requirements) || (nearby_tile_height(0,0) >= min_z && nearby_tile_height(0,0) <= max_z)) {return;}
 
 /**
  * Calculate the x coordinate of an industry's northernmost tile.
