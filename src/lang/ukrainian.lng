@@ -1,0 +1,99 @@
+##grflangid 0x33
+##plural 0
+
+STR_GRF_NAME                        :{TITLE} {VERSION}
+STR_GRF_DESC                        :{ORANGE}Галузі, натхненні ванілoю, які потребують обслуговування та розвитку міст. {BLACK}Рекомендовано для використання зі сценарієм зростання, таким як Renewed Village Growth.{}{}{ORANGE}Відвідайте веб-сайт для отримання додаткової інформації!{}{}{BLACK}Створений 2TallTyler. Модифікований AlrickUA
+
+STR_WEBSITE                         :{WEBSITE}
+
+STR_ERROR_GAME_VERSION              :{TITLE} потребує  OpenTTD версії 14.0, JGR версії 0.58, або краще.
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} несумісний з {YELLOW}{STRING}{WHITE}.
+
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :Регіони основних промисловостей
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Стандартне значення: {ORANGE}Вкл{}{WHITE}Якщо ввімкнено, основні галузі з’являються лише в певних частинах карти.
+STR_PARAM_ELEVATION_REQUIREMENTS_NAME :Основні вимоги галузей до висоти
+STR_PARAM_ELEVATION_REQUIREMENTS_DESC :{LTBLUE}Стандартне значення: {ORANGE}Вкл{}{WHITE}Якщо ввімкнено, вугільні та залізні шахти з’являються лише вище висоти 4, а ферми та нафтові свердловини – лише нижче висоти 4.
+STR_PARAM_HARDWARE_STORE_NAME		:Створення будівельних магазинів
+STR_PARAM_HARDWARE_STORE_DESC		:{LTBLUE}Стандартне значення: {ORANGE}Вкл{}{WHITE}Якщо ввімкнути, у містах з’являються будівельні магазини, щоб приймати будівельні матеріали.
+
+STR_PRIMARY_GOAL_1000               :{BLACK}Щоб {WHITE}збільшити максимальне виробництво {BLACK}, збільште місто до 1000 населення.
+STR_PRIMARY_GOAL_2000               :{BLACK}Щоб {WHITE}збільшити максимальне виробництво {BLACK}, збільште місто до 2,000 населення.
+STR_PRIMARY_GOAL_3000               :{BLACK}Щоб {WHITE}збільшити максимальне виробництво {BLACK}, збільште місто до 3,000 населення.
+STR_PRIMARY_GOAL_4000               :{BLACK}Щоб {WHITE}збільшити максимальне виробництво {BLACK}, збільште місто до 4,000 населення.
+STR_PRIMARY_GOAL_MAX                :{WHITE}Максимальна продуктивність {BLACK}досягнена.
+STR_PRIMARY_INCREASE_EFFICIENCY     :{BLACK}Для {WHITE}підвищення ефективності{BLACK}, перевезіть більше пасажирів у цьому місті.
+STR_PRIMARY_MAX_EFFICIENCY          :{BLACK}Для підтримання {WHITE}максимальної ефективності{BLACK}, утримуйте високий рівень пасажиропотоку в цьому місті.
+STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}Ефективність виробництва: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Споживає 1 одиницю кожного вхідного вантажу на 5 населення. Поточний максимум {YELLOW}{UNSIGNED_WORD}{BLACK}/міс.{}{}Ефективність виробництва: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_INCINERATOR_HELPTEXT            :Споживає відходи, але не має іншого ефекту.
+STR_NAME_HARDWARE_STORE_MATS		:Плитка будівельних матеріалів
+STR_HARDWARE_STORE_HELPTEXT			:Споживає будівельні матеріали, але не має іншого ефекту.
+
+STR_LOC_ERROR_PRIMARY               :Основні галузі промисловості не можуть фінансуватися поблизу міст і мають бути на відповідній висоті.
+STR_LOC_ERROR_SECONDARY             :Переробні підприємства мають бути поблизу міста, де немає інших допоміжних виробництв.
+
+STR_NAME_OBJECT_MENU                :Промислові плитки
+STR_NAME_OBJECT_MENU_FIELDS         :Поля
+
+STR_EMPTY                           :
+
+STR_TOWN                            :{STRING}
+STR_STATION                         :{STRING} {STRING}
+
+STR_NAME_STEEL_MILL                 :Сталеливарний завод
+STR_NAME_IRON_MINE                  :Залізний рудник
+STR_NAME_SAWMILL                    :Пилорама
+STR_NAME_FOREST                     :Ліс
+STR_NAME_OIL_REFINERY               :Нафтопереробний завод
+STR_NAME_FARM                       :Ферма
+STR_NAME_FACTORY                    :Фабрика
+STR_NAME_COAL_MINE                  :Вугільна шахта
+STR_NAME_OIL_WELLS                  :Нафтові свердловини
+STR_NAME_PAPER_MILL                 :Папірня
+STR_NAME_RECYCLING_CENTER           :Центр переробки
+STR_NAME_BUILDING_MATERIALS_FACTORY :Завод будівельних матеріалів
+STR_NAME_FOOD_PROCESSING_PLANT      :Харчовий завод
+STR_NAME_RANCH                      :Сільське господарство
+STR_NAME_BANK                       :Банк
+STR_NAME_INCINERATOR                :Сміттєспалювальний завод
+STR_NAME_HARDWARE_STORE             :Господарський магазин
+
+STR_NAME_FIELD_1					:Поле
+
+STR_CARGO_NAME_CHEMICALS			:Хімречовини
+STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}ХР
+STR_CARGO_QUANTITY_CHEMICALS		:{WEIGHT} хімречовин
+
+STR_CARGO_NAME_LUMBER				:Пиломатеріали
+STR_CARGO_ABBREV_LUMBER				:{TINYFONT}ПМ
+STR_CARGO_QUANTITY_LUMBER			:{WEIGHT} пиломатеріалів
+
+STR_CARGO_NAME_WASTE				:Відходи
+STR_CARGO_ABBREV_WASTE				:{TINYFONT}ВХ
+STR_CARGO_QUANTITY_WASTE			:{WEIGHT} відходів
+
+STR_CARGO_NAME_BDMT                 :Будівельні матеріали
+STR_CARGO_ABBREV_BDMT               :{TINYFONT}БМ
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} удівельних матеріалів
+
+STR_CARGO_NAME_WDCH                 :Деревна тріска
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}ДТ
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} деревної тріски
+
+STR_CARGO_NAME_PLAS                 :Пластик
+STR_CARGO_ABBREV_PLAS               :{TINYFONT}ПЛ
+STR_CARGO_QUANTITY_PLAS             :{WEIGHT} пластику
+
+STR_CARGO_NAME_SCMT                 :Металобрухт
+STR_CARGO_ABBREV_SCMT               :{TINYFONT}МБ
+STR_CARGO_QUANTITY_SCMT             :{WEIGHT} металобрухту
+
+STR_CARGO_NAME_SCPR                 :Макулатура
+STR_CARGO_ABBREV_SCPR               :{TINYFONT}МК
+STR_CARGO_QUANTITY_SCPR             :{WEIGHT} макулатури
+
+STR_CARGO_NAME_LOGS                 :Деревина
+STR_CARGO_ABBREV_LOGS               :{TINYFONT}ДР
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} деревини
