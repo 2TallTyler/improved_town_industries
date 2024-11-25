@@ -76,7 +76,7 @@ STR_CARGO_QUANTITY_WASTE			:{WEIGHT} відходів
 
 STR_CARGO_NAME_BDMT                 :Будівельні матеріали
 STR_CARGO_ABBREV_BDMT               :{TINYFONT}БМ
-STR_CARGO_QUANTITY_BDMT             :{WEIGHT} удівельних матеріалів
+STR_CARGO_QUANTITY_BDMT             :{WEIGHT} будівельних матеріалів
 
 STR_CARGO_NAME_WDCH                 :Деревна тріска
 STR_CARGO_ABBREV_WDCH               :{TINYFONT}ДТ
