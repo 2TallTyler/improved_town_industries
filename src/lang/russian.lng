@@ -25,7 +25,7 @@ STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Потребляет 1 един
 STR_INCINERATOR_HELPTEXT            :Потребляет отходы, но не имеет другого эффекта.
 
 STR_LOC_ERROR_PRIMARY               :Первичные производства не могут финансироваться вблизи городов и должны располагаться на подходящей высоте.
-STR_LOC_ERROR_SECONDARY             :Вторичные производства должны находиться рядом с городом, где нет других вторичных производств.
+STR_LOC_ERROR_SECONDARY             :Вторичные производства должны находиться рядом с мегаполисом, где нет других вторичных производств.
 
 STR_NAME_OBJECT_MENU                :Объекты производства
 STR_NAME_OBJECT_MENU_FIELDS         :Поля
@@ -86,6 +86,6 @@ STR_CARGO_NAME_SCPR                 :Макулатура
 STR_CARGO_ABBREV_SCPR               :{TINYFONT} макулатура
 STR_CARGO_QUANTITY_SCPR             :{WEIGHT} макулатуры
 
-STR_CARGO_NAME_LOGS                 :Журналы
-STR_CARGO_ABBREV_LOGS               :{TINYFONT} журналы
-STR_CARGO_QUANTITY_LOGS             :{WEIGHT} журналов
+STR_CARGO_NAME_LOGS                 :Брёвна
+STR_CARGO_ABBREV_LOGS               :{TINYFONT} брёвна
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT} брёвен
