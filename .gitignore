@@ -1,3 +1,4 @@
+.conda/*
 .nmlcache/*
 *.grf
 improved_town_industries.nml

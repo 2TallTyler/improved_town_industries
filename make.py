@@ -12,7 +12,7 @@ header_stuff = ["header", "cargos", "functions"]
 unordered_stuff = ["coal_mine", "iron_mine", "steel_mill", "forest", "sawmill", "building_materials_factory", "factory", "food_processing_plant", "oil_wells", "oil_refinery", "paper_mill", "farm", "ranch", "recycling_center", "bank", "incinerator", "hardware_store"]
 
 # Do you want to copy the completed NewGRF to your OpenTTD folder? (If in the typical location at "~/Documents/OpenTTD/newgrf")
-copy_bool = True
+copy_bool = False
 
 #################################
 # NO NEED TO CHANGE STUFF BELOW #
