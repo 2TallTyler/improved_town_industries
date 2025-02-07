@@ -1,7 +1,8 @@
 name: mynmlenv
 dependencies:
   - python=3.12
+  - pillow
   - ply
   - pip # Install pip in your environment
   - pip: # Include pip dependencies last
-      - nml
+    - nml
