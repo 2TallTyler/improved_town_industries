@@ -55,30 +55,31 @@ item (FEAT_CARGOS, cargo_coal, 1) {
     }
 }
 
-// Waste in Mail ID for town house production
-item (FEAT_CARGOS, cargo_waste, 2) {
+// Original ID
+// copied from EmperorJake's AXIS/src/cargos/mail.py
+item (FEAT_CARGOS, cargo_mail, 2) {
     property {
         number:                     2;
-        sprite:                     4319;
-        type_name:                  string(STR_CARGO_NAME_WASTE);
-        unit_name:                  string(STR_CARGO_NAME_WASTE);
-        type_abbreviation:          string(STR_CARGO_ABBREV_WASTE);
-        weight:                     1.0;
-        is_freight:                 1;
-        cargo_classes:              bitmask(CC_BULK, CC_PIECE_GOODS, CC_COVERED);
-        cargo_label:                "WSTE";
-        town_growth_effect:         TOWNGROWTH_NONE;
-        town_growth_multiplier:     0;
+        sprite:                     4316; //unsure
+        type_name:                  TTD_STR_CARGO_PLURAL_MAIL;
+        unit_name:                  TTD_STR_CARGO_SINGULAR_MAIL;
+        type_abbreviation:          TTD_STR_ABBREV_MAIL;
+        weight:                     0.25;
+        is_freight:                 0;
+        cargo_classes:              bitmask(CC_MAIL);
+        cargo_label:                "MAIL";
+        town_growth_effect:         TOWNGROWTH_MAIL;
+        town_growth_multiplier:     1.0;
         town_production_effect:     TOWNPRODUCTION_MAIL;
         town_production_multiplier: 1.0;
-        units_of_cargo:             TTD_STR_TONS;
-        items_of_cargo:             string(STR_CARGO_QUANTITY_WASTE);
-        penalty_lowerbound:         30;
-        single_penalty_length:      255;
-        station_list_colour:        95;
-        cargo_payment_list_colour:  95;
-        price_factor:               117;
-        capacity_multiplier:        1;
+        units_of_cargo:             TTD_STR_BAGS;
+        items_of_cargo:             TTD_STR_QUANTITY_MAIL ;
+        penalty_lowerbound:         6;
+        single_penalty_length:      24;
+        station_list_colour:        15;
+        cargo_payment_list_colour:  15;
+        price_factor:               167;
+        capacity_multiplier:        2;
     }
 }
 
@@ -494,6 +495,33 @@ item (FEAT_CARGOS, cargo_grain, 19) {
         station_list_colour:        65;
         cargo_payment_list_colour:  65;
         price_factor:               114;
+        capacity_multiplier:        1;
+    }
+}
+
+// Waste in new ID
+item (FEAT_CARGOS, cargo_waste, 20) {
+    property {
+        number:                     21;
+        sprite:                     4319;
+        type_name:                  string(STR_CARGO_NAME_WASTE);
+        unit_name:                  string(STR_CARGO_NAME_WASTE);
+        type_abbreviation:          string(STR_CARGO_ABBREV_WASTE);
+        weight:                     1.0;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_BULK, CC_PIECE_GOODS, CC_COVERED);
+        cargo_label:                "WSTE";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        town_production_effect:     TOWNPRODUCTION_MAIL;
+        town_production_multiplier: 1.0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_WASTE);
+        penalty_lowerbound:         30;
+        single_penalty_length:      255;
+        station_list_colour:        95;
+        cargo_payment_list_colour:  95;
+        price_factor:               117;
         capacity_multiplier:        1;
     }
 }

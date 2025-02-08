@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-05-15T16:46:34.134Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.4.0 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="vFcXqEcOUl2M1gxSynld" version="24.4.0" type="device">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0" version="26.0.11">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1969" dy="1393" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1381" dy="2253" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -19,11 +19,11 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WeUVqObXeXaD6YGCWdsq-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-3" target="WeUVqObXeXaD6YGCWdsq-21" edge="1">
+        <mxCell id="WeUVqObXeXaD6YGCWdsq-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-3" target="WeUVqObXeXaD6YGCWdsq-21" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="710" y="110" />
-              <mxPoint x="840" y="110" />
+              <mxPoint x="752" y="130" />
+              <mxPoint x="840" y="130" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -96,22 +96,67 @@
           <mxGeometry x="90" y="170" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="WeUVqObXeXaD6YGCWdsq-45" value="Waste" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-14" target="WeUVqObXeXaD6YGCWdsq-44" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="WeUVqObXeXaD6YGCWdsq-14" value="HOUSES" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="530" y="610" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="WeUVqObXeXaD6YGCWdsq-30" value="Building&lt;br&gt;Materials" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-18" target="WeUVqObXeXaD6YGCWdsq-14" edge="1">
-          <mxGeometry x="0.25" relative="1" as="geometry">
+          <mxGeometry x="0.5385" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="q9zW0HBqPHYGfLHhzIOr-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-18" target="q9zW0HBqPHYGfLHhzIOr-0">
+        <mxCell id="nqclkEY_nttdHwaXzyIE-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-14" target="WeUVqObXeXaD6YGCWdsq-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="640" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="620" y="700" />
+              <mxPoint x="720" y="700" />
+              <mxPoint x="720" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nqclkEY_nttdHwaXzyIE-2" value="&lt;div&gt;Mail&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="nqclkEY_nttdHwaXzyIE-1">
+          <mxGeometry x="0.7274" y="1" relative="1" as="geometry">
+            <mxPoint x="40" y="29" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nqclkEY_nttdHwaXzyIE-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-14" target="WeUVqObXeXaD6YGCWdsq-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="650" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="560" y="700" />
+              <mxPoint x="460" y="700" />
+              <mxPoint x="460" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nqclkEY_nttdHwaXzyIE-4" value="Passengers" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="nqclkEY_nttdHwaXzyIE-3">
+          <mxGeometry x="0.6069" y="-2" relative="1" as="geometry">
+            <mxPoint x="-23" y="28" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nqclkEY_nttdHwaXzyIE-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-14" target="nqclkEY_nttdHwaXzyIE-6">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="590" y="570" />
-              <mxPoint x="470" y="570" />
+              <mxPoint x="590" y="730" />
+              <mxPoint x="770" y="730" />
             </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nqclkEY_nttdHwaXzyIE-9" value="Waste" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="nqclkEY_nttdHwaXzyIE-8">
+          <mxGeometry x="0.85" y="2" relative="1" as="geometry">
+            <mxPoint x="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WeUVqObXeXaD6YGCWdsq-14" value="Houses" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="530" y="610" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="q9zW0HBqPHYGfLHhzIOr-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-18" target="q9zW0HBqPHYGfLHhzIOr-0" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="430" />
+              <mxPoint x="710" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nqclkEY_nttdHwaXzyIE-5" value="Building Materials" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="q9zW0HBqPHYGfLHhzIOr-2">
+          <mxGeometry x="0.4091" y="2" relative="1" as="geometry">
+            <mxPoint x="-21" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="WeUVqObXeXaD6YGCWdsq-18" value="Building Materials&lt;br&gt;Factory" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -123,20 +168,17 @@
         <mxCell id="WeUVqObXeXaD6YGCWdsq-21" value="Paper Mill" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="810" y="310" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="WeUVqObXeXaD6YGCWdsq-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-23" target="WeUVqObXeXaD6YGCWdsq-21" edge="1">
+        <mxCell id="WeUVqObXeXaD6YGCWdsq-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-23" target="WeUVqObXeXaD6YGCWdsq-21" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="WeUVqObXeXaD6YGCWdsq-37" value="Chemicals" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="WeUVqObXeXaD6YGCWdsq-24" vertex="1" connectable="0">
           <mxGeometry x="0.2286" y="2" relative="1" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint x="11" y="-2" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WeUVqObXeXaD6YGCWdsq-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-23" target="WeUVqObXeXaD6YGCWdsq-25" edge="1">
+        <mxCell id="WeUVqObXeXaD6YGCWdsq-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-23" target="WeUVqObXeXaD6YGCWdsq-25" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1030" y="270" />
-              <mxPoint x="1060" y="270" />
-            </Array>
+            <mxPoint x="1100" y="290" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="WeUVqObXeXaD6YGCWdsq-36" value="Plastic" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="WeUVqObXeXaD6YGCWdsq-27" vertex="1" connectable="0">
@@ -163,7 +205,7 @@
         <mxCell id="WeUVqObXeXaD6YGCWdsq-25" value="Goods Factory" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="970" y="450" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="WeUVqObXeXaD6YGCWdsq-40" value="&lt;h1&gt;Primary Industries&lt;/h1&gt;&lt;div&gt;Only in non-cities.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Production increases for every 1,000 population (up to 4,000 population about 640 tons/month).&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;h1&gt;Secondary Industries&lt;/h1&gt;&lt;div&gt;Only in cities.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Process 1 unit per month of input cargo for every 5 population.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;h1&gt;Town Growth Requirements&lt;/h1&gt;&lt;p&gt;Uses Renewed Village Growth GS&lt;/p&gt;&lt;p&gt;- Always: Passengers&lt;br&gt;- 1k+: Food&lt;br&gt;- 2k+: Building Materials&lt;br&gt;- 3k+: Goods&lt;br&gt;- 4k+: Valuables (only possible in cities)&lt;/p&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="WeUVqObXeXaD6YGCWdsq-40" value="&lt;h1&gt;Primary Industries&lt;/h1&gt;&lt;div&gt;Only in non-cities.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Production increases for every 1,000 population (up to 4,000 population about 640 tons/month).&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;h1&gt;Secondary Industries&lt;/h1&gt;&lt;div&gt;Only in cities.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;With passenger service in the nearby town, process 1 unit per month of input cargo for every 5 population.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;h1&gt;Town Growth Requirements&lt;/h1&gt;&lt;p&gt;Using Renewed Village Growth GS&lt;/p&gt;&lt;p&gt;- Always: Passengers and/or Mail&lt;br&gt;- 1k+: Food&lt;br&gt;- 2k+: Building Materials&lt;br&gt;- 3k+: Goods&lt;br&gt;- 4k+: Valuables (only possible in cities)&lt;/p&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="30" y="440" width="330" height="430" as="geometry" />
         </mxCell>
         <mxCell id="WeUVqObXeXaD6YGCWdsq-41" value="Bank" style="ellipse;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -180,24 +222,24 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WeUVqObXeXaD6YGCWdsq-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-44" target="WeUVqObXeXaD6YGCWdsq-21" edge="1">
+        <mxCell id="WeUVqObXeXaD6YGCWdsq-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-44" target="WeUVqObXeXaD6YGCWdsq-21" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="590" y="860" />
-              <mxPoint x="730" y="860" />
-              <mxPoint x="730" y="340" />
+              <mxPoint x="590" y="880" />
+              <mxPoint x="1190" y="880" />
+              <mxPoint x="1190" y="340" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="WeUVqObXeXaD6YGCWdsq-49" value="Scrap Paper" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="WeUVqObXeXaD6YGCWdsq-46" vertex="1" connectable="0">
           <mxGeometry x="0.8453" y="-2" relative="1" as="geometry">
-            <mxPoint x="-22" y="28" as="offset" />
+            <mxPoint x="-45" y="2" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WeUVqObXeXaD6YGCWdsq-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-44" edge="1">
+        <mxCell id="WeUVqObXeXaD6YGCWdsq-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-44" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="590" y="860" />
+              <mxPoint x="620" y="860" />
               <mxPoint x="1160" y="860" />
               <mxPoint x="1160" y="410" />
               <mxPoint x="1060" y="410" />
@@ -210,10 +252,10 @@
             <mxPoint y="-3" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WeUVqObXeXaD6YGCWdsq-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-44" target="WeUVqObXeXaD6YGCWdsq-8" edge="1">
+        <mxCell id="WeUVqObXeXaD6YGCWdsq-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-44" target="WeUVqObXeXaD6YGCWdsq-8" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="590" y="860" />
+              <mxPoint x="560" y="860" />
               <mxPoint x="380" y="860" />
               <mxPoint x="380" y="200" />
             </Array>
@@ -227,11 +269,19 @@
         <mxCell id="WeUVqObXeXaD6YGCWdsq-44" value="Recycling Center" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="530" y="770" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="2z1tpO251dpxnBg6ales-0" value="&lt;h1&gt;Bank&lt;/h1&gt;&lt;div&gt;Note: Only allowed in cities, asymmetrical CargoDist suggested for inter-bank transportation.&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="1140" y="190" width="190" height="120" as="geometry" />
+        <mxCell id="q9zW0HBqPHYGfLHhzIOr-0" value="Hardware&lt;div&gt;Store&lt;/div&gt;" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="650" y="450" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="q9zW0HBqPHYGfLHhzIOr-0" value="Hardware&lt;div&gt;Store&lt;/div&gt;" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="425" y="620" width="90" height="40" as="geometry" />
+        <mxCell id="WeUVqObXeXaD6YGCWdsq-30" value="Building&lt;br&gt;Materials" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WeUVqObXeXaD6YGCWdsq-18" target="WeUVqObXeXaD6YGCWdsq-14" edge="1">
+          <mxGeometry x="0.25" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nqclkEY_nttdHwaXzyIE-6" value="Incinerator" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="710" y="770" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nqclkEY_nttdHwaXzyIE-13" value="&lt;h3 style=&quot;line-height: 100%;&quot;&gt;Notes (see README)&lt;/h3&gt;&lt;div&gt;Bank: Only allowed in cities, asymmetrical CargoDist suggested for inter-bank transportation.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Hardware Store: For house sets that do not accept building materials (player funded).&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;The majority of industries also produce passengers when their outputs are actively served.&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;fillColor=none;fillStyle=auto;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="900" y="590" width="190" height="230" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
