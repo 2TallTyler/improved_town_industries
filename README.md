@@ -82,6 +82,7 @@ Secondary industries and Banks only generate in cities.
 * Korean (telk5093)
 * Russian (demidovskiy and Shkarlatov)
 * Swedish (En okänd välgörare and Shump)
+* Ukrainian (alrickUA)
 
 Please feel free to translate into your language and submit a Pull Request.
 
