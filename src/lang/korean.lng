@@ -11,6 +11,10 @@ STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE}는 {YELLOW}{STRING}{
 
 STR_PARAM_PRIMARY_QUADRANTS_NAME    :1차 산업 시설 지역 사용
 STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}기본값: {ORANGE}켜기{}{WHITE}이 설정을 켜면, 1차 산업 시설이 지도의 특정 영역에서만 생성됩니다.
+STR_PARAM_ELEVATION_REQUIREMENTS_NAME :1차 산업시설 고도 조건
+STR_PARAM_ELEVATION_REQUIREMENTS_DESC :{LTBLUE}기본값: {ORANGE}켬{}{WHITE}이 설정을 켜면, 탄광과 철 광산이 고도 4 위에서만 생성되고, 농장과 유정이 고도 4 아래에서만 생성됩니다.
+STR_PARAM_HARDWARE_STORE_NAME		:하드웨어 상점 생성
+STR_PARAM_HARDWARE_STORE_DESC		:{LTBLUE}기본값: {ORANGE}켬{}{WHITE}이 설정을 켜면, 건설 자재를 받을 수 있도록 도시에 하드웨어 상점을 생성합니다.
 
 STR_PRIMARY_GOAL_1000               :{BLACK}생산량을 {WHITE}최대로 증가{BLACK}시키려면, 도시를 인구 1,000명 이상으로 성장시키세요.
 STR_PRIMARY_GOAL_2000               :{BLACK}생산량을 {WHITE}최대로 증가{BLACK}시키려면, 도시를 인구 2,000명 이상으로 성장시키세요.
@@ -24,6 +28,8 @@ STR_PRIMARY_HELPTEXT                :{SKIP}{SKIP}{STRING}{}{}생산 효율: {SKI
 STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}인구 5명당 수송되는 각 화물 1개 단위가 소비됩니다. 현재 최대: {YELLOW}{UNSIGNED_WORD}{BLACK}/월.{}{}생산 효율: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
 
 STR_INCINERATOR_HELPTEXT            :쓰레기를 소비하지만 다른 효과는 없습니다.
+STR_NAME_HARDWARE_STORE_MATS		:건축자재 칸
+STR_HARDWARE_STORE_HELPTEXT			:건축자재를 소비하지만 다른 효과는 없습니다.
 
 STR_NAME_OBJECT_MENU                :산업시설 타일
 STR_NAME_OBJECT_MENU_FIELDS         :농장 논밭
@@ -49,6 +55,7 @@ STR_NAME_FOOD_PROCESSING_PLANT      :식품 처리 공장
 STR_NAME_RANCH                      :목장
 STR_NAME_BANK                       :은행
 STR_NAME_INCINERATOR                :소각로
+STR_NAME_HARDWARE_STORE             :하드웨어 상점
 
 STR_NAME_FIELD_1                    :논밭
 
