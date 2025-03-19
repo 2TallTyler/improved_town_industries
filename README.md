@@ -43,7 +43,7 @@ These two goals together encourage players to both serve a town well, and encour
 ## Town Growth
 
 ITI 2 is designed to be used with the [Renewed Village Growth](https://github.com/F1rrel/RenewedVillageGrowth) script, which adds cargo delivery requirements for towns to grow:
-* 0+: Passengers
+* 0+: Passengers and Mail
 * 1,000+: Food
 * 2,000+: Building Materials
 * 3,000+: Goods
@@ -67,7 +67,7 @@ Secondary industries and Banks only generate in cities.
 ## Additional Features
 
 * Includes industry tile objects for visual expansion and decoration.
-* Houses produce Waste instead of Mail.
+* Houses produce Waste as well as Mail. In contrast to Mail, which is consumed by other houses, Waste is consumed by the recycling center and incinerator industries.
 
 ## Translations
 
@@ -88,6 +88,7 @@ Please feel free to translate into your language and submit a Pull Request.
 
 ## Additional Credits
 
+* bfgiant: Added Mail in addition to Waste.
 * Overjay: Hardware store concept and coding, Forest industry remake using tree sprites.
 
 ## Design Notes
