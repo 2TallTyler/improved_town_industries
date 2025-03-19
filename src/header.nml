@@ -3,8 +3,8 @@ grf {
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESC);
 	url: string(STR_WEBSITE);
-	version: 36;
-	min_compatible_version: 36;
+	version: 37;
+	min_compatible_version: 37;
 
     param 0 {
 		param_primary_quadrants {
