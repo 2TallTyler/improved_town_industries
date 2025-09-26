@@ -177,71 +177,71 @@ switch (FEAT_INDUSTRIES, SELF, GetTileY, var[0x80, 0, 0xFFFFFFFF] / map_x_edge) 
 
  /**
  * Check if an industry is in the North quadrant of the map.
- * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0.
+ * @return 1 if this is true, or param_primary_quadrants disables this feature, else 0.
  */
 switch (FEAT_INDUSTRIES, SELF, IsInQuadrantN,
-	!param_primary_quadrants || game_mode == GAMEMODE_EDITOR || (GetTileX() < (map_x_edge / 2) && GetTileY() < (map_y_edge / 2))
+	!param_primary_quadrants || (GetTileX() < (map_x_edge / 2) && GetTileY() < (map_y_edge / 2))
 ) {return;}
 
 /**
  * This function is UNUSED but kept for reference for other NewGRF authors!
  *
  * Check if an industry is in the East quadrant of the map.
- * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0.
+ * @return 1 if this is true, or param_primary_quadrants disables this feature, else 0.
  */
 
 /*
 switch (FEAT_INDUSTRIES, SELF, IsInQuadrantE,
-	!param_primary_quadrants || game_mode == GAMEMODE_EDITOR || (GetTileX() < (map_x_edge / 2) && GetTileY() > (map_y_edge / 2))
+	!param_primary_quadrants || (GetTileX() < (map_x_edge / 2) && GetTileY() > (map_y_edge / 2))
 ) {return;}
 */
 
 /**
  * Check if an industry is in the South quadrant of the map.
- * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0.
+ * @return 1 if this is true, or param_primary_quadrants disables this feature, else 0.
  */
 switch (FEAT_INDUSTRIES, SELF, IsInQuadrantS,
-	!param_primary_quadrants || game_mode == GAMEMODE_EDITOR || (GetTileX() > (map_x_edge / 2) && GetTileY() > (map_y_edge / 2))
+	!param_primary_quadrants || (GetTileX() > (map_x_edge / 2) && GetTileY() > (map_y_edge / 2))
 ) {return;}
 
 /**
  * Check if an industry is in the West quadrant of the map.
- * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0.
+ * @return 1 if this is true, or param_primary_quadrants disables this feature, else 0.
  */
 switch (FEAT_INDUSTRIES, SELF, IsInQuadrantW,
-	!param_primary_quadrants || game_mode == GAMEMODE_EDITOR || (GetTileX() > (map_x_edge / 2) && GetTileY() < (map_y_edge / 2))
+	!param_primary_quadrants || (GetTileX() > (map_x_edge / 2) && GetTileY() < (map_y_edge / 2))
 ) {return;}
 
 /**
  * Check if an industry is in the Northeast quadrant of the map.
- * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0. 
+ * @return 1 if this is true, or param_primary_quadrants disables this feature, else 0. 
  */
 switch (FEAT_INDUSTRIES, SELF, IsInQuadrantNE,
-    !param_primary_quadrants || game_mode == GAMEMODE_EDITOR || ((GetTileX() * map_y_edge) < (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) < (map_x_edge * map_y_edge))
+    !param_primary_quadrants || ((GetTileX() * map_y_edge) < (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) < (map_x_edge * map_y_edge))
 ) {return;}
 
 /**
  * Check if an industry is in the Southeast quadrant of the map.
- * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0. 
+ * @return 1 if this is true, or param_primary_quadrants disables this feature, else 0. 
  */
 switch (FEAT_INDUSTRIES, SELF, IsInQuadrantSE,
-    !param_primary_quadrants || game_mode == GAMEMODE_EDITOR || ((GetTileX() * map_y_edge) < (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) > (map_x_edge * map_y_edge))
+    !param_primary_quadrants || ((GetTileX() * map_y_edge) < (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) > (map_x_edge * map_y_edge))
 ) {return;}
 
 /**
  * Check if an industry is in the Southwest quadrant of the map.
- * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0. 
+ * @return 1 if this is true, or param_primary_quadrants disables this feature, else 0. 
  */
 switch (FEAT_INDUSTRIES, SELF, IsInQuadrantSW,
-    !param_primary_quadrants || game_mode == GAMEMODE_EDITOR || ((GetTileX() * map_y_edge) > (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) > (map_x_edge * map_y_edge))
+    !param_primary_quadrants || ((GetTileX() * map_y_edge) > (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) > (map_x_edge * map_y_edge))
 ) {return;}
 
 /**
  * Check if an industry is in the Northwest quadrant of the map.
- * @return 1 if this is true, we're in Scenario Editor, or param_primary_quadrants disables this feature, else 0. 
+ * @return 1 if this is true, or param_primary_quadrants disables this feature, else 0. 
  */
 switch (FEAT_INDUSTRIES, SELF, IsInQuadrantNW,
-    !param_primary_quadrants || game_mode == GAMEMODE_EDITOR || ((GetTileX() * map_y_edge) > (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) < (map_x_edge * map_y_edge))
+    !param_primary_quadrants || ((GetTileX() * map_y_edge) > (GetTileY() * map_x_edge)) && ((GetTileX() * map_y_edge + GetTileY() * map_x_edge) < (map_x_edge * map_y_edge))
 ) {return;}
 
 /* Empty production block. */
