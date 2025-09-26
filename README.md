@@ -89,6 +89,7 @@ Please feel free to translate into your language and submit a Pull Request.
 ## Additional Credits
 
 * bfgiant: Added Mail in addition to Waste.
+* bigyihsuan: Fixed quadrant spawning not working in Scenario Editor
 * Overjay: Hardware store concept and coding, Forest industry remake using tree sprites.
 
 ## Design Notes
