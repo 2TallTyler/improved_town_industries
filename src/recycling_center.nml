@@ -104,25 +104,18 @@ tilelayout industry_layout_recycling_center_1 {
 }
 
 produce (produce_recycling_center,
-    [WSTE: LOAD_TEMP(1);],                                                                        // consume
-    [SCMT: LOAD_TEMP(1) / 3; PLAS: LOAD_TEMP(1) / 3; SCPR: LOAD_TEMP(1) /3; PASS: LOAD_TEMP(2);], // produce
-    0                                                                                             // don't run callback again
+    [WSTE: LOAD_TEMP(1);],                                                             // consume
+    [SCMT: LOAD_TEMP(5); PLAS: LOAD_TEMP(5); SCPR: LOAD_TEMP(5); PASS: LOAD_TEMP(2);], // produce
+    0                                                                                  // don't run callback again
 )
-
-/* If we don't have enough stored, produce as much as we can anyway. */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_recycling_center_min, [
-    STORE_TEMP(incoming_cargo_waiting("WSTE"), 1), // Set the production amount to the current input stockpile
-    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("SCMT")) / 100), 2), // Set the passenger production level
-    ]) {produce_recycling_center;}
 
 /* Determine the production level and see if we have enough stored to meet it. */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_recycling_center_2, [
-    STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
+    STORE_TEMP(min(GetSecondaryProductionLevel(), incoming_cargo_waiting("WSTE")), 1), // Get production level
+    ProcessOneThirdSecondaryProduction(LOAD_TEMP(1)),
     STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("SCMT")) / 100), 2), // Set the passenger production level
-    incoming_cargo_waiting("WSTE") > LOAD_TEMP(1), // Check if there's enough Wood for this production level
     ]) {
-        1: produce_recycling_center;
-        switch_produce_recycling_center_min;
+        produce_recycling_center;
     }
 
 /* If no cargo is waiting, bail out. */
