@@ -49,7 +49,7 @@ item (FEAT_CARGOS, cargo_coal, 1) {
         type_abbreviation:          TTD_STR_ABBREV_COAL;
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_BULK);
+        cargo_classes:              bitmask(CC_OPEN_BULK, CC_NON_POTABLE);
         cargo_label:                "COAL";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -99,7 +99,7 @@ item (FEAT_CARGOS, cargo_oil, 3) {
         type_abbreviation:          TTD_STR_ABBREV_OIL;
         weight:                     0.9;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_LIQUID);
+        cargo_classes:              bitmask(CC_LIQUID_BULK, CC_NON_POTABLE);
         cargo_label:                "OIL_";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -124,7 +124,7 @@ item (FEAT_CARGOS, cargo_lumber, 4) {
         type_abbreviation:          string(STR_CARGO_ABBREV_LUMBER);
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_FLATBED, CC_NON_POTABLE);
         cargo_label:                "WDPR";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     1.0;
@@ -149,7 +149,7 @@ item (FEAT_CARGOS, cargo_goods, 5) {
         type_abbreviation:          TTD_STR_ABBREV_GOODS;
         weight:                     0.5;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_EXPRESS);
+        cargo_classes:              bitmask(CC_EXPRESS, CC_PIECE_GOODS, CC_FLATBED, CC_NON_POTABLE);
         cargo_label:                "GOOD";
         town_growth_effect:         TOWNGROWTH_WATER;
         town_growth_multiplier:     1.0;
@@ -174,7 +174,7 @@ item (FEAT_CARGOS, cargo_chemicals, 6) {
         type_abbreviation:          string(STR_CARGO_ABBREV_CHEMICALS);
         weight:                     1.2;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_LIQUID, CC_POWDERIZED);
+        cargo_classes:              bitmask(CC_LIQUID_BULK, CC_PIECE_GOODS, CC_POWDER_BULK, CC_GAS_BULK, CC_NON_POTABLE);
         cargo_label:                "RFPR";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     1.0;
@@ -199,7 +199,7 @@ item (FEAT_CARGOS, cargo_wood, 7) {
         type_abbreviation:          string(STR_CARGO_ABBREV_LOGS);
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_FLATBED, CC_NON_POTABLE);
         cargo_label:                "WOOD";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -224,7 +224,7 @@ item (FEAT_CARGOS, cargo_iore, 8) {
         type_abbreviation:          TTD_STR_ABBREV_IRON_ORE;
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_BULK);
+        cargo_classes:              bitmask(CC_OPEN_BULK, CC_NON_POTABLE);
         cargo_label:                "IORE";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -249,7 +249,7 @@ item (FEAT_CARGOS, cargo_steel, 9) {
         type_abbreviation:          TTD_STR_ABBREV_STEEL;
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_FLATBED, CC_NON_POTABLE);
         cargo_label:                "STEL";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -273,7 +273,7 @@ item (FEAT_CARGOS, cargo_paper, 10) {
         type_abbreviation:          TTD_STR_ABBREV_PAPER;
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_FLATBED, CC_NON_POTABLE);
         cargo_label:                "PAPR";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -297,7 +297,7 @@ item (FEAT_CARGOS, cargo_plastic, 11) {
         type_abbreviation:          string(STR_CARGO_ABBREV_PLAS);
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_BULK, CC_COVERED);
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_COVERED_BULK, CC_NON_POTABLE);
         cargo_label:                "PLAS";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -322,7 +322,7 @@ item (FEAT_CARGOS, cargo_food, 12) {
         type_abbreviation:          TTD_STR_ABBREV_FOOD;
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_REFRIGERATED, CC_EXPRESS);
+        cargo_classes:              bitmask(CC_REFRIGERATED, CC_EXPRESS, CC_COVERED_BULK, CC_LIQUID_BULK, CC_POTABLE);
         cargo_label:                "FOOD";
         town_growth_effect:         TOWNGROWTH_FOOD;
         town_growth_multiplier:     1.0;
@@ -346,7 +346,7 @@ item (FEAT_CARGOS, cargo_building_materials, 13) {
         type_abbreviation:          string(STR_CARGO_ABBREV_BDMT);
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_BULK);
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_COVERED_BULK, CC_FLATBED, CC_NON_POTABLE);
         cargo_label:                "BDMT";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -394,7 +394,7 @@ item (FEAT_CARGOS, cargo_livestock, 15) {
         type_abbreviation:          TTD_STR_ABBREV_LIVESTOCK;
         weight:                     0.1875;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_NON_POTABLE, CC_WEIRD);
         cargo_label:                "LVST";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -418,7 +418,7 @@ item (FEAT_CARGOS, cargo_wood_chips, 16) {
         type_abbreviation:          string(STR_CARGO_ABBREV_WDCH);
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_BULK);
+        cargo_classes:              bitmask(CC_OPEN_BULK, CC_COVERED_BULK, CC_NON_POTABLE);
         cargo_label:                "WDCH";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -442,7 +442,7 @@ item (FEAT_CARGOS, cargo_scrap_metal, 17) {
         type_abbreviation:          string(STR_CARGO_ABBREV_SCMT);
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_BULK, CC_NON_POURABLE);
+        cargo_classes:              bitmask(CC_OPEN_BULK, CC_NON_POTABLE);
         cargo_label:                "SCMT";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -466,7 +466,7 @@ item (FEAT_CARGOS, cargo_scrap_paper, 18) {
         type_abbreviation:          string(STR_CARGO_ABBREV_SCPR);
         weight:                     1;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_PIECE_GOODS);
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_NON_POTABLE);
         cargo_label:                "SCPR";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -490,7 +490,7 @@ item (FEAT_CARGOS, cargo_grain, 19) {
         type_abbreviation:          TTD_STR_ABBREV_GRAIN;
         weight:                     0.1875;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_BULK, CC_COVERED);
+        cargo_classes:              bitmask(CC_PIECE_GOODS, CC_COVERED_BULK, CC_POTABLE);
         cargo_label:                "GRAI";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
@@ -515,7 +515,7 @@ item (FEAT_CARGOS, cargo_waste, 20) {
         type_abbreviation:          string(STR_CARGO_ABBREV_WASTE);
         weight:                     1.0;
         is_freight:                 1;
-        cargo_classes:              bitmask(CC_BULK, CC_PIECE_GOODS, CC_COVERED);
+        cargo_classes:              bitmask(CC_OPEN_BULK, CC_PIECE_GOODS, CC_NON_POTABLE);
         cargo_label:                "WSTE";
         town_growth_effect:         TOWNGROWTH_NONE;
         town_growth_multiplier:     0;
