@@ -179,20 +179,18 @@ produce (produce_paper_mill,
 /* If we don't have enough stored, produce as much as we can anyway. */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_min, [
     STORE_TEMP(min(incoming_cargo_waiting("WDCH"), incoming_cargo_waiting("RFPR")), 4),
-    STORE_TEMP(LOAD_TEMP(3) + LOAD_TEMP(4), 1),
     ]) {produce_paper_mill;}
 
 /* Determine the production level and see if we have enough stored to meet it. */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_2, [
-    /* Set the passenger production amount. */
-    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("PAPR")) / 100), 2),
-
     /* Get the target production amount */
     STORE_TEMP(GetSecondaryProductionLevel(), 1),
     /* How much of the production can be met with scrap? */
     STORE_TEMP(min(LOAD_TEMP(1), incoming_cargo_waiting("SCPR")), 3),
     /* Make up the rest in normal input. */
     STORE_TEMP(LOAD_TEMP(1) - LOAD_TEMP(3), 4),
+    /* Set the passenger production amount. */
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("PAPR")) / 100), 2),
     /* Check if there's enough input cargo for this production level. */
     min(incoming_cargo_waiting("WDCH"), incoming_cargo_waiting("RFPR")) > LOAD_TEMP(4),
     ]) {
