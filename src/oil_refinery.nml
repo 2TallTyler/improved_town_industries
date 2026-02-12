@@ -185,7 +185,7 @@ tilelayout industry_layout_oil_refinery_3 {
 
 produce (produce_oil_refinery,
     [OIL_: LOAD_TEMP(1);],                                             // consume
-    [RFPR: LOAD_TEMP(5); PLAS: LOAD_TEMP(5) * 2; PASS: LOAD_TEMP(2);], // produce
+    [CHEM: LOAD_TEMP(5); PLAS: LOAD_TEMP(5) * 2; PASS: LOAD_TEMP(2);], // produce
     0                                                                  // don't run callback again
 )
 
@@ -193,7 +193,7 @@ produce (produce_oil_refinery,
 switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery_2, [
     STORE_TEMP(min(GetSecondaryProductionLevel(), incoming_cargo_waiting("OIL_")), 1), // Get production level
     ProcessOneThirdSecondaryProduction(LOAD_TEMP(1)),
-    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("RFPR")) / 100), 2), // Set the passenger production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("CHEM")) / 100), 2), // Set the passenger production level
     ]) {
         produce_oil_refinery;
     }
@@ -215,7 +215,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 9) {
 		spec_flags: 0;
 		cargo_types: [
 			accept_cargo("OIL_"),
-            produce_cargo("RFPR", 0),
+            produce_cargo("CHEM", 0),
             produce_cargo("PLAS", 0),
             produce_cargo("PASS", 0),
 		];

@@ -10,7 +10,7 @@ const CC_WEIRD = 12; // remaps legacy NML class: CC_NON_POURABLE
 /* *** Begin Cargos *** */
 
 cargotable {
-    PASS, COAL, WSTE, OIL_, WDPR, GOOD, RFPR, WOOD, IORE, STEL, PAPR, PLAS, FOOD, BDMT, VALU, LVST, WDCH, SCMT, SCPR, GRAI
+    PASS, COAL, WSTE, OIL_, WDPR, GOOD, CHEM, WOOD, IORE, STEL, PAPR, PLAS, FOOD, BDMT, VALU, LVST, WDCH, SCMT, SCPR, GRAI
 }
 
 

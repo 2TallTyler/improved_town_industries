@@ -171,14 +171,14 @@ tilelayout industry_layout_paper_mill_3 {
  */
 
 produce (produce_paper_mill,
-    [SCPR: LOAD_TEMP(3); RFPR: LOAD_TEMP(4); WDCH: LOAD_TEMP(4);],  // consume
+    [SCPR: LOAD_TEMP(3); CHEM: LOAD_TEMP(4); WDCH: LOAD_TEMP(4);],  // consume
     [PAPR: LOAD_TEMP(3) + (LOAD_TEMP(4) * 2); PASS: LOAD_TEMP(2);], // produce
     0                                                               // don't run callback again
 )
 
 /* If we don't have enough stored, produce as much as we can anyway. */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_min, [
-    STORE_TEMP(min(incoming_cargo_waiting("WDCH"), incoming_cargo_waiting("RFPR")), 4),
+    STORE_TEMP(min(incoming_cargo_waiting("WDCH"), incoming_cargo_waiting("CHEM")), 4),
     ]) {produce_paper_mill;}
 
 /* Determine the production level and see if we have enough stored to meet it. */
@@ -192,14 +192,14 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_2, [
     /* Set the passenger production amount. */
     STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("PAPR")) / 100), 2),
     /* Check if there's enough input cargo for this production level. */
-    min(incoming_cargo_waiting("WDCH"), incoming_cargo_waiting("RFPR")) > LOAD_TEMP(4),
+    min(incoming_cargo_waiting("WDCH"), incoming_cargo_waiting("CHEM")) > LOAD_TEMP(4),
     ]) {
         1: produce_paper_mill;
         switch_produce_paper_mill_min;
     }
 
 /* If no cargo is waiting, bail out. */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill, incoming_cargo_waiting("SCPR") > 0 || min(incoming_cargo_waiting("WDCH"), incoming_cargo_waiting("RFPR")) > 0)
+switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill, incoming_cargo_waiting("SCPR") > 0 || min(incoming_cargo_waiting("WDCH"), incoming_cargo_waiting("CHEM")) > 0)
     {
         1: switch_produce_paper_mill_2;
         produce_none;
@@ -215,7 +215,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 10) {
 		spec_flags: 0;
 		cargo_types:[
 			accept_cargo("WDCH"),
-            accept_cargo("RFPR"),
+            accept_cargo("CHEM"),
             accept_cargo("SCPR"),
             produce_cargo("PAPR", 0),
             produce_cargo("PASS", 0),
